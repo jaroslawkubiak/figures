@@ -1,0 +1,30 @@
+:root {
+  --primary-color: #ffe81f;
+  --bg-color: #000000;
+}
+
+@font-face {
+  font-family: star_wars;
+  src: url("star_wars.ttf") format("truetype");
+}
+
+body {
+  font-family: verdana, arial, helvetica, star_wars;
+  font-size: 12px;
+  background-color: rgb(58, 58, 68);
+  color: white;
+  padding: 0;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.relative {
+  position: relative;
+}
+
+.figure-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  gap: 10px;
+}

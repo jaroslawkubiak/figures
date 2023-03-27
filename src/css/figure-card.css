@@ -1,0 +1,21 @@
+.card-wrapper {
+    margin: 5px;
+    width: 90%;
+    max-width: 200px;
+    height: 250px;
+    background-color: var(--bg-color);
+    border: 3px solid var(--primary-color);
+    color: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .cell {
+    width: 100%;
+    text-align: center;
+    font-family: star_wars;
+    background-color: var(--primary-color);
+  }
+
+
