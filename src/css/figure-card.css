@@ -1,21 +1,113 @@
-.card-wrapper {
-    margin: 5px;
-    width: 90%;
-    max-width: 200px;
-    height: 250px;
-    background-color: var(--bg-color);
-    border: 3px solid var(--primary-color);
-    color: var(--bg-color);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .cell {
-    width: 100%;
-    text-align: center;
-    font-family: star_wars;
-    background-color: var(--primary-color);
-  }
+.figure-img {
+  max-height: 80%;
+  max-width: 90%;
+}
+.container {
+  font-family: star_wars;
+  color: var(--bg-color);
+  margin-bottom: 20px;
 
+  --border-width: 6px;
+  --border-edge: 1;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 150px;
+  height: 216px;
+  background-color:var(--primary-color);
 
+  clip-path: polygon(
+    /* left-top corner */ 0 calc(var(--border-width) * var(--border-edge)),
+    /* left-top corner */ calc(var(--border-width) * var(--border-edge)) 0,
+
+    /* right-top corner */ calc(100% - var(--border-width)) 0,
+    /* right-top corner */ 100% var(--border-width),
+    /* right indentation */ 100% calc(30% - var(--border-width)),
+    /* right indentation */ calc(100% - var(--border-width)) 30%,
+    /* right indentation */ calc(100% - var(--border-width)) 60%,
+    /* right indentation */ 100% calc(60% + var(--border-width)),
+    /* right-bottom corner */ 100% calc(100% - var(--border-width)),
+    /* right-bottom corner */ calc(100% - var(--border-width)) 100%,
+
+    /* left-bottom corner */ var(--border-width) 100%,
+    /* left-bottom corner */ 0 calc(100% - var(--border-width)),
+    /* left indentation */ 0 calc(60% + var(--border-width)),
+    /* left indentation */ var(--border-width) 60%,
+    /* left indentation */ var(--border-width) 30%,
+    /* left indentation */ 0 calc(30% - var(--border-width))
+  );
+}
+.wrapper {
+  position: relative;
+  --border-edge: 0.7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 144px;
+  height: 210px;
+  background-color: rgb(255, 255, 255);
+  clip-path: polygon(
+    /* left-top corner */ 0 calc(var(--border-width) * var(--border-edge)),
+    /* left-top corner */ calc(var(--border-width) * var(--border-edge)) 0,
+
+    /* right-top corner */ calc(100% - var(--border-width) * var(--border-edge))
+      0,
+    /* right-top corner */ 100% calc(var(--border-width) * var(--border-edge)),
+    /* right indentation */ 100%
+      calc(30% - var(--border-width) * (1 - var(--border-edge) + 1)),
+    /* right indentation */ calc(100% - var(--border-width)) calc(30% - 2px),
+    /* right indentation */ calc(100% - var(--border-width)) calc(60% + 2px),
+    /* right indentation */ 100%
+      calc(60% + var(--border-width) * (1 - var(--border-edge) + 1)),
+    /* right-bottom corner */ 100%
+      calc(100% - var(--border-width) * var(--border-edge)),
+    /* right-bottom corner */
+      calc(100% - var(--border-width) * var(--border-edge)) 100%,
+
+    /* left-bottom corner */ calc(var(--border-width) * var(--border-edge)) 100%,
+    /* left-bottom corner */ 0
+      calc(100% - var(--border-width) * var(--border-edge)),
+    /* left indentation */ 0
+      calc(60% + var(--border-width) * (1 - var(--border-edge) + 1)),
+    /* left indentation */ var(--border-width) calc(60% + 2px),
+    /* left indentation */ var(--border-width) calc(30% - 2px),
+    /* left indentation */ 0
+      calc(30% - var(--border-width) * (1 - var(--border-edge) + 1))
+  );
+}
+.cell-text{
+  position: absolute;
+  top: 0px;
+  font-size: 0.6em;
+  /* background-color: rgb(0, 43, 13); 
+  color: white; */
+}
+.name {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+  left: 0;
+  margin: 2px 0px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 15px;
+  background-color:var(--primary-color);
+}
+.number {
+  position: absolute;
+  z-index: 5;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  border-top: 2px solid rgb(0, 0, 0);
+  width: 80%;
+  height: 15px;
+  background-color:var(--primary-color);
+  --skew: 10px;
+  clip-path: polygon(var(--skew) 0px, calc(100% - var(--skew)) 0px, 100% 100%, 0px 100%);
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+
+      body {
+        background-color: rgb(0, 0, 0);
+        display: grid;
+        place-items: center;
+        margin-top: 200px;
+      }
+      .container {
+        --border-width: 20px;
+        --border-edge: 1;
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 610px;
+        height: 880px;
+        background-color: yellow;
+        clip-path: polygon(
+          /* left-top corner */ 0 calc(var(--border-width) * var(--border-edge)),
+          /* left-top corner */ calc(var(--border-width) * var(--border-edge)) 0,
+
+          /* right-top corner */ calc(100% - var(--border-width)) 0,
+          /* right-top corner */ 100% var(--border-width),
+          /* right indentation */ 100% calc(30% - var(--border-width)),
+          /* right indentation */ calc(100% - var(--border-width)) 30%,
+          /* right indentation */ calc(100% - var(--border-width)) 60%,
+          /* right indentation */ 100% calc(60% + var(--border-width)),
+          /* right-bottom corner */ 100% calc(100% - var(--border-width)),
+          /* right-bottom corner */ calc(100% - var(--border-width)) 100%,
+
+          /* left-bottom corner */ var(--border-width) 100%,
+          /* left-bottom corner */ 0 calc(100% - var(--border-width)),
+          /* left indentation */ 0 calc(60% + var(--border-width)),
+          /* left indentation */ 20px 60%,
+          /* left indentation */ 20px 30%,
+          /* left indentation */ 0 calc(30% - var(--border-width))
+        );
+      }
+      .wrapper {
+        position: relative;
+        --border-edge: 0.85;
+
+        display: flex;
+
+        width: 600px;
+        height: 870px;
+        background-color: rgb(0, 0, 0);
+        clip-path: polygon(
+          /* left-top corner */ 0 calc(var(--border-width) * var(--border-edge)),
+          /* left-top corner */ calc(var(--border-width) * var(--border-edge)) 0,
+
+          /* right-top corner */
+            calc(100% - var(--border-width) * var(--border-edge)) 0,
+          /* right-top corner */ 100%
+            calc(var(--border-width) * var(--border-edge)),
+          /* right indentation */ 100%
+            calc(30% - var(--border-width) * (1 - var(--border-edge) + 1)),
+          /* right indentation */ calc(100% - var(--border-width))
+            calc(30% - 3px),
+          /* right indentation */ calc(100% - var(--border-width))
+            calc(60% + 3px),
+          /* right indentation */ 100%
+            calc(60% + var(--border-width) * (1 - var(--border-edge) + 1)),
+          /* right-bottom corner */ 100%
+            calc(100% - var(--border-width) * var(--border-edge)),
+          /* right-bottom corner */
+            calc(100% - var(--border-width) * var(--border-edge)) 100%,
+
+          /* left-bottom corner */
+            calc(var(--border-width) * var(--border-edge)) 100%,
+          /* left-bottom corner */ 0
+            calc(100% - var(--border-width) * var(--border-edge)),
+          /* left indentation */ 0
+            calc(60% + var(--border-width) * (1 - var(--border-edge) + 1)),
+          /* left indentation */ var(--border-width) calc(60% + 3px),
+          /* left indentation */ var(--border-width) calc(30% - 3px),
+          /* left indentation */ 0
+            calc(30% - var(--border-width) * (1 - var(--border-edge) + 1))
+        );
+      }
+
+      .name {
+        position: absolute;
+        z-index: 5;
+        bottom: 2px;
+        left: 50%;
+        transform: translateX(-50%);
+        /* padding: 2px 40px; */
+        display: grid;
+        place-items: center;
+
+        width: 80%;
+        height: 60px;
+        background-color: yellow;
+        clip-path: polygon(
+            40px 0px,
+            calc(100% - 40px) 0px, 
+            100% 100%, 
+            0px 100%);
+
+      }
+
+      .number {
+        position: absolute;
+        z-index: 5;
+        top: 0;
+        left: 0;
+        padding: 2px 0px;
+        display: grid;
+        place-items: center;
+        width: 100%;
+        height: 60px;
+        background-color: yellow;
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <div class="number">sw1198 - 2022</div>
+        <div class="name">Luke Skywalker</div>
+        <div class="wrapper"></div>
+    </div>
+  </body>
+</html>

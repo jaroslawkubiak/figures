@@ -16,7 +16,6 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  border-radius: px;
   background-color: rgb(0, 0, 0);
   border: 2px solid var(--primary-color);
 }
@@ -29,7 +28,7 @@
   top: calc(-1 * var(--close-btn-width) / 2);
   right: calc(-1 * var(--close-btn-width) / 2);
   background-color: var(--primary-color);
-  border-radius: 2px;
+  clip-path: polygon(80% 0%, 100% 20%, 100% 100%, 22% 100%, 0% 78%, 0 0);
 }
 
 .add-figure-close-btn::after,
@@ -47,4 +46,55 @@
 }
 .add-figure-close-btn::before {
   transform: rotate(-45deg);
+}
+
+.btn-add-figure {
+  all: unset;
+  font-family: star_wars;
+  padding: 5px 15px;
+  margin: 10px;
+  background-color: var(--primary-color);
+  color: black;
+  cursor: pointer;
+
+  --height: 10px;
+  clip-path: polygon(
+    calc(100% - var(--height)) 0%,
+    100% var(--height),
+    100% 100%,
+    var(--height) 100%,
+    0% calc(100% - var(--height)),
+    0 0
+  );
+}
+
+.center {
+  margin-top: 10px;
+  display: grid;
+  place-items: center;
+}
+
+.input-wrapper {
+  margin-bottom: 5px;
+}
+
+.add-figure-input {
+  all: unset;
+  color: black;
+  padding: 5px 10px;
+  background-color: var(--primary-color);
+
+  --height: 10px;
+  clip-path: polygon(
+    calc(100% - var(--height)) 0%,
+    100% var(--height),
+    100% 100%,
+    var(--height) 100%,
+    0% calc(100% - var(--height)),
+    0 0
+  );
+}
+
+.add-figure-input-label {
+  font-size: 1.2em;
 }

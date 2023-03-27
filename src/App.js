@@ -1,6 +1,6 @@
 import { useState } from "react";
 import FigureList from "./components/FigureList";
-import Filters from './components/Filters';
+import Filters from "./components/Filters";
 
 import "./index.css";
 import FigureAdd from "./components/FigureAdd";
@@ -10,10 +10,10 @@ function App() {
     {
       id: "429",
       series: "Rogue One",
-      number: "sw0784",
+      number: "sw0071",
       releaseYear: 2016,
-      mainName: "Rebel Trooper",
-      secondaryName: "Lieutenant Sefla",
+      mainName: "Jabba",
+      secondaryName: "",
       bricklink:
         "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw0784",
       label: "tak",
@@ -25,9 +25,9 @@ function App() {
     {
       id: "428",
       series: "The Mandalorian",
-      number: "sw1170",
+      number: "sw75005",
       releaseYear: 2021,
-      mainName: "The Mandalorian",
+      mainName: "Rancor",
       secondaryName: "Red Christmas Scarf",
       bricklink:
         "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1170",
@@ -55,9 +55,9 @@ function App() {
     {
       id: "426",
       series: "Clone Wars",
-      number: "sw0313",
+      number: "sw0109",
       releaseYear: 2011,
-      mainName: "R8-B7",
+      mainName: "stormtrooper",
       secondaryName: "",
       bricklink:
         "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw0313",
@@ -70,9 +70,9 @@ function App() {
     {
       id: "425",
       series: "Episode 4/5/6",
-      number: "sw1178",
+      number: "sw75228",
       releaseYear: 2021,
-      mainName: "Snowtrooper",
+      mainName: "dewback",
       secondaryName: "Female",
       bricklink:
         "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1178",
@@ -310,6 +310,15 @@ function App() {
   ];
 
   const [figures, setFigures] = useState(temp);
+  const [showFigureAdd, setShowFigureAdd] = useState(false);
+
+  const deleteFigureById = id => {
+    const updatedFigures = figures.filter(figure => {
+      return figure.id !== id;
+    });
+
+    setFigures(updatedFigures);
+  };
 
   const handleAddFigure = figure => {
     console.log("handleAddFigure");
@@ -318,13 +327,23 @@ function App() {
     setFigures(updatedFigures);
   };
 
+  const handleClick = () => setShowFigureAdd(true);
+  const handleClose = () => setShowFigureAdd(false);
+
+  const FigureAddComponent = (
+    <FigureAdd onSubmit={handleAddFigure} onClose={handleClose} />
+  );
+
   return (
     <div>
-      <Filters />
-      {/* <FigureAdd onSubmit={handleAddFigure} /> */}
-      {figures.length}
+      {/* <Filters /> */}
+      <button className="btn-add-figure" onClick={handleClick}>
+        Dodaj figurke
+      </button>
+      {showFigureAdd && FigureAddComponent}
+      Ilość figurek : {figures.length}
       <div>
-        <FigureList figures={figures} />
+        <FigureList onDelete={deleteFigureById} figures={figures} />
       </div>
     </div>
   );

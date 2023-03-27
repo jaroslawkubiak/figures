@@ -11,10 +11,10 @@
 body {
   font-family: verdana, arial, helvetica, star_wars;
   font-size: 12px;
-  background-color: rgb(58, 58, 68);
+  background-color: var(--bg-color);
   color: white;
   padding: 0;
-  margin: 0px;
+  margin: 0;
   box-sizing: border-box;
 }
 
@@ -26,5 +26,8 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
-  gap: 10px;
+}
+
+.overflow-hidden{
+  overflow: hidden
 }
