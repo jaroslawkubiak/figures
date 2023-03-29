@@ -1,46 +1,40 @@
 import "../css/figure-card.css";
+import { useState } from "react";
+import MyImage from "./MyImage";
 
-// FIXME - przeniesc do edycji figurki
 function FigureCard({ figure, onDelete }) {
+  // FIXME - usuwanie przeniesc do edycji figurki
   const handleClick = () => {
     onDelete(figure.id);
   };
 
-  const img = (
-    <img
-      src={require("../images_minifigure/" + figure.number + ".png")}
-      alt={figure.mainName}
-      id={figure.id}
-      className="figure-img"
-    />
+  const [figImage, setFigImage] = useState(
+    `./imagesMinifigure/${figure.number}.png`
   );
+  const [imageDescription, setImageDescription] = useState(figure.mainName);
 
-  // console.log(document.getElementById(figure.id));
+  const imageExists = require("image-exists");
+  imageExists(figImage, function (exists) {
+    if (!exists) {
+      setFigImage("./bricklink.png");
+      setImageDescription("No image available");
+    }
+  });
 
   return (
     <div className="container">
       <div className="name">
         <span className="cell-text">{figure.mainName}</span>
       </div>
-      <div className="wrapper">{img}</div>
+      <div className="wrapper">
+        <MyImage imageUrl={figImage} imageDescription={imageDescription} />
+      </div>
       <div className="number">
         <span className="cell-text">
           {figure.number} - {figure.releaseYear}
         </span>
       </div>
     </div>
-
-    // <div className="card-wrapper">
-    //   <div className="cell">
-    //     {figure.number} - {figure.releaseYear}
-    //   </div>
-    //   <div className="cell">{figure.mainName}</div>
-    //   {img}
-
-    //   <div className="cell " onClick={handleClick}>
-    //     usuń
-    //   </div>
-    // </div>
   );
 }
 

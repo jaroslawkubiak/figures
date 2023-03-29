@@ -31,3 +31,26 @@ body {
 .overflow-hidden{
   overflow: hidden
 }
+
+.button {
+  all: unset;
+  font-family: star_wars;
+  font-size: 1.2em;
+  letter-spacing: .2rem;
+
+  padding: 5px 15px;
+  margin: 10px;
+  background-color: var(--primary-color);
+  color: black;
+  cursor: pointer;
+
+  --height: 10px;
+  clip-path: polygon(
+    calc(100% - var(--height)) 0%,
+    100% var(--height),
+    100% 100%,
+    var(--height) 100%,
+    0% calc(100% - var(--height)),
+    0 0
+  );
+}

@@ -1,9 +1,9 @@
+import "./index.css"; 
 import { useState } from "react";
 import FigureList from "./components/FigureList";
-import Filters from "./components/Filters";
-
-import "./index.css";
+// import Filters from "./components/Filters";
 import FigureAdd from "./components/FigureAdd";
+import Button from "./components/Button";
 
 function App() {
   const temp = [
@@ -321,10 +321,9 @@ function App() {
   };
 
   const handleAddFigure = figure => {
-    console.log("handleAddFigure");
-    console.log(figure);
     const updatedFigures = [figure, ...figures];
     setFigures(updatedFigures);
+    // console.log(updatedFigures);
   };
 
   const handleClick = () => setShowFigureAdd(true);
@@ -337,14 +336,13 @@ function App() {
   return (
     <div>
       {/* <Filters /> */}
-      <button className="btn-add-figure" onClick={handleClick}>
+      <Button onClick={handleClick}>Add</Button>
+      {/* <button className="btn-add-figure" onClick={handleClick}>
         Dodaj figurke
-      </button>
+      </button> */}
       {showFigureAdd && FigureAddComponent}
       Ilość figurek : {figures.length}
-      <div>
-        <FigureList onDelete={deleteFigureById} figures={figures} />
-      </div>
+      <FigureList onDelete={deleteFigureById} figures={figures} />
     </div>
   );
 }

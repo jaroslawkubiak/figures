@@ -14,31 +14,33 @@
   padding: 1em;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  /* justify-content: flex-start; */
+  /* align-items: center; */
   background-color: rgb(0, 0, 0);
   border: 2px solid var(--primary-color);
 }
 
 .add-figure-close-btn {
-  --close-btn-width: 20px;
+  --close-btn-width: 30px;
   position: absolute;
   width: var(--close-btn-width);
   height: var(--close-btn-width);
   top: calc(-1 * var(--close-btn-width) / 2);
   right: calc(-1 * var(--close-btn-width) / 2);
   background-color: var(--primary-color);
-  clip-path: polygon(80% 0%, 100% 20%, 100% 100%, 22% 100%, 0% 78%, 0 0);
+  cursor: pointer;
+  /* clip-path: polygon(80% 0%, 100% 20%, 100% 100%, 22% 100%, 0% 78%, 0 0); */
+  clip-path: polygon(0 22%, 22% 0, 100% 0, 100% 78%, 78% 100%, 0% 100%, 0 0);
 }
 
 .add-figure-close-btn::after,
 .add-figure-close-btn::before {
   content: "";
   position: absolute;
-  width: 5%;
-  height: 100%;
+  width: 15%;
+  height: 95%;
   top: 0px;
-  left: calc(var(--close-btn-width) / 2);
+  left: calc(var(--close-btn-width) / 2.2);
   background-color: var(--bg-color);
 }
 .add-figure-close-btn::after {
@@ -48,26 +50,6 @@
   transform: rotate(-45deg);
 }
 
-.btn-add-figure {
-  all: unset;
-  font-family: star_wars;
-  padding: 5px 15px;
-  margin: 10px;
-  background-color: var(--primary-color);
-  color: black;
-  cursor: pointer;
-
-  --height: 10px;
-  clip-path: polygon(
-    calc(100% - var(--height)) 0%,
-    100% var(--height),
-    100% 100%,
-    var(--height) 100%,
-    0% calc(100% - var(--height)),
-    0 0
-  );
-}
-
 .center {
   margin-top: 10px;
   display: grid;
@@ -75,26 +57,32 @@
 }
 
 .input-wrapper {
+  position: relative;
+  height: 40px;
   margin-bottom: 5px;
 }
 
 .add-figure-input {
   all: unset;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   color: black;
   padding: 5px 10px;
   background-color: var(--primary-color);
-
-  --height: 10px;
+  --cut-height: 10px;
   clip-path: polygon(
-    calc(100% - var(--height)) 0%,
-    100% var(--height),
+    calc(100% - var(--cut-height)) 0%,
+    100% var(--cut-height),
     100% 100%,
-    var(--height) 100%,
-    0% calc(100% - var(--height)),
+    var(--cut-height) 100%,
+    0% calc(100% - var(--cut-height)),
     0 0
   );
 }
 
 .add-figure-input-label {
   font-size: 1.2em;
+  letter-spacing: 0.2rem;
 }

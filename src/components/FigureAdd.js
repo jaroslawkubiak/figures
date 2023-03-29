@@ -1,10 +1,9 @@
 import "../css/figure-add.css";
-
+import Button from './Button';
 import { useState, useEffect } from "react";
 
 function FigureAdd({ onSubmit, onClose }) {
-  const [number, setNumber] = useState("");
-  const [mainName, setMainName] = useState("");
+  const [fig, setFig] = useState({ id: "", mainName: "", number: "" });
 
   useEffect(() => {
     document.body.classList.add("overflow-hidden");
@@ -14,62 +13,54 @@ function FigureAdd({ onSubmit, onClose }) {
     };
   }, []);
 
-  const handleChange = e => {
-    // console.log(e.target.name);
-
-    switch (e.target.name) {
-      case "number":
-        setNumber(e.target.value);
-
-        break;
-      case "mainName":
-        setMainName(e.target.value);
-        break;
-      default:
-        break;
-    }
-  };
-
   const handleSubmit = e => {
     e.preventDefault();
     // FIXME generating random ID - zmienić gdy już będzie baza danych
     const generateId = String(Math.random()).split(".");
-    const newFigure = { id: generateId[1], number, mainName };
+    const newFigure = {
+      id: generateId[1],
+      number: fig.number,
+      mainName: fig.mainName,
+    };
     onSubmit(newFigure);
-
     onClose();
   };
 
-  const handleClose = () => onClose();
 
-  const addFigureBtn = <div className="center"><button className="btn-add-figure">Dodaj</button></div>;
+  const addFigureBtn = (
+    <div className="center">
+      <Button>Save</Button>
+    </div>
+  );
 
   return (
     <div className="add-figure-wrapper">
       <div className="add-figure-container">
-        <div className="add-figure-close-btn" onClick={handleClose}></div>
+        <div className="add-figure-close-btn" onClick={() => onClose()}></div>
         <form onSubmit={handleSubmit}>
           <label className="add-figure-input-label">Numer</label>
           <div className="input-wrapper">
             <input
+              type="text"
               className="add-figure-input"
-              value={number}
+              value={fig.number}
               autoComplete="off"
               name="number"
               maxLength={8}
-              onChange={handleChange}
+              onChange={e => setFig({ ...fig, number: e.target.value })}
             />
-            </div>
+          </div>
           <label className="add-figure-input-label">Nazwa</label>
           <div className="input-wrapper">
             <input
+              type="text"
               className="add-figure-input"
-              value={mainName}
+              value={fig.mainName}
               autoComplete="off"
               name="mainName"
-              onChange={handleChange}
+              onChange={e => setFig({ ...fig, mainName: e.target.value })}
             />
-            </div>
+          </div>
           {addFigureBtn}
           {/* {number && mainName && addFigureBtn} */}
         </form>

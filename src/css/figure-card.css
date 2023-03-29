@@ -1,19 +1,20 @@
-.figure-img {
-  max-height: 80%;
-  max-width: 90%;
+:root{
+  --width-card: 350px;
+  --height-card: 210px;
+  --border-width: 6px;
 }
+
 .container {
   font-family: star_wars;
   color: var(--bg-color);
   margin-bottom: 20px;
 
-  --border-width: 6px;
   --border-edge: 1;
   position: relative;
   display: grid;
   place-items: center;
-  width: 150px;
-  height: 216px;
+  width: var(--width-card);
+  height: var(--height-card);
   background-color:var(--primary-color);
 
   clip-path: polygon(
@@ -43,8 +44,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 144px;
-  height: 210px;
+  width: calc(var(--width-card) - var(--border-width));
+  height: calc(var(--height-card) - var(--border-width));
   background-color: rgb(255, 255, 255);
   clip-path: polygon(
     /* left-top corner */ 0 calc(var(--border-width) * var(--border-edge)),
@@ -110,4 +111,9 @@
   background-color:var(--primary-color);
   --skew: 10px;
   clip-path: polygon(var(--skew) 0px, calc(100% - var(--skew)) 0px, 100% 100%, 0px 100%);
+}
+
+.figure-img {
+  max-height: 80%;
+  max-width: 90%;
 }
