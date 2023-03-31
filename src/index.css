@@ -18,25 +18,28 @@ body {
   box-sizing: border-box;
 }
 
-.relative {
-  position: relative;
-}
-
 .figure-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
 }
 
-.overflow-hidden{
-  overflow: hidden
+.overflow-hidden {
+  overflow: hidden;
 }
+
+.relative {
+  position: relative;
+}
+
 
 .button {
   all: unset;
+  position: relative;
+  z-index: -1;
   font-family: star_wars;
   font-size: 1.2em;
-  letter-spacing: .2rem;
+  letter-spacing: 0.2rem;
 
   padding: 5px 15px;
   margin: 10px;
@@ -53,4 +56,10 @@ body {
     0% calc(100% - var(--height)),
     0 0
   );
+}
+
+
+.svg{
+  width: 35px;
+  height: 35px;
 }

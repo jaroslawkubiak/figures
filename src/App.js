@@ -1,4 +1,4 @@
-import "./index.css"; 
+import "./index.css";
 import { useState } from "react";
 import FigureList from "./components/FigureList";
 // import Filters from "./components/Filters";
@@ -310,7 +310,7 @@ function App() {
   ];
 
   const [figures, setFigures] = useState(temp);
-  const [showFigureAdd, setShowFigureAdd] = useState(false);
+  const [showFigureAdd, setShowFigureAdd] = useState(true);
 
   const deleteFigureById = id => {
     const updatedFigures = figures.filter(figure => {
@@ -337,9 +337,6 @@ function App() {
     <div>
       {/* <Filters /> */}
       <Button onClick={handleClick}>Add</Button>
-      {/* <button className="btn-add-figure" onClick={handleClick}>
-        Dodaj figurke
-      </button> */}
       {showFigureAdd && FigureAddComponent}
       Ilość figurek : {figures.length}
       <FigureList onDelete={deleteFigureById} figures={figures} />
