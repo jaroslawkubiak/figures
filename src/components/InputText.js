@@ -1,4 +1,3 @@
-import "../css/figure-add.css";
 
 function InputText({ value, children, maxLength, name, onChange }) {
   return (

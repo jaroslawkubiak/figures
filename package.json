@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "file-exists": "^5.0.1",
     "file-saver": "^2.0.5",
+    "html-react-parser": "^3.0.15",
     "image-exists": "^1.1.0",
     "json-server": "^0.17.3",
     "querystring-es3": "^0.2.1",

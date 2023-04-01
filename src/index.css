@@ -32,28 +32,32 @@ body {
   position: relative;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 
 .button {
   all: unset;
   position: relative;
-  z-index: -1;
+  z-index: 1;
   font-family: star_wars;
-  font-size: 1.2em;
+  font-size: 0.6em;
   letter-spacing: 0.2rem;
 
   padding: 5px 15px;
-  margin: 10px;
+  margin: 5px;
   background-color: var(--primary-color);
   color: black;
   cursor: pointer;
 
-  --height: 10px;
+  --cut-height: 6px;
   clip-path: polygon(
-    calc(100% - var(--height)) 0%,
-    100% var(--height),
+    calc(100% - var(--cut-height)) 0%,
+    100% var(--cut-height),
     100% 100%,
-    var(--height) 100%,
-    0% calc(100% - var(--height)),
+    var(--cut-height) 100%,
+    0% calc(100% - var(--cut-height)),
     0 0
   );
 }

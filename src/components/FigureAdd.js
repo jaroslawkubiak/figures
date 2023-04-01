@@ -3,6 +3,7 @@ import Button from "./Button";
 import InputText from "./InputText";
 import InputNumber from "./InputNumber";
 import Dropdown from "./Dropdown";
+import InputCheckbox from "./InputCheckbox";
 import FigurePhoto from "./FigurePhoto";
 import { useState, useEffect } from "react";
 
@@ -11,15 +12,16 @@ function FigureAdd({ onSubmit, onClose }) {
     id: "",
     mainName: "",
     secondName: "",
-    number: "",
+    number: "sw",
     releaseYear: "",
     series: "",
     purchasePrice: "",
     purchaseDate: "",
     bricklink: "",
     weapon: "",
+    label: "",
   });
-  console.log(fig);
+  // console.log(fig);
   useEffect(() => {
     document.body.classList.add("overflow-hidden");
 
@@ -43,6 +45,7 @@ function FigureAdd({ onSubmit, onClose }) {
       bricklink: fig.bricklink,
       weapon: fig.weapon,
       purchaseDate: fig.purchaseDate,
+      label: fig.label,
     };
     onSubmit(newFigure);
     onClose();
@@ -50,7 +53,7 @@ function FigureAdd({ onSubmit, onClose }) {
 
   const addFigureBtn = (
     <div className="grid-full-line">
-      <Button>Save</Button>
+      <Button>Add</Button>
     </div>
   );
 
@@ -81,7 +84,8 @@ function FigureAdd({ onSubmit, onClose }) {
 
   const yearsList = [];
   const currentYear = new Date().getFullYear();
-  for (let i = 1999; i <= currentYear; i++) yearsList.push(i);
+
+  for (let i = currentYear; i >= 1999; i--) yearsList.push(i);
 
   //regex for validating only float input, only 2 digit after , or .
   const onlyNumbersRegex = /^-?\d*(?:[\.\,]\d{0,2})?$/;
@@ -108,7 +112,7 @@ function FigureAdd({ onSubmit, onClose }) {
       <div className="add-figure-container">
         <div className="add-figure-close-btn" onClick={() => onClose()}></div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
-          <div className="add-figure-div">
+          <div className="add-figure-div grid-2-left">
             <InputText
               onChange={handleChange}
               value={fig.number}
@@ -121,7 +125,7 @@ function FigureAdd({ onSubmit, onClose }) {
           <div id="add-figure-photo" className="add-figure-div grid-height-3">
             <FigurePhoto figNumber={fig.number} />
           </div>
-          <div className="add-figure-div">
+          <div className="add-figure-div grid-2-left">
             <InputText
               onChange={handleChange}
               value={fig.mainName}
@@ -130,7 +134,7 @@ function FigureAdd({ onSubmit, onClose }) {
               Name
             </InputText>
           </div>
-          <div className="add-figure-div">
+          <div className="add-figure-div grid-2-left">
             <InputText
               onChange={handleChange}
               value={fig.secondName}
@@ -139,7 +143,7 @@ function FigureAdd({ onSubmit, onClose }) {
               Second name
             </InputText>
           </div>
-          <div className="add-figure-div">
+          <div className="add-figure-div grid-2-left">
             <InputNumber
               onChange={handleChange}
               value={fig.purchasePrice}
@@ -151,7 +155,7 @@ function FigureAdd({ onSubmit, onClose }) {
             </InputNumber>
           </div>
 
-          <div className="add-figure-div cursor-pointer">
+          <div className="add-figure-div grid-2-left cursor-pointer">
             <Dropdown
               onChange={handleChangeSelect}
               value={fig.releaseYear}
@@ -162,7 +166,7 @@ function FigureAdd({ onSubmit, onClose }) {
               Release Year
             </Dropdown>
           </div>
-          <div className="add-figure-div cursor-pointer">
+          <div className="add-figure-div grid-2-right cursor-pointer">
             <Dropdown
               onChange={handleChangeSelect}
               value={fig.series}
@@ -174,7 +178,7 @@ function FigureAdd({ onSubmit, onClose }) {
             </Dropdown>
           </div>
 
-          <div className="add-figure-div grid-full-line">
+          <div className="add-figure-div grid-3-left">
             <InputText
               onChange={handleChange}
               value={fig.briclink}
@@ -183,7 +187,17 @@ function FigureAdd({ onSubmit, onClose }) {
               Briclink
             </InputText>
           </div>
-          <div className="add-figure-div cursor-pointer">
+
+          <div className="add-figure-div grid-1-right">
+            <InputCheckbox
+              onChange={handleChange}
+              value={fig.label}
+              name="label"
+            >
+              Label
+            </InputCheckbox>
+          </div>
+          <div className="add-figure-div grid-2-left cursor-pointer">
             <Dropdown
               onChange={handleChangeSelect}
               value={fig.weapon}
@@ -194,7 +208,7 @@ function FigureAdd({ onSubmit, onClose }) {
               Weapon
             </Dropdown>
           </div>
-          <div className="add-figure-div">
+          <div className="add-figure-div grid-2-right">
             <InputText
               onChange={handleChange}
               value={fig.purchaseDate}
@@ -202,22 +216,8 @@ function FigureAdd({ onSubmit, onClose }) {
               maxLength="8"
             >
               Purchase date
-            </InputText>
+            </InputText> 
           </div>
-
-          {/* <div className="div2">1</div>
-          <div className="div2 grid-height-3">2</div>
-
-          <div className="div2">3</div>
-          <div className="div2">4</div>
-
-          <div className="div2">5</div>
-          <div className="div2">5</div> */}
-
-          {/* <div className="div2 grid-full-line">55</div> */}
-
-          {/* <div className="div2">6</div>
-          <div className="div2">7</div> */}
 
           {addFigureBtn}
         </form>

@@ -310,7 +310,7 @@ function App() {
   ];
 
   const [figures, setFigures] = useState(temp);
-  const [showFigureAdd, setShowFigureAdd] = useState(true);
+  const [showFigureAdd, setShowFigureAdd] = useState(false);
 
   const deleteFigureById = id => {
     const updatedFigures = figures.filter(figure => {
@@ -323,7 +323,7 @@ function App() {
   const handleAddFigure = figure => {
     const updatedFigures = [figure, ...figures];
     setFigures(updatedFigures);
-    // console.log(updatedFigures);
+    console.log(updatedFigures);
   };
 
   const handleClick = () => setShowFigureAdd(true);
@@ -334,13 +334,13 @@ function App() {
   );
 
   return (
-    <div>
+    <>
       {/* <Filters /> */}
-      <Button onClick={handleClick}>Add</Button>
+      <Button onClick={handleClick}>add</Button>
       {showFigureAdd && FigureAddComponent}
       Ilość figurek : {figures.length}
       <FigureList onDelete={deleteFigureById} figures={figures} />
-    </div>
+    </>
   );
 }
 

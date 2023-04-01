@@ -1,4 +1,3 @@
-import "../index.css";
 
 function Button({ onClick, children }) {
   return (

@@ -1,5 +1,5 @@
 :root{
-  --width-card: 350px;
+  --width-card: 150px;
   --height-card: 210px;
   --border-width: 6px;
 }
@@ -38,6 +38,7 @@
     /* left indentation */ 0 calc(30% - var(--border-width))
   );
 }
+
 .wrapper {
   position: relative;
   --border-edge: 0.7;

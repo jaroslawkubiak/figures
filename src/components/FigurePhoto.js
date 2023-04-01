@@ -1,36 +1,42 @@
 import React from "react";
-import {saveAs} from "file-saver";
+import parse from "html-react-parser";
+import { BsImage } from "react-icons/bs";
+
+// import {saveAs} from "file-saver";
 
 function FigurePhoto({ figNumber }) {
-  //   console.log("numer fig:", figNumber);
-
-  let renderedPhoto = (
-    <img
-      src="./bricklink.png"
-      alt="img"
-    />
-  );
-  if (figNumber.length >= 6) {
-    const photoUrl = `https://www.bricklink.com/v2/catalog/catalogitem.page?M=${figNumber}`;
-    renderedPhoto = `<img src="${photoUrl}" alt="img" />`;
+  // check if image exist on server
+  function imageExists(image_url) {
+    const http = new XMLHttpRequest();
+    http.open("HEAD", image_url, false);
+    http.send();
+    return http.status !== 404;
   }
 
-  console.log("renderedPhoto:", renderedPhoto);
+  let renderedData = <BsImage className="font-size-5" />;
+  let renderedPhoto = `https://img.bricklink.com/ItemImage/MN/0/${figNumber}.png`;
 
-  return <div>{renderedPhoto}</div>;
+  if (figNumber.length >= 6 && imageExists(renderedPhoto)) {
+    renderedData =
+      parse(`<a href="https://www.bricklink.com/v2/catalog/catalogitem.page?M=${figNumber}" target="_blank">
+    <img id="add-img" class="cursor-pointer" src=${renderedPhoto} alt="${figNumber} image" />
+    </a>`);
+  }
 
+  return renderedData;
 
-//   const handleClick = ()=>{
-//     let url = "https://help.twitter.com/content/dam/help-twitter/brand/logo.png"
-//     saveAs(url, "Twitter-logo");
-//     saveAs(url, 'img.png', )
-//    }
+  // saving img on local disk
+  //   const handleClick = ()=>{
+  //     let url = "https://help.twitter.com/content/dam/help-twitter/brand/logo.png"
+  //     saveAs(url, "Twitter-logo");
+  //     saveAs(url, 'img.png', )
+  //    }
 
-//    return (
-//      <div className="App">
-//          <button onClick={handleClick}>Dowload image</button>
-//      </div>
-//    );
+  //    return (
+  //      <div className="App">
+  //          <button onClick={handleClick}>Dowload image</button>
+  //      </div>
+  //    );
 }
 // https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1078
 
