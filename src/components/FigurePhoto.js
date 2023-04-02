@@ -4,7 +4,6 @@ import { BsImage } from "react-icons/bs";
 // import {saveAs} from "file-saver";
 
 function FigurePhoto({ figNumber }) {
-
   // check if image exists on server
   function imageExists(image_url) {
     const http = new XMLHttpRequest();
@@ -18,9 +17,8 @@ function FigurePhoto({ figNumber }) {
 
   if (figNumber.length >= 6 && imageExists(renderedPhoto)) {
     let img = new Image();
-
     img.onload = () => {
-      // console.log(`img ${figNumber} loaded`);
+      console.log(`img ${figNumber} loaded`);
     };
       img.src = renderedPhoto;
 

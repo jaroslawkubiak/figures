@@ -2,22 +2,23 @@
   /* --bg-color: #ffe81f;
   --primary-color: #000000; */
   --primary-color: #ffe81f;
-  --bg-color: #000000;
+  --bg-color: #0e0e16;
 }
 
 @font-face {
   font-family: star_wars;
   src: local("star_wars"), url("./fonts/star_wars.ttf") format("truetype");
 }
-
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 body {
   font-family: verdana, arial, helvetica, star_wars;
   font-size: 12px;
   background-color: var(--bg-color);
   color: var(--primary-color);
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
 }
 
 .figure-container {

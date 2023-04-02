@@ -1,25 +1,30 @@
-import "../css/figure-card.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MyImage from "./MyImage";
+import imageExists from "image-exists";
+// import images from "../../public/imagesMinifigure";
 
-function FigureCard({ figure, onDelete }) {
-  // FIXME - usuwanie przeniesc do edycji figurki
-  const handleClick = () => {
-    onDelete(figure.id);
-  };
+// console.log(images);
+
+function FigureCard({ figure }) {
+  console.log(figure.photoLink);
+  // TODO - usuwanie przeniesc do edycji figurki
+  // const handleClick = () => {
+  //   onDelete(figure.id);
+  // };
 
   const [figImage, setFigImage] = useState(
     `./imagesMinifigure/${figure.number}.png`
   );
   const [imageDescription, setImageDescription] = useState(figure.mainName);
 
-  const imageExists = require("image-exists");
-  imageExists(figImage, function (exists) {
-    if (!exists) {
-      setFigImage("./bricklink.png");
-      setImageDescription("No image available");
-    }
-  });
+  useEffect(() => {
+    imageExists(figImage, function (exists) {
+      if (!exists) {
+        setFigImage("./bricklink.png");
+        setImageDescription("No image available");
+      }
+    });
+  }, [figImage]);
 
   return (
     <div className="container">

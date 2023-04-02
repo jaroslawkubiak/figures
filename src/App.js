@@ -15,8 +15,6 @@ function App() {
       releaseYear: 2016,
       mainName: "Jabba",
       secondaryName: "",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw0784",
       label: "tak",
       weapon: "Tak - mam",
       price: 25,
@@ -30,8 +28,6 @@ function App() {
       releaseYear: 2021,
       mainName: "Rancor",
       secondaryName: "Red Christmas Scarf",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1170",
       label: "tak",
       weapon: "Nie posiada",
       price: 40,
@@ -45,8 +41,6 @@ function App() {
       releaseYear: 2021,
       mainName: "Grogu",
       secondaryName: "Christmas Sweater ",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1173",
       label: "tak",
       weapon: "Nie posiada",
       price: 40,
@@ -60,8 +54,6 @@ function App() {
       releaseYear: 2011,
       mainName: "stormtrooper",
       secondaryName: "",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw0313",
       label: "tak",
       weapon: "Nie posiada",
       price: 50,
@@ -75,8 +67,6 @@ function App() {
       releaseYear: 2021,
       mainName: "dewback",
       secondaryName: "Female",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1178",
       label: "tak",
       weapon: "Tak - mam",
       price: 15,
@@ -90,8 +80,6 @@ function App() {
       releaseYear: 2021,
       mainName: "The Mandalorian",
       secondaryName: "Jet Pack",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1166",
       label: "tak",
       weapon: "Tak - mam",
       price: 25,
@@ -105,8 +93,6 @@ function App() {
       releaseYear: 2014,
       mainName: "Neimoidian Warrior",
       secondaryName: "",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw0536",
       label: "tak",
       weapon: "Tak - mam",
       price: 49,
@@ -120,8 +106,6 @@ function App() {
       releaseYear: 2014,
       mainName: "Ezra Bridger",
       secondaryName: "with Helmet",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw0574a",
       label: "tak",
       weapon: "Tak - mam",
       price: 44,
@@ -135,8 +119,6 @@ function App() {
       releaseYear: 2021,
       mainName: "NI-L8",
       secondaryName: "Protocol Droid",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1136",
       label: "tak",
       weapon: "Nie posiada",
       price: 30,
@@ -150,8 +132,6 @@ function App() {
       releaseYear: 2020,
       mainName: "Garindan",
       secondaryName: "",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1127",
       label: "tak",
       weapon: "Tak - mam",
       price: 100,
@@ -165,8 +145,6 @@ function App() {
       releaseYear: 2020,
       mainName: "Kabe",
       secondaryName: "",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1129",
       label: "tak",
       weapon: "Nie posiada",
       price: 50,
@@ -180,8 +158,6 @@ function App() {
       releaseYear: 2020,
       mainName: "Ponda Baba",
       secondaryName: "",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1124",
       label: "tak",
       weapon: "Tak - mam",
       price: 50,
@@ -195,8 +171,6 @@ function App() {
       releaseYear: 2019,
       mainName: "Gonk Droid",
       secondaryName: "Dark Turquoise",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1041",
       label: "tak",
       weapon: "Nie posiada",
       price: 30,
@@ -210,8 +184,6 @@ function App() {
       releaseYear: 2021,
       mainName: "Wrecker",
       secondaryName: "",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1149",
       label: "tak",
       weapon: "Tak - mam",
       price: 69,
@@ -225,8 +197,6 @@ function App() {
       releaseYear: 2021,
       mainName: "Tech",
       secondaryName: "",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1150",
       label: "tak",
       weapon: "Tak - mam",
       price: 69,
@@ -240,8 +210,6 @@ function App() {
       releaseYear: 2021,
       mainName: "Hunter",
       secondaryName: "",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1148",
       label: "tak",
       weapon: "Tak - mam",
       price: 69,
@@ -255,8 +223,6 @@ function App() {
       releaseYear: 2021,
       mainName: "Echo",
       secondaryName: "",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1151",
       label: "tak",
       weapon: "Tak - mam",
       price: 69,
@@ -270,8 +236,6 @@ function App() {
       releaseYear: 2021,
       mainName: "Crosshair",
       secondaryName: "",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1152",
       label: "tak",
       weapon: "Tak - mam",
       price: 69,
@@ -285,8 +249,6 @@ function App() {
       releaseYear: 2021,
       mainName: "Gonk Droid",
       secondaryName: "GNK Power Droid",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1153",
       label: "tak",
       weapon: "Nie posiada",
       price: 12,
@@ -300,8 +262,6 @@ function App() {
       releaseYear: 2021,
       mainName: "Ahsoka Tano (Adult)",
       secondaryName: "Dark Blue Jumpsuit",
-      bricklink:
-        "https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1096",
       label: "tak",
       weapon: "Tak - mam",
       price: 50,
@@ -324,7 +284,7 @@ function App() {
   const handleAddFigure = figure => {
     const updatedFigures = [figure, ...figures];
     setFigures(updatedFigures);
-    console.log(updatedFigures);
+    // console.log(updatedFigures);
   };
 
   const handleClick = () => setShowFigureAdd(true);
@@ -346,3 +306,5 @@ function App() {
 }
 
 export default App;
+
+//"homepage": "https://zurawickidesign.pl/figures/",
