@@ -1,4 +1,5 @@
 import "./index.css";
+import "./fonts/star_wars.ttf";
 import { useState } from "react";
 import FigureList from "./components/FigureList";
 // import Filters from "./components/Filters";
@@ -336,7 +337,7 @@ function App() {
   return (
     <>
       {/* <Filters /> */}
-      <Button onClick={handleClick}>add</Button>
+      <Button onClick={handleClick}>add figure</Button>
       {showFigureAdd && FigureAddComponent}
       Ilość figurek : {figures.length}
       <FigureList onDelete={deleteFigureById} figures={figures} />

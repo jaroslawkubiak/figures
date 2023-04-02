@@ -1,18 +1,20 @@
 :root {
+  /* --bg-color: #ffe81f;
+  --primary-color: #000000; */
   --primary-color: #ffe81f;
   --bg-color: #000000;
 }
 
 @font-face {
   font-family: star_wars;
-  src: url("star_wars.ttf") format("truetype");
+  src: local("star_wars"), url("./fonts/star_wars.ttf") format("truetype");
 }
 
 body {
   font-family: verdana, arial, helvetica, star_wars;
   font-size: 12px;
   background-color: var(--bg-color);
-  color: white;
+  color: var(--primary-color);
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -36,7 +38,6 @@ body {
   cursor: pointer;
 }
 
-
 .button {
   all: unset;
   position: relative;
@@ -48,7 +49,7 @@ body {
   padding: 5px 15px;
   margin: 5px;
   background-color: var(--primary-color);
-  color: black;
+  color: var(--bg-color);
   cursor: pointer;
 
   --cut-height: 6px;
@@ -62,8 +63,7 @@ body {
   );
 }
 
-
-.svg{
+.svg {
   width: 35px;
   height: 35px;
 }

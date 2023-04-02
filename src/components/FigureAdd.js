@@ -6,7 +6,10 @@ import Dropdown from "./Dropdown";
 import InputCheckbox from "./InputCheckbox";
 import FigurePhoto from "./FigurePhoto";
 import { useState, useEffect } from "react";
-
+//TODO
+// download photo from server to app
+// add calendar to pick a date
+// loading spinner when loading img from server
 function FigureAdd({ onSubmit, onClose }) {
   const [fig, setFig] = useState({
     id: "",
@@ -88,7 +91,7 @@ function FigureAdd({ onSubmit, onClose }) {
   for (let i = currentYear; i >= 1999; i--) yearsList.push(i);
 
   //regex for validating only float input, only 2 digit after , or .
-  const onlyNumbersRegex = /^-?\d*(?:[\.\,]\d{0,2})?$/;
+  const onlyNumbersRegex = /^-?\d*(?:[.,]\d{0,2})?$/;
 
   // handle change to input text and number fields
   const handleChange = e => {
@@ -98,7 +101,7 @@ function FigureAdd({ onSubmit, onClose }) {
     if (e.target.dataset.set !== "number")
       setFig({ ...fig, [propertyName]: inputValue });
     else if (onlyNumbersRegex.test(inputValue)) {
-      setFig({ ...fig, [propertyName]: inputValue });
+      setFig({ ...fig, [propertyName]: inputValue.replace(/,/g, ".") });
     }
   };
 
@@ -189,11 +192,7 @@ function FigureAdd({ onSubmit, onClose }) {
           </div>
 
           <div className="add-figure-div grid-1-right">
-            <InputCheckbox
-              onChange={handleChange}
-              value={fig.label}
-              name="label"
-            >
+            <InputCheckbox onChange={handleChange} name="label">
               Label
             </InputCheckbox>
           </div>
@@ -216,7 +215,7 @@ function FigureAdd({ onSubmit, onClose }) {
               maxLength="8"
             >
               Purchase date
-            </InputText> 
+            </InputText>
           </div>
 
           {addFigureBtn}

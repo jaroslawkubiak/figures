@@ -1,15 +1,14 @@
 import "../css/figure-add.css";
 
-function InputCheckbox({ children, value, name, onChange }) {
-  console.log("value=", value);
+function InputCheckbox({ children, name, onChange }) {
   return (
     <>
       <label className="add-figure-input-label">{children}</label>
       <div className="input-wrapper ">
         <div className="add-figure-checkbox-div grid-center">
           <input
+          className="cursor-pointer"
             type="checkbox"
-            // className="add-figure-checkbox"
             name={name}
             onChange={onChange}
           />
