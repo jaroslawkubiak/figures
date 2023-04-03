@@ -23,7 +23,7 @@
   padding: 0.5em;
   background-color: var(--bg-color);
   border: 2px solid var(--primary-color);
-  }
+}
 
 #add-figure-form {
   display: grid;
@@ -33,6 +33,7 @@
 }
 
 .add-figure-div {
+  position: relative;
   width: 100%;
   display: grid;
   height: var(--input-height);
@@ -97,7 +98,16 @@
 #add-img {
   max-height: 80%;
   max-width: 80%;
+  --cut-height: 10px;
+  clip-path: polygon(
+    var(--cut-height) 0%, 
+    100% 0, 
+    100% calc(100% - var(--cut-height)), 
+    calc(100% - var(--cut-height)) 100%, 
+    0 100%, 
+    0% var(--cut-height));
 }
+
 
 .grid-center {
   display: grid;
@@ -274,7 +284,6 @@ input[type="checkbox"]:checked::after {
   background-clip: padding-box;
   -webkit-border-radius: 10px;
   background-color: var(--bg-color);
-
 }
 ::-webkit-scrollbar-button {
   width: 0;
@@ -289,3 +298,22 @@ input[type="checkbox"]:checked::after {
   fill: var(--primary-color);
 }
 
+.svg-image-prev-error {
+  fill: crimson;
+  color: crimson;
+}
+
+.input-required {
+  position: absolute;
+  top: -10px;
+  right: -6px;
+  font-size: 10px;
+  color: crimson;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

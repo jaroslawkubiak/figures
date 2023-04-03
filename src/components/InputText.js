@@ -1,5 +1,4 @@
-
-function InputText({ value, children, maxLength, name, onChange }) {
+function InputText({ value, children, maxLength, name, onChange, required }) {
   return (
     <>
       <label className="add-figure-input-label">{children}</label>
@@ -12,7 +11,7 @@ function InputText({ value, children, maxLength, name, onChange }) {
           value={value}
           name={name}
           onChange={onChange}
-        />
+        />{required && <span className="input-required">#</span>}
       </div>
     </>
   );

@@ -1,10 +1,16 @@
 TODO list
 
-- figure edit
+figure edit:
+
 - all inputs are eddited
 - input field for bricklink price
 
-- stats by:
+figure add:
+
+- download photo from server to app
+
+stats by:
+
 - release year, series,
 - calendar with price, etc
 

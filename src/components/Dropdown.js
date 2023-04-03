@@ -3,7 +3,7 @@ import { GoChevronDown } from "react-icons/go";
 import Panel from "./Panel.js";
 // import "../index.css";
 
-function Dropdown({ options, value, onChange, children, name, placeholder }) {
+function Dropdown({ options, value, onChange, children, name, placeholder, required }) {
   const [isOpen, setIsOpen] = useState(false);
   // przypisujemy refenecje do zmiennej divEl = zmienna to obiekt!
   const divEl = useRef();
@@ -61,6 +61,8 @@ function Dropdown({ options, value, onChange, children, name, placeholder }) {
 
           <GoChevronDown className="icon-arrow-down" />
         </Panel>
+        {required && <span className="input-required">#</span>}
+
         {isOpen && (
           <Panel className="add-figure-input select-height">
             {renderedOptions}

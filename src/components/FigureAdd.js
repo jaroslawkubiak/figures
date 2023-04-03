@@ -6,20 +6,34 @@ import Dropdown from "./Dropdown";
 import InputCheckbox from "./InputCheckbox";
 import FigurePhoto from "./FigurePhoto";
 import { useState, useEffect } from "react";
-//TODO
-// download photo from server to app
-// add calendar to pick a date
-// loading spinner when loading img from server
+import {
+  numberValidate,
+  purchasePriceValidate,
+  purchaseDateValidate,
+  releaseYearValidate,
+  seriesValidate,
+  mainNameValidate,
+  weaponValidate,
+} from "../js/validate";
+
 function FigureAdd({ onSubmit, onClose }) {
+  const today = new Date()
+    .toLocaleDateString("pl-PL", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    })
+    .replaceAll(".", "-");
+
   const [fig, setFig] = useState({
     id: "",
     mainName: "",
-    secondName: "",
+    additionalName: "",
     number: "sw",
     releaseYear: "",
     series: "",
     purchasePrice: "",
-    purchaseDate: "",
+    purchaseDate: today,
     bricklink: "",
     weapon: "",
     label: "",
@@ -33,7 +47,24 @@ function FigureAdd({ onSubmit, onClose }) {
     };
   }, []);
 
+  const inputsToValidate = [
+    { inputType: fig.number, functToCall: numberValidate },
+    { inputType: fig.mainName, functToCall: mainNameValidate },
+    { inputType: fig.purchasePrice, functToCall: purchasePriceValidate },
+    { inputType: fig.releaseYear, functToCall: releaseYearValidate },
+    { inputType: fig.series, functToCall: seriesValidate },
+    { inputType: fig.weapon, functToCall: weaponValidate },
+    { inputType: fig.purchaseDate, functToCall: purchaseDateValidate },
+  ];
+
   const handleSubmit = e => {
+    //form validate
+    const validateArray = inputsToValidate.map(input => {
+      return input.functToCall(input.inputType);
+    });
+
+    console.log(validateArray);
+
     e.preventDefault();
     // FIXME generating random ID - zmienić gdy już będzie baza danych
     const generateId = String(Math.random()).split(".");
@@ -41,7 +72,7 @@ function FigureAdd({ onSubmit, onClose }) {
       id: generateId[1],
       number: fig.number,
       mainName: fig.mainName,
-      secondName: fig.secondName,
+      additionalName: fig.additionalName,
       releaseYear: fig.releaseYear,
       series: fig.series,
       purchasePrice: fig.purchasePrice,
@@ -50,8 +81,8 @@ function FigureAdd({ onSubmit, onClose }) {
       purchaseDate: fig.purchaseDate,
       label: fig.label,
     };
-    onSubmit(newFigure);
-    onClose();
+    // onSubmit(newFigure);
+    // onClose();
   };
 
   const addFigureBtn = (
@@ -87,7 +118,6 @@ function FigureAdd({ onSubmit, onClose }) {
 
   const yearsList = [];
   const currentYear = new Date().getFullYear();
-
   for (let i = currentYear; i >= 1999; i--) yearsList.push(i);
 
   //regex for validating only float input, only 2 digit after , or .
@@ -110,6 +140,13 @@ function FigureAdd({ onSubmit, onClose }) {
     setFig({ ...fig, [name]: value });
   };
 
+  const requiredFieldMessage = (
+    <div className="required-field-container">
+      <div className="required-field">required</div>
+      <div className="required-field-after"></div>
+    </div>
+  );
+
   return (
     <div className="add-figure-wrapper">
       <div className="add-figure-container">
@@ -121,6 +158,7 @@ function FigureAdd({ onSubmit, onClose }) {
               value={fig.number}
               name="number"
               maxLength="8"
+              required={true}
             >
               Number
             </InputText>
@@ -133,17 +171,18 @@ function FigureAdd({ onSubmit, onClose }) {
               onChange={handleChange}
               value={fig.mainName}
               name="mainName"
+              required={true}
             >
-              Name
+              Main name
             </InputText>
           </div>
           <div className="add-figure-div grid-2-left">
             <InputText
               onChange={handleChange}
-              value={fig.secondName}
-              name="secondName"
+              value={fig.additionalName}
+              name="additionalName"
             >
-              Second name
+              Additional name
             </InputText>
           </div>
           <div className="add-figure-div grid-2-left">
@@ -153,11 +192,12 @@ function FigureAdd({ onSubmit, onClose }) {
               name="purchasePrice"
               maxLength="7"
               number="number"
+              required={true}
             >
               Purchase Price
             </InputNumber>
+            {requiredFieldMessage}
           </div>
-
           <div className="add-figure-div grid-2-left cursor-pointer">
             <Dropdown
               onChange={handleChangeSelect}
@@ -165,6 +205,7 @@ function FigureAdd({ onSubmit, onClose }) {
               name="releaseYear"
               options={yearsList}
               placeholder="Select year..."
+              required={true}
             >
               Release Year
             </Dropdown>
@@ -176,11 +217,11 @@ function FigureAdd({ onSubmit, onClose }) {
               name="series"
               options={seriesList}
               placeholder="Select series..."
+              required={true}
             >
               Series
             </Dropdown>
           </div>
-
           <div className="add-figure-div grid-3-left">
             <InputText
               onChange={handleChange}
@@ -190,7 +231,6 @@ function FigureAdd({ onSubmit, onClose }) {
               Briclink
             </InputText>
           </div>
-
           <div className="add-figure-div grid-1-right">
             <InputCheckbox onChange={handleChange} name="label">
               Label
@@ -213,6 +253,7 @@ function FigureAdd({ onSubmit, onClose }) {
               value={fig.purchaseDate}
               name="purchaseDate"
               maxLength="8"
+              required={true}
             >
               Purchase date
             </InputText>
