@@ -271,7 +271,7 @@ function App() {
   ];
 
   const [figures, setFigures] = useState(temp);
-  const [showFigureAdd, setShowFigureAdd] = useState(true);
+  const [showFigureAdd, setShowFigureAdd] = useState(false);
 
   const deleteFigureById = id => {
     const updatedFigures = figures.filter(figure => {

@@ -100,14 +100,14 @@
   max-width: 80%;
   --cut-height: 10px;
   clip-path: polygon(
-    var(--cut-height) 0%, 
-    100% 0, 
-    100% calc(100% - var(--cut-height)), 
-    calc(100% - var(--cut-height)) 100%, 
-    0 100%, 
-    0% var(--cut-height));
+    var(--cut-height) 0%,
+    100% 0,
+    100% calc(100% - var(--cut-height)),
+    calc(100% - var(--cut-height)) 100%,
+    0 100%,
+    0% var(--cut-height)
+  );
 }
-
 
 .grid-center {
   display: grid;
@@ -299,16 +299,8 @@ input[type="checkbox"]:checked::after {
 }
 
 .svg-image-prev-error {
-  fill: crimson;
-  color: crimson;
-}
-
-.input-required {
-  position: absolute;
-  top: -10px;
-  right: -6px;
-  font-size: 10px;
-  color: crimson;
+  fill: var(--error-color);
+  color: var(--error-color);
 }
 
 .flex-row {

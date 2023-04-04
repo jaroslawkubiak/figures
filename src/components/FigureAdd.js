@@ -6,17 +6,9 @@ import Dropdown from "./Dropdown";
 import InputCheckbox from "./InputCheckbox";
 import FigurePhoto from "./FigurePhoto";
 import { useState, useEffect } from "react";
-import {
-  numberValidate,
-  purchasePriceValidate,
-  purchaseDateValidate,
-  releaseYearValidate,
-  seriesValidate,
-  mainNameValidate,
-  weaponValidate,
-} from "../js/validate";
 
 function FigureAdd({ onSubmit, onClose }) {
+  // getting today date
   const today = new Date()
     .toLocaleDateString("pl-PL", {
       year: "numeric",
@@ -25,7 +17,8 @@ function FigureAdd({ onSubmit, onClose }) {
     })
     .replaceAll(".", "-");
 
-  const [fig, setFig] = useState({
+  // initial object of figure to add
+  const initialState = {
     id: "",
     mainName: "",
     additionalName: "",
@@ -37,8 +30,13 @@ function FigureAdd({ onSubmit, onClose }) {
     bricklink: "",
     weapon: "",
     label: "",
-  });
-  // console.log(fig);
+  };
+
+  const [fig, setFig] = useState(initialState);
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmit, setIsSubmit] = useState(false);
+
+  // for showing and hidding add figure form
   useEffect(() => {
     document.body.classList.add("overflow-hidden");
 
@@ -47,50 +45,59 @@ function FigureAdd({ onSubmit, onClose }) {
     };
   }, []);
 
-  const inputsToValidate = [
-    { inputType: fig.number, functToCall: numberValidate },
-    { inputType: fig.mainName, functToCall: mainNameValidate },
-    { inputType: fig.purchasePrice, functToCall: purchasePriceValidate },
-    { inputType: fig.releaseYear, functToCall: releaseYearValidate },
-    { inputType: fig.series, functToCall: seriesValidate },
-    { inputType: fig.weapon, functToCall: weaponValidate },
-    { inputType: fig.purchaseDate, functToCall: purchaseDateValidate },
-  ];
-
-  const handleSubmit = e => {
-    //form validate
-    const validateArray = inputsToValidate.map(input => {
-      return input.functToCall(input.inputType);
-    });
-
-    console.log(validateArray);
-
-    e.preventDefault();
-    // FIXME generating random ID - zmienić gdy już będzie baza danych
-    const generateId = String(Math.random()).split(".");
-    const newFigure = {
-      id: generateId[1],
-      number: fig.number,
-      mainName: fig.mainName,
-      additionalName: fig.additionalName,
-      releaseYear: fig.releaseYear,
-      series: fig.series,
-      purchasePrice: fig.purchasePrice,
-      bricklink: fig.bricklink,
-      weapon: fig.weapon,
-      purchaseDate: fig.purchaseDate,
-      label: fig.label,
-    };
-    // onSubmit(newFigure);
-    // onClose();
-  };
-
-  const addFigureBtn = (
-    <div className="grid-full-line">
-      <Button>Add</Button>
+  // error message for validating inputs
+  const inputFieldNotValid = (
+    <div className="required-field-container">
+      <div className="required-field">required</div>
+      <div className="required-field-after"></div>
     </div>
   );
 
+  // adding figure when form don't hava any errors
+  useEffect(() => {
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      // FIXME generating random ID - zmienić gdy już będzie baza danych
+      const generateId = String(Math.random()).split(".");
+      const newFigure = {
+        id: generateId[1],
+        number: fig.number,
+        mainName: fig.mainName,
+        additionalName: fig.additionalName,
+        releaseYear: fig.releaseYear,
+        series: fig.series,
+        purchasePrice: fig.purchasePrice,
+        bricklink: fig.bricklink,
+        weapon: fig.weapon,
+        purchaseDate: fig.purchaseDate,
+        label: fig.label,
+      };
+      onSubmit(newFigure);
+      onClose();
+    }
+  }, [formErrors]);
+
+  // form validate
+  const validate = values => {
+    const errors = {};
+    if (values.number.length < 6) errors.number = inputFieldNotValid;
+    if (values.purchasePrice < 0 || values.purchasePrice === "")
+      errors.purchasePrice = inputFieldNotValid;
+    if (values.mainName === "") errors.mainName = inputFieldNotValid;
+    if (values.releaseYear === "") errors.releaseYear = inputFieldNotValid;
+    if (values.purchaseDate === "") errors.purchaseDate = inputFieldNotValid;
+    if (values.series === "") errors.series = inputFieldNotValid;
+    if (values.weapon === "") errors.weapon = inputFieldNotValid;
+    return errors;
+  };
+
+  // add figure form submit
+  const handleSubmit = e => {
+    e.preventDefault();
+    setIsSubmit(true);
+    setFormErrors(validate(fig));
+  };
+
+  // FIXME list of figure series, weapons, years list, later fetch from DB
   const seriesList = [
     "Battlefront",
     "Clone Wars",
@@ -120,41 +127,43 @@ function FigureAdd({ onSubmit, onClose }) {
   const currentYear = new Date().getFullYear();
   for (let i = currentYear; i >= 1999; i--) yearsList.push(i);
 
-  //regex for validating only float input, only 2 digit after , or .
+  // regex for validating only float input, only 2 digit after , or .
   const onlyNumbersRegex = /^-?\d*(?:[.,]\d{0,2})?$/;
 
   // handle change to input text and number fields
   const handleChange = e => {
-    const propertyName = e.target.name;
-    const inputValue = e.target.value;
+    const { name, value } = e.target;
+    if (e.target.dataset.set !== "number") setFig({ ...fig, [name]: value });
+    else if (onlyNumbersRegex.test(value)) {
+      setFig({ ...fig, [name]: value.replace(/,/g, ".") });
+    }
+  };
 
-    if (e.target.dataset.set !== "number")
-      setFig({ ...fig, [propertyName]: inputValue });
-    else if (onlyNumbersRegex.test(inputValue)) {
-      setFig({ ...fig, [propertyName]: inputValue.replace(/,/g, ".") });
+  // after error - when on focus input - clear error message
+  const handleOnFocus = e => {
+    if (isSubmit) {
+      setFormErrors({ ...formErrors, [e.target.name]: null });
     }
   };
 
   //handle change to dropdown menu list
   const handleChangeSelect = (value, name) => {
+    if (isSubmit) {
+      setFormErrors({ ...formErrors, [name]: null });
+    }
     setFig({ ...fig, [name]: value });
   };
-
-  const requiredFieldMessage = (
-    <div className="required-field-container">
-      <div className="required-field">required</div>
-      <div className="required-field-after"></div>
-    </div>
-  );
 
   return (
     <div className="add-figure-wrapper">
       <div className="add-figure-container">
+        {/* <pre>{JSON.stringify(fig, undefined, 2)}</pre> */}
         <div className="add-figure-close-btn" onClick={() => onClose()}></div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
           <div className="add-figure-div grid-2-left">
             <InputText
               onChange={handleChange}
+              onFocus={handleOnFocus}
               value={fig.number}
               name="number"
               maxLength="8"
@@ -162,6 +171,7 @@ function FigureAdd({ onSubmit, onClose }) {
             >
               Number
             </InputText>
+            {formErrors.number}
           </div>
           <div id="add-figure-photo" className="add-figure-div grid-height-3">
             <FigurePhoto figNumber={fig.number} />
@@ -169,12 +179,14 @@ function FigureAdd({ onSubmit, onClose }) {
           <div className="add-figure-div grid-2-left">
             <InputText
               onChange={handleChange}
+              onFocus={handleOnFocus}
               value={fig.mainName}
               name="mainName"
               required={true}
             >
               Main name
             </InputText>
+            {formErrors.mainName}
           </div>
           <div className="add-figure-div grid-2-left">
             <InputText
@@ -188,6 +200,7 @@ function FigureAdd({ onSubmit, onClose }) {
           <div className="add-figure-div grid-2-left">
             <InputNumber
               onChange={handleChange}
+              onFocus={handleOnFocus}
               value={fig.purchasePrice}
               name="purchasePrice"
               maxLength="7"
@@ -196,7 +209,7 @@ function FigureAdd({ onSubmit, onClose }) {
             >
               Purchase Price
             </InputNumber>
-            {requiredFieldMessage}
+            {formErrors.purchasePrice}
           </div>
           <div className="add-figure-div grid-2-left cursor-pointer">
             <Dropdown
@@ -209,6 +222,7 @@ function FigureAdd({ onSubmit, onClose }) {
             >
               Release Year
             </Dropdown>
+            {formErrors.releaseYear}
           </div>
           <div className="add-figure-div grid-2-right cursor-pointer">
             <Dropdown
@@ -221,6 +235,7 @@ function FigureAdd({ onSubmit, onClose }) {
             >
               Series
             </Dropdown>
+            {formErrors.series}
           </div>
           <div className="add-figure-div grid-3-left">
             <InputText
@@ -246,10 +261,12 @@ function FigureAdd({ onSubmit, onClose }) {
             >
               Weapon
             </Dropdown>
+            {formErrors.weapon}
           </div>
           <div className="add-figure-div grid-2-right">
             <InputText
               onChange={handleChange}
+              onFocus={handleOnFocus}
               value={fig.purchaseDate}
               name="purchaseDate"
               maxLength="8"
@@ -257,9 +274,11 @@ function FigureAdd({ onSubmit, onClose }) {
             >
               Purchase date
             </InputText>
+            {formErrors.purchaseDate}
           </div>
-
-          {addFigureBtn}
+          <div className="grid-full-line">
+            <Button>Add</Button>
+          </div>
         </form>
       </div>
     </div>

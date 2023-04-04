@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import MyImage from "./MyImage";
-import imageExists from "image-exists";
 import bricklink from "../bricklink.png";
 
 function FigureCard({ figure }) {
@@ -8,23 +7,15 @@ function FigureCard({ figure }) {
   // const handleClick = () => {
   //   onDelete(figure.id);
   // };
-  // const fileName = `../imagesMinifigure/${figure.number}.png`;
 
-  const [figImage, setFigImage] = useState(
-    require(`../imagesMinifigure/${figure.number}.png`)
-  );
-
-  const [imageDescription, setImageDescription] = useState(figure.mainName);
-
-  useEffect(() => {
-    imageExists(figImage, function (exists) {
-      if (!exists) {
-        setFigImage(bricklink);
-        setImageDescription("No image available");
-      } 
-    });
-  }, [figImage]);
-
+  let fileName;
+  try {
+    fileName = require(`../imagesMinifigure/${figure.number}.png`);
+  } catch (error) {
+    // console.error(`Image ${figure.number} doesnt exist`);
+    fileName = bricklink;
+  }
+  const [figImage, setFigImage] = useState(fileName);
 
   return (
     <div className="container">
@@ -32,7 +23,7 @@ function FigureCard({ figure }) {
         <span className="cell-text">{figure.mainName}</span>
       </div>
       <div className="wrapper">
-        <MyImage imageUrl={figImage} imageDescription={imageDescription} />
+        <MyImage imageUrl={figImage} imageDescription={figure.mainName} />
       </div>
       <div className="number">
         <span className="cell-text">

@@ -36,6 +36,11 @@ body {
   position: relative;
 }
 
+.hidden {
+  /* display: none; */
+  opacity: 0.5;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
@@ -90,6 +95,16 @@ body {
   width: 100%;
   /* background-color: rgba(20, 100, 220, 0.653); */
   height: 20px;
+  animation: hideMe 1s forwards;
+}
+
+@keyframes hideMe{
+  0%{
+      opacity: 0;
+  }
+  100%{
+      opacity: 1;
+  }
 }
 
 .required-field {
@@ -98,10 +113,10 @@ body {
   left: 50%;
   transform: translateX(-50%);
   color: rgb(255, 255, 255);
-  font-size: 10px;
+  font-size: 8px;
   letter-spacing: 2px;
   background-color: var(--error-color);
-  padding: 0 10px;
+  padding: 0 5px;
   --cut-height: 4px;
   clip-path: polygon(
     calc(100% - var(--cut-height)) 0%,
@@ -116,10 +131,18 @@ body {
 .required-field-after {
   position: absolute;
   top: -3px;
-  left: 30%;
+  left: 35%;
   transform: translateX(-50%) rotate(45deg);
   width: 7px;
   height: 7px;
   background-color: var(--error-color);
   z-index: 5;
+}
+
+.input-required {
+  position: absolute;
+  top: -10px;
+  right: -6px;
+  font-size: 10px;
+  color: var(--error-color);
 }

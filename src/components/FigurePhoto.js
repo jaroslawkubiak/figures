@@ -28,7 +28,7 @@ function FigurePhoto({ figNumber }) {
       <span> &nbsp;</span>
     </div>
   );
-let renderedPhoto = `https://img.bricklink.com/ItemImage/MN/0/${figNumber}.png`;
+  let renderedPhoto = `https://img.bricklink.com/ItemImage/MN/0/${figNumber}.png`;
 
   if (figNumber.length < 6 && figImg.result !== "") {
     setFigImg({ ...figImg, result: "" });
@@ -58,6 +58,7 @@ let renderedPhoto = `https://img.bricklink.com/ItemImage/MN/0/${figNumber}.png`;
 
   // image doesnt exists on server
   if (figNumber.length >= 6 && !imageExists(renderedPhoto)) {
+    if (!figImg.error) setFigImg({ ...figImg, error: "Not found" });
     renderedData = (
       <div className="flex-row">
         <BsImage className="font-size-6 svg-image-prev-error " />
@@ -66,7 +67,11 @@ let renderedPhoto = `https://img.bricklink.com/ItemImage/MN/0/${figNumber}.png`;
     );
   }
 
-  return <>{renderedData}</>;
+  return (
+    <>
+      {renderedData}
+    </>
+  );
 
   // saving img on local disk
   //   const handleClick = ()=>{

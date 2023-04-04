@@ -1,5 +1,13 @@
-
-function InputNumber({ value, children, maxLength, name, onChange, number, required }) {
+function InputNumber({
+  value,
+  children,
+  maxLength,
+  name,
+  onChange,
+  onFocus,
+  number,
+  required,
+}) {
   return (
     <>
       <label className="add-figure-input-label">{children}</label>
@@ -12,9 +20,11 @@ function InputNumber({ value, children, maxLength, name, onChange, number, requi
           value={value}
           name={name}
           onChange={onChange}
+          onFocus={onFocus}
           data-set={number}
-          />{required && <span className="input-required">#</span>}
-          </div>
+        />
+        {required && <span className="input-required">#</span>}
+      </div>
     </>
   );
 }
