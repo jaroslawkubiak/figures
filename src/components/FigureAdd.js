@@ -6,6 +6,7 @@ import Dropdown from "./Dropdown";
 import InputCheckbox from "./InputCheckbox";
 import FigurePhoto from "./FigurePhoto";
 import { useState, useEffect } from "react";
+import { saveAs } from "file-saver";
 
 function FigureAdd({ onSubmit, onClose }) {
   // getting today date
@@ -26,6 +27,7 @@ function FigureAdd({ onSubmit, onClose }) {
     releaseYear: "",
     series: "",
     purchasePrice: "",
+    bricklinkPrice: "",
     purchaseDate: today,
     bricklink: "",
     weapon: "",
@@ -46,12 +48,22 @@ function FigureAdd({ onSubmit, onClose }) {
   }, []);
 
   // error message for validating inputs
-  const inputFieldNotValid = (
-    <div className="required-field-container">
-      <div className="required-field">required</div>
-      <div className="required-field-after"></div>
-    </div>
-  );
+  const inputFieldNotValid = message => {
+    return (
+      <div className="required-field-container">
+        <div className="required-field">{message}</div>
+        <div className="required-field-after"></div>
+      </div>
+    );
+  };
+
+  // saving image to your local disk
+  const saveImageToHdd = (number) => {
+    let url = `https://img.bricklink.com/ItemImage/MN/0/${number}.png`;
+    saveAs(url, number);
+    // https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1078
+    // https://img.bricklink.com/ItemImage/MN/0/sw1078.png
+  };
 
   // adding figure when form don't hava any errors
   useEffect(() => {
@@ -66,11 +78,14 @@ function FigureAdd({ onSubmit, onClose }) {
         releaseYear: fig.releaseYear,
         series: fig.series,
         purchasePrice: fig.purchasePrice,
+        bricklinkPrice: fig.bricklinkPrice,
         bricklink: fig.bricklink,
         weapon: fig.weapon,
         purchaseDate: fig.purchaseDate,
         label: fig.label,
       };
+
+      saveImageToHdd(fig.number);
       onSubmit(newFigure);
       onClose();
     }
@@ -79,14 +94,18 @@ function FigureAdd({ onSubmit, onClose }) {
   // form validate
   const validate = values => {
     const errors = {};
-    if (values.number.length < 6) errors.number = inputFieldNotValid;
+    if (values.number.length < 6)
+      errors.number = inputFieldNotValid("min 6 char");
+    if (values.mainName === "")
+      errors.mainName = inputFieldNotValid("required");
     if (values.purchasePrice < 0 || values.purchasePrice === "")
-      errors.purchasePrice = inputFieldNotValid;
-    if (values.mainName === "") errors.mainName = inputFieldNotValid;
-    if (values.releaseYear === "") errors.releaseYear = inputFieldNotValid;
-    if (values.purchaseDate === "") errors.purchaseDate = inputFieldNotValid;
-    if (values.series === "") errors.series = inputFieldNotValid;
-    if (values.weapon === "") errors.weapon = inputFieldNotValid;
+      errors.purchasePrice = inputFieldNotValid("required");
+    if (values.releaseYear === "")
+      errors.releaseYear = inputFieldNotValid("required");
+    if (values.purchaseDate === "")
+      errors.purchaseDate = inputFieldNotValid("required");
+    if (values.series === "") errors.series = inputFieldNotValid("required");
+    if (values.weapon === "") errors.weapon = inputFieldNotValid("required");
     return errors;
   };
 
@@ -160,6 +179,7 @@ function FigureAdd({ onSubmit, onClose }) {
         {/* <pre>{JSON.stringify(fig, undefined, 2)}</pre> */}
         <div className="add-figure-close-btn" onClick={() => onClose()}></div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
+          {/* Number */}
           <div className="add-figure-div grid-2-left">
             <InputText
               onChange={handleChange}
@@ -173,9 +193,11 @@ function FigureAdd({ onSubmit, onClose }) {
             </InputText>
             {formErrors.number}
           </div>
+          {/* Image */}
           <div id="add-figure-photo" className="add-figure-div grid-height-3">
             <FigurePhoto figNumber={fig.number} />
           </div>
+          {/* Main name */}
           <div className="add-figure-div grid-2-left">
             <InputText
               onChange={handleChange}
@@ -183,20 +205,24 @@ function FigureAdd({ onSubmit, onClose }) {
               value={fig.mainName}
               name="mainName"
               required={true}
+              maxLength="22"
             >
               Main name
             </InputText>
             {formErrors.mainName}
           </div>
+          {/* Additional name */}
           <div className="add-figure-div grid-2-left">
             <InputText
               onChange={handleChange}
               value={fig.additionalName}
               name="additionalName"
+              maxLength="22"
             >
               Additional name
             </InputText>
           </div>
+          {/* Purchase Price */}
           <div className="add-figure-div grid-2-left">
             <InputNumber
               onChange={handleChange}
@@ -211,6 +237,20 @@ function FigureAdd({ onSubmit, onClose }) {
             </InputNumber>
             {formErrors.purchasePrice}
           </div>
+          {/* Bricklink Price */}
+          <div className="add-figure-div grid-2-right">
+            <InputNumber
+              onChange={handleChange}
+              onFocus={handleOnFocus}
+              value={fig.bricklinkPrice}
+              name="bricklinkPrice"
+              maxLength="7"
+              number="number"
+            >
+              Bricklink av Price
+            </InputNumber>
+          </div>
+          {/* Release Year */}
           <div className="add-figure-div grid-2-left cursor-pointer">
             <Dropdown
               onChange={handleChangeSelect}
@@ -224,6 +264,7 @@ function FigureAdd({ onSubmit, onClose }) {
             </Dropdown>
             {formErrors.releaseYear}
           </div>
+          {/* Series */}
           <div className="add-figure-div grid-2-right cursor-pointer">
             <Dropdown
               onChange={handleChangeSelect}
@@ -237,20 +278,23 @@ function FigureAdd({ onSubmit, onClose }) {
             </Dropdown>
             {formErrors.series}
           </div>
+          {/* Bricklink */}
           <div className="add-figure-div grid-3-left">
             <InputText
               onChange={handleChange}
-              value={fig.briclink}
-              name="briclink"
+              value={fig.bricklink}
+              name="bricklink"
             >
-              Briclink
+              Bricklink
             </InputText>
           </div>
+          {/* Label */}
           <div className="add-figure-div grid-1-right">
             <InputCheckbox onChange={handleChange} name="label">
               Label
             </InputCheckbox>
           </div>
+          {/* Weapon */}
           <div className="add-figure-div grid-2-left cursor-pointer">
             <Dropdown
               onChange={handleChangeSelect}
@@ -263,6 +307,7 @@ function FigureAdd({ onSubmit, onClose }) {
             </Dropdown>
             {formErrors.weapon}
           </div>
+          {/* Purchase date */}
           <div className="add-figure-div grid-2-right">
             <InputText
               onChange={handleChange}

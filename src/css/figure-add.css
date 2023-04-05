@@ -29,13 +29,14 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   place-items: center;
-  gap: 25px 5px;
+  gap: 35px 5px;
 }
 
 .add-figure-div {
   position: relative;
   width: 100%;
   display: grid;
+
   height: var(--input-height);
 }
 
@@ -75,7 +76,7 @@
 .grid-height-3 {
   height: 100%;
   grid-row-start: 1;
-  grid-row-end: 5;
+  grid-row-end: 4;
   grid-column-start: 3;
   grid-column-end: 5;
 }
@@ -96,6 +97,7 @@
 }
 
 #add-img {
+  
   max-height: 80%;
   max-width: 80%;
   --cut-height: 10px;

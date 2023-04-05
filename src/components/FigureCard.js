@@ -1,21 +1,15 @@
 import { useState } from "react";
-import MyImage from "./MyImage";
-import bricklink from "../bricklink.png";
+import "../css/figure-card.css";
 
-function FigureCard({ figure }) {
-  // TODO - usuwanie przeniesc do edycji figurki
-  // const handleClick = () => {
-  //   onDelete(figure.id);
-  // };
+import showFigureImage from "../js/showFigureImage";
 
-  let fileName;
-  try {
-    fileName = require(`../imagesMinifigure/${figure.number}.png`);
-  } catch (error) {
-    // console.error(`Image ${figure.number} doesnt exist`);
-    fileName = bricklink;
-  }
-  const [figImage, setFigImage] = useState(fileName);
+function FigureCard({ figure, clickedImage, onClick }) {
+  const handleClick = (figure, clickedImage) => {
+    onClick(figure, clickedImage);
+  };
+
+  const showImage = showFigureImage(figure);
+  const [figImage, setFigImage] = useState(showImage.url);
 
   return (
     <div className="container">
@@ -23,7 +17,13 @@ function FigureCard({ figure }) {
         <span className="cell-text">{figure.mainName}</span>
       </div>
       <div className="wrapper">
-        <MyImage imageUrl={figImage} imageDescription={figure.mainName} />
+        <img
+          src={figImage}
+          alt={showImage.description}
+          title={showImage.description}
+          className="figure-img cursor-pointer"
+          onClick={() => handleClick(figure, clickedImage)}
+        />
       </div>
       <div className="number">
         <span className="cell-text">

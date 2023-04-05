@@ -93,7 +93,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  letter-spacing: 0.1rem;
+  letter-spacing: 2px;
 
   width: 100%;
   height: 15px;
@@ -108,14 +108,13 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  border-top: 1px solid rgb(0, 0, 0);
+  /* border-top: 2px solid rgb(0, 0, 0); */
   width: 80%;
   height: 15px;
   background-color:var(--primary-color);
   --skew: 10px;
   clip-path: polygon(var(--skew) 0px, calc(100% - var(--skew)) 0px, 100% 100%, 0px 100%);
 }
-
 .figure-img {
   max-height: 80%;
   max-width: 90%;

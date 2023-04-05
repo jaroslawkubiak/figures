@@ -4,8 +4,6 @@ import { BsImage } from "react-icons/bs";
 import { GalacticEmpire } from "../svg/GalacticEmpire";
 import fetchFigureInfo from "../fetch/bricklink";
 
-// import {saveAs} from "file-saver";
-
 function FigurePhoto({ figNumber }) {
   //state for fetching img from bricklink server
   const [figImg, setFigImg] = useState({
@@ -72,19 +70,6 @@ function FigurePhoto({ figNumber }) {
       {renderedData}
     </>
   );
-
-  // saving img on local disk
-  //   const handleClick = ()=>{
-  //     let url = "https://help.twitter.com/content/dam/help-twitter/brand/logo.png"
-  //     saveAs(url, "Twitter-logo");
-  //     saveAs(url, 'img.png', )
-  //    }
-
-  //    return (
-  //      <div className="App">
-  //          <button onClick={handleClick}>Dowload image</button>
-  //      </div>
-  //    );
 }
 // https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1078
 

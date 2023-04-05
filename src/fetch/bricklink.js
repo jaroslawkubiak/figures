@@ -1,4 +1,4 @@
-"use strict";
+
 function fetchFigureInfo(figureNumber) {
   console.log("figureNumber=", figureNumber);
   const OAuth = require("oauth-1.0a")
