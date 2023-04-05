@@ -1,9 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import { GoChevronDown } from "react-icons/go";
 import Panel from "./Panel.js";
-// import "../index.css";
 
-function Dropdown({ options, value, onChange, children, name, placeholder, required }) {
+function Dropdown({
+  options,
+  value,
+  onChange,
+  children,
+  name,
+  placeholder,
+  required,
+}) {
   const [isOpen, setIsOpen] = useState(false);
   // przypisujemy refenecje do zmiennej divEl = zmienna to obiekt!
   const divEl = useRef();
@@ -72,5 +79,5 @@ function Dropdown({ options, value, onChange, children, name, placeholder, requi
     </>
   );
 }
-
+//select-height
 export default Dropdown;

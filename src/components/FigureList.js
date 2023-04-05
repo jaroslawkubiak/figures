@@ -2,7 +2,7 @@ import { useState } from "react";
 import Modal from "./Modal";
 import FigureCard from "./FigureCard";
 
-function FigureList({ figures, onDelete }) {
+function FigureList({ figures, onDelete, onEdit }) {
   const [clickedImage, setClickedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
   const handleChange = (figure, figIndex) => {
@@ -12,18 +12,18 @@ function FigureList({ figures, onDelete }) {
 
   // go to next image
   const handleSwapRight = () => {
-    const totalLength = figures.data.length;
+    const totalLength = figures.length;
 
     // if clicked - show the first element
     if (currentIndex + 1 >= totalLength) {
       setCurrentIndex(0);
-      setClickedImage(figures.data[0]);
+      setClickedImage(figures[0]);
       return;
     }
 
     const newIndex = currentIndex + 1;
-    const newUrl = figures.data.filter(item => {
-      return figures.data.indexOf(item) === newIndex;
+    const newUrl = figures.filter(item => {
+      return figures.indexOf(item) === newIndex;
     });
 
     setClickedImage(newUrl[0]);
@@ -32,28 +32,29 @@ function FigureList({ figures, onDelete }) {
 
   // go to previous image
   const handleSwapLeft = () => {
-    const totalLength = figures.data.length;
+    const totalLength = figures.length;
 
     // if clicked - show the first element
     if (currentIndex === 0) {
       setCurrentIndex(totalLength - 1);
-      setClickedImage(figures.data[totalLength - 1]);
+      setClickedImage(figures[totalLength - 1]);
       return;
     }
 
     const newIndex = currentIndex - 1;
-    const newUrl = figures.data.filter(item => {
-      return figures.data.indexOf(item) === newIndex;
+    const newUrl = figures.filter(item => {
+      return figures.indexOf(item) === newIndex;
     });
 
     setClickedImage(newUrl[0]);
     setCurrentIndex(newIndex);
   };
 
-  const renderedFigures = figures.data.map((figure, index) => {
+  const renderedFigures = figures.map((figure, index) => {
     return (
       <FigureCard
         onDelete={onDelete}
+        onEdit={onEdit}
         key={figure.id}
         figure={figure}
         clickedImage={index}

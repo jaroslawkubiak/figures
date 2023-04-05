@@ -1,6 +1,7 @@
 TODO list
 
 figure add:
+[ ] check if adding number dont exist in DB
 [ x ] layout form
 [ x ] when typing a figure number, after length 6 get request fo figure photo from bricklink.
 [ x ] check if figure number is correct: display img or display error

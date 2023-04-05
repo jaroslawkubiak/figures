@@ -3,10 +3,10 @@ import "../css/figure-card.css";
 
 import showFigureImage from "../js/showFigureImage";
 
-function FigureCard({ figure, clickedImage, onClick }) {
-  const handleClick = (figure, clickedImage) => {
-    onClick(figure, clickedImage);
-  };
+function FigureCard({ figure, clickedImage, onClick, onEdit }) {
+  // const handleClick = (figure, clickedImage) => {
+  //   onClick(figure, clickedImage);
+  // };
 
   const showImage = showFigureImage(figure);
   const [figImage, setFigImage] = useState(showImage.url);
@@ -14,7 +14,13 @@ function FigureCard({ figure, clickedImage, onClick }) {
   return (
     <div className="container">
       <div className="name">
-        <span className="cell-text">{figure.mainName}</span>
+        <span
+          className="cell-text cursor-pointer"
+          figure={figure}
+          onClick={() => onEdit(figure)}
+        >
+          {figure.mainName}
+        </span>
       </div>
       <div className="wrapper">
         <img
@@ -22,7 +28,7 @@ function FigureCard({ figure, clickedImage, onClick }) {
           alt={showImage.description}
           title={showImage.description}
           className="figure-img cursor-pointer"
-          onClick={() => handleClick(figure, clickedImage)}
+          onClick={() => onClick(figure, clickedImage)}
         />
       </div>
       <div className="number">

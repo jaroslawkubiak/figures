@@ -97,7 +97,6 @@
 }
 
 #add-img {
-  
   max-height: 80%;
   max-width: 80%;
   --cut-height: 10px;
@@ -252,7 +251,7 @@ input[type="checkbox"]:checked::after {
   padding: 3px;
   cursor: pointer;
   position: relative;
-  z-index: 9999;
+  z-index: 999;
   font-size: 6px;
   border-left: 5px solid transparent;
 }
@@ -311,3 +310,4 @@ input[type="checkbox"]:checked::after {
   justify-content: center;
   align-items: center;
 }
+

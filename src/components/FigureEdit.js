@@ -1,4 +1,4 @@
-import "../css/figure-add.css";
+// import "../css/figure-edit.css";
 import Button from "./Button";
 import InputText from "./InputText";
 import InputNumber from "./InputNumber";
@@ -8,12 +8,13 @@ import FigurePhoto from "./FigurePhoto";
 import { useState, useEffect } from "react";
 import { saveAs } from "file-saver";
 
-function FigureEdit({ onSubmit, onClose }) {
+function FigureEdit({ onSubmit, onClose, figureToEdit }) {
   // TODO - usuwanie przeniesc do edycji figurki
   // const handleClick = () => {
   //   onDelete(figure.id);
   // };
 
+  console.log("edycja figa =", figureToEdit);
   // getting today date
   const today = new Date()
     .toLocaleDateString("pl-PL", {
@@ -63,7 +64,7 @@ function FigureEdit({ onSubmit, onClose }) {
   };
 
   // saving image to your local disk
-  const saveImageToHdd = (number) => {
+  const saveImageToHdd = number => {
     let url = `https://img.bricklink.com/ItemImage/MN/0/${number}.png`;
     saveAs(url, number);
     // https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1078
@@ -99,18 +100,18 @@ function FigureEdit({ onSubmit, onClose }) {
   // form validate
   const validate = values => {
     const errors = {};
-    if (values.number.length < 6)
-      errors.number = inputFieldNotValid("min 6 char");
+    // if (values.number.length < 6)
+    //   errors.number = inputFieldNotValid("min 6 char");
     if (values.mainName === "")
       errors.mainName = inputFieldNotValid("required");
-    if (values.purchasePrice < 0 || values.purchasePrice === "")
-      errors.purchasePrice = inputFieldNotValid("required");
-    if (values.releaseYear === "")
-      errors.releaseYear = inputFieldNotValid("required");
-    if (values.purchaseDate === "")
-      errors.purchaseDate = inputFieldNotValid("required");
-    if (values.series === "") errors.series = inputFieldNotValid("required");
-    if (values.weapon === "") errors.weapon = inputFieldNotValid("required");
+    // if (values.purchasePrice < 0 || values.purchasePrice === "")
+    //   errors.purchasePrice = inputFieldNotValid("required");
+    // if (values.releaseYear === "")
+    //   errors.releaseYear = inputFieldNotValid("required");
+    // if (values.purchaseDate === "")
+    //   errors.purchaseDate = inputFieldNotValid("required");
+    // if (values.series === "") errors.series = inputFieldNotValid("required");
+    // if (values.weapon === "") errors.weapon = inputFieldNotValid("required");
     return errors;
   };
 
@@ -180,12 +181,12 @@ function FigureEdit({ onSubmit, onClose }) {
 
   return (
     <div className="add-figure-wrapper">
-      <div className="add-figure-container">
+      <div className="add-figure-container edit-figure-border">
         {/* <pre>{JSON.stringify(fig, undefined, 2)}</pre> */}
         <div className="add-figure-close-btn" onClick={() => onClose()}></div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
           {/* Number */}
-          <div className="add-figure-div grid-2-left">
+          <div className="add-figure-div grid-2-left ">
             <InputText
               onChange={handleChange}
               onFocus={handleOnFocus}

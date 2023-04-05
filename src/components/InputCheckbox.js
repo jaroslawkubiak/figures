@@ -1,4 +1,3 @@
-import "../css/figure-add.css";
 
 function InputCheckbox({ children, name, onChange }) {
   return (

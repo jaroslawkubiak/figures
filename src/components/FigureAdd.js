@@ -38,15 +38,6 @@ function FigureAdd({ onSubmit, onClose }) {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
-  // for showing and hidding add figure form
-  useEffect(() => {
-    document.body.classList.add("overflow-hidden");
-
-    return () => {
-      document.body.classList.remove("overflow-hidden");
-    };
-  }, []);
-
   // error message for validating inputs
   const inputFieldNotValid = message => {
     return (
@@ -58,7 +49,7 @@ function FigureAdd({ onSubmit, onClose }) {
   };
 
   // saving image to your local disk
-  const saveImageToHdd = (number) => {
+  const saveImageToHdd = number => {
     let url = `https://img.bricklink.com/ItemImage/MN/0/${number}.png`;
     saveAs(url, number);
     // https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1078
@@ -98,14 +89,14 @@ function FigureAdd({ onSubmit, onClose }) {
       errors.number = inputFieldNotValid("min 6 char");
     if (values.mainName === "")
       errors.mainName = inputFieldNotValid("required");
-    if (values.purchasePrice < 0 || values.purchasePrice === "")
-      errors.purchasePrice = inputFieldNotValid("required");
-    if (values.releaseYear === "")
-      errors.releaseYear = inputFieldNotValid("required");
-    if (values.purchaseDate === "")
-      errors.purchaseDate = inputFieldNotValid("required");
-    if (values.series === "") errors.series = inputFieldNotValid("required");
-    if (values.weapon === "") errors.weapon = inputFieldNotValid("required");
+    // if (values.purchasePrice < 0 || values.purchasePrice === "")
+    //   errors.purchasePrice = inputFieldNotValid("required");
+    // if (values.releaseYear === "")
+    //   errors.releaseYear = inputFieldNotValid("required");
+    // if (values.purchaseDate === "")
+    //   errors.purchaseDate = inputFieldNotValid("required");
+    // if (values.series === "") errors.series = inputFieldNotValid("required");
+    // if (values.weapon === "") errors.weapon = inputFieldNotValid("required");
     return errors;
   };
 
@@ -302,6 +293,7 @@ function FigureAdd({ onSubmit, onClose }) {
               name="weapon"
               options={weaponList}
               placeholder="Select weapon..."
+              required={true}
             >
               Weapon
             </Dropdown>
