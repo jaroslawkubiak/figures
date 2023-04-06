@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { GoChevronDown } from "react-icons/go";
+import { BsCaretDownFill } from "react-icons/bs";
 import Panel from "./Panel.js";
 
 function Dropdown({
@@ -10,6 +10,8 @@ function Dropdown({
   name,
   placeholder,
   required,
+  cssClass,
+  cssPanelClass,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   // przypisujemy refenecje do zmiennej divEl = zmienna to obiekt!
@@ -63,18 +65,14 @@ function Dropdown({
     <>
       <label className="add-figure-input-label">{children}</label>
       <div ref={divEl} className="input-wrapper">
-        <Panel onClick={handleClick} className="add-figure-input">
+        <Panel onClick={handleClick} className={cssClass}>
           {value || placeholder}
 
-          <GoChevronDown className="icon-arrow-down" />
+          <BsCaretDownFill className="icon-arrow-down" />
         </Panel>
         {required && <span className="input-required">#</span>}
 
-        {isOpen && (
-          <Panel className="add-figure-input select-height">
-            {renderedOptions}
-          </Panel>
-        )}
+        {isOpen && <Panel className={cssPanelClass}>{renderedOptions}</Panel>}
       </div>
     </>
   );

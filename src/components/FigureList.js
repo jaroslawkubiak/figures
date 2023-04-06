@@ -1,8 +1,9 @@
 import { useState } from "react";
 import Modal from "./Modal";
-import FigureCard from "./FigureCard";
+import FigureShowCard from "./FigureShowCard";
+import FigureShowList from "./FigureShowList";
 
-function FigureList({ figures, onDelete, onEdit }) {
+function FigureList({ figures, onDelete, onEdit, listView }) {
   const [clickedImage, setClickedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
   const handleChange = (figure, figIndex) => {
@@ -51,21 +52,38 @@ function FigureList({ figures, onDelete, onEdit }) {
   };
 
   const renderedFigures = figures.map((figure, index) => {
-    return (
-      <FigureCard
-        onDelete={onDelete}
-        onEdit={onEdit}
-        key={figure.id}
-        figure={figure}
-        clickedImage={index}
-        onClick={handleChange}
-      />
-    );
+    if (!listView)
+      return (
+        <FigureShowCard
+          onDelete={onDelete}
+          onEdit={onEdit}
+          key={figure.id}
+          figure={figure}
+          clickedImage={index}
+          onClick={handleChange}
+        />
+      );
+    else {
+      return (
+        <FigureShowList
+          onDelete={onDelete}
+          onEdit={onEdit}
+          key={figure.id}
+          figure={figure}
+          clickedImage={index}
+          onClick={handleChange}
+        />
+      );
+    }
   });
 
   return (
     <>
-      <div className="figure-container">{renderedFigures}</div>
+      <div
+        className={listView ? "figure-container-list" : "figure-container-card"}
+      >
+        {renderedFigures}
+      </div>
       {clickedImage && (
         <Modal
           clickedImage={clickedImage}

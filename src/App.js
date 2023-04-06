@@ -5,7 +5,6 @@ import FigureList from "./components/FigureList";
 import Filters from "./components/Filters";
 import FigureAdd from "./components/FigureAdd";
 import FigureEdit from "./components/FigureEdit";
-import Button from "./components/Button";
 
 function App() {
   const [figures, setFigures] = useState(figuresData);
@@ -13,6 +12,12 @@ function App() {
 
   const [showFigureEditForm, setShowFigureEditForm] = useState(false);
   const [figureToEdit, setFigureToEdit] = useState(null);
+
+  const [listView, setListView] = useState(true);
+
+  const handleListView = () => {
+    setListView(!listView);
+  };
 
   // deleting figure from DB
   const deleteFigureById = id => {
@@ -24,9 +29,8 @@ function App() {
   };
 
   const handleFigureEdit = fig => {
-    console.log("start edit:", fig);
     setShowFigureEditForm(true);
-    setFigureToEdit(fig.id);
+    setFigureToEdit(fig);
   };
 
   const handleAddFigure = figure => {
@@ -35,8 +39,9 @@ function App() {
   };
 
   const handleEditFigure = () => {
-    console.log("edytuję figurkę");
+    console.log("zapisuję figurkę po edycji:");
   };
+
   const handleShowAddFigureForm = () => setShowFigureAddForm(true);
   const handleCloseAddFigureForm = () => setShowFigureAddForm(false);
 
@@ -49,20 +54,27 @@ function App() {
   const FigureEditComponent = (
     <FigureEdit
       onSubmit={handleEditFigure}
+      figure={figureToEdit}
       onClose={handleCloseEditFigureForm}
     />
   );
 
   return (
     <>
-      {/* <Filters /> */}
-      <Button onClick={handleShowAddFigureForm}>add figure</Button>
+      <Filters
+        onHandleView={handleListView}
+        listView={listView}
+        figures={figures}
+        onAddFigure={handleShowAddFigureForm}
+      />
+
+      {/* <Button onClick={handleShowAddFigureForm}>add figure</Button> */}
       {showFigureAdd && FigureAddComponent}
       {showFigureEditForm && FigureEditComponent}
-      Ilość figurek : {figures.length}
       <FigureList
         onDelete={deleteFigureById}
         onEdit={handleFigureEdit}
+        listView={listView}
         figures={figures}
       />
     </>

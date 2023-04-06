@@ -7,6 +7,7 @@ function InputNumber({
   onFocus,
   number,
   required,
+  cssClass
 }) {
   return (
     <>
@@ -14,7 +15,7 @@ function InputNumber({
       <div className="input-wrapper">
         <input
           type="text"
-          className="add-figure-input"
+          className={cssClass}
           autoComplete="off"
           maxLength={maxLength || ""}
           value={value}

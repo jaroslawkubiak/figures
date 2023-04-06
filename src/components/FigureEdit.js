@@ -7,40 +7,18 @@ import InputCheckbox from "./InputCheckbox";
 import FigurePhoto from "./FigurePhoto";
 import { useState, useEffect } from "react";
 import { saveAs } from "file-saver";
+import seriesList from "../data/seriesList.json";
+import weaponList from "../data/weaponList.json";
 
-function FigureEdit({ onSubmit, onClose, figureToEdit }) {
+function FigureEdit({ onSubmit, onClose, figure }) {
   // TODO - usuwanie przeniesc do edycji figurki
   // const handleClick = () => {
   //   onDelete(figure.id);
   // };
 
-  console.log("edycja figa =", figureToEdit);
-  // getting today date
-  const today = new Date()
-    .toLocaleDateString("pl-PL", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    })
-    .replaceAll(".", "-");
+  console.log("figureEdit =", figure);
 
-  // initial object of figure to add
-  const initialState = {
-    id: "",
-    mainName: "",
-    additionalName: "",
-    number: "sw",
-    releaseYear: "",
-    series: "",
-    purchasePrice: "",
-    bricklinkPrice: "",
-    purchaseDate: today,
-    bricklink: "",
-    weapon: "",
-    label: "",
-  };
-
-  const [fig, setFig] = useState(initialState);
+  const [fig, setFig] = useState(figure);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
@@ -122,32 +100,6 @@ function FigureEdit({ onSubmit, onClose, figureToEdit }) {
     setFormErrors(validate(fig));
   };
 
-  // FIXME list of figure series, weapons, years list, later fetch from DB
-  const seriesList = [
-    "Battlefront",
-    "Clone Wars",
-    "Episode 1",
-    "Episode 2",
-    "Episode 3",
-    "Episode 4/5/6",
-    "Episode 7",
-    "Episode 8",
-    "Episode 9",
-    "Legends",
-    "NOT MINIFIGURE",
-    "Old Republic",
-    "Others",
-    "Rebels",
-    "Resistance",
-    "Rogue One",
-    "Solo",
-    "The Freemaker Adventures",
-    "Yoda Chronicles",
-    "The Bad Batch",
-    "The Mandalorian",
-  ];
-  const weaponList = ["yes", "no", "buy"];
-
   const yearsList = [];
   const currentYear = new Date().getFullYear();
   for (let i = currentYear; i >= 1999; i--) yearsList.push(i);
@@ -183,10 +135,13 @@ function FigureEdit({ onSubmit, onClose, figureToEdit }) {
     <div className="add-figure-wrapper">
       <div className="add-figure-container edit-figure-border">
         {/* <pre>{JSON.stringify(fig, undefined, 2)}</pre> */}
-        <div className="add-figure-close-btn" onClick={() => onClose()}></div>
+        <div
+          className="add-figure-close-btn edit-figure-bg"
+          onClick={() => onClose()}
+        ></div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
           {/* Number */}
-          <div className="add-figure-div grid-2-left ">
+          <div className="add-figure-div grid-2-left edit-figure-color">
             <InputText
               onChange={handleChange}
               onFocus={handleOnFocus}
@@ -194,6 +149,7 @@ function FigureEdit({ onSubmit, onClose, figureToEdit }) {
               name="number"
               maxLength="8"
               required={true}
+              cssClass="add-figure-input edit-figure-bg"
             >
               Number
             </InputText>
@@ -204,7 +160,7 @@ function FigureEdit({ onSubmit, onClose, figureToEdit }) {
             <FigurePhoto figNumber={fig.number} />
           </div>
           {/* Main name */}
-          <div className="add-figure-div grid-2-left">
+          <div className="add-figure-div grid-2-left edit-figure-color">
             <InputText
               onChange={handleChange}
               onFocus={handleOnFocus}
@@ -212,24 +168,26 @@ function FigureEdit({ onSubmit, onClose, figureToEdit }) {
               name="mainName"
               required={true}
               maxLength="22"
+              cssClass="add-figure-input edit-figure-bg"
             >
               Main name
             </InputText>
             {formErrors.mainName}
           </div>
           {/* Additional name */}
-          <div className="add-figure-div grid-2-left">
+          <div className="add-figure-div grid-2-left edit-figure-color">
             <InputText
               onChange={handleChange}
               value={fig.additionalName}
               name="additionalName"
               maxLength="22"
+              cssClass="add-figure-input edit-figure-bg"
             >
               Additional name
             </InputText>
           </div>
           {/* Purchase Price */}
-          <div className="add-figure-div grid-2-left">
+          <div className="add-figure-div grid-2-left edit-figure-color">
             <InputNumber
               onChange={handleChange}
               onFocus={handleOnFocus}
@@ -238,13 +196,14 @@ function FigureEdit({ onSubmit, onClose, figureToEdit }) {
               maxLength="7"
               number="number"
               required={true}
+              cssClass="add-figure-input edit-figure-bg"
             >
               Purchase Price
             </InputNumber>
             {formErrors.purchasePrice}
           </div>
           {/* Bricklink Price */}
-          <div className="add-figure-div grid-2-right">
+          <div className="add-figure-div grid-2-right edit-figure-color">
             <InputNumber
               onChange={handleChange}
               onFocus={handleOnFocus}
@@ -252,12 +211,13 @@ function FigureEdit({ onSubmit, onClose, figureToEdit }) {
               name="bricklinkPrice"
               maxLength="7"
               number="number"
+              cssClass="add-figure-input edit-figure-bg"
             >
               Bricklink av Price
             </InputNumber>
           </div>
           {/* Release Year */}
-          <div className="add-figure-div grid-2-left cursor-pointer">
+          <div className="add-figure-div grid-2-left cursor-pointer edit-figure-color">
             <Dropdown
               onChange={handleChangeSelect}
               value={fig.releaseYear}
@@ -265,13 +225,15 @@ function FigureEdit({ onSubmit, onClose, figureToEdit }) {
               options={yearsList}
               placeholder="Select year..."
               required={true}
-            >
+              cssClass="add-figure-input edit-figure-bg"
+              cssPanelClass="add-figure-input select-height edit-figure-bg"
+              >
               Release Year
             </Dropdown>
             {formErrors.releaseYear}
           </div>
           {/* Series */}
-          <div className="add-figure-div grid-2-right cursor-pointer">
+          <div className="add-figure-div grid-2-right cursor-pointer edit-figure-color">
             <Dropdown
               onChange={handleChangeSelect}
               value={fig.series}
@@ -279,42 +241,53 @@ function FigureEdit({ onSubmit, onClose, figureToEdit }) {
               options={seriesList}
               placeholder="Select series..."
               required={true}
+              cssClass="add-figure-input edit-figure-bg"
+              cssPanelClass="add-figure-input select-height edit-figure-bg"
             >
               Series
             </Dropdown>
             {formErrors.series}
           </div>
           {/* Bricklink */}
-          <div className="add-figure-div grid-3-left">
+          <div className="add-figure-div grid-3-left edit-figure-color">
             <InputText
               onChange={handleChange}
               value={fig.bricklink}
               name="bricklink"
+              cssClass="add-figure-input edit-figure-bg"
             >
               Bricklink
             </InputText>
           </div>
           {/* Label */}
-          <div className="add-figure-div grid-1-right">
-            <InputCheckbox onChange={handleChange} name="label">
+          <div className="add-figure-div grid-1-right edit-figure-color">
+            <InputCheckbox
+              onChange={handleChange}
+              name="label"
+              cssClass="add-figure-checkbox-div grid-center edit-figure-bg"
+              cssCheckboxClass="cursor-pointer edit-figure-bg"
+              >
               Label
             </InputCheckbox>
           </div>
           {/* Weapon */}
-          <div className="add-figure-div grid-2-left cursor-pointer">
+          <div className="add-figure-div grid-2-left cursor-pointer edit-figure-color">
             <Dropdown
               onChange={handleChangeSelect}
               value={fig.weapon}
               name="weapon"
               options={weaponList}
               placeholder="Select weapon..."
-            >
+              required={true}
+              cssClass="add-figure-input edit-figure-bg"
+              cssPanelClass="add-figure-input select-height edit-figure-bg"
+              >
               Weapon
             </Dropdown>
             {formErrors.weapon}
           </div>
           {/* Purchase date */}
-          <div className="add-figure-div grid-2-right">
+          <div className="add-figure-div grid-2-right edit-figure-color">
             <InputText
               onChange={handleChange}
               onFocus={handleOnFocus}
@@ -322,13 +295,14 @@ function FigureEdit({ onSubmit, onClose, figureToEdit }) {
               name="purchaseDate"
               maxLength="8"
               required={true}
+              cssClass="add-figure-input edit-figure-bg"
             >
               Purchase date
             </InputText>
             {formErrors.purchaseDate}
           </div>
           <div className="grid-full-line">
-            <Button>Add</Button>
+            <Button cssClass="button-edit">Save</Button>
           </div>
         </form>
       </div>

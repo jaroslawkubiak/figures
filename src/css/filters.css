@@ -1,5 +1,33 @@
 .filter-container {
-    background-color: rgb(240, 240, 240); 
-    color: black;
-    height: 50px;
+  --bg-color: #ffe81f;
+  --primary-color: #000000;
+
+  background-color: rgb(255, 229, 59);
+  background-color: var(--darth-maul);
+  color: black;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid var(--primary-color);
 }
+
+.filter-icon {
+  font-size: 3em;
+  padding: 0;
+  margin: 5px;
+}
+
+.filter-quantity-wprapper {
+  display: flex;
+  align-self: center;
+  border: 2px solid var(--primary-color);
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.filter-quantity-icon {
+  font-size: 2.4em;
+}
+
+/* .filter-icon:hover {
+  fill: var(--error-color);
+} */

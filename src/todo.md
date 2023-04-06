@@ -42,3 +42,5 @@ stats by:
 [ ] getting average price for all figures from BL in given time, example on link clicked, add do DB info about all pirce of all figures. then make statistics how price of figure was changed over time.
 
 [ ] show only images of figures, like 3 img in row in random order
+
+[ ] list of figure series, weapons, years list, later fetch from DB

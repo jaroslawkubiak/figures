@@ -6,6 +6,7 @@ function InputText({
   onChange,
   required,
   onFocus,
+  cssClass
 }) {
   return (
     <>
@@ -13,7 +14,7 @@ function InputText({
       <div className="input-wrapper">
         <input
           type="text"
-          className="add-figure-input"
+          className={cssClass}
           autoComplete="off"
           maxLength={maxLength || ""}
           value={value}

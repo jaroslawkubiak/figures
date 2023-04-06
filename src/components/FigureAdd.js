@@ -7,6 +7,8 @@ import InputCheckbox from "./InputCheckbox";
 import FigurePhoto from "./FigurePhoto";
 import { useState, useEffect } from "react";
 import { saveAs } from "file-saver";
+import seriesList from "../data/seriesList.json";
+import weaponList from "../data/weaponList.json";
 
 function FigureAdd({ onSubmit, onClose }) {
   // getting today date
@@ -107,32 +109,7 @@ function FigureAdd({ onSubmit, onClose }) {
     setFormErrors(validate(fig));
   };
 
-  // FIXME list of figure series, weapons, years list, later fetch from DB
-  const seriesList = [
-    "Battlefront",
-    "Clone Wars",
-    "Episode 1",
-    "Episode 2",
-    "Episode 3",
-    "Episode 4/5/6",
-    "Episode 7",
-    "Episode 8",
-    "Episode 9",
-    "Legends",
-    "NOT MINIFIGURE",
-    "Old Republic",
-    "Others",
-    "Rebels",
-    "Resistance",
-    "Rogue One",
-    "Solo",
-    "The Freemaker Adventures",
-    "Yoda Chronicles",
-    "The Bad Batch",
-    "The Mandalorian",
-  ];
-  const weaponList = ["yes", "no", "buy"];
-
+  // creating list of years
   const yearsList = [];
   const currentYear = new Date().getFullYear();
   for (let i = currentYear; i >= 1999; i--) yearsList.push(i);
@@ -179,6 +156,7 @@ function FigureAdd({ onSubmit, onClose }) {
               name="number"
               maxLength="8"
               required={true}
+              cssClass="add-figure-input"
             >
               Number
             </InputText>
@@ -197,6 +175,7 @@ function FigureAdd({ onSubmit, onClose }) {
               name="mainName"
               required={true}
               maxLength="22"
+              cssClass="add-figure-input"
             >
               Main name
             </InputText>
@@ -209,6 +188,7 @@ function FigureAdd({ onSubmit, onClose }) {
               value={fig.additionalName}
               name="additionalName"
               maxLength="22"
+              cssClass="add-figure-input"
             >
               Additional name
             </InputText>
@@ -223,6 +203,7 @@ function FigureAdd({ onSubmit, onClose }) {
               maxLength="7"
               number="number"
               required={true}
+              cssClass="add-figure-input"
             >
               Purchase Price
             </InputNumber>
@@ -236,6 +217,7 @@ function FigureAdd({ onSubmit, onClose }) {
               value={fig.bricklinkPrice}
               name="bricklinkPrice"
               maxLength="7"
+              cssClass="add-figure-input"
               number="number"
             >
               Bricklink av Price
@@ -250,7 +232,9 @@ function FigureAdd({ onSubmit, onClose }) {
               options={yearsList}
               placeholder="Select year..."
               required={true}
-            >
+              cssClass="add-figure-input"
+              cssPanelClass="add-figure-input select-height"
+              >
               Release Year
             </Dropdown>
             {formErrors.releaseYear}
@@ -264,7 +248,9 @@ function FigureAdd({ onSubmit, onClose }) {
               options={seriesList}
               placeholder="Select series..."
               required={true}
-            >
+              cssClass="add-figure-input"
+              cssPanelClass="add-figure-input select-height"
+              >
               Series
             </Dropdown>
             {formErrors.series}
@@ -274,6 +260,7 @@ function FigureAdd({ onSubmit, onClose }) {
             <InputText
               onChange={handleChange}
               value={fig.bricklink}
+              cssClass="add-figure-input"
               name="bricklink"
             >
               Bricklink
@@ -281,7 +268,12 @@ function FigureAdd({ onSubmit, onClose }) {
           </div>
           {/* Label */}
           <div className="add-figure-div grid-1-right">
-            <InputCheckbox onChange={handleChange} name="label">
+            <InputCheckbox
+              onChange={handleChange}
+              name="label"
+              cssClass="add-figure-checkbox-div grid-center"
+              cssCheckboxClass="cursor-pointer"
+            >
               Label
             </InputCheckbox>
           </div>
@@ -294,6 +286,8 @@ function FigureAdd({ onSubmit, onClose }) {
               options={weaponList}
               placeholder="Select weapon..."
               required={true}
+              cssClass="add-figure-input"
+              cssPanelClass="add-figure-input select-height"
             >
               Weapon
             </Dropdown>
@@ -307,6 +301,7 @@ function FigureAdd({ onSubmit, onClose }) {
               value={fig.purchaseDate}
               name="purchaseDate"
               maxLength="8"
+              cssClass="add-figure-input"
               required={true}
             >
               Purchase date
@@ -314,7 +309,7 @@ function FigureAdd({ onSubmit, onClose }) {
             {formErrors.purchaseDate}
           </div>
           <div className="grid-full-line">
-            <Button>Add</Button>
+            <Button cssClass="button">Add</Button>
           </div>
         </form>
       </div>

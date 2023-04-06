@@ -1,12 +1,17 @@
-
-function InputCheckbox({ children, name, onChange }) {
+function InputCheckbox({
+  children,
+  name,
+  onChange,
+  cssClass,
+  cssCheckboxClass,
+}) {
   return (
     <>
       <label className="add-figure-input-label">{children}</label>
-      <div className="input-wrapper ">
-        <div className="add-figure-checkbox-div grid-center">
+      <div className="input-wrapper">
+        <div className={cssClass}>
           <input
-          className="cursor-pointer"
+            className={cssCheckboxClass}
             type="checkbox"
             name={name}
             onChange={onChange}

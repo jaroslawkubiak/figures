@@ -4,7 +4,9 @@
   --primary-color: #ffe81f;
   --bg-color: #0e0e16;
   --error-color: crimson;
-  --edit-color: coral;
+  --edit-color: rgb(253, 140, 83);
+  --darth-maul: #cb0407;
+  
 }
 
 @font-face {
@@ -23,10 +25,20 @@ body {
   color: var(--primary-color);
 }
 
-.figure-container {
+.figure-container-card {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
+  background-color:var(--bg-color); 
+}
+.figure-container-list {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  padding: 5px;
+  gap: 5px;
+  /* margin: 5px; */
+  background-color: var(--primary-color); 
 }
 
 .overflow-hidden {
@@ -70,6 +82,31 @@ body {
   );
 }
 
+.button-edit {
+  all: unset;
+  position: relative;
+  z-index: 1;
+  font-family: star_wars;
+  font-size: 0.6em;
+  letter-spacing: 0.2rem;
+
+  padding: 5px 15px;
+  margin: 5px;
+  background-color: var(--edit-color);
+  color: var(--bg-color);
+  cursor: pointer;
+
+  --cut-height: 6px;
+  clip-path: polygon(
+    calc(100% - var(--cut-height)) 0%,
+    100% var(--cut-height),
+    100% 100%,
+    var(--cut-height) 100%,
+    0% calc(100% - var(--cut-height)),
+    0 0
+  );
+}
+
 /* rotataion for fetching image from bricklink page */
 @keyframes img-fetch-rotation {
   from {
@@ -85,6 +122,8 @@ body {
 
 .svg-fill-primary {
   fill: var(--primary-color);
+  /* background-color: chartreuse; 
+  margin: 20px; */
 }
 
 /* validate messages */
