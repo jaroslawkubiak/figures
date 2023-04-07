@@ -7,6 +7,7 @@ import InputCheckbox from "./InputCheckbox";
 import FigurePhoto from "./FigurePhoto";
 import { useState, useEffect } from "react";
 import { saveAs } from "file-saver";
+import { ImCross } from "react-icons/im";
 import seriesList from "../data/seriesList.json";
 import weaponList from "../data/weaponList.json";
 
@@ -131,14 +132,16 @@ function FigureEdit({ onSubmit, onClose, figure }) {
     setFig({ ...fig, [name]: value });
   };
 
+  const svgBg = "svg-fill-edit";
   return (
     <div className="add-figure-wrapper">
       <div className="add-figure-container edit-figure-border">
-        {/* <pre>{JSON.stringify(fig, undefined, 2)}</pre> */}
         <div
-          className="add-figure-close-btn edit-figure-bg"
+          className="add-figure-close-btn background-color-edit"
           onClick={() => onClose()}
-        ></div>
+        >
+          <ImCross className="svg-fill-bg" />
+        </div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
           {/* Number */}
           <div className="add-figure-div grid-2-left edit-figure-color">
@@ -149,7 +152,7 @@ function FigureEdit({ onSubmit, onClose, figure }) {
               name="number"
               maxLength="8"
               required={true}
-              cssClass="add-figure-input edit-figure-bg"
+              cssClass="add-figure-input background-color-edit"
             >
               Number
             </InputText>
@@ -157,7 +160,7 @@ function FigureEdit({ onSubmit, onClose, figure }) {
           </div>
           {/* Image */}
           <div id="add-figure-photo" className="add-figure-div grid-height-3">
-            <FigurePhoto figNumber={fig.number} />
+            <FigurePhoto figNumber={fig.number} svgBg={svgBg} />
           </div>
           {/* Main name */}
           <div className="add-figure-div grid-2-left edit-figure-color">
@@ -168,7 +171,7 @@ function FigureEdit({ onSubmit, onClose, figure }) {
               name="mainName"
               required={true}
               maxLength="22"
-              cssClass="add-figure-input edit-figure-bg"
+              cssClass="add-figure-input background-color-edit"
             >
               Main name
             </InputText>
@@ -181,7 +184,7 @@ function FigureEdit({ onSubmit, onClose, figure }) {
               value={fig.additionalName}
               name="additionalName"
               maxLength="22"
-              cssClass="add-figure-input edit-figure-bg"
+              cssClass="add-figure-input background-color-edit"
             >
               Additional name
             </InputText>
@@ -196,7 +199,7 @@ function FigureEdit({ onSubmit, onClose, figure }) {
               maxLength="7"
               number="number"
               required={true}
-              cssClass="add-figure-input edit-figure-bg"
+              cssClass="add-figure-input background-color-edit"
             >
               Purchase Price
             </InputNumber>
@@ -211,7 +214,7 @@ function FigureEdit({ onSubmit, onClose, figure }) {
               name="bricklinkPrice"
               maxLength="7"
               number="number"
-              cssClass="add-figure-input edit-figure-bg"
+              cssClass="add-figure-input background-color-edit"
             >
               Bricklink av Price
             </InputNumber>
@@ -225,9 +228,9 @@ function FigureEdit({ onSubmit, onClose, figure }) {
               options={yearsList}
               placeholder="Select year..."
               required={true}
-              cssClass="add-figure-input edit-figure-bg"
-              cssPanelClass="add-figure-input select-height edit-figure-bg"
-              >
+              cssClass="add-figure-input background-color-edit"
+              cssPanelClass="add-figure-input select-height background-color-edit"
+            >
               Release Year
             </Dropdown>
             {formErrors.releaseYear}
@@ -241,8 +244,8 @@ function FigureEdit({ onSubmit, onClose, figure }) {
               options={seriesList}
               placeholder="Select series..."
               required={true}
-              cssClass="add-figure-input edit-figure-bg"
-              cssPanelClass="add-figure-input select-height edit-figure-bg"
+              cssClass="add-figure-input background-color-edit"
+              cssPanelClass="add-figure-input select-height background-color-edit"
             >
               Series
             </Dropdown>
@@ -254,7 +257,7 @@ function FigureEdit({ onSubmit, onClose, figure }) {
               onChange={handleChange}
               value={fig.bricklink}
               name="bricklink"
-              cssClass="add-figure-input edit-figure-bg"
+              cssClass="add-figure-input background-color-edit"
             >
               Bricklink
             </InputText>
@@ -264,9 +267,9 @@ function FigureEdit({ onSubmit, onClose, figure }) {
             <InputCheckbox
               onChange={handleChange}
               name="label"
-              cssClass="add-figure-checkbox-div grid-center edit-figure-bg"
-              cssCheckboxClass="cursor-pointer edit-figure-bg"
-              >
+              cssClass="add-figure-checkbox-div grid-center background-color-edit"
+              cssCheckboxClass="cursor-pointer background-color-edit"
+            >
               Label
             </InputCheckbox>
           </div>
@@ -279,9 +282,9 @@ function FigureEdit({ onSubmit, onClose, figure }) {
               options={weaponList}
               placeholder="Select weapon..."
               required={true}
-              cssClass="add-figure-input edit-figure-bg"
-              cssPanelClass="add-figure-input select-height edit-figure-bg"
-              >
+              cssClass="add-figure-input background-color-edit"
+              cssPanelClass="add-figure-input select-height background-color-edit"
+            >
               Weapon
             </Dropdown>
             {formErrors.weapon}
@@ -295,7 +298,7 @@ function FigureEdit({ onSubmit, onClose, figure }) {
               name="purchaseDate"
               maxLength="8"
               required={true}
-              cssClass="add-figure-input edit-figure-bg"
+              cssClass="add-figure-input background-color-edit"
             >
               Purchase date
             </InputText>

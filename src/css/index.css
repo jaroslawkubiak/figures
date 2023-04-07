@@ -5,8 +5,8 @@
   --bg-color: #0e0e16;
   --error-color: crimson;
   --edit-color: rgb(253, 140, 83);
-  --darth-maul: #cb0407;
-  
+  --darth-color: #cb0407;
+  --gray-color: #756f68;
 }
 
 @font-face {
@@ -29,7 +29,6 @@ body {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-items: center;
-  background-color:var(--bg-color); 
 }
 .figure-container-list {
   display: flex;
@@ -37,8 +36,6 @@ body {
   justify-items: center;
   padding: 5px;
   gap: 5px;
-  /* margin: 5px; */
-  background-color: var(--primary-color); 
 }
 
 .overflow-hidden {
@@ -56,6 +53,26 @@ body {
 .cursor-pointer {
   cursor: pointer;
 }
+
+.background-color-primary {
+  background-color: var(--primary-color) !important;
+}
+.background-color-bg {
+  background-color: var(--bg-color) !important;
+}
+.background-color-edit {
+  background-color: var(--edit-color) !important;
+}
+.background-color-darth {
+  background-color: var(--darth-color) !important;
+}
+.background-color-error {
+  background-color: var(--error-color) !important;
+}
+.background-color-gray {
+  background-color: var(--gray-color) !important;
+}
+
 
 .button {
   all: unset;
@@ -107,24 +124,6 @@ body {
   );
 }
 
-/* rotataion for fetching image from bricklink page */
-@keyframes img-fetch-rotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(359deg);
-  }
-}
-.svg-galactic-empire {
-  animation: img-fetch-rotation 4s infinite linear;
-}
-
-.svg-fill-primary {
-  fill: var(--primary-color);
-  /* background-color: chartreuse; 
-  margin: 20px; */
-}
 
 /* validate messages */
 .required-field-container {

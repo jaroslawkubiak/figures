@@ -1,3 +1,5 @@
+import { Stormtrooper } from "../svg/Stormtrooper";
+
 function InputNumber({
   value,
   children,
@@ -7,7 +9,7 @@ function InputNumber({
   onFocus,
   number,
   required,
-  cssClass
+  cssClass,
 }) {
   return (
     <>

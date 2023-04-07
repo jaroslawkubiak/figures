@@ -4,13 +4,11 @@ import {
   BsPlusSquare,
   BsFilterSquare,
   BsViewStacked,
-  BsFillPersonFill,
   BsListColumnsReverse,
 } from "react-icons/bs";
 import FigureQuantity from "./FigureQuantity";
 import React, { useState } from "react";
 import { LegoMinifigure} from '../svg/LegoMinifigure';
-
 
 function Filters({ figures, onAddFigure, onHandleView, listView }) {
   const [expandFilters, setExpandFilters] = useState(false);
@@ -18,8 +16,10 @@ function Filters({ figures, onAddFigure, onHandleView, listView }) {
   const handleExpandCollapseFilters = () => {
     setExpandFilters(!expandFilters);
   };
+
+  const cssBackground = listView ? "filter-container background-color-gray" : "filter-container background-color-primary";
   return (
-    <div className="filter-container">
+    <div className={cssBackground}>
       <BsPlusSquare
         onClick={onAddFigure}
         className="cursor-pointer filter-icon"
@@ -27,8 +27,7 @@ function Filters({ figures, onAddFigure, onHandleView, listView }) {
       />
 
       <div className="filter-quantity-wprapper" title="Figures quantity">
-        {/* <BsFillPersonFill className="filter-quantity-icon" /> */}
-        <LegoMinifigure width="30" height="30" />
+        <LegoMinifigure width="30" cssClass="svg-fill-bg" />
         <FigureQuantity quantity={figures.length} />
       </div>
 

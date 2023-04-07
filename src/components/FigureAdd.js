@@ -6,6 +6,7 @@ import Dropdown from "./Dropdown";
 import InputCheckbox from "./InputCheckbox";
 import FigurePhoto from "./FigurePhoto";
 import { useState, useEffect } from "react";
+import { ImCross } from "react-icons/im";
 import { saveAs } from "file-saver";
 import seriesList from "../data/seriesList.json";
 import weaponList from "../data/weaponList.json";
@@ -141,11 +142,15 @@ function FigureAdd({ onSubmit, onClose }) {
     setFig({ ...fig, [name]: value });
   };
 
+  const svgBg = "svg-fill-primary";
+
   return (
     <div className="add-figure-wrapper">
       <div className="add-figure-container">
         {/* <pre>{JSON.stringify(fig, undefined, 2)}</pre> */}
-        <div className="add-figure-close-btn" onClick={() => onClose()}></div>
+        <div className="add-figure-close-btn" onClick={() => onClose()}>
+          <ImCross className="svg-fill-bg" />
+        </div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
           {/* Number */}
           <div className="add-figure-div grid-2-left">
@@ -164,7 +169,7 @@ function FigureAdd({ onSubmit, onClose }) {
           </div>
           {/* Image */}
           <div id="add-figure-photo" className="add-figure-div grid-height-3">
-            <FigurePhoto figNumber={fig.number} />
+            <FigurePhoto figNumber={fig.number} svgBg={svgBg} />
           </div>
           {/* Main name */}
           <div className="add-figure-div grid-2-left">
@@ -234,7 +239,7 @@ function FigureAdd({ onSubmit, onClose }) {
               required={true}
               cssClass="add-figure-input"
               cssPanelClass="add-figure-input select-height"
-              >
+            >
               Release Year
             </Dropdown>
             {formErrors.releaseYear}
@@ -250,7 +255,7 @@ function FigureAdd({ onSubmit, onClose }) {
               required={true}
               cssClass="add-figure-input"
               cssPanelClass="add-figure-input select-height"
-              >
+            >
               Series
             </Dropdown>
             {formErrors.series}

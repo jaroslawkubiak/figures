@@ -1,7 +1,9 @@
 :root {
   --input-height: 30px;
 }
-
+.image-prev-error {
+  color: var(--error-color);
+}
 .add-figure-wrapper {
   position: fixed;
   inset: 0;
@@ -118,6 +120,8 @@
 }
 
 .add-figure-close-btn {
+  display: grid;
+  place-content: center;
   --close-btn-width: 20px;
   position: absolute;
   width: var(--close-btn-width);
@@ -128,22 +132,7 @@
   cursor: pointer;
   clip-path: polygon(0 22%, 22% 0, 100% 0, 100% 78%, 78% 100%, 0% 100%, 0 0);
 }
-.add-figure-close-btn::after,
-.add-figure-close-btn::before {
-  content: "";
-  position: absolute;
-  width: 15%;
-  height: 95%;
-  top: 0px;
-  left: calc(var(--close-btn-width) / 2.2);
-  background-color: var(--bg-color);
-}
-.add-figure-close-btn::after {
-  transform: rotate(45deg);
-}
-.add-figure-close-btn::before {
-  transform: rotate(-45deg);
-}
+
 
 .input-wrapper {
   position: relative;
@@ -295,14 +284,6 @@ input[type="checkbox"]:checked::after {
   background-color: transparent;
 }
 
-.svg-image-prev {
-  fill: var(--primary-color);
-}
-
-.svg-image-prev-error {
-  fill: var(--error-color);
-  color: var(--error-color);
-}
 
 .flex-row {
   display: flex;

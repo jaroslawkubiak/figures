@@ -8,12 +8,12 @@ import FigureEdit from "./components/FigureEdit";
 
 function App() {
   const [figures, setFigures] = useState(figuresData);
-  const [showFigureAdd, setShowFigureAddForm] = useState(false);
+  const [listView, setListView] = useState(false);
 
+  const [showFigureAddForm, setShowFigureAddForm] = useState(false);
   const [showFigureEditForm, setShowFigureEditForm] = useState(false);
-  const [figureToEdit, setFigureToEdit] = useState(null);
 
-  const [listView, setListView] = useState(true);
+  const [figureToEdit, setFigureToEdit] = useState(null);
 
   const handleListView = () => {
     setListView(!listView);
@@ -42,13 +42,12 @@ function App() {
     console.log("zapisuję figurkę po edycji:");
   };
 
-  const handleShowAddFigureForm = () => setShowFigureAddForm(true);
-  const handleCloseAddFigureForm = () => setShowFigureAddForm(false);
+  const handleAddFigureForm = () => setShowFigureAddForm(!showFigureAddForm);
 
   const handleCloseEditFigureForm = () => setShowFigureEditForm(false);
 
   const FigureAddComponent = (
-    <FigureAdd onSubmit={handleAddFigure} onClose={handleCloseAddFigureForm} />
+    <FigureAdd onSubmit={handleAddFigure} onClose={handleAddFigureForm} />
   );
 
   const FigureEditComponent = (
@@ -65,11 +64,11 @@ function App() {
         onHandleView={handleListView}
         listView={listView}
         figures={figures}
-        onAddFigure={handleShowAddFigureForm}
+        onAddFigure={handleAddFigureForm}
       />
 
       {/* <Button onClick={handleShowAddFigureForm}>add figure</Button> */}
-      {showFigureAdd && FigureAddComponent}
+      {showFigureAddForm && FigureAddComponent}
       {showFigureEditForm && FigureEditComponent}
       <FigureList
         onDelete={deleteFigureById}

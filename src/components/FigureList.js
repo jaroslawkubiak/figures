@@ -80,7 +80,11 @@ function FigureList({ figures, onDelete, onEdit, listView }) {
   return (
     <>
       <div
-        className={listView ? "figure-container-list" : "figure-container-card"}
+        className={
+          listView
+            ? "figure-container-list background-color-gray"
+            : "figure-container-card background-color-bg"
+        }
       >
         {renderedFigures}
       </div>

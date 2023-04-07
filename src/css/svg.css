@@ -1,0 +1,29 @@
+/* rotataion for fetching image from bricklink page */
+@keyframes img-fetch-rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+  .svg-galactic-empire-rotate {
+    animation: img-fetch-rotation 4s infinite linear;
+  }
+  
+  .svg-fill-primary {
+    fill: var(--primary-color);
+  }
+  .svg-fill-bg {
+    fill: var(--bg-color);
+  }
+  .svg-fill-error {
+    fill: var(--error-color);
+  }
+  .svg-fill-edit {
+    fill: var(--edit-color);
+  }
+  .svg-fill-darth {
+    fill: var(--darth-color);
+  }
+

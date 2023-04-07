@@ -19,12 +19,17 @@ function FigureShowList({ figure, clickedImage, onClick, onEdit }) {
         />
       </div>
       <div className="list-wrapper">
-        <div className="list-item">{figure.mainName} </div>
-        <div>
+        <div className="list-item cursor-pointer" onClick={() => onEdit(figure)}>
+          <h2>{figure.mainName}</h2>{" "}
+        </div>
+        <div className="list-item">
+          <h2>{figure.additionalName}</h2>{" "}
+        </div>
+        <div className="list-item">
           {figure.number} - {figure.releaseYear}
         </div>
-        <div>Series : {figure.series}</div>
-        <div>Price : {figure.purchasePrice} zł</div>
+        <div className="list-item">Series : {figure.series}</div>
+        <div className="list-item">Price : {figure.purchasePrice} zł</div>
       </div>
     </div>
   );

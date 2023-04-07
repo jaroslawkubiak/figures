@@ -1,6 +1,11 @@
-export const Stormtrooper = ({width, height }) => {
+export const Stormtrooper = ({ width, cssClass }) => {
   return (
-    <svg className="svg-fill-primary" viewBox="100 285 5 210"  width={width} height={height}>
+    <svg
+      className={cssClass}
+      viewBox="100 285 5 210"
+      width={width}
+      height={width}
+    >
       <g>
         <path
           d="M192.6,427.6c0.3,3.4,0.3,6.9-0.4,10.2c-0.9,3.8-2.7,7.4-4.9,10.7c-2,2.9-4.4,5.6-6.7,8.3

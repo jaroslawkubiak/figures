@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import parse from "html-react-parser";
-import { BsImage } from "react-icons/bs";
 import { GalacticEmpire } from "../svg/GalacticEmpire";
-import fetchFigureInfo from "../fetch/bricklink";
+// import fetchFigureInfo from "../fetch/bricklink";
 
-function FigurePhoto({ figNumber }) {
+function FigurePhoto({ figNumber, svgBg }) {
   //state for fetching img from bricklink server
   const [figImg, setFigImg] = useState({
     isLoading: false,
@@ -22,8 +21,8 @@ function FigurePhoto({ figNumber }) {
 
   let renderedData = (
     <div className="flex-row">
-      <BsImage className="font-size-6 svg-image-prev " />
       <span> &nbsp;</span>
+      <GalacticEmpire width="130" cssClass={svgBg} />
     </div>
   );
   let renderedPhoto = `https://img.bricklink.com/ItemImage/MN/0/${figNumber}.png`;
@@ -35,7 +34,13 @@ function FigurePhoto({ figNumber }) {
   if (figNumber.length >= 6 && imageExists(renderedPhoto)) {
     if (!figImg.isLoading && figImg.result === "")
       setFigImg({ ...figImg, isLoading: true });
-    renderedData = <GalacticEmpire height="100" width="100" />;
+    const cssSvgClass = `${svgBg} svg-galactic-empire-rotate`;
+    renderedData = (
+      <div className="flex-row">
+        <span className="image-prev-error">&nbsp;</span>
+        <GalacticEmpire width="130" cssClass={cssSvgClass} />
+      </div>
+    );
 
     let img = new Image();
     img.onload = () => {
@@ -59,17 +64,13 @@ function FigurePhoto({ figNumber }) {
     if (!figImg.error) setFigImg({ ...figImg, error: "Not found" });
     renderedData = (
       <div className="flex-row">
-        <BsImage className="font-size-6 svg-image-prev-error " />
-        <span className="svg-image-prev-error">Not found</span>
+        <span className="image-prev-error">img not found</span>
+        <GalacticEmpire width="130" cssClass="svg-fill-error" />
       </div>
     );
   }
 
-  return (
-    <>
-      {renderedData}
-    </>
-  );
+  return <>{renderedData}</>;
 }
 // https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1078
 

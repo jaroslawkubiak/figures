@@ -124,7 +124,7 @@
   max-width: 90%;
 }
 
-.list-containerggrger {
+.list-containerOLDOLD {
   color: var(--primary-color);
   font-family: star_wars;
   padding: 5px 15px;
@@ -158,31 +158,54 @@
 }
 
 .list-container {
-  color: var(--primary-color);
+  color: var(--bg-color);
   font-family: star_wars;
   padding: 5px 35px;
-  height: 105px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   --border-width: 4px;
   --border-edge: 1;
   background-color: var(--bg-color);
+  /* background-color: #e6ddd0; */
+
+  background: #e6ddd0; 
+  background: -webkit-linear-gradient(
+    to right,
+    #a59e95,
+    #e6ddd0
+  ); 
+  background: linear-gradient(
+    to right,
+    #a59e95,
+    #e6ddd0
+  ); 
+
   border-radius: 9999px;
+  border: 2px solid rgba(0, 0, 0, 0.749);
+
+  -webkit-box-shadow: inset 0px 0px 10px 2px rgba(66, 68, 90, 1);
+  -moz-box-shadow: inset 0px 0px 10px 2px rgba(66, 68, 90, 1);
+  box-shadow: inset 0px 0px 10px 2px rgb(0, 0, 0);
 }
 
 .list-wrapper {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-evenly;
+  align-self: self-start;
   margin-left: 10px;
   font-size: 0.6em;
 }
-.list-item{
+.list-item {
   display: flex;
 }
+
+.list-item h2 {
+  letter-spacing: 2px;
+}
+
 .list-img {
   height: 90px;
   width: 90px;
@@ -190,7 +213,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
+  border-radius: 10px;
+  border: 2px solid rgb(49, 49, 49)
 }
 .list-figure-img {
   max-height: 100%;
