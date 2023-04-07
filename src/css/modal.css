@@ -1,0 +1,101 @@
+.modal-wrapper {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.92);
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal-container {
+  position: relative;
+  font-family: star_wars;
+  font-size: 1em;
+  z-index: 5;
+  padding: 0.5em;
+  border: 10px solid transparent;
+  display: grid;
+}
+.modal-figure-img {
+  max-width: 95%;
+  justify-self: center;
+}
+.modal-close-btn {
+  display: grid;
+  place-content: center;
+  --close-btn-width: 20px;
+  position: absolute;
+  z-index: 99;
+  width: var(--close-btn-width);
+  height: var(--close-btn-width);
+  top: -5px;
+  right: 3px;
+  background-color: var(--primary-color);
+  cursor: pointer;
+  clip-path: polygon(0 22%, 22% 0, 100% 0, 100% 78%, 78% 100%, 0% 100%, 0 0);
+}
+
+.modal-close{
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  inset: 0;
+  z-index: 999;
+}
+
+.modal-label {
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--bg-color);
+  font-size: 14px;
+  letter-spacing: 3px;
+  background-color: var(--primary-color);
+  padding: 0 5px;
+  --cut-height: 4px;
+  clip-path: polygon(
+    calc(100% - var(--cut-height)) 0%,
+    100% var(--cut-height),
+    100% 100%,
+    var(--cut-height) 100%,
+    0% calc(100% - var(--cut-height)),
+    0 0
+  );
+  width: 95%;
+  text-align: center;
+}
+.modal-arrow {
+  z-index: 99;
+  position: absolute;
+  bottom: 50%;
+  transform: translateY(50%);
+  font-size: 2em;
+  fill: rgb(0, 0, 0);
+  
+  background-color: var(--primary-color);
+  clip-path: polygon(0 22%, 22% 0, 100% 0, 100% 78%, 78% 100%, 0% 100%, 0 0);
+}
+.modal-arrow-right {
+  right: 5px;
+}
+
+.modal-arrow-left {
+  left: 5px;
+}
+
+.modal-next-image{
+  position: absolute;
+  top: 20px;
+  bottom: 12px;
+  right: 0px;
+  width: 100px;
+}
+
+.modal-prev-image{
+  position: absolute;
+  top: 20px;
+  bottom: 12px;
+  left: 0px;
+  width: 100px;
+}

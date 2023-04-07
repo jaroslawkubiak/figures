@@ -31,7 +31,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   place-items: center;
-  gap: 35px 5px;
+  gap: 20px 5px;
 }
 
 .add-figure-div {
@@ -73,12 +73,13 @@
 .grid-full-line {
   grid-column-start: 1;
   grid-column-end: 5;
+  font-size: 0.8em;
 }
 
 .grid-height-3 {
   height: 100%;
-  grid-row-start: 1;
-  grid-row-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 5;
   grid-column-start: 3;
   grid-column-end: 5;
 }
@@ -132,7 +133,6 @@
   cursor: pointer;
   clip-path: polygon(0 22%, 22% 0, 100% 0, 100% 78%, 78% 100%, 0% 100%, 0 0);
 }
-
 
 .input-wrapper {
   position: relative;

@@ -152,6 +152,7 @@ function FigureAdd({ onSubmit, onClose }) {
           <ImCross className="svg-fill-bg" />
         </div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
+          <div className="grid-full-line">Add new minifigure</div>
           {/* Number */}
           <div className="add-figure-div grid-2-left">
             <InputText

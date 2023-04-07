@@ -1,6 +1,6 @@
 import figuresData from "./data/figureList.json";
 import "./fonts/star_wars.ttf";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FigureList from "./components/FigureList";
 import Filters from "./components/Filters";
 import FigureAdd from "./components/FigureAdd";
@@ -9,7 +9,6 @@ import FigureEdit from "./components/FigureEdit";
 function App() {
   const [figures, setFigures] = useState(figuresData);
   const [listView, setListView] = useState(false);
-
   const [showFigureAddForm, setShowFigureAddForm] = useState(false);
   const [showFigureEditForm, setShowFigureEditForm] = useState(false);
 
@@ -19,14 +18,14 @@ function App() {
     setListView(!listView);
   };
 
-  // deleting figure from DB
-  const deleteFigureById = id => {
-    const updatedFigures = figures.filter(figure => {
-      return figure.id !== id;
-    });
+  // // deleting figure from DB
+  // const deleteFigureById = id => {
+  //   const updatedFigures = figures.filter(figure => {
+  //     return figure.id !== id;
+  //   });
 
-    setFigures(updatedFigures);
-  };
+  //   setFigures(updatedFigures);
+  // };
 
   const handleFigureEdit = fig => {
     setShowFigureEditForm(true);
@@ -39,6 +38,7 @@ function App() {
   };
 
   const handleEditFigure = () => {
+    // na zmianę danych poczekać do bazy danych
     console.log("zapisuję figurkę po edycji:");
   };
 
@@ -57,13 +57,17 @@ function App() {
       onClose={handleCloseEditFigureForm}
     />
   );
-
+  useEffect(() => {
+    console.log("update", figures);
+  }, [figures]);
   return (
     <>
       <Filters
         onHandleView={handleListView}
         listView={listView}
         figures={figures}
+        figuresData={figuresData}
+        setFigures={setFigures}
         onAddFigure={handleAddFigureForm}
       />
 
@@ -71,7 +75,7 @@ function App() {
       {showFigureAddForm && FigureAddComponent}
       {showFigureEditForm && FigureEditComponent}
       <FigureList
-        onDelete={deleteFigureById}
+        // onDelete={deleteFigureById}
         onEdit={handleFigureEdit}
         listView={listView}
         figures={figures}

@@ -143,6 +143,8 @@ function FigureEdit({ onSubmit, onClose, figure }) {
           <ImCross className="svg-fill-bg" />
         </div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
+        <div className="grid-full-line edit-figure-color">Edit minifigure {fig.mainName}</div>
+
           {/* Number */}
           <div className="add-figure-div grid-2-left edit-figure-color">
             <InputText

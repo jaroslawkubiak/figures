@@ -1,5 +1,6 @@
+import "../css/modal.css";
 import showFigureImage from "../js/showFigureImage";
-import { ImArrowRight2, ImArrowLeft2 } from "react-icons/im";
+import { ImArrowRight2, ImArrowLeft2, ImCross } from "react-icons/im";
 
 const Modal = ({
   clickedImage,
@@ -26,8 +27,23 @@ const Modal = ({
         className="modal-arrow-right modal-arrow cursor-pointer"
       />
       <div className="modal-container">
-        <div className="modal-close-btn dismiss" onClick={handleClick}></div>
-        <div className="model-label">{showImage.description}</div>
+        <div
+          className="modal-next-image cursor-pointer"
+          onClick={handleSwapRight}
+        >
+          &nbsp;
+        </div>
+        <div
+          className="modal-prev-image cursor-pointer"
+          onClick={handleSwapLeft}
+        >
+          &nbsp;
+        </div>
+        <div className="modal-close-btn" onClick={handleClick}>
+          <ImCross className="svg-fill-bg" />
+          <div className="modal-close dismiss"></div>
+        </div>
+        <div className="modal-label">{showImage.description}</div>
         <img
           src={showImage.url}
           alt={showImage.description}

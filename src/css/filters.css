@@ -2,7 +2,8 @@
   color: black;
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid var(--bg-color);
+  border-bottom: 2px solid var(--darth-color);
+  margin-bottom: 3px;
 }
 
 .filter-icon {
@@ -26,4 +27,29 @@
 
 .filter-icon:hover {
   fill: var(--darth-color);
+}
+
+.filter-container-expand {
+  display: flex;
+  justify-content: center;
+  font-family: star_wars;
+  color: black;
+  background-color: var(--primary-color);
+  height: 150px;
+  border-bottom: 2px solid var(--darth-color);
+  margin-bottom: 3px;
+
+  --cut-height: 10px;
+  clip-path: polygon(
+    var(--cut-height) 0%,
+    100% 0,
+    100% calc(100% - var(--cut-height)),
+    calc(100% - var(--cut-height)) 100%,
+    0 100%,
+    0% var(--cut-height)
+  );
+}
+
+.filter-item-wrapper {
+  width: 80%;
 }
