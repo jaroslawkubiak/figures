@@ -3,10 +3,7 @@ import "../css/figure-card.css";
 
 import showFigureImage from "../js/showFigureImage";
 
-function FigureCard({ figure, clickedImage, onClick, onEdit }) {
-  // const handleClick = (figure, clickedImage) => {
-  //   onClick(figure, clickedImage);
-  // };
+function FigureCard({ figure, clickedImage, onModal, onEdit, onDelete }) {
 
   const showImage = showFigureImage(figure);
   const [figImage, setFigImage] = useState(showImage.url);
@@ -28,11 +25,11 @@ function FigureCard({ figure, clickedImage, onClick, onEdit }) {
           alt={showImage.description}
           title={showImage.description}
           className="figure-img cursor-pointer"
-          onClick={() => onClick(figure, clickedImage)}
+          onClick={() => onModal(figure, clickedImage)}
         />
       </div>
       <div className="number">
-        <span className="cell-text">
+        <span className="cell-text" onClick={() => onDelete(figure)}>
           {figure.number} - {figure.releaseYear}
         </span>
       </div>

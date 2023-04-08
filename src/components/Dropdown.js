@@ -3,15 +3,15 @@ import { BsCaretDownFill } from "react-icons/bs";
 import Panel from "./Panel.js";
 
 function Dropdown({
-  options,
-  value,
-  onChange,
-  children,
-  name,
-  placeholder,
-  required,
   cssClass,
   cssPanelClass,
+  name,
+  onChange,
+  options,
+  placeholder,
+  required,
+  value,
+  children,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   // przypisujemy refenecje do zmiennej divEl = zmienna to obiekt!

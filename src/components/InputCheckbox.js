@@ -1,9 +1,9 @@
 function InputCheckbox({
-  children,
+  cssCheckboxClass,
+  cssClass,
   name,
   onChange,
-  cssClass,
-  cssCheckboxClass,
+  children,
 }) {
   return (
     <>

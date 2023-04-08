@@ -2,7 +2,7 @@
   color: black;
   display: flex;
   justify-content: space-between;
-  border-bottom: 2px solid var(--darth-color);
+  border-bottom: 2px solid var(--bg-color);
   margin-bottom: 3px;
 }
 

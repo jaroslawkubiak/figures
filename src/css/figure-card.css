@@ -170,24 +170,24 @@
   background-color: var(--bg-color);
   /* background-color: #e6ddd0; */
 
-  background: #e6ddd0; 
-  background: -webkit-linear-gradient(
-    to right,
-    #a59e95,
-    #e6ddd0
-  ); 
-  background: linear-gradient(
-    to right,
-    #a59e95,
-    #e6ddd0
-  ); 
+  background: #e6ddd0;
+  background: -webkit-linear-gradient(to right, #a59e95, #e6ddd0);
+  background: linear-gradient(to right, #a59e95, #e6ddd0);
 
   border-radius: 9999px;
   border: 2px solid rgba(0, 0, 0, 0.749);
 
-  -webkit-box-shadow: inset 0px 0px 10px 2px rgba(66, 68, 90, 1);
-  -moz-box-shadow: inset 0px 0px 10px 2px rgba(66, 68, 90, 1);
-  box-shadow: inset 0px 0px 10px 2px rgb(0, 0, 0);
+  --horizontal: -5px;
+  --vertical: 5px;
+  --blur: 15px;
+  --spread: 3px;
+
+  -webkit-box-shadow: inset var(--horizontal) var(--vertical) var(--blur)
+    var(--spread) rgba(66, 68, 90, 1);
+  -moz-box-shadow: inset var(--horizontal) var(--vertical) var(--blur)
+    var(--spread) rgba(66, 68, 90, 1);
+  box-shadow: inset var(--horizontal) var(--vertical) var(--blur) var(--spread)
+    rgb(0, 0, 0);
 }
 
 .list-wrapper {
@@ -214,7 +214,7 @@
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  border: 2px solid rgb(49, 49, 49)
+  border: 2px solid rgb(49, 49, 49);
 }
 .list-figure-img {
   max-height: 100%;

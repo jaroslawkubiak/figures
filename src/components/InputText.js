@@ -1,12 +1,12 @@
 function InputText({
-  value,
-  children,
+  cssClass,
   maxLength,
   name,
   onChange,
-  required,
   onFocus,
-  cssClass
+  required,
+  value,
+  children,
 }) {
   return (
     <>

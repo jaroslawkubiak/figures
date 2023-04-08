@@ -20,7 +20,7 @@ function FigureShowList({ figure, clickedImage, onClick, onEdit }) {
       </div>
       <div className="list-wrapper">
         <div className="list-item cursor-pointer" onClick={() => onEdit(figure)}>
-          <h2>{figure.mainName}</h2>{" "}
+          <h3>{figure.mainName}</h3>{" "}
         </div>
         <div className="list-item">
           <h2>{figure.additionalName}</h2>{" "}

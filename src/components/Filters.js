@@ -11,25 +11,34 @@ import React, { useState } from "react";
 import { LegoMinifigure } from "../svg/LegoMinifigure";
 import AnimateHeight from "react-animate-height";
 import InputText from "./InputText";
+import { useDispatch, useSelector } from "react-redux";
+import { changeSearchTerm } from "../store";
 
-function Filters({ figures, setFigures, onAddFigure, onHandleView, listView, figuresData }) {
+function Filters({
+  setFigures,
+  onAddFigure,
+  onHandleView,
+  listView,
+  figuresData,
+}) {
+  // const dispatch = useDispatch();
 
-  const [expandFilters, setExpandFilters] = useState(true);
+  // const searchTerm = useSelector(state => {
+  //   return state.cars.searchTerm;
+  // });
+
+  // const handleSearchTermChange = event => {
+  //   dispatch(changeSearchTerm(event.target.value));
+  // };
+
+  const [expandFilters, setExpandFilters] = useState(false);
   const [height, setHeight] = useState(150);
-  const [searchingNumber, setSearchingNumber] = useState("");
-  console.log("searchingNumber: ", searchingNumber);
 
-  const handleChangeNumber = e => {
-    setSearchingNumber(e.target.value);
-    // setFigures(figuresData);
-    const filteredFigures = figures.filter(fig => {
-      // console.log("fig.number=", fig.number);
-      return fig.number.includes(searchingNumber);
-    });
-    setFigures(filteredFigures);
-  };
+  const figures = useSelector(state => {
+    return state.figures.data;
+  });
 
-
+  // console.log(figures);
   const handleExpandCollapseFilters = () => {
     setHeight(height === 0 ? "auto" : 0);
     setExpandFilters(!expandFilters);
@@ -84,22 +93,27 @@ function Filters({ figures, setFigures, onAddFigure, onHandleView, listView, fig
         )}
       </div>
 
-      <AnimateHeight duration={800} height={height}>
-        <div className="filter-container-expand">
-          <div className="filter-item-wrapper">
-            <InputText
-              onChange={handleChangeNumber}
-              // onFocus={handleOnFocus}
-              value={searchingNumber}
-              name="number"
-              maxLength="8"
-              cssClass="add-figure-input background-color-bg color-primary"
-            >
-              Number
-            </InputText>
+      {expandFilters && (
+        <AnimateHeight duration={800} height={height}>
+          <div className="filter-container-expand">
+            <div className="filter-item-wrapper">
+              <InputText
+                // onChange={handleChangeSearchingNumber}
+                // onFocus={handleOnFocus}
+                // value={searchingNumber}
+
+                // value={searchTerm}
+                // onChange={handleSearchTermChange}
+                name="number"
+                maxLength="8"
+                cssClass="add-figure-input background-color-bg color-primary"
+              >
+                Number
+              </InputText>
+            </div>
           </div>
-        </div>
-      </AnimateHeight>
+        </AnimateHeight>
+      )}
     </>
   );
 }

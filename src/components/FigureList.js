@@ -1,9 +1,18 @@
 import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Modal from "./Modal";
 import FigureShowCard from "./FigureShowCard";
 import FigureShowList from "./FigureShowList";
+import { removeFigure } from "../store";
 
-function FigureList({ figures, onDelete, onEdit, listView }) {
+function FigureList({ listView }) {
+  const dispatch = useDispatch();
+
+  // getting info about all figures
+  const figures = useSelector(state => {
+    return state.figures.data;
+  });
+console.log(figures);
   const [clickedImage, setClickedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
   const handleChange = (figure, figIndex) => {
@@ -51,27 +60,31 @@ function FigureList({ figures, onDelete, onEdit, listView }) {
     setCurrentIndex(newIndex);
   };
 
+  const handleDelete = fig => {
+    dispatch(removeFigure(fig.id));
+  };
+
   const renderedFigures = figures.map((figure, index) => {
     if (!listView)
       return (
         <FigureShowCard
-          onDelete={onDelete}
-          onEdit={onEdit}
+          onDelete={() => handleDelete(figure)}
+          // onEdit={onEdit}
           key={figure.id}
           figure={figure}
           clickedImage={index}
-          onClick={handleChange}
+          onModal={handleChange}
         />
       );
     else {
       return (
         <FigureShowList
-          onDelete={onDelete}
-          onEdit={onEdit}
+          onDelete={() => handleDelete(figure)}
+          // onEdit={onEdit}
           key={figure.id}
           figure={figure}
           clickedImage={index}
-          onClick={handleChange}
+          onModal={handleChange}
         />
       );
     }
