@@ -5,7 +5,7 @@ import InputNumber from "./InputNumber";
 import Dropdown from "./Dropdown";
 import InputCheckbox from "./InputCheckbox";
 import FigurePhoto from "./FigurePhoto";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ImCross } from "react-icons/im";
 import { saveAs } from "file-saver";
 import seriesList from "../data/seriesList.json";
@@ -26,7 +26,7 @@ import {
   changeBricklinkPrice,
 } from "../store";
 
-function FigureAdd({ onSubmit, onClose }) {
+function FigureAdd({ onClose }) {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
@@ -47,37 +47,11 @@ function FigureAdd({ onSubmit, onClose }) {
 
   // saving image to your local disk
   const saveImageToHdd = number => {
-    // let url = `https://img.bricklink.com/ItemImage/MN/0/${number}.png`;
-    // saveAs(url, number);
+    let url = `https://img.bricklink.com/ItemImage/MN/0/${number}.png`;
+    saveAs(url, number);
     // https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1078
     // https://img.bricklink.com/ItemImage/MN/0/sw1078.png
   };
-
-  // adding figure when form don't have any errors
-  // useEffect(() => {
-  //   if (Object.keys(formErrors).length === 0 && isSubmit) {
-  //     // FIXME generating random ID - zmienić gdy już będzie baza danych
-  //     const generateId = String(Math.random()).split(".");
-  //     const newFigure = {
-  //       id: generateId[1],
-  //       number: fig.number,
-  //       mainName: fig.mainName,
-  //       additionalName: fig.additionalName,
-  //       releaseYear: fig.releaseYear,
-  //       series: fig.series,
-  //       purchasePrice: fig.purchasePrice,
-  //       bricklinkPrice: fig.bricklinkPrice,
-  //       bricklink: fig.bricklink,
-  //       weapon: fig.weapon,
-  //       purchaseDate: fig.purchaseDate,
-  //       label: fig.label,
-  //     };
-
-  //     saveImageToHdd(fig.number);
-  //     onSubmit(newFigure);
-  //     onClose();
-  //   }
-  // }, [formErrors]);
 
   // form validate
   const validate = values => {
@@ -86,40 +60,28 @@ function FigureAdd({ onSubmit, onClose }) {
       errors.number = inputFieldNotValid("min 6 char");
     if (values.mainName === "")
       errors.mainName = inputFieldNotValid("required");
-    if (values.purchasePrice < 0 || values.purchasePrice === "")
-      errors.purchasePrice = inputFieldNotValid("required");
-    if (values.releaseYear === "")
-      errors.releaseYear = inputFieldNotValid("required");
-    if (values.purchaseDate === "")
-      errors.purchaseDate = inputFieldNotValid("required");
-    if (values.series === "") errors.series = inputFieldNotValid("required");
-    if (values.weapon === "") errors.weapon = inputFieldNotValid("required");
+    // if (values.purchasePrice < 0 || values.purchasePrice === "")
+    //   errors.purchasePrice = inputFieldNotValid("required");
+    // if (values.releaseYear === "")
+    //   errors.releaseYear = inputFieldNotValid("required");
+    // if (values.purchaseDate === "")
+    //   errors.purchaseDate = inputFieldNotValid("required");
+    // if (values.series === "") errors.series = inputFieldNotValid("required");
+    // if (values.weapon === "") errors.weapon = inputFieldNotValid("required");
     return errors;
   };
 
   // add figure form submit
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(addFigure(currentFigure));
-    // dispatch(
-    //   addFigure({
-    //     number,
-    //     mainName,
-    //     additionalName,
-    //     releaseYear,
-    //     bricklink,
-    //     label,
-    //     series,
-    //     purchasePrice,
-    //     weapon,
-    //     purchaseDate,
-    //     bricklinkPrice,
-    //   })
-    // );
     setIsSubmit(true);
+    setFormErrors(validate(currentFigure));
 
-    // setFormErrors(validate(figure));
-    onClose();
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      saveImageToHdd(currentFigure.number);
+      dispatch(addFigure(currentFigure));
+      onClose();
+    }
   };
 
   // creating list of years
@@ -128,34 +90,6 @@ function FigureAdd({ onSubmit, onClose }) {
   for (let i = currentYear; i >= 1999; i--) yearsList.push(i);
 
   const dispatch = useDispatch();
-  // const {
-  //   number,
-  //   mainName,
-  //   additionalName,
-  //   releaseYear,
-  //   label,
-  //   bricklink,
-  //   series,
-  //   purchasePrice,
-  //   weapon,
-  //   purchaseDate,
-  //   bricklinkPrice,
-  // } = useSelector(state => {
-  //   return {
-  //     number: state.form.number,
-  //     mainName: state.form.mainName,
-  //     additionalName: state.form.additionalName,
-  //     releaseYear: state.form.releaseYear,
-  //     label: state.form.label,
-  //     bricklink: state.form.bricklink,
-  //     series: state.form.series,
-  //     purchasePrice: state.form.purchasePrice,
-  //     weapon: state.form.weapon,
-  //     purchaseDate: state.form.purchaseDate,
-  //     bricklinkPrice: state.form.bricklinkPrice,
-  //   };
-  // });
-
   const currentFigure = useSelector(state => {
     return {
       number: state.form.number,
@@ -169,7 +103,7 @@ function FigureAdd({ onSubmit, onClose }) {
       weapon: state.form.weapon,
       purchaseDate: state.form.purchaseDate,
       bricklinkPrice: state.form.bricklinkPrice,
-};
+    };
   });
 
   // handle change to inputs fields
@@ -209,6 +143,8 @@ function FigureAdd({ onSubmit, onClose }) {
 
   // handle change to dropdown menu list
   const handleChangeSelect = (value, name) => {
+    if (isSubmit) setFormErrors({ ...formErrors, [name]: null });
+
     switch (name) {
       case "weapon":
         dispatch(changeWeapon(value));
@@ -226,18 +162,8 @@ function FigureAdd({ onSubmit, onClose }) {
 
   // after error - when on focus input - clear error message
   const handleOnFocus = e => {
-    if (isSubmit) {
-      setFormErrors({ ...formErrors, [e.target.name]: null });
-    }
+    if (isSubmit) setFormErrors({ ...formErrors, [e.target.name]: null });
   };
-
-  //handle change to dropdown menu list
-  // const handleChangeSelect = (value, name) => {
-  //   if (isSubmit) {
-  //     setFormErrors({ ...formErrors, [name]: null });
-  //   }
-  //   setFig({ ...fig, [name]: value });
-  // };
 
   return (
     <div className="add-figure-wrapper">

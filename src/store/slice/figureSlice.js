@@ -13,7 +13,7 @@ const figuresSlice = createSlice({
       state.searchTerm = action.payload;
     },
     addFigure(state, action) {
-      state.data.push({
+      state.data.unshift({
         id: nanoid(),
         number: action.payload.number,
         mainName: action.payload.mainName,
