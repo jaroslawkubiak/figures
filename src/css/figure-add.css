@@ -50,6 +50,10 @@
   padding-left: 10px;
 }
 
+.add-figure-heading {
+  letter-spacing: 2px;
+
+}
 .grid-2-left {
   grid-column-start: 1;
   grid-column-end: 3;

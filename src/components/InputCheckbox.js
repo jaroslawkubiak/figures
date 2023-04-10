@@ -1,10 +1,13 @@
 function InputCheckbox({
   cssCheckboxClass,
   cssClass,
+  checked,
   name,
   onChange,
   children,
 }) {
+
+  const isChecked = checked === "on" ? "checked" : "";
   return (
     <>
       <label className="add-figure-input-label">{children}</label>
@@ -14,6 +17,7 @@ function InputCheckbox({
             className={cssCheckboxClass}
             type="checkbox"
             name={name}
+            checked={isChecked}
             onChange={onChange}
           />
         </div>

@@ -1,4 +1,3 @@
-// import "../css/figure-edit.css";
 import Button from "./Button";
 import InputText from "./InputText";
 import InputNumber from "./InputNumber";
@@ -6,133 +5,145 @@ import Dropdown from "./Dropdown";
 import InputCheckbox from "./InputCheckbox";
 import FigurePhoto from "./FigurePhoto";
 import { useState, useEffect } from "react";
-import { saveAs } from "file-saver";
 import { ImCross } from "react-icons/im";
 import seriesList from "../data/seriesList.json";
 import weaponList from "../data/weaponList.json";
+import { useDispatch, useSelector } from "react-redux";
+
+import { onlyNumbersRegex, validate, yearsList } from "../js/helpers";
+import {
+  changeNumber,
+  changeMainName,
+  changeReleaseYear,
+  changeAdditionalName,
+  changeLabel,
+  addFigure,
+  changeBricklink,
+  changeSeries,
+  changePurchasePrice,
+  changeWeapon,
+  changePurchaseDate,
+  changeBricklinkPrice,
+} from "../store";
 
 function FigureEdit({ onSubmit, onClose, figure }) {
-  // TODO - usuwanie przeniesc do edycji figurki
-  // const handleClick = () => {
-  //   onDelete(figure.id);
-  // };
-
-  console.log("figureEdit =", figure);
-
-  const [fig, setFig] = useState(figure);
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
+console.log('figedit-',figure);
+
+  const dispatch = useDispatch();
+  // const currentFigure = useSelector(state => {
+  //   return {
+  //     number: state.form.number,
+  //     mainName: state.form.mainName,
+  //     additionalName: state.form.additionalName,
+  //     releaseYear: state.form.releaseYear,
+  //     label: state.form.label,
+  //     bricklink: state.form.bricklink,
+  //     series: state.form.series,
+  //     purchasePrice: state.form.purchasePrice,
+  //     weapon: state.form.weapon,
+  //     purchaseDate: state.form.purchaseDate,
+  //     bricklinkPrice: state.form.bricklinkPrice,
+  //   };
+  // });
+
+
+  const svgBg = "svg-fill-edit";
+
   // for showing and hidding add figure form
-  useEffect(() => {
-    document.body.classList.add("overflow-hidden");
+  // useEffect(() => {
+  //   document.body.classList.add("overflow-hidden");
 
-    return () => {
-      document.body.classList.remove("overflow-hidden");
-    };
-  }, []);
+  //   return () => {
+  //     document.body.classList.remove("overflow-hidden");
+  //   };
+  // }, []);
 
-  // error message for validating inputs
-  const inputFieldNotValid = message => {
-    return (
-      <div className="required-field-container">
-        <div className="required-field">{message}</div>
-        <div className="required-field-after"></div>
-      </div>
-    );
-  };
+  // // add figure form submit
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+  //   setIsSubmit(true);
+  //   setFormErrors(validate(fig));
+  // };
 
-  // saving image to your local disk
-  const saveImageToHdd = number => {
-    let url = `https://img.bricklink.com/ItemImage/MN/0/${number}.png`;
-    saveAs(url, number);
-    // https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1078
-    // https://img.bricklink.com/ItemImage/MN/0/sw1078.png
-  };
-
-  // adding figure when form don't hava any errors
-  useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmit) {
-      // FIXME generating random ID - zmienić gdy już będzie baza danych
-      const generateId = String(Math.random()).split(".");
-      const newFigure = {
-        id: generateId[1],
-        number: fig.number,
-        mainName: fig.mainName,
-        additionalName: fig.additionalName,
-        releaseYear: fig.releaseYear,
-        series: fig.series,
-        purchasePrice: fig.purchasePrice,
-        bricklinkPrice: fig.bricklinkPrice,
-        bricklink: fig.bricklink,
-        weapon: fig.weapon,
-        purchaseDate: fig.purchaseDate,
-        label: fig.label,
-      };
-
-      saveImageToHdd(fig.number);
-      onSubmit(newFigure);
-      onClose();
-    }
-  }, [formErrors]);
-
-  // form validate
-  const validate = values => {
-    const errors = {};
-    // if (values.number.length < 6)
-    //   errors.number = inputFieldNotValid("min 6 char");
-    if (values.mainName === "")
-      errors.mainName = inputFieldNotValid("required");
-    // if (values.purchasePrice < 0 || values.purchasePrice === "")
-    //   errors.purchasePrice = inputFieldNotValid("required");
-    // if (values.releaseYear === "")
-    //   errors.releaseYear = inputFieldNotValid("required");
-    // if (values.purchaseDate === "")
-    //   errors.purchaseDate = inputFieldNotValid("required");
-    // if (values.series === "") errors.series = inputFieldNotValid("required");
-    // if (values.weapon === "") errors.weapon = inputFieldNotValid("required");
-    return errors;
-  };
 
   // add figure form submit
   const handleSubmit = e => {
     e.preventDefault();
     setIsSubmit(true);
-    setFormErrors(validate(fig));
+    // setFormErrors(validate(editFigure));
+
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      // saveImageToHdd(figure.number);
+      // dispatch(addFigure(editFigure));
+      // onClose();
+    }
   };
 
-  const yearsList = [];
-  const currentYear = new Date().getFullYear();
-  for (let i = currentYear; i >= 1999; i--) yearsList.push(i);
 
-  // regex for validating only float input, only 2 digit after , or .
-  const onlyNumbersRegex = /^-?\d*(?:[.,]\d{0,2})?$/;
-
-  // handle change to input text and number fields
-  const handleChange = e => {
+  // handle change to inputs fields
+  const handleChangeInput = e => {
     const { name, value } = e.target;
-    if (e.target.dataset.set !== "number") setFig({ ...fig, [name]: value });
-    else if (onlyNumbersRegex.test(value)) {
-      setFig({ ...fig, [name]: value.replace(/,/g, ".") });
+    switch (name) {
+      case "number":
+        dispatch(changeNumber(value));
+        break;
+      case "mainName":
+        dispatch(changeMainName(value));
+        break;
+      case "additionalName":
+        dispatch(changeAdditionalName(value));
+        break;
+      case "bricklink":
+        dispatch(changeBricklink(value));
+        break;
+      case "label":
+        dispatch(changeLabel(value));
+        break;
+      case "purchaseDate":
+        dispatch(changePurchaseDate(value));
+        break;
+
+      // if input field is number - check if provided value is a number
+      case "bricklinkPrice":
+        if (onlyNumbersRegex.test(value)) dispatch(changeBricklinkPrice(value));
+        break;
+      case "purchasePrice":
+        if (onlyNumbersRegex.test(value)) dispatch(changePurchasePrice(value));
+        break;
+      default:
+        break;
+    }
+  };
+
+
+  // handle change to dropdown menu list
+  const handleChangeSelect = (value, name) => {
+    if (isSubmit) setFormErrors({ ...formErrors, [name]: null });
+
+    switch (name) {
+      case "weapon":
+        dispatch(changeWeapon(value));
+        break;
+      case "series":
+        dispatch(changeSeries(value));
+        break;
+      case "releaseYear":
+        dispatch(changeReleaseYear(value));
+        break;
+      default:
+        break;
     }
   };
 
   // after error - when on focus input - clear error message
   const handleOnFocus = e => {
-    if (isSubmit) {
-      setFormErrors({ ...formErrors, [e.target.name]: null });
-    }
+    if (isSubmit) setFormErrors({ ...formErrors, [e.target.name]: null });
   };
 
-  //handle change to dropdown menu list
-  const handleChangeSelect = (value, name) => {
-    if (isSubmit) {
-      setFormErrors({ ...formErrors, [name]: null });
-    }
-    setFig({ ...fig, [name]: value });
-  };
 
-  const svgBg = "svg-fill-edit";
   return (
     <div className="add-figure-wrapper">
       <div className="add-figure-container edit-figure-border">
@@ -143,18 +154,20 @@ function FigureEdit({ onSubmit, onClose, figure }) {
           <ImCross className="svg-fill-bg" />
         </div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
-        <div className="grid-full-line edit-figure-color">Edit minifigure {fig.mainName}</div>
+          <div className="grid-full-line add-figure-heading edit-figure-color">
+            Edit minifigure {figure.mainName}
+          </div>
 
           {/* Number */}
           <div className="add-figure-div grid-2-left edit-figure-color">
             <InputText
-              onChange={handleChange}
-              onFocus={handleOnFocus}
-              value={fig.number}
-              name="number"
-              maxLength="8"
-              required={true}
               cssClass="add-figure-input background-color-edit"
+              maxLength="8"
+              name="number"
+              onChange={handleChangeInput}
+              onFocus={handleOnFocus}
+              required={true}
+              value={figure.number}
             >
               Number
             </InputText>
@@ -162,18 +175,20 @@ function FigureEdit({ onSubmit, onClose, figure }) {
           </div>
           {/* Image */}
           <div id="add-figure-photo" className="add-figure-div grid-height-3">
-            <FigurePhoto figNumber={fig.number} svgBg={svgBg} />
+            {/* <FigurePhoto figNumber={figurenumber} svgBg={svgBg} /> */}
           </div>
+
+
           {/* Main name */}
           <div className="add-figure-div grid-2-left edit-figure-color">
             <InputText
-              onChange={handleChange}
-              onFocus={handleOnFocus}
-              value={fig.mainName}
-              name="mainName"
-              required={true}
-              maxLength="22"
               cssClass="add-figure-input background-color-edit"
+              maxLength="22"
+              name="mainName"
+              onChange={handleChangeInput}
+              onFocus={handleOnFocus}
+              required={true}
+              value={figure.mainName}
             >
               Main name
             </InputText>
@@ -182,11 +197,11 @@ function FigureEdit({ onSubmit, onClose, figure }) {
           {/* Additional name */}
           <div className="add-figure-div grid-2-left edit-figure-color">
             <InputText
-              onChange={handleChange}
-              value={fig.additionalName}
-              name="additionalName"
-              maxLength="22"
               cssClass="add-figure-input background-color-edit"
+              maxLength="22"
+              name="additionalName"
+              onChange={handleChangeInput}
+              value={figure.additionalName}
             >
               Additional name
             </InputText>
@@ -194,14 +209,14 @@ function FigureEdit({ onSubmit, onClose, figure }) {
           {/* Purchase Price */}
           <div className="add-figure-div grid-2-left edit-figure-color">
             <InputNumber
-              onChange={handleChange}
-              onFocus={handleOnFocus}
-              value={fig.purchasePrice}
-              name="purchasePrice"
-              maxLength="7"
-              number="number"
-              required={true}
               cssClass="add-figure-input background-color-edit"
+              maxLength="7"
+              name="purchasePrice"
+              number="number"
+              onChange={handleChangeInput}
+              onFocus={handleOnFocus}
+              required={true}
+              value={figure.purchasePrice}
             >
               Purchase Price
             </InputNumber>
@@ -210,13 +225,13 @@ function FigureEdit({ onSubmit, onClose, figure }) {
           {/* Bricklink Price */}
           <div className="add-figure-div grid-2-right edit-figure-color">
             <InputNumber
-              onChange={handleChange}
-              onFocus={handleOnFocus}
-              value={fig.bricklinkPrice}
-              name="bricklinkPrice"
+              cssClass="add-figure-input background-color-edit"
               maxLength="7"
               number="number"
-              cssClass="add-figure-input background-color-edit"
+              name="bricklinkPrice"
+              onChange={handleChangeInput}
+              onFocus={handleOnFocus}
+              value={figure.bricklinkPrice}
             >
               Bricklink av Price
             </InputNumber>
@@ -224,14 +239,14 @@ function FigureEdit({ onSubmit, onClose, figure }) {
           {/* Release Year */}
           <div className="add-figure-div grid-2-left cursor-pointer edit-figure-color">
             <Dropdown
-              onChange={handleChangeSelect}
-              value={fig.releaseYear}
+              cssClass="add-figure-input background-color-edit"
+              cssPanelClass="add-figure-input select-height background-color-edit"
               name="releaseYear"
+              onChange={handleChangeSelect}
               options={yearsList}
               placeholder="Select year..."
               required={true}
-              cssClass="add-figure-input background-color-edit"
-              cssPanelClass="add-figure-input select-height background-color-edit"
+              value={figure.releaseYear}
             >
               Release Year
             </Dropdown>
@@ -240,14 +255,14 @@ function FigureEdit({ onSubmit, onClose, figure }) {
           {/* Series */}
           <div className="add-figure-div grid-2-right cursor-pointer edit-figure-color">
             <Dropdown
-              onChange={handleChangeSelect}
-              value={fig.series}
+              cssClass="add-figure-input background-color-edit"
+              cssPanelClass="add-figure-input select-height background-color-edit"
               name="series"
+              onChange={handleChangeSelect}
               options={seriesList}
               placeholder="Select series..."
               required={true}
-              cssClass="add-figure-input background-color-edit"
-              cssPanelClass="add-figure-input select-height background-color-edit"
+              value={figure.series}
             >
               Series
             </Dropdown>
@@ -256,10 +271,10 @@ function FigureEdit({ onSubmit, onClose, figure }) {
           {/* Bricklink */}
           <div className="add-figure-div grid-3-left edit-figure-color">
             <InputText
-              onChange={handleChange}
-              value={fig.bricklink}
-              name="bricklink"
               cssClass="add-figure-input background-color-edit"
+              name="bricklink"
+              onChange={handleChangeInput}
+              value={figure.bricklink}
             >
               Bricklink
             </InputText>
@@ -267,10 +282,11 @@ function FigureEdit({ onSubmit, onClose, figure }) {
           {/* Label */}
           <div className="add-figure-div grid-1-right edit-figure-color">
             <InputCheckbox
-              onChange={handleChange}
-              name="label"
               cssClass="add-figure-checkbox-div grid-center background-color-edit"
               cssCheckboxClass="cursor-pointer background-color-edit"
+              name="label"
+              onChange={handleChangeInput}
+              checked={figure.label}
             >
               Label
             </InputCheckbox>
@@ -278,14 +294,14 @@ function FigureEdit({ onSubmit, onClose, figure }) {
           {/* Weapon */}
           <div className="add-figure-div grid-2-left cursor-pointer edit-figure-color">
             <Dropdown
-              onChange={handleChangeSelect}
-              value={fig.weapon}
+              cssClass="add-figure-input background-color-edit"
+              cssPanelClass="add-figure-input select-height background-color-edit"
               name="weapon"
+              onChange={handleChangeSelect}
               options={weaponList}
               placeholder="Select weapon..."
               required={true}
-              cssClass="add-figure-input background-color-edit"
-              cssPanelClass="add-figure-input select-height background-color-edit"
+              value={figure.weapon}
             >
               Weapon
             </Dropdown>
@@ -294,13 +310,13 @@ function FigureEdit({ onSubmit, onClose, figure }) {
           {/* Purchase date */}
           <div className="add-figure-div grid-2-right edit-figure-color">
             <InputText
-              onChange={handleChange}
-              onFocus={handleOnFocus}
-              value={fig.purchaseDate}
-              name="purchaseDate"
-              maxLength="8"
-              required={true}
               cssClass="add-figure-input background-color-edit"
+              maxLength="10"
+              name="purchaseDate"
+              onChange={handleChangeInput}
+              onFocus={handleOnFocus}
+              required={true}
+              value={figure.purchaseDate}
             >
               Purchase date
             </InputText>

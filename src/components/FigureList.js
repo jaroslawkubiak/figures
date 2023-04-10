@@ -4,6 +4,7 @@ import Modal from "./Modal";
 import FigureShowCard from "./FigureShowCard";
 import FigureShowList from "./FigureShowList";
 import { removeFigure } from "../store";
+import FigureEdit from "./FigureEdit";
 
 function FigureList({ listView }) {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ function FigureList({ listView }) {
   const figures = useSelector(state => {
     return state.figures.data;
   });
-console.log(figures);
+
   const [clickedImage, setClickedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
   const handleChange = (figure, figIndex) => {
@@ -60,8 +61,35 @@ console.log(figures);
     setCurrentIndex(newIndex);
   };
 
+  //deleting figure
   const handleDelete = fig => {
     dispatch(removeFigure(fig.id));
+  };
+
+  const [showFigureEditForm, setShowFigureEditForm] = useState(false);
+  const [figureToEdit, setFigureToEdit] = useState(null);
+  const handleCloseEditFigureForm = () => setShowFigureEditForm(false);
+
+  console.log("figlist-fig to edit=", figureToEdit);
+
+
+  const FigureEditComponent = (
+    <FigureEdit
+      // onSubmit={handleEditFigure}
+      figure={figureToEdit}
+      onClose={handleCloseEditFigureForm}
+    />
+  );
+
+  // const handleEditFigure = () => {
+  //   // na zmianę danych poczekać do bazy danych
+  //   console.log("zapisuję figurkę po edycji:");
+
+  // };
+
+  const handleFigureEdit = fig => {
+    setShowFigureEditForm(true);
+    setFigureToEdit(fig);
   };
 
   const renderedFigures = figures.map((figure, index) => {
@@ -69,7 +97,7 @@ console.log(figures);
       return (
         <FigureShowCard
           onDelete={() => handleDelete(figure)}
-          // onEdit={onEdit}
+          onEdit={()=> handleFigureEdit(figure)}
           key={figure.id}
           figure={figure}
           clickedImage={index}
@@ -80,7 +108,7 @@ console.log(figures);
       return (
         <FigureShowList
           onDelete={() => handleDelete(figure)}
-          // onEdit={onEdit}
+          onEdit={()=> handleFigureEdit(figure)}
           key={figure.id}
           figure={figure}
           clickedImage={index}
@@ -99,6 +127,8 @@ console.log(figures);
             : "figure-container-card background-color-bg"
         }
       >
+        {showFigureEditForm && FigureEditComponent}
+
         {renderedFigures}
       </div>
       {clickedImage && (

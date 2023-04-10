@@ -7,9 +7,10 @@ import InputCheckbox from "./InputCheckbox";
 import FigurePhoto from "./FigurePhoto";
 import { useState } from "react";
 import { ImCross } from "react-icons/im";
-import { saveAs } from "file-saver";
 import seriesList from "../data/seriesList.json";
 import weaponList from "../data/weaponList.json";
+import saveImageToHdd from "../js/saveImageToHdd";
+import { onlyNumbersRegex, validate, yearsList } from "../js/helpers";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeNumber,
@@ -29,47 +30,7 @@ import {
 function FigureAdd({ onClose }) {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-
-  // regex for validating only float input, only 2 digit after , or .
-  const onlyNumbersRegex = /^-?\d*(?:[.,]\d{0,2})?$/;
-
   const svgBg = "svg-fill-primary";
-
-  // error message for validating inputs
-  const inputFieldNotValid = message => {
-    return (
-      <div className="required-field-container">
-        <div className="required-field">{message}</div>
-        <div className="required-field-after"></div>
-      </div>
-    );
-  };
-
-  // saving image to your local disk
-  const saveImageToHdd = number => {
-    let url = `https://img.bricklink.com/ItemImage/MN/0/${number}.png`;
-    saveAs(url, number);
-    // https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1078
-    // https://img.bricklink.com/ItemImage/MN/0/sw1078.png
-  };
-
-  // form validate
-  const validate = values => {
-    const errors = {};
-    if (values.number.length < 6)
-      errors.number = inputFieldNotValid("min 6 char");
-    if (values.mainName === "")
-      errors.mainName = inputFieldNotValid("required");
-    // if (values.purchasePrice < 0 || values.purchasePrice === "")
-    //   errors.purchasePrice = inputFieldNotValid("required");
-    // if (values.releaseYear === "")
-    //   errors.releaseYear = inputFieldNotValid("required");
-    // if (values.purchaseDate === "")
-    //   errors.purchaseDate = inputFieldNotValid("required");
-    // if (values.series === "") errors.series = inputFieldNotValid("required");
-    // if (values.weapon === "") errors.weapon = inputFieldNotValid("required");
-    return errors;
-  };
 
   // add figure form submit
   const handleSubmit = e => {
@@ -83,11 +44,6 @@ function FigureAdd({ onClose }) {
       onClose();
     }
   };
-
-  // creating list of years
-  const yearsList = [];
-  const currentYear = new Date().getFullYear();
-  for (let i = currentYear; i >= 1999; i--) yearsList.push(i);
 
   const dispatch = useDispatch();
   const currentFigure = useSelector(state => {
@@ -172,7 +128,9 @@ function FigureAdd({ onClose }) {
           <ImCross className="svg-fill-bg" />
         </div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
-          <div className="grid-full-line">Add new minifigure</div>
+          <div className="grid-full-line add-figure-heading">
+            Add new minifigure
+          </div>
           {/* Number */}
           <div className="add-figure-div grid-2-left">
             <InputText
