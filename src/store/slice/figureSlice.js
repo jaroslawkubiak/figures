@@ -28,6 +28,26 @@ const figuresSlice = createSlice({
         weapon: action.payload.weapon,
       });
     },
+    editFigure(state, action) {
+      const updated = state.data.map(fig => {
+        if (fig.id === action.payload.id) {
+          fig.number = action.payload.number;
+          fig.mainName = action.payload.mainName;
+          fig.additionalName = action.payload.additionalName;
+          fig.releaseYear = action.payload.releaseYear;
+          fig.series = action.payload.series;
+          fig.purchasePrice = action.payload.purchasePrice;
+          fig.bricklink = action.payload.bricklink;
+          fig.label = action.payload.label;
+          fig.bricklinkPrice = action.payload.bricklinkPrice;
+          fig.purchaseDate = action.payload.purchaseDate;
+          fig.weapon = action.payload.weapon;
+        }
+        return fig;
+      });
+      state.data = updated;
+    },
+
     removeFigure(state, action) {
       const updated = state.data.filter(fig => {
         return fig.id !== action.payload;
@@ -37,6 +57,6 @@ const figuresSlice = createSlice({
   },
 });
 
-export const { changeSearchTerm, addFigure, removeFigure } =
+export const { changeSearchTerm, addFigure, removeFigure, editFigure } =
   figuresSlice.actions;
 export const figuresReducers = figuresSlice.reducer;

@@ -3,9 +3,10 @@ import {
   BsFilterSquareFill,
   BsPlusSquare,
   BsFilterSquare,
-  BsViewStacked,
   BsListColumnsReverse,
+  BsGrid
 } from "react-icons/bs";
+
 import FigureQuantity from "./FigureQuantity";
 import React, { useState } from "react";
 import { LegoMinifigure } from "../svg/LegoMinifigure";
@@ -70,12 +71,13 @@ function Filters({
         )}
 
         {listView && (
-          <BsViewStacked
+          <BsGrid
             onClick={onHandleView}
             className="cursor-pointer filter-icon"
             title="Card view"
           />
         )}
+
 
         {expandFilters && (
           <BsFilterSquareFill

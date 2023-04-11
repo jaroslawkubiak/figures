@@ -194,7 +194,7 @@ function FigureAdd({ onClose }) {
             {formErrors.purchasePrice}
           </div>
           {/* Bricklink Price */}
-          <div className="add-figure-div grid-2-right">
+          <div className="add-figure-div grid-2-left">
             <InputNumber
               cssClass="add-figure-input"
               maxLength="7"

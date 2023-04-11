@@ -3,7 +3,22 @@ import { useSelector, useDispatch } from "react-redux";
 import Modal from "./Modal";
 import FigureShowCard from "./FigureShowCard";
 import FigureShowList from "./FigureShowList";
-import { removeFigure } from "../store";
+import {
+  editNumber,
+  editId,
+  editMainName,
+  editReleaseYear,
+  editAdditionalName,
+  editLabel,
+  editFigure,
+  editBricklink,
+  editSeries,
+  editPurchasePrice,
+  editWeapon,
+  editPurchaseDate,
+  editBricklinkPrice,
+  removeFigure,
+} from "../store";
 import FigureEdit from "./FigureEdit";
 
 function FigureList({ listView }) {
@@ -13,6 +28,7 @@ function FigureList({ listView }) {
   const figures = useSelector(state => {
     return state.figures.data;
   });
+
 
   const [clickedImage, setClickedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
@@ -66,38 +82,48 @@ function FigureList({ listView }) {
     dispatch(removeFigure(fig.id));
   };
 
+  //edit figure
+  const handleEdit = fig => {
+    setShowFigureEditForm(true);
+    dispatch(editId(fig.id));
+    dispatch(editNumber(fig.number));
+    dispatch(editMainName(fig.mainName));
+    dispatch(editReleaseYear(fig.releaseYear));
+    dispatch(editAdditionalName(fig.additionalName));
+    dispatch(editLabel(fig.label));
+    dispatch(editBricklink(fig.bricklink));
+    dispatch(editSeries(fig.series));
+    dispatch(editPurchasePrice(fig.purchasePrice));
+    dispatch(editWeapon(fig.weapon));
+    dispatch(editPurchaseDate(fig.purchaseDate));
+    dispatch(editBricklinkPrice(fig.bricklinkPrice));
+  };
+
   const [showFigureEditForm, setShowFigureEditForm] = useState(false);
-  const [figureToEdit, setFigureToEdit] = useState(null);
+  // const [figureToEdit, setFigureToEdit] = useState(null);
   const handleCloseEditFigureForm = () => setShowFigureEditForm(false);
 
-  console.log("figlist-fig to edit=", figureToEdit);
-
+  // console.log("figlist-figureToEdit=", figureToEdit);
 
   const FigureEditComponent = (
     <FigureEdit
       // onSubmit={handleEditFigure}
-      figure={figureToEdit}
+      // figure={figureToEdit}
       onClose={handleCloseEditFigureForm}
     />
   );
 
-  // const handleEditFigure = () => {
-  //   // na zmianę danych poczekać do bazy danych
-  //   console.log("zapisuję figurkę po edycji:");
-
+  // const handleFigureEdit = fig => {
+  //   setShowFigureEditForm(true);
+  //   // setFigureToEdit(fig);
   // };
-
-  const handleFigureEdit = fig => {
-    setShowFigureEditForm(true);
-    setFigureToEdit(fig);
-  };
 
   const renderedFigures = figures.map((figure, index) => {
     if (!listView)
       return (
         <FigureShowCard
           onDelete={() => handleDelete(figure)}
-          onEdit={()=> handleFigureEdit(figure)}
+          onEdit={() => handleEdit(figure)}
           key={figure.id}
           figure={figure}
           clickedImage={index}
@@ -108,7 +134,6 @@ function FigureList({ listView }) {
       return (
         <FigureShowList
           onDelete={() => handleDelete(figure)}
-          onEdit={()=> handleFigureEdit(figure)}
           key={figure.id}
           figure={figure}
           clickedImage={index}

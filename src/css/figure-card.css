@@ -124,39 +124,6 @@
   max-width: 90%;
 }
 
-.list-containerOLDOLD {
-  color: var(--primary-color);
-  font-family: star_wars;
-  padding: 5px 15px;
-  height: 105px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  --border-width: 4px;
-  --border-edge: 1;
-  background-color: var(--bg-color);
-  clip-path: polygon(
-    /* left-top corner */ 0 calc(var(--border-width) * var(--border-edge)),
-    /* left-top corner */ calc(var(--border-width) * var(--border-edge)) 0,
-
-    /* right-top corner */ calc(100% - var(--border-width)) 0,
-    /* right-top corner */ 100% var(--border-width),
-    /* right indentation */ 100% calc(30% - var(--border-width)),
-    /* right indentation */ calc(100% - var(--border-width)) 30%,
-    /* right indentation */ calc(100% - var(--border-width)) 60%,
-    /* right indentation */ 100% calc(60% + var(--border-width)),
-    /* right-bottom corner */ 100% calc(100% - var(--border-width)),
-    /* right-bottom corner */ calc(100% - var(--border-width)) 100%,
-
-    /* left-bottom corner */ var(--border-width) 100%,
-    /* left-bottom corner */ 0 calc(100% - var(--border-width)),
-    /* left indentation */ 0 calc(60% + var(--border-width)),
-    /* left indentation */ var(--border-width) 60%,
-    /* left indentation */ var(--border-width) 30%,
-    /* left indentation */ 0 calc(30% - var(--border-width))
-  );
-}
-
 .list-container {
   color: var(--bg-color);
   font-family: star_wars;
@@ -177,10 +144,10 @@
   border-radius: 9999px;
   border: 2px solid rgba(0, 0, 0, 0.749);
 
-  --horizontal: -5px;
-  --vertical: 5px;
-  --blur: 15px;
-  --spread: 3px;
+  --horizontal: 0px;
+  --vertical: 0px;
+  --blur: 20px;
+  --spread: 1px;
 
   -webkit-box-shadow: inset var(--horizontal) var(--vertical) var(--blur)
     var(--spread) rgba(66, 68, 90, 1);

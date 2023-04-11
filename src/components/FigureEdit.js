@@ -9,115 +9,100 @@ import { ImCross } from "react-icons/im";
 import seriesList from "../data/seriesList.json";
 import weaponList from "../data/weaponList.json";
 import { useDispatch, useSelector } from "react-redux";
-
 import { onlyNumbersRegex, validate, yearsList } from "../js/helpers";
 import {
-  changeNumber,
-  changeMainName,
-  changeReleaseYear,
-  changeAdditionalName,
-  changeLabel,
-  addFigure,
-  changeBricklink,
-  changeSeries,
-  changePurchasePrice,
-  changeWeapon,
-  changePurchaseDate,
-  changeBricklinkPrice,
+  editNumber,
+  editMainName,
+  editReleaseYear,
+  editAdditionalName,
+  editLabel,
+  editFigure,
+  editBricklink,
+  editSeries,
+  editPurchasePrice,
+  editWeapon,
+  editPurchaseDate,
+  editBricklinkPrice,
 } from "../store";
 
-function FigureEdit({ onSubmit, onClose, figure }) {
+function FigureEdit({ onSubmit, onClose }) {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
 
-console.log('figedit-',figure);
+  // console.log("figedit-", ffigure);
 
   const dispatch = useDispatch();
-  // const currentFigure = useSelector(state => {
-  //   return {
-  //     number: state.form.number,
-  //     mainName: state.form.mainName,
-  //     additionalName: state.form.additionalName,
-  //     releaseYear: state.form.releaseYear,
-  //     label: state.form.label,
-  //     bricklink: state.form.bricklink,
-  //     series: state.form.series,
-  //     purchasePrice: state.form.purchasePrice,
-  //     weapon: state.form.weapon,
-  //     purchaseDate: state.form.purchaseDate,
-  //     bricklinkPrice: state.form.bricklinkPrice,
-  //   };
-  // });
-
-
+  const figure = useSelector(state => {
+    return {
+      id: state.edit.id,
+      number: state.edit.number,
+      mainName: state.edit.mainName,
+      additionalName: state.edit.additionalName,
+      releaseYear: state.edit.releaseYear,
+      label: state.edit.label,
+      bricklink: state.edit.bricklink,
+      series: state.edit.series,
+      purchasePrice: state.edit.purchasePrice,
+      weapon: state.edit.weapon,
+      purchaseDate: state.edit.purchaseDate,
+      bricklinkPrice: state.edit.bricklinkPrice,
+    };
+  });
   const svgBg = "svg-fill-edit";
 
-  // for showing and hidding add figure form
-  // useEffect(() => {
-  //   document.body.classList.add("overflow-hidden");
+  console.log("figure:", figure);
 
-  //   return () => {
-  //     document.body.classList.remove("overflow-hidden");
-  //   };
-  // }, []);
-
-  // // add figure form submit
-  // const handleSubmit = e => {
-  //   e.preventDefault();
-  //   setIsSubmit(true);
-  //   setFormErrors(validate(fig));
-  // };
-
-
-  // add figure form submit
+  // edit figure form submit
   const handleSubmit = e => {
     e.preventDefault();
+    console.log("figureEdit - save");
     setIsSubmit(true);
-    // setFormErrors(validate(editFigure));
+    setFormErrors(validate(figure));
+
+    console.log("isSubmit=", isSubmit);
 
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       // saveImageToHdd(figure.number);
-      // dispatch(addFigure(editFigure));
-      // onClose();
+      console.log("przed edycją:", figure);
+      dispatch(editFigure(figure));
+      onClose();
     }
   };
-
 
   // handle change to inputs fields
   const handleChangeInput = e => {
     const { name, value } = e.target;
     switch (name) {
       case "number":
-        dispatch(changeNumber(value));
+        dispatch(editNumber(value));
         break;
       case "mainName":
-        dispatch(changeMainName(value));
+        dispatch(editMainName(value));
         break;
       case "additionalName":
-        dispatch(changeAdditionalName(value));
+        dispatch(editAdditionalName(value));
         break;
       case "bricklink":
-        dispatch(changeBricklink(value));
+        dispatch(editBricklink(value));
         break;
       case "label":
-        dispatch(changeLabel(value));
+        dispatch(editLabel(value));
         break;
       case "purchaseDate":
-        dispatch(changePurchaseDate(value));
+        dispatch(editPurchaseDate(value));
         break;
 
       // if input field is number - check if provided value is a number
       case "bricklinkPrice":
-        if (onlyNumbersRegex.test(value)) dispatch(changeBricklinkPrice(value));
+        if (onlyNumbersRegex.test(value)) dispatch(editBricklinkPrice(value));
         break;
       case "purchasePrice":
-        if (onlyNumbersRegex.test(value)) dispatch(changePurchasePrice(value));
+        if (onlyNumbersRegex.test(value)) dispatch(editPurchasePrice(value));
         break;
       default:
         break;
     }
   };
-
 
   // handle change to dropdown menu list
   const handleChangeSelect = (value, name) => {
@@ -125,13 +110,13 @@ console.log('figedit-',figure);
 
     switch (name) {
       case "weapon":
-        dispatch(changeWeapon(value));
+        dispatch(editWeapon(value));
         break;
       case "series":
-        dispatch(changeSeries(value));
+        dispatch(editSeries(value));
         break;
       case "releaseYear":
-        dispatch(changeReleaseYear(value));
+        dispatch(editReleaseYear(value));
         break;
       default:
         break;
@@ -142,7 +127,6 @@ console.log('figedit-',figure);
   const handleOnFocus = e => {
     if (isSubmit) setFormErrors({ ...formErrors, [e.target.name]: null });
   };
-
 
   return (
     <div className="add-figure-wrapper">
@@ -160,6 +144,7 @@ console.log('figedit-',figure);
 
           {/* Number */}
           <div className="add-figure-div grid-2-left edit-figure-color">
+            <input type="hidden" value={figure.id} name="id" />
             <InputText
               cssClass="add-figure-input background-color-edit"
               maxLength="8"
@@ -175,9 +160,8 @@ console.log('figedit-',figure);
           </div>
           {/* Image */}
           <div id="add-figure-photo" className="add-figure-div grid-height-3">
-            {/* <FigurePhoto figNumber={figurenumber} svgBg={svgBg} /> */}
+            <FigurePhoto figNumber={figure.number} svgBg={svgBg} />
           </div>
-
 
           {/* Main name */}
           <div className="add-figure-div grid-2-left edit-figure-color">
@@ -223,7 +207,7 @@ console.log('figedit-',figure);
             {formErrors.purchasePrice}
           </div>
           {/* Bricklink Price */}
-          <div className="add-figure-div grid-2-right edit-figure-color">
+          <div className="add-figure-div grid-2-left edit-figure-color">
             <InputNumber
               cssClass="add-figure-input background-color-edit"
               maxLength="7"

@@ -52,40 +52,34 @@
 
 .add-figure-heading {
   letter-spacing: 2px;
+    font-size: 0.8em;
 
 }
+
 .grid-2-left {
-  grid-column-start: 1;
-  grid-column-end: 3;
+  grid-column: 1/3;
 }
 
 .grid-2-right {
-  grid-column-start: 3;
-  grid-column-end: 5;
+  grid-column: 3/5;
 }
 
 .grid-3-left {
-  grid-column-start: 1;
-  grid-column-end: 4;
+  grid-column: 1/4;
 }
 
 .grid-1-right {
-  grid-column-start: 4;
-  grid-column-end: 5;
+  grid-column: 4/5;
 }
 
 .grid-full-line {
-  grid-column-start: 1;
-  grid-column-end: 5;
-  font-size: 0.8em;
+  grid-column: 1/-1;
 }
 
 .grid-height-3 {
   height: 100%;
-  grid-row-start: 2;
-  grid-row-end: 5;
-  grid-column-start: 3;
-  grid-column-end: 5;
+  grid-row: 2/ span 5;
+  grid-column: 3/5;
 }
 
 .font-size-6 {
@@ -287,7 +281,6 @@ input[type="checkbox"]:checked::after {
 ::-webkit-scrollbar-corner {
   background-color: transparent;
 }
-
 
 .flex-row {
   display: flex;
