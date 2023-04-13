@@ -5,7 +5,7 @@ import InputNumber from "./InputNumber";
 import Dropdown from "./Dropdown";
 import InputCheckbox from "./InputCheckbox";
 import FigurePhoto from "./FigurePhoto";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ImCross } from "react-icons/im";
 import seriesList from "../data/seriesList.json";
 import weaponList from "../data/weaponList.json";
@@ -30,6 +30,7 @@ import {
 function FigureAdd({ onClose }) {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const svgBg = "svg-fill-primary";
 
   // add figure form submit
@@ -37,13 +38,15 @@ function FigureAdd({ onClose }) {
     e.preventDefault();
     setIsSubmit(true);
     setFormErrors(validate(currentFigure));
-
+  };
+console.log('isSubmit=', isSubmit);
+  useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      saveImageToHdd(currentFigure.number);
+      // saveImageToHdd(currentFigure.number);
       dispatch(addFigure(currentFigure));
       onClose();
     }
-  };
+  }, [isSubmit]);
 
   const dispatch = useDispatch();
   const currentFigure = useSelector(state => {
@@ -79,7 +82,7 @@ function FigureAdd({ onClose }) {
         dispatch(changeBricklink(value));
         break;
       case "label":
-        dispatch(changeLabel(value));
+        dispatch(changeLabel(e.target.checked));
         break;
       case "purchaseDate":
         dispatch(changePurchaseDate(value));
@@ -257,7 +260,7 @@ function FigureAdd({ onClose }) {
               cssCheckboxClass="cursor-pointer"
               name="label"
               onChange={handleChangeInput}
-              value={currentFigure.label}
+              checked={currentFigure.label}
             >
               Label
             </InputCheckbox>

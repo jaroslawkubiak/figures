@@ -35,7 +35,7 @@
   clip-path: polygon(0 22%, 22% 0, 100% 0, 100% 78%, 78% 100%, 0% 100%, 0 0);
 }
 
-.modal-close{
+.modal-close {
   width: 30px;
   height: 30px;
   position: absolute;
@@ -72,7 +72,7 @@
   transform: translateY(50%);
   font-size: 2em;
   fill: rgb(0, 0, 0);
-  
+
   background-color: var(--primary-color);
   clip-path: polygon(0 22%, 22% 0, 100% 0, 100% 78%, 78% 100%, 0% 100%, 0 0);
 }
@@ -84,7 +84,7 @@
   left: 5px;
 }
 
-.modal-next-image{
+.modal-next-image {
   position: absolute;
   top: 20px;
   bottom: 12px;
@@ -92,10 +92,36 @@
   width: 100px;
 }
 
-.modal-prev-image{
+.modal-prev-image {
   position: absolute;
   top: 20px;
   bottom: 12px;
   left: 0px;
   width: 100px;
+}
+
+.confirm-modal-wrapper {
+  z-index: 99;
+  background-color: rgba(31, 31, 31, 0.895);
+  position: absolute;
+  top: -30px;
+  bottom: -30px;
+  right: -30px;
+  left: -30px;
+  display: grid;
+  place-content: center;
+  padding: 55px;
+}
+
+.confirm-modal-container{
+  border-radius: 10px;
+  text-align: center;
+  padding: 20px;
+}
+
+.grid-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 25px;
 }

@@ -289,14 +289,8 @@ input[type="checkbox"]:checked::after {
   align-items: center;
 }
 
-.edit-figure-bg {
-  background-color: var(--edit-color) !important;
-}
-
 .edit-figure-border {
   border: 2px solid var(--edit-color);
 }
 
-.edit-figure-color {
-  color: var(--edit-color);
-}
+

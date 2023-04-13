@@ -177,6 +177,7 @@
   height: 90px;
   width: 90px;
   background-color: rgb(255, 255, 255);
+  padding: 5px;
   display: flex;
   align-items: center;
   justify-content: center;

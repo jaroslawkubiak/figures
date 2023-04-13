@@ -6,8 +6,7 @@ function InputCheckbox({
   onChange,
   children,
 }) {
-
-  const isChecked = checked === "on" ? "checked" : "";
+  const isChecked = checked ? "checked" : "";
   return (
     <>
       <label className="add-figure-input-label">{children}</label>

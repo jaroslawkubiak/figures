@@ -10,7 +10,6 @@ import {
   editReleaseYear,
   editAdditionalName,
   editLabel,
-  editFigure,
   editBricklink,
   editSeries,
   editPurchasePrice,
@@ -29,6 +28,7 @@ function FigureList({ listView }) {
     return state.figures.data;
   });
 
+  // console.log(figures);
 
   const [clickedImage, setClickedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
@@ -77,13 +77,9 @@ function FigureList({ listView }) {
     setCurrentIndex(newIndex);
   };
 
-  //deleting figure
-  const handleDelete = fig => {
-    dispatch(removeFigure(fig.id));
-  };
-
   //edit figure
   const handleEdit = fig => {
+    console.log("edytuje figa");
     setShowFigureEditForm(true);
     dispatch(editId(fig.id));
     dispatch(editNumber(fig.number));
@@ -100,29 +96,17 @@ function FigureList({ listView }) {
   };
 
   const [showFigureEditForm, setShowFigureEditForm] = useState(false);
-  // const [figureToEdit, setFigureToEdit] = useState(null);
   const handleCloseEditFigureForm = () => setShowFigureEditForm(false);
 
-  // console.log("figlist-figureToEdit=", figureToEdit);
-
   const FigureEditComponent = (
-    <FigureEdit
-      // onSubmit={handleEditFigure}
-      // figure={figureToEdit}
-      onClose={handleCloseEditFigureForm}
-    />
+    <FigureEdit onClose={handleCloseEditFigureForm} />
   );
 
-  // const handleFigureEdit = fig => {
-  //   setShowFigureEditForm(true);
-  //   // setFigureToEdit(fig);
-  // };
-
   const renderedFigures = figures.map((figure, index) => {
-    if (!listView)
+    if (listView) {
       return (
-        <FigureShowCard
-          onDelete={() => handleDelete(figure)}
+        <FigureShowList
+          // onDelete={() => handleDelete(figure)}
           onEdit={() => handleEdit(figure)}
           key={figure.id}
           figure={figure}
@@ -130,10 +114,11 @@ function FigureList({ listView }) {
           onModal={handleChange}
         />
       );
-    else {
+    } else {
       return (
-        <FigureShowList
-          onDelete={() => handleDelete(figure)}
+        <FigureShowCard
+          // onDelete={() => handleDelete(figure)}
+          onEdit={() => handleEdit(figure)}
           key={figure.id}
           figure={figure}
           clickedImage={index}

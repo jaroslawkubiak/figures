@@ -16,8 +16,8 @@ export const onlyNumbersRegex = /^-?\d*(?:[.,]\d{0,2})?$/;
     const errors = {};
     if (values.number.length < 6)
       errors.number = inputFieldNotValid("min 6 char");
-    // if (values.mainName === "")
-    //   errors.mainName = inputFieldNotValid("required");
+    if (values.mainName === "")
+      errors.mainName = inputFieldNotValid("required");
     // if (values.purchasePrice < 0 || values.purchasePrice === "")
     //   errors.purchasePrice = inputFieldNotValid("required");
     // if (values.releaseYear === "")

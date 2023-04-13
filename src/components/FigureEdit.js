@@ -1,6 +1,7 @@
 import Button from "./Button";
 import InputText from "./InputText";
 import InputNumber from "./InputNumber";
+import ConfirmModal from "./ConfirmModal";
 import Dropdown from "./Dropdown";
 import InputCheckbox from "./InputCheckbox";
 import FigurePhoto from "./FigurePhoto";
@@ -8,6 +9,8 @@ import { useState, useEffect } from "react";
 import { ImCross } from "react-icons/im";
 import seriesList from "../data/seriesList.json";
 import weaponList from "../data/weaponList.json";
+import saveImageToHdd from "../js/saveImageToHdd";
+
 import { useDispatch, useSelector } from "react-redux";
 import { onlyNumbersRegex, validate, yearsList } from "../js/helpers";
 import {
@@ -17,6 +20,7 @@ import {
   editAdditionalName,
   editLabel,
   editFigure,
+  removeFigure,
   editBricklink,
   editSeries,
   editPurchasePrice,
@@ -25,11 +29,13 @@ import {
   editBricklinkPrice,
 } from "../store";
 
-function FigureEdit({ onSubmit, onClose }) {
+function FigureEdit({ onClose }) {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [deleteFigure, setDeleteFigure] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
-  // console.log("figedit-", ffigure);
+  console.log("deleteFigure=", deleteFigure);
 
   const dispatch = useDispatch();
   const figure = useSelector(state => {
@@ -50,24 +56,20 @@ function FigureEdit({ onSubmit, onClose }) {
   });
   const svgBg = "svg-fill-edit";
 
-  console.log("figure:", figure);
-
   // edit figure form submit
   const handleSubmit = e => {
     e.preventDefault();
-    console.log("figureEdit - save");
     setIsSubmit(true);
     setFormErrors(validate(figure));
+  };
 
-    console.log("isSubmit=", isSubmit);
-
+  useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       // saveImageToHdd(figure.number);
-      console.log("przed edycją:", figure);
       dispatch(editFigure(figure));
       onClose();
     }
-  };
+  }, [isSubmit]);
 
   // handle change to inputs fields
   const handleChangeInput = e => {
@@ -86,7 +88,7 @@ function FigureEdit({ onSubmit, onClose }) {
         dispatch(editBricklink(value));
         break;
       case "label":
-        dispatch(editLabel(value));
+        dispatch(editLabel(e.target.checked));
         break;
       case "purchaseDate":
         dispatch(editPurchaseDate(value));
@@ -123,6 +125,23 @@ function FigureEdit({ onSubmit, onClose }) {
     }
   };
 
+  useEffect(
+    fig => {
+      if (deleteFigure) {
+        console.log("usuwam figa=", fig);
+        dispatch(removeFigure(fig.id));
+        onClose();
+      }
+    },
+    [deleteFigure]
+  );
+
+  //deleting figure
+  const handleDelete = fig => {
+    console.log("showing confirm modal=");
+    setShowConfirmModal(true);
+  };
+
   // after error - when on focus input - clear error message
   const handleOnFocus = e => {
     if (isSubmit) setFormErrors({ ...formErrors, [e.target.name]: null });
@@ -131,6 +150,7 @@ function FigureEdit({ onSubmit, onClose }) {
   return (
     <div className="add-figure-wrapper">
       <div className="add-figure-container edit-figure-border">
+        {/* <ConfirmModal figure={figure.mainName}/> */}
         <div
           className="add-figure-close-btn background-color-edit"
           onClick={() => onClose()}
@@ -138,12 +158,11 @@ function FigureEdit({ onSubmit, onClose }) {
           <ImCross className="svg-fill-bg" />
         </div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
-          <div className="grid-full-line add-figure-heading edit-figure-color">
-            Edit minifigure {figure.mainName}
+          <div className="grid-full-line add-figure-heading color-edit">
+            Edit - {figure.mainName}
           </div>
-
           {/* Number */}
-          <div className="add-figure-div grid-2-left edit-figure-color">
+          <div className="add-figure-div grid-2-left color-edit">
             <input type="hidden" value={figure.id} name="id" />
             <InputText
               cssClass="add-figure-input background-color-edit"
@@ -162,9 +181,8 @@ function FigureEdit({ onSubmit, onClose }) {
           <div id="add-figure-photo" className="add-figure-div grid-height-3">
             <FigurePhoto figNumber={figure.number} svgBg={svgBg} />
           </div>
-
           {/* Main name */}
-          <div className="add-figure-div grid-2-left edit-figure-color">
+          <div className="add-figure-div grid-2-left color-edit">
             <InputText
               cssClass="add-figure-input background-color-edit"
               maxLength="22"
@@ -179,7 +197,7 @@ function FigureEdit({ onSubmit, onClose }) {
             {formErrors.mainName}
           </div>
           {/* Additional name */}
-          <div className="add-figure-div grid-2-left edit-figure-color">
+          <div className="add-figure-div grid-2-left color-edit">
             <InputText
               cssClass="add-figure-input background-color-edit"
               maxLength="22"
@@ -191,7 +209,7 @@ function FigureEdit({ onSubmit, onClose }) {
             </InputText>
           </div>
           {/* Purchase Price */}
-          <div className="add-figure-div grid-2-left edit-figure-color">
+          <div className="add-figure-div grid-2-left color-edit">
             <InputNumber
               cssClass="add-figure-input background-color-edit"
               maxLength="7"
@@ -207,7 +225,7 @@ function FigureEdit({ onSubmit, onClose }) {
             {formErrors.purchasePrice}
           </div>
           {/* Bricklink Price */}
-          <div className="add-figure-div grid-2-left edit-figure-color">
+          <div className="add-figure-div grid-2-left color-edit">
             <InputNumber
               cssClass="add-figure-input background-color-edit"
               maxLength="7"
@@ -221,7 +239,7 @@ function FigureEdit({ onSubmit, onClose }) {
             </InputNumber>
           </div>
           {/* Release Year */}
-          <div className="add-figure-div grid-2-left cursor-pointer edit-figure-color">
+          <div className="add-figure-div grid-2-left cursor-pointer color-edit">
             <Dropdown
               cssClass="add-figure-input background-color-edit"
               cssPanelClass="add-figure-input select-height background-color-edit"
@@ -237,7 +255,7 @@ function FigureEdit({ onSubmit, onClose }) {
             {formErrors.releaseYear}
           </div>
           {/* Series */}
-          <div className="add-figure-div grid-2-right cursor-pointer edit-figure-color">
+          <div className="add-figure-div grid-2-right cursor-pointer color-edit">
             <Dropdown
               cssClass="add-figure-input background-color-edit"
               cssPanelClass="add-figure-input select-height background-color-edit"
@@ -253,7 +271,7 @@ function FigureEdit({ onSubmit, onClose }) {
             {formErrors.series}
           </div>
           {/* Bricklink */}
-          <div className="add-figure-div grid-3-left edit-figure-color">
+          <div className="add-figure-div grid-3-left color-edit">
             <InputText
               cssClass="add-figure-input background-color-edit"
               name="bricklink"
@@ -264,7 +282,7 @@ function FigureEdit({ onSubmit, onClose }) {
             </InputText>
           </div>
           {/* Label */}
-          <div className="add-figure-div grid-1-right edit-figure-color">
+          <div className="add-figure-div grid-1-right color-edit">
             <InputCheckbox
               cssClass="add-figure-checkbox-div grid-center background-color-edit"
               cssCheckboxClass="cursor-pointer background-color-edit"
@@ -276,7 +294,7 @@ function FigureEdit({ onSubmit, onClose }) {
             </InputCheckbox>
           </div>
           {/* Weapon */}
-          <div className="add-figure-div grid-2-left cursor-pointer edit-figure-color">
+          <div className="add-figure-div grid-2-left cursor-pointer color-edit">
             <Dropdown
               cssClass="add-figure-input background-color-edit"
               cssPanelClass="add-figure-input select-height background-color-edit"
@@ -292,7 +310,7 @@ function FigureEdit({ onSubmit, onClose }) {
             {formErrors.weapon}
           </div>
           {/* Purchase date */}
-          <div className="add-figure-div grid-2-right edit-figure-color">
+          <div className="add-figure-div grid-2-right color-edit">
             <InputText
               cssClass="add-figure-input background-color-edit"
               maxLength="10"
@@ -308,6 +326,14 @@ function FigureEdit({ onSubmit, onClose }) {
           </div>
           <div className="grid-full-line">
             <Button cssClass="button-edit">Save</Button>
+          </div>
+          <div className="grid-full-line">
+            <Button
+              cssClass="button-delete"
+              onClick={() => handleDelete(figure)}
+            >
+              delete minifigure
+            </Button>
           </div>
         </form>
       </div>

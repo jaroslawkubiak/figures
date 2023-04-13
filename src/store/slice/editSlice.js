@@ -20,7 +20,7 @@ const editSlice = createSlice({
       state.bricklink = action.payload;
     },
     editLabel(state, action) {
-      state.label = action.payload;
+      state.label = action.payload ? "on" : "";
     },
     editReleaseYear(state, action) {
       state.releaseYear = action.payload;

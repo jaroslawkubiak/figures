@@ -92,7 +92,6 @@ body {
   color: var(--gray-color) !important;
 }
 
-
 .button {
   all: unset;
   position: relative;
@@ -143,6 +142,30 @@ body {
   );
 }
 
+.button-delete {
+  all: unset;
+  position: relative;
+  z-index: 1;
+  font-family: star_wars;
+  font-size: 0.6em;
+  letter-spacing: 0.2rem;
+
+  padding: 5px 15px;
+  margin: 5px;
+  background-color: var(--darth-color);
+  color: var(--bg-color);
+  cursor: pointer;
+
+  --cut-height: 6px;
+  clip-path: polygon(
+    calc(100% - var(--cut-height)) 0%,
+    100% var(--cut-height),
+    100% 100%,
+    var(--cut-height) 100%,
+    0% calc(100% - var(--cut-height)),
+    0 0
+  );
+}
 
 /* validate messages */
 .required-field-container {
@@ -192,6 +215,7 @@ body {
   background-color: var(--error-color);
   z-index: 5;
 }
+
 .input-required {
   position: absolute;
   top: -10px;

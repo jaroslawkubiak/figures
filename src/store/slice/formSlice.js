@@ -39,7 +39,7 @@ const formSlice = createSlice({
       state.bricklink = action.payload;
     },
     changeLabel(state, action) {
-      state.label = action.payload;
+      state.label = action.payload ? "on" : "";
     },
     changeReleaseYear(state, action) {
       state.releaseYear = action.payload;
