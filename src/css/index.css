@@ -6,7 +6,7 @@
   --error-color: crimson;
   --edit-color: rgb(253, 140, 83);
   --darth-color: #cb0407;
-  --gray-color: #756f68;
+  --gray-color: #8a8b8d;
 }
 
 @font-face {
@@ -52,11 +52,24 @@ body {
   cursor: pointer;
 }
 
+.z-index-high{
+  z-index: 9999999999l
+}
 .grid-center {
   display: grid;
   width: 100%;
   max-height: 100%;
   place-items: center;
+}
+.self-center {
+  justify-self: center;
+}
+.self-end {
+  justify-self: end;
+}
+
+.self-start {
+  justify-self: start;
 }
 
 .background-color-primary {
@@ -177,7 +190,6 @@ body {
   position: absolute;
   top: 35px;
   width: 100%;
-  /* background-color: rgba(20, 100, 220, 0.653); */
   height: 20px;
   animation: hideMe 1s forwards;
 }
@@ -228,4 +240,3 @@ body {
   font-size: 10px;
   color: var(--error-color);
 }
-

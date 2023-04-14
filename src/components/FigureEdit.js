@@ -129,15 +129,12 @@ function FigureEdit({ onClose }) {
     setDeleteFigure(true);
   };
 
-  useEffect(
-    () => {
-      if (deleteFigure) {
-        dispatch(removeFigure(figureToDelete.id));
-        onClose();
-      }
-    },
-    [deleteFigure]
-  );
+  useEffect(() => {
+    if (deleteFigure) {
+      dispatch(removeFigure(figureToDelete.id));
+      onClose();
+    }
+  }, [deleteFigure]);
 
   //deleting figure
   const handleDelete = fig => {
@@ -252,6 +249,7 @@ function FigureEdit({ onClose }) {
             <Dropdown
               cssClass="add-figure-input background-color-edit"
               cssPanelClass="add-figure-input select-height background-color-edit"
+              cssDropdownElement="dropdown-el"
               name="releaseYear"
               onChange={handleChangeSelect}
               options={yearsList}
@@ -268,6 +266,7 @@ function FigureEdit({ onClose }) {
             <Dropdown
               cssClass="add-figure-input background-color-edit"
               cssPanelClass="add-figure-input select-height background-color-edit"
+              cssDropdownElement="dropdown-el"
               name="series"
               onChange={handleChangeSelect}
               options={seriesList}
@@ -307,6 +306,7 @@ function FigureEdit({ onClose }) {
             <Dropdown
               cssClass="add-figure-input background-color-edit"
               cssPanelClass="add-figure-input select-height background-color-edit"
+              cssDropdownElement="dropdown-el"
               name="weapon"
               onChange={handleChangeSelect}
               options={weaponList}

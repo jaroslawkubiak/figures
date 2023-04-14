@@ -3,23 +3,28 @@ import "../css/figure-card.css";
 
 import showFigureImage from "../js/showFigureImage";
 
-function FigureShowList({ figure, clickedImage, onClick, onEdit }) {
+function FigureShowList({ figure, clickedImage, onModal, onEdit }) {
   const showImage = showFigureImage(figure);
   const [figImage, setFigImage] = useState(showImage.url);
 
   return (
     <div className="list-container">
-      <div className="list-img">
+      <div
+        className="list-img cursor-pointer"
+        onClick={() => onModal(figure, clickedImage)}
+      >
         <img
           src={figImage}
           alt={showImage.description}
           title={showImage.description}
-          className="list-figure-img cursor-pointer"
-          onClick={() => onClick(figure, clickedImage)}
+          className="list-figure-img"
         />
       </div>
       <div className="list-wrapper">
-        <div className="list-item cursor-pointer" onClick={() => onEdit(figure)}>
+        <div
+          className="list-item cursor-pointer"
+          onClick={() => onEdit(figure)}
+        >
           <h3>{figure.mainName}</h3>{" "}
         </div>
         <div className="list-item">

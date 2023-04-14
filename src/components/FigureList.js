@@ -16,19 +16,11 @@ import {
   editWeapon,
   editPurchaseDate,
   editBricklinkPrice,
-  removeFigure,
 } from "../store";
 import FigureEdit from "./FigureEdit";
 
-function FigureList({ listView }) {
+function FigureList({ listView, figures }) {
   const dispatch = useDispatch();
-
-  // getting info about all figures
-  const figures = useSelector(state => {
-    return state.figures.data;
-  });
-
-  // console.log(figures);
 
   const [clickedImage, setClickedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
@@ -105,7 +97,6 @@ function FigureList({ listView }) {
     if (listView) {
       return (
         <FigureShowList
-          // onDelete={() => handleDelete(figure)}
           onEdit={() => handleEdit(figure)}
           key={figure.id}
           figure={figure}
@@ -116,7 +107,6 @@ function FigureList({ listView }) {
     } else {
       return (
         <FigureShowCard
-          // onDelete={() => handleDelete(figure)}
           onEdit={() => handleEdit(figure)}
           key={figure.id}
           figure={figure}

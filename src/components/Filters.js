@@ -4,108 +4,158 @@ import {
   BsPlusSquare,
   BsFilterSquare,
   BsListColumnsReverse,
-  BsGrid
+  BsGrid,
 } from "react-icons/bs";
+import { ImCross } from "react-icons/im";
+import { onlyNumbersRegex, yearsList } from "../js/helpers";
+import seriesList from "../data/seriesList.json";
 
 import FigureQuantity from "./FigureQuantity";
 import React, { useState } from "react";
 import { LegoMinifigure } from "../svg/LegoMinifigure";
-import AnimateHeight from "react-animate-height";
 import InputText from "./InputText";
+import Dropdown from "./Dropdown";
 import { useDispatch, useSelector } from "react-redux";
-import { changeSearchTerm } from "../store";
+import {
+  changeSearchNumber,
+  changeSearchMainName,
+  changeSearchReleaseYear,
+  changeSearchSeries,
+} from "../store";
 
-function Filters({
-  setFigures,
-  onAddFigure,
-  onHandleView,
-  listView,
-  figuresData,
-}) {
-  // const dispatch = useDispatch();
+function Filters({ onAddFigure, onHandleView, listView, quantity }) {
+  const dispatch = useDispatch();
 
-  // const searchTerm = useSelector(state => {
-  //   return state.cars.searchTerm;
-  // });
+  // searching by figure number
+  const searchingNumber = useSelector(state => {
+    return state.figures.searchNumber;
+  });
+  const handleChangeSearchingNumber = e => {
+    dispatch(changeSearchNumber(e.target.value));
+  };
+  const handleResetSearchNumber = () => {
+    dispatch(changeSearchNumber(""));
+  };
 
-  // const handleSearchTermChange = event => {
-  //   dispatch(changeSearchTerm(event.target.value));
-  // };
+  // searching by figure main name
+  const searchingMainName = useSelector(state => {
+    return state.figures.searchMainName;
+  });
+  const handleChangeSearchingMainName = e => {
+    dispatch(changeSearchMainName(e.target.value));
+  };
+  const handleResetSearchMainName = () => {
+    dispatch(changeSearchMainName(""));
+  };
+
+  // searching by figure releaseYear
+  const searchingReleaseYear = useSelector(state => {
+    return state.figures.searchReleaseYear;
+  });
+  const handleChangeSearchingReleaseYear = (option, _) => {
+    dispatch(changeSearchReleaseYear(option));
+  };
+  const handleResetSearchReleaseYear = () => {
+    dispatch(changeSearchReleaseYear(""));
+  };
+
+  // searching by figure series
+  const searchingSeries = useSelector(state => {
+    return state.figures.searchSeries;
+  });
+  const handleChangeSearchingSeries = (option, _) => {
+    dispatch(changeSearchSeries(option));
+  };
+  const handleResetSearchSeries = () => {
+    dispatch(changeSearchSeries(""));
+  };
 
   const [expandFilters, setExpandFilters] = useState(false);
-  const [height, setHeight] = useState(150);
-
-  const figures = useSelector(state => {
-    return state.figures.data;
-  });
-
-  // console.log(figures);
   const handleExpandCollapseFilters = () => {
-    setHeight(height === 0 ? "auto" : 0);
     setExpandFilters(!expandFilters);
   };
 
   const cssBackground = listView
     ? "filter-container background-color-gray"
     : "filter-container background-color-primary";
+
+  // const cssFilterBackground = listView
+  //   ? "background-color-gray filter-container-expand filter-expand-animation"
+  //   : "background-color-primary filter-container-expand filter-expand-animation";
+
+  let cssFilterBackground = "filter-container-expand";
+  if (listView) cssFilterBackground += " background-color-gray";
+  else cssFilterBackground += " background-color-primary";
+  if (expandFilters) cssFilterBackground += " filter-expand-animation";
+  else cssFilterBackground += " filter-collapse-animation";
+
+
   return (
     <>
       <div className={cssBackground}>
-        <BsPlusSquare
-          onClick={onAddFigure}
-          className="cursor-pointer filter-icon"
-          title="Add figure"
-        />
-
-        <div className="filter-quantity-wprapper" title="Figures quantity">
-          <LegoMinifigure width="30" cssClass="svg-fill-bg" />
-          <FigureQuantity quantity={figures.length} />
+        <div className="self-start">
+          <BsPlusSquare
+            onClick={onAddFigure}
+            className="cursor-pointer filter-icon"
+            title="Add figure"
+          />
         </div>
 
-        {!listView && (
-          <BsListColumnsReverse
-            onClick={onHandleView}
-            className="cursor-pointer filter-icon"
-            title="List view"
-          />
-        )}
+        {/* display quantity of minifigures */}
+        <div
+          className="filter-quantity-wprapper self-center"
+          title="Figures quantity"
+        >
+          <LegoMinifigure width="30" cssClass="svg-fill-bg" />
+          <FigureQuantity quantity={quantity} />
+        </div>
 
-        {listView && (
-          <BsGrid
-            onClick={onHandleView}
-            className="cursor-pointer filter-icon"
-            title="Card view"
-          />
-        )}
+        <div className=" self-center">
+          {/* show list view */}
+          {!listView && (
+            <BsListColumnsReverse
+              onClick={onHandleView}
+              className="cursor-pointer filter-icon"
+              title="List view"
+            />
+          )}
+          {/* show card view */}
+          {listView && (
+            <BsGrid
+              onClick={onHandleView}
+              className="cursor-pointer filter-icon"
+              title="Card view"
+            />
+          )}
+        </div>
 
-
-        {expandFilters && (
-          <BsFilterSquareFill
-            onClick={handleExpandCollapseFilters}
-            className="cursor-pointer filter-icon"
-            title="Collapse filters"
-          />
-        )}
-
-        {!expandFilters && (
-          <BsFilterSquare
-            onClick={handleExpandCollapseFilters}
-            className="cursor-pointer filter-icon"
-          ></BsFilterSquare>
-        )}
+        <div className=" self-end">
+          {/* collapse filters */}
+          {expandFilters && (
+            <BsFilterSquareFill
+              onClick={handleExpandCollapseFilters}
+              className="cursor-pointer filter-icon"
+              title="Collapse filters"
+            />
+          )}
+          {/* expand filters */}
+          {!expandFilters && (
+            <BsFilterSquare
+              onClick={handleExpandCollapseFilters}
+              className="cursor-pointer filter-icon"
+              title="Expand filters"
+            ></BsFilterSquare>
+          )}
+        </div>
       </div>
 
       {expandFilters && (
-        <AnimateHeight duration={800} height={height}>
-          <div className="filter-container-expand">
-            <div className="filter-item-wrapper">
+        <div className={cssFilterBackground}>
+          <div className="filter-item-wrapper self-center relative">
+            <div>
               <InputText
-                // onChange={handleChangeSearchingNumber}
-                // onFocus={handleOnFocus}
-                // value={searchingNumber}
-
-                // value={searchTerm}
-                // onChange={handleSearchTermChange}
+                onChange={handleChangeSearchingNumber}
+                value={searchingNumber}
                 name="number"
                 maxLength="8"
                 cssClass="add-figure-input background-color-bg color-primary"
@@ -113,8 +163,84 @@ function Filters({
                 Number
               </InputText>
             </div>
+            {searchingNumber && (
+              <div
+                className="filter-reset-icon cursor-pointer"
+                onClick={handleResetSearchNumber}
+              >
+                <ImCross />
+              </div>
+            )}
           </div>
-        </AnimateHeight>
+          <div className="filter-item-wrapper self-center relative">
+            <div>
+              <InputText
+                onChange={handleChangeSearchingMainName}
+                value={searchingMainName}
+                name="mainName"
+                cssClass="add-figure-input background-color-bg color-primary"
+              >
+                Name
+              </InputText>
+            </div>
+            {searchingMainName && (
+              <div
+                className="filter-reset-icon cursor-pointer"
+                onClick={handleResetSearchMainName}
+              >
+                <ImCross />
+              </div>
+            )}
+          </div>
+          <div className="filter-item-wrapper self-center cursor-pointer relative">
+            <div>
+              <Dropdown
+                cssClass="add-figure-input background-color-bg color-primary"
+                cssPanelClass="add-figure-input select-height background-color-bg color-primary"
+                cssDropdownElement="dropdown-el-primary"
+                name="releaseYear"
+                onChange={handleChangeSearchingReleaseYear}
+                options={yearsList}
+                placeholder="Select year..."
+                value={searchingReleaseYear}
+              >
+                Release Year
+              </Dropdown>
+            </div>
+            {searchingReleaseYear && (
+              <div
+                className="filter-reset-icon cursor-pointer "
+                onClick={handleResetSearchReleaseYear}
+              >
+                <ImCross />
+              </div>
+            )}
+          </div>
+          <div className="filter-item-wrapper self-center cursor-pointer relative">
+            <div>
+              <Dropdown
+                cssClass="add-figure-input background-color-bg color-primary"
+                cssPanelClass="add-figure-input select-height background-color-bg color-primary"
+                cssDropdownElement="dropdown-el-primary"
+                name="series"
+                onChange={handleChangeSearchingSeries}
+                options={seriesList}
+                placeholder="Select year..."
+                value={searchingSeries}
+              >
+                Series
+              </Dropdown>
+            </div>
+            {searchingSeries && (
+              <div
+                className="filter-reset-icon cursor-pointer "
+                onClick={handleResetSearchSeries}
+              >
+                <ImCross />
+              </div>
+            )}
+          </div>
+        </div>
       )}
     </>
   );

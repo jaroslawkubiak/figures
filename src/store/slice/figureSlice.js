@@ -4,13 +4,25 @@ import figuresData from "../../data/figureList.json";
 const figuresSlice = createSlice({
   name: "figures",
   initialState: {
-    searchTerm: "",
+    searchNumber: "",
+    searchMainName: "",
+    searchReleaseYear: "",
+    searchSeries: "",
     data: figuresData,
   },
   reducers: {
     // action creators
-    changeSearchTerm(state, action) {
-      state.searchTerm = action.payload;
+    changeSearchNumber(state, action) {
+      state.searchNumber = action.payload;
+    },
+    changeSearchMainName(state, action) {
+      state.searchMainName = action.payload;
+    },
+    changeSearchReleaseYear(state, action) {
+      state.searchReleaseYear = action.payload;
+    },
+    changeSearchSeries(state, action) {
+      state.searchSeries = action.payload;
     },
     addFigure(state, action) {
       state.data.unshift({
@@ -57,6 +69,13 @@ const figuresSlice = createSlice({
   },
 });
 
-export const { changeSearchTerm, addFigure, removeFigure, editFigure } =
-  figuresSlice.actions;
+export const {
+  changeSearchNumber,
+  changeSearchMainName,
+  changeSearchReleaseYear,
+  changeSearchSeries,
+  addFigure,
+  removeFigure,
+  editFigure,
+} = figuresSlice.actions;
 export const figuresReducers = figuresSlice.reducer;

@@ -30,7 +30,6 @@ import {
 function FigureAdd({ onClose }) {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
   const svgBg = "svg-fill-primary";
 
   // add figure form submit
@@ -39,7 +38,7 @@ function FigureAdd({ onClose }) {
     setIsSubmit(true);
     setFormErrors(validate(currentFigure));
   };
-console.log('isSubmit=', isSubmit);
+
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       // saveImageToHdd(currentFigure.number);
@@ -103,7 +102,6 @@ console.log('isSubmit=', isSubmit);
   // handle change to dropdown menu list
   const handleChangeSelect = (value, name) => {
     if (isSubmit) setFormErrors({ ...formErrors, [name]: null });
-
     switch (name) {
       case "weapon":
         dispatch(changeWeapon(value));
@@ -215,6 +213,7 @@ console.log('isSubmit=', isSubmit);
             <Dropdown
               cssClass="add-figure-input"
               cssPanelClass="add-figure-input select-height"
+              cssDropdownElement="dropdown-el"
               name="releaseYear"
               onChange={handleChangeSelect}
               options={yearsList}
@@ -231,6 +230,7 @@ console.log('isSubmit=', isSubmit);
             <Dropdown
               cssClass="add-figure-input"
               cssPanelClass="add-figure-input select-height"
+              cssDropdownElement="dropdown-el"
               name="series"
               onChange={handleChangeSelect}
               options={seriesList}
@@ -270,6 +270,7 @@ console.log('isSubmit=', isSubmit);
             <Dropdown
               cssClass="add-figure-input"
               cssPanelClass="add-figure-input select-height"
+              cssDropdownElement="dropdown-el"
               name="weapon"
               onChange={handleChangeSelect}
               options={weaponList}

@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import {
   figuresReducers,
-  changeSearchTerm,
+  changeSearchNumber,
+  changeSearchMainName,
+  changeSearchReleaseYear,
+  changeSearchSeries,
   addFigure,
   editFigure,
   removeFigure,
@@ -51,7 +54,10 @@ export {
   removeFigure,
   changeNumber,
   changeMainName,
-  changeSearchTerm,
+  changeSearchNumber,
+  changeSearchMainName,
+  changeSearchReleaseYear,
+  changeSearchSeries,
   changeReleaseYear,
   changeAdditionalName,
   changeBricklink,
