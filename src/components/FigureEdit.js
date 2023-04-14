@@ -34,8 +34,7 @@ function FigureEdit({ onClose }) {
   const [isSubmit, setIsSubmit] = useState(false);
   const [deleteFigure, setDeleteFigure] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
-
-  console.log("deleteFigure=", deleteFigure);
+  const [figureToDelete, setFigureToDelete] = useState(false);
 
   const dispatch = useDispatch();
   const figure = useSelector(state => {
@@ -125,11 +124,15 @@ function FigureEdit({ onClose }) {
     }
   };
 
+  const onConfirmDelete = () => {
+    setShowConfirmModal(false);
+    setDeleteFigure(true);
+  };
+
   useEffect(
-    fig => {
+    () => {
       if (deleteFigure) {
-        console.log("usuwam figa=", fig);
-        dispatch(removeFigure(fig.id));
+        dispatch(removeFigure(figureToDelete.id));
         onClose();
       }
     },
@@ -138,8 +141,8 @@ function FigureEdit({ onClose }) {
 
   //deleting figure
   const handleDelete = fig => {
-    console.log("showing confirm modal=");
     setShowConfirmModal(true);
+    setFigureToDelete(fig);
   };
 
   // after error - when on focus input - clear error message
@@ -150,7 +153,13 @@ function FigureEdit({ onClose }) {
   return (
     <div className="add-figure-wrapper">
       <div className="add-figure-container edit-figure-border">
-        {/* <ConfirmModal figure={figure.mainName}/> */}
+        {showConfirmModal && (
+          <ConfirmModal
+            figure={figure.mainName}
+            onClose={onClose}
+            onClick={onConfirmDelete}
+          />
+        )}
         <div
           className="add-figure-close-btn background-color-edit"
           onClick={() => onClose()}
@@ -327,15 +336,12 @@ function FigureEdit({ onClose }) {
           <div className="grid-full-line">
             <Button cssClass="button-edit">Save</Button>
           </div>
-          <div className="grid-full-line">
-            <Button
-              cssClass="button-delete"
-              onClick={() => handleDelete(figure)}
-            >
-              delete minifigure
-            </Button>
-          </div>
         </form>
+        <div className="grid-full-line grid-center">
+          <Button cssClass="button-delete" onClick={() => handleDelete(figure)}>
+            delete minifigure
+          </Button>
+        </div>
       </div>
     </div>
   );

@@ -24,7 +24,6 @@ body {
   background-color: var(--bg-color);
   color: var(--primary-color);
 }
-
 .figure-container-card {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -37,7 +36,6 @@ body {
   padding: 5px;
   gap: 5px;
 }
-
 .overflow-hidden {
   overflow: hidden;
 }
@@ -52,6 +50,13 @@ body {
 
 .cursor-pointer {
   cursor: pointer;
+}
+
+.grid-center {
+  display: grid;
+  width: 100%;
+  max-height: 100%;
+  place-items: center;
 }
 
 .background-color-primary {

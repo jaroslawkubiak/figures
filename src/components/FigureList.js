@@ -79,7 +79,6 @@ function FigureList({ listView }) {
 
   //edit figure
   const handleEdit = fig => {
-    console.log("edytuje figa");
     setShowFigureEditForm(true);
     dispatch(editId(fig.id));
     dispatch(editNumber(fig.number));
