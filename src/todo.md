@@ -17,17 +17,17 @@ figure add:
 [ x ] input field for bricklink price
 
 figure edit:
-[ ] all inputs are eddited
-[ ] delete figure
+[ x ] all inputs are eddited
+[ x ] delete figure
 
 figure list:
 [ x ] after click on img - show on full screen
-[ ] after clicking on name - edit figure
+[ x ] after clicking on name - edit figure
 [ ] on PC view show more info, like: additional name, weapon, price, series etc.
 
 Filters:
-[ ] searching by: name, number: change with every typed character - useState
-[ ] searching list by: series, year, weapon, label,
+[ x ] searching by: name, number: change with every typed character - useState
+[ x ] searching list by: series, year,
 [ ] sorting by: series, number, main name, additional name, price. ASC and DESC
 [ ] reset all filters button
 

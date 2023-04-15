@@ -1,12 +1,12 @@
 :root {
-  /* --bg-color: #ffe81f;
-  --primary-color: #000000; */
   --primary-color: #ffe81f;
+  --secondary-color: #ffffff;
   --bg-color: #0e0e16;
   --error-color: crimson;
   --edit-color: rgb(253, 140, 83);
   --darth-color: #cb0407;
   --gray-color: #8a8b8d;
+  --grogu-color: #90c53d;
 }
 
 @font-face {
@@ -52,9 +52,17 @@ body {
   cursor: pointer;
 }
 
-.z-index-high{
-  z-index: 9999999999l
+.text-underline {
+  text-decoration: underline;
 }
+
+.z-index-high {
+  z-index: 9999;
+}
+.z-index-low {
+  z-index: 1;
+}
+
 .grid-center {
   display: grid;
   width: 100%;
@@ -75,6 +83,9 @@ body {
 .background-color-primary {
   background-color: var(--primary-color) !important;
 }
+.background-color-secondary {
+  background-color: var(--secondary-color) !important;
+}
 .background-color-bg {
   background-color: var(--bg-color) !important;
 }
@@ -93,6 +104,12 @@ body {
 
 .color-primary {
   color: var(--primary-color) !important;
+}
+.color-secondary {
+  color: var(--secondary-color) !important;
+}
+.color-grogu {
+  color: var(--grogu-color) !important;
 }
 .color-bg {
   color: var(--bg-color) !important;
@@ -241,4 +258,30 @@ body {
   right: -6px;
   font-size: 10px;
   color: var(--error-color);
+}
+
+.margin-top-1 {
+  margin-top: 1em;
+}
+
+.margin-top-2 {
+  margin-top: 2em;
+}
+
+.margin-top-3 {
+  margin-top: 3em;
+}
+
+.margin-top-4 {
+  margin-top: 4em;
+}
+
+/* phones in landscape mode */
+@media screen and (orientation: landscape) and (max-width: 814px) {
+  .figure-container-card {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media screen and (width > 845px) {
 }

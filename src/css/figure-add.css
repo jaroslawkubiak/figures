@@ -38,13 +38,11 @@
   position: relative;
   width: 100%;
   display: grid;
-
   height: var(--input-height);
 }
 
 .add-figure-input-label {
   position: relative;
-  z-index: 55;
   font-size: 8px;
   letter-spacing: 1px;
   padding-left: 10px;
@@ -233,7 +231,7 @@ input[type="checkbox"]:checked::after {
   cursor: pointer;
   position: relative;
   z-index: 999;
-  font-size: 6px;
+  font-size: 8px;
 }
 
 .dropdown-el:not(:last-child) {
@@ -265,7 +263,7 @@ input[type="checkbox"]:checked::after {
 .select-height {
   max-height: 200px;
   overflow: auto;
-  z-index: 99999;
+  z-index: 9999999;
 }
 ::-webkit-scrollbar {
   width: 14px; /* Total width including `border-width` of scrollbar thumb */

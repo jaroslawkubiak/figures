@@ -40,35 +40,6 @@
   margin-bottom: 3px;
 }
 
-/* .filter-expand-animation {
-  animation: expandFilters 1s forwards;
-}
-
-@keyframes expandFilters {
-  0% {
-    height: 0;
-    opacity: 0;
-  }
-  100% {
-    height: 100px;
-    opacity: 1;
-  }
-} */
-
-/* .filter-collapse-animation {
-  animation: collapseFilters 3s backwards;
-}
-
-@keyframes collapseFilters {
-  0% {
-    height: 100px;
-    opacity: 1;
-  }
-  100% {
-    height: 0;
-    opacity: 0;
-  }
-} */
 
 .filter-container-expand::after,
 .filter-container-expand::before {

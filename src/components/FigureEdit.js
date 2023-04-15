@@ -337,9 +337,9 @@ function FigureEdit({ onClose }) {
             <Button cssClass="button-edit">Save</Button>
           </div>
         </form>
-        <div className="grid-full-line grid-center">
+        <div className="grid-full-line grid-center margin-top-2">
           <Button cssClass="button-delete" onClick={() => handleDelete(figure)}>
-            delete minifigure
+            delete
           </Button>
         </div>
       </div>

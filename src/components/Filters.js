@@ -79,16 +79,17 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
     ? "filter-container background-color-gray"
     : "filter-container background-color-primary";
 
-  // const cssFilterBackground = listView
-  //   ? "background-color-gray filter-container-expand filter-expand-animation"
-  //   : "background-color-primary filter-container-expand filter-expand-animation";
+  const cssFilterBackground = listView
+    ? "background-color-gray filter-container-expand"
+    : "background-color-primary filter-container-expand";
 
-  let cssFilterBackground = "filter-container-expand";
-  if (listView) cssFilterBackground += " background-color-gray";
-  else cssFilterBackground += " background-color-primary";
-  if (expandFilters) cssFilterBackground += " filter-expand-animation";
-  else cssFilterBackground += " filter-collapse-animation";
+  // let cssFilterBackground = "filter-container-expand";
+  // if (listView) cssFilterBackground += " background-color-gray";
+  // else cssFilterBackground += " background-color-primary";
+  // if (expandFilters) cssFilterBackground += " filter-expand-animation";
+  // else cssFilterBackground += " filter-collapse-animation";
 
+  const fillColor = "#0e0e16";
 
   return (
     <>
@@ -96,6 +97,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
         <div className="self-start">
           <BsPlusSquare
             onClick={onAddFigure}
+            fill={fillColor}
             className="cursor-pointer filter-icon"
             title="Add figure"
           />
@@ -107,13 +109,14 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
           title="Figures quantity"
         >
           <LegoMinifigure width="30" cssClass="svg-fill-bg" />
-          <FigureQuantity quantity={quantity} />
+          <FigureQuantity quantity={quantity} fillColor={fillColor} />
         </div>
 
         <div className=" self-center">
           {/* show list view */}
           {!listView && (
             <BsListColumnsReverse
+              fill={fillColor}
               onClick={onHandleView}
               className="cursor-pointer filter-icon"
               title="List view"
@@ -122,6 +125,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
           {/* show card view */}
           {listView && (
             <BsGrid
+              fill={fillColor}
               onClick={onHandleView}
               className="cursor-pointer filter-icon"
               title="Card view"
@@ -133,6 +137,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
           {/* collapse filters */}
           {expandFilters && (
             <BsFilterSquareFill
+              fill={fillColor}
               onClick={handleExpandCollapseFilters}
               className="cursor-pointer filter-icon"
               title="Collapse filters"
@@ -141,6 +146,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
           {/* expand filters */}
           {!expandFilters && (
             <BsFilterSquare
+              fill={fillColor}
               onClick={handleExpandCollapseFilters}
               className="cursor-pointer filter-icon"
               title="Expand filters"
@@ -225,7 +231,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
                 name="series"
                 onChange={handleChangeSearchingSeries}
                 options={seriesList}
-                placeholder="Select year..."
+                placeholder="Select series..."
                 value={searchingSeries}
               >
                 Series
