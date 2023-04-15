@@ -109,7 +109,9 @@ body {
 .color-gray {
   color: var(--gray-color) !important;
 }
-
+.letter-spacing {
+  letter-spacing: 2px;
+}
 .button {
   all: unset;
   position: relative;

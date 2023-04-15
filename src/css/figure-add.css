@@ -52,8 +52,7 @@
 
 .add-figure-heading {
   letter-spacing: 2px;
-    font-size: 0.8em;
-
+  font-size: 0.8em;
 }
 
 .grid-2-left {
@@ -78,7 +77,7 @@
 
 .grid-height-3 {
   height: 100%;
-  grid-row: 2/ span 5;
+  grid-row: 2 / span 5;
   grid-column: 3/5;
 }
 
@@ -110,7 +109,6 @@
     0% var(--cut-height)
   );
 }
-
 
 .add-figure-close-btn {
   display: grid;
@@ -228,7 +226,8 @@ input[type="checkbox"]:checked::after {
   transform: translateY(-50%);
 }
 
-.dropdown-el, .dropdown-el-primary {
+.dropdown-el,
+.dropdown-el-primary {
   padding: 3px;
   padding-left: 6px;
   cursor: pointer;
@@ -237,13 +236,11 @@ input[type="checkbox"]:checked::after {
   font-size: 6px;
 }
 
-
 .dropdown-el:not(:last-child) {
   border-bottom: 1px solid var(--bg-color);
 }
-.dropdown-el-primary:not(:last-child){
+.dropdown-el-primary:not(:last-child) {
   border-bottom: 1px solid var(--primary-color);
-
 }
 .dropdown-el:hover::after {
   content: "";
@@ -301,5 +298,3 @@ input[type="checkbox"]:checked::after {
 .edit-figure-border {
   border: 2px solid var(--edit-color);
 }
-
-

@@ -26,6 +26,7 @@ const Modal = ({
         onClick={handleSwapRight}
         className="modal-arrow-right modal-arrow cursor-pointer"
       />
+      
       <div className="modal-container">
         <div
           className="modal-next-image cursor-pointer"

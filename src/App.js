@@ -37,7 +37,6 @@ function App() {
             searchReleaseYearConditions && searchSeriesConditions
           );
         }
-        // (searchReleaseYear && fig.releaseYear === searchReleaseYear)
       );
     }
   );
@@ -52,7 +51,7 @@ function App() {
         quantity={quantity}
       />
       {showFigureAddForm && <FigureAdd onClose={handleAddFigureForm} />}
-      <FigureList listView={listView} figures={figures} />
+      <FigureList listView={listView} figures={figures}/>
     </>
   );
 }

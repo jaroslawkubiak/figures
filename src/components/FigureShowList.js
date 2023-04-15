@@ -22,19 +22,22 @@ function FigureShowList({ figure, clickedImage, onModal, onEdit }) {
       </div>
       <div className="list-wrapper">
         <div
-          className="list-item cursor-pointer"
+          className="list-item letter-spacing cursor-pointer"
           onClick={() => onEdit(figure)}
         >
-          <h3>{figure.mainName}</h3>{" "}
+          <h2>{figure.mainName}</h2>{" "}
         </div>
         <div className="list-item">
-          <h2>{figure.additionalName}</h2>{" "}
+          <h3>{figure.additionalName}</h3>{" "}
         </div>
         <div className="list-item">
           {figure.number} - {figure.releaseYear}
         </div>
         <div className="list-item">Series : {figure.series}</div>
-        <div className="list-item">Price : {figure.purchasePrice} zł</div>
+        <div className="list-price-tag-wrapper">
+          <span className="list-price">{figure.purchasePrice} zł</span>
+        </div>
+        <div className="list-item">Purchase Date : {figure.purchaseDate}</div>
       </div>
     </div>
   );

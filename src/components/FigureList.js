@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import Modal from "./Modal";
+import { ImArrowUp2 } from "react-icons/im";
 import FigureShowCard from "./FigureShowCard";
 import FigureShowList from "./FigureShowList";
 import {
@@ -87,6 +88,7 @@ function FigureList({ listView, figures }) {
   };
 
   const [showFigureEditForm, setShowFigureEditForm] = useState(false);
+  const [positionFromTop, setPositionFromTop] = useState(0);
   const handleCloseEditFigureForm = () => setShowFigureEditForm(false);
 
   const FigureEditComponent = (
@@ -117,9 +119,20 @@ function FigureList({ listView, figures }) {
     }
   });
 
+  const handleGoUp = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+
+  function update() {
+    let rect = document.getElementById("figContainer").getBoundingClientRect();
+    setPositionFromTop(rect.y);
+  }
+  document.addEventListener("scroll", update);
+
   return (
     <>
       <div
+        id="figContainer"
         className={
           listView
             ? "figure-container-list background-color-gray"
@@ -127,8 +140,9 @@ function FigureList({ listView, figures }) {
         }
       >
         {showFigureEditForm && FigureEditComponent}
-
         {renderedFigures}
+
+        {(positionFromTop < -1500) && <ImArrowUp2 onClick={handleGoUp} className="arrow-up cursor-pointer" />}
       </div>
       {clickedImage && (
         <Modal

@@ -125,9 +125,10 @@
 }
 
 .list-container {
+  position: relative;
   color: var(--bg-color);
   font-family: star_wars;
-  padding: 5px 35px;
+  padding: 5px 25px;
   height: 100px;
   display: flex;
   align-items: center;
@@ -158,7 +159,7 @@
 }
 
 .list-wrapper {
-  position: relative;
+  /* position: relative; */
   display: flex;
   flex-direction: column;
   align-self: self-start;
@@ -167,10 +168,6 @@
 }
 .list-item {
   display: flex;
-}
-
-.list-item h2 {
-  letter-spacing: 2px;
 }
 
 .list-img {
@@ -188,3 +185,50 @@
   max-height: 100%;
   max-width: 100%;
 }
+
+.list-price {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: -2px;
+  left: 20px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  color: var(--darth-color);
+  font-size: 1.2em;
+}
+
+.list-price-tag-wrapper {
+  position: absolute;
+  top: 40px;
+  right: 0px;
+  transform: rotate(45deg);
+  width: 80px;
+  height: 40px;
+  background-color: rgb(0, 0, 0);
+  clip-path: polygon(30% 0, 100% 0%, 100% 100%, 30% 100%, 0 80%, 0 20%);
+}
+.list-price-tag-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  background-color: #d9d0c4;
+}
+
+.arrow-up{
+  z-index: 99;
+  position: fixed;
+  font-size: 3em;
+  fill: rgb(0, 0, 0);
+  background-color: var(--primary-color);
+  clip-path: polygon(0 22%, 22% 0, 100% 0, 100% 78%, 78% 100%, 0% 100%, 0 0);
+  bottom: 10px;
+  right: 10px;
+}
+

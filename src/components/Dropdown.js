@@ -63,7 +63,7 @@ function Dropdown({
   });
 
   return (
-    <div className="relative">
+    <>
       <label className="add-figure-input-label">{children}</label>
       <div ref={divEl} className="input-wrapper">
         <Panel onClick={handleClick} className={cssClass}>
@@ -75,7 +75,7 @@ function Dropdown({
 
         {isOpen && <Panel className={cssPanelClass}>{renderedOptions}</Panel>}
       </div>
-    </div>
+    </>
   );
 }
 //select-height
