@@ -1,5 +1,7 @@
 function InputNumber({
   cssClass,
+  cssClassLabel,
+
   maxLength,
   name,
   number,
@@ -11,7 +13,7 @@ function InputNumber({
 }) {
   return (
     <>
-      <label className="add-figure-input-label">{children}</label>
+      <label className={cssClassLabel}>{children}</label>
       <div className="input-wrapper">
         <input
           type="text"

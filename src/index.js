@@ -1,4 +1,5 @@
 import "./css/index.css";
+import "./css/generic.css";
 import "./css/svg.css";
 import React from "react";
 import ReactDOM from "react-dom/client";

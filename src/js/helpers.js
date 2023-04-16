@@ -18,14 +18,14 @@ export const onlyNumbersRegex = /^-?\d*(?:[.,]\d{0,2})?$/;
       errors.number = inputFieldNotValid("min 6 char");
     if (values.mainName === "")
       errors.mainName = inputFieldNotValid("required");
-    // if (values.purchasePrice < 0 || values.purchasePrice === "")
-    //   errors.purchasePrice = inputFieldNotValid("required");
-    // if (values.releaseYear === "")
-    //   errors.releaseYear = inputFieldNotValid("required");
-    // if (values.purchaseDate === "")
-    //   errors.purchaseDate = inputFieldNotValid("required");
-    // if (values.series === "") errors.series = inputFieldNotValid("required");
-    // if (values.weapon === "") errors.weapon = inputFieldNotValid("required");
+    if (values.purchasePrice < 0 || values.purchasePrice === "")
+      errors.purchasePrice = inputFieldNotValid("required");
+    if (values.releaseYear === "")
+      errors.releaseYear = inputFieldNotValid("required");
+    if (values.purchaseDate === "")
+      errors.purchaseDate = inputFieldNotValid("required");
+    if (values.series === "") errors.series = inputFieldNotValid("required");
+    if (values.weapon === "") errors.weapon = inputFieldNotValid("required");
     return errors;
   };
 

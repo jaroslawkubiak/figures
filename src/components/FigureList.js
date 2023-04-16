@@ -137,7 +137,7 @@ function FigureList({ listView, figures }) {
         id="figContainer"
         className={
           listView
-            ? "figure-container-list background-color-secondary"
+            ? "figure-container-list background-color-bg-light"
             : "figure-container-card background-color-bg"
         }
       >

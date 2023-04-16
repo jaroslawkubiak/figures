@@ -6,7 +6,9 @@ import Dropdown from "./Dropdown";
 import InputCheckbox from "./InputCheckbox";
 import FigurePhoto from "./FigurePhoto";
 import { useState, useEffect } from "react";
+
 import { ImCross } from "react-icons/im";
+import { BsPlus } from "react-icons/bs";
 import seriesList from "../data/seriesList.json";
 import weaponList from "../data/weaponList.json";
 import saveImageToHdd from "../js/saveImageToHdd";
@@ -31,6 +33,7 @@ function FigureAdd({ onClose }) {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const svgBg = "svg-fill-primary";
+  const cssClassLabel = "add-figure-input-label color-primary";
 
   // add figure form submit
   const handleSubmit = e => {
@@ -135,7 +138,8 @@ function FigureAdd({ onClose }) {
           {/* Number */}
           <div className="add-figure-div grid-2-left">
             <InputText
-              cssClass="add-figure-input"
+              cssClass="add-figure-input background-color-primary color-bg"
+              cssClassLabel={cssClassLabel}
               maxLength="8"
               name="number"
               onChange={handleChangeInput}
@@ -154,7 +158,8 @@ function FigureAdd({ onClose }) {
           {/* Main name */}
           <div className="add-figure-div grid-2-left">
             <InputText
-              cssClass="add-figure-input"
+              cssClass="add-figure-input background-color-primary color-bg"
+              cssClassLabel={cssClassLabel}
               maxLength="22"
               name="mainName"
               onChange={handleChangeInput}
@@ -169,7 +174,8 @@ function FigureAdd({ onClose }) {
           {/* Additional name */}
           <div className="add-figure-div grid-2-left">
             <InputText
-              cssClass="add-figure-input"
+              cssClass="add-figure-input background-color-primary color-bg"
+              cssClassLabel={cssClassLabel}
               maxLength="22"
               name="additionalName"
               onChange={handleChangeInput}
@@ -181,7 +187,8 @@ function FigureAdd({ onClose }) {
           {/* Purchase Price */}
           <div className="add-figure-div grid-2-left">
             <InputNumber
-              cssClass="add-figure-input"
+              cssClass="add-figure-input background-color-primary color-bg"
+              cssClassLabel={cssClassLabel}
               maxLength="7"
               name="purchasePrice"
               number="number"
@@ -197,7 +204,8 @@ function FigureAdd({ onClose }) {
           {/* Bricklink Price */}
           <div className="add-figure-div grid-2-left">
             <InputNumber
-              cssClass="add-figure-input"
+              cssClass="add-figure-input background-color-primary color-bg"
+              cssClassLabel={cssClassLabel}
               maxLength="7"
               number="number"
               name="bricklinkPrice"
@@ -211,9 +219,10 @@ function FigureAdd({ onClose }) {
           {/* Release Year */}
           <div className="add-figure-div grid-2-left cursor-pointer">
             <Dropdown
-              cssClass="add-figure-input"
-              cssPanelClass="add-figure-input select-height"
+              cssDropdown="add-figure-input background-color-primary color-bg"
+              cssPanelClass="add-figure-input background-color-primary color-bg select-height"
               cssDropdownElement="dropdown-el"
+              cssClassLabel={cssClassLabel}
               name="releaseYear"
               onChange={handleChangeSelect}
               options={yearsList}
@@ -228,9 +237,10 @@ function FigureAdd({ onClose }) {
           {/* Series */}
           <div className="add-figure-div grid-2-right cursor-pointer">
             <Dropdown
-              cssClass="add-figure-input"
-              cssPanelClass="add-figure-input select-height"
+              cssDropdown="add-figure-input background-color-primary color-bg"
+              cssPanelClass="add-figure-input background-color-primary color-bg select-height"
               cssDropdownElement="dropdown-el"
+              cssClassLabel={cssClassLabel}
               name="series"
               onChange={handleChangeSelect}
               options={seriesList}
@@ -245,7 +255,8 @@ function FigureAdd({ onClose }) {
           {/* Bricklink */}
           <div className="add-figure-div grid-3-left">
             <InputText
-              cssClass="add-figure-input"
+              cssClass="add-figure-input background-color-primary color-bg"
+              cssClassLabel={cssClassLabel}
               name="bricklink"
               onChange={handleChangeInput}
               value={currentFigure.bricklink}
@@ -258,6 +269,7 @@ function FigureAdd({ onClose }) {
             <InputCheckbox
               cssClass="add-figure-checkbox-div grid-center"
               cssCheckboxClass="cursor-pointer"
+              cssClassLabel={cssClassLabel}
               name="label"
               onChange={handleChangeInput}
               checked={currentFigure.label}
@@ -268,9 +280,10 @@ function FigureAdd({ onClose }) {
           {/* Weapon */}
           <div className="add-figure-div grid-2-left cursor-pointer">
             <Dropdown
-              cssClass="add-figure-input"
-              cssPanelClass="add-figure-input select-height"
+              cssDropdown="add-figure-input background-color-primary color-bg"
+              cssPanelClass="add-figure-input background-color-primary color-bg select-height"
               cssDropdownElement="dropdown-el"
+              cssClassLabel={cssClassLabel}
               name="weapon"
               onChange={handleChangeSelect}
               options={weaponList}
@@ -285,7 +298,8 @@ function FigureAdd({ onClose }) {
           {/* Purchase date */}
           <div className="add-figure-div grid-2-right">
             <InputText
-              cssClass="add-figure-input"
+              cssClass="add-figure-input background-color-primary color-bg"
+              cssClassLabel={cssClassLabel}
               maxLength="10"
               name="purchaseDate"
               onChange={handleChangeInput}
@@ -298,7 +312,10 @@ function FigureAdd({ onClose }) {
             {formErrors.purchaseDate}
           </div>
           <div className="grid-full-line">
-            <Button cssClass="button">Add</Button>
+            <Button cssClass="btn btn-add">
+              <BsPlus className="btn-icon" />
+              Add
+            </Button>
           </div>
         </form>
       </div>

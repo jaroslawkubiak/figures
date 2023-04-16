@@ -1,5 +1,6 @@
 function InputCheckbox({
   cssCheckboxClass,
+  cssClassLabel,
   cssClass,
   checked,
   name,
@@ -9,7 +10,7 @@ function InputCheckbox({
   const isChecked = checked ? "checked" : "";
   return (
     <>
-      <label className="add-figure-input-label">{children}</label>
+      <label className={cssClassLabel}>{children}</label>
       <div className="input-wrapper">
         <div className={cssClass}>
           <input

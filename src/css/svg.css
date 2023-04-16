@@ -17,59 +17,25 @@
 .svg-fill-bg {
   fill: var(--bg-color);
 }
+
+.svg-fill-bg:hover {
+  fill: var(--error-color);
+}
+
+
 .svg-fill-error {
   fill: var(--error-color);
 }
 .svg-fill-edit {
   fill: var(--edit-color);
 }
-.svg-fill-darth {
-  fill: var(--darth-color);
-}
-
 .svg-fill-gray {
   fill: var(--gray-color);
 }
+.svg-fill-r2d2-primary {
+  fill: var(--r2d2-primary-color);
+}
+.svg-fill-lego-quantity {
+  fill: var(--bg-color);
+}
 
-.svg-font-size-2 {
-  font-size: 2em;
-}
-.svg-font-size-2-2 {
-  font-size: 2.2em;
-}
-.svg-font-size-2-4 {
-  font-size: 2.4em;
-}
-.svg-font-size-2-6 {
-  font-size: 2.6em;
-}
-.svg-font-size-2-8 {
-  font-size: 2.8em;
-}
-.svg-font-size-3 {
-  font-size: 3em;
-}
-.svg-font-size-3-2 {
-  font-size: 3.2em;
-}
-.svg-font-size-4 {
-  font-size: 4em;
-}
-.svg-font-size-5 {
-  font-size: 5em;
-}
-.svg-font-size-6 {
-  font-size: 6em;
-}
-.svg-font-size-7 {
-  font-size: 7em;
-}
-.svg-font-size-8 {
-  font-size: 8em;
-}
-.svg-font-size-9 {
-  font-size: 9em;
-}
-.svg-font-size-10 {
-  font-size: 10em;
-}

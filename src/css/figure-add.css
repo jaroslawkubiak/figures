@@ -7,7 +7,7 @@
 .add-figure-wrapper {
   position: fixed;
   inset: 0;
-  background-color: rgba(26, 26, 26, 0.849);
+  background-color: var(--bg-color-modal); 
   z-index: 3;
 }
 
@@ -120,7 +120,10 @@
   background-color: var(--primary-color);
   cursor: pointer;
   clip-path: polygon(0 22%, 22% 0, 100% 0, 100% 78%, 78% 100%, 0% 100%, 0 0);
+  
 }
+
+
 
 .input-wrapper {
   position: relative;
@@ -135,9 +138,7 @@
   right: 0;
   height: auto;
   font-size: 8px;
-  color: var(--bg-color);
   padding: 0px 10px;
-  background-color: var(--primary-color);
   --cut-height: 6px;
   clip-path: polygon(
     calc(100% - var(--cut-height)) 0%,
@@ -232,14 +233,9 @@ input[type="checkbox"]:checked::after {
   position: relative;
   z-index: 999;
   font-size: 8px;
+  line-height: 2;
 }
 
-.dropdown-el:not(:last-child) {
-  border-bottom: 1px solid var(--bg-color);
-}
-.dropdown-el-primary:not(:last-child) {
-  border-bottom: 1px solid var(--primary-color);
-}
 .dropdown-el:hover::after {
   content: "";
   position: absolute;
@@ -247,7 +243,7 @@ input[type="checkbox"]:checked::after {
   top: -1px;
   bottom: -1px;
   left: -5px;
-  background-color: var(--bg-color);
+  background-color: var(--error-color);
 }
 
 .dropdown-el-primary:hover::after {
@@ -257,7 +253,7 @@ input[type="checkbox"]:checked::after {
   top: -1px;
   bottom: -1px;
   left: -5px;
-  background-color: var(--primary-color);
+  background-color: var(--error-color);
 }
 
 .select-height {
@@ -266,7 +262,7 @@ input[type="checkbox"]:checked::after {
   z-index: 9999999;
 }
 ::-webkit-scrollbar {
-  width: 14px; /* Total width including `border-width` of scrollbar thumb */
+  width: 10px; /* Total width including `border-width` of scrollbar thumb */
 }
 
 ::-webkit-scrollbar-thumb {
@@ -274,7 +270,7 @@ input[type="checkbox"]:checked::after {
   border: 0.5em solid rgba(0, 0, 0, 0);
   background-clip: padding-box;
   -webkit-border-radius: 10px;
-  background-color: var(--bg-color);
+  background-color: var(--error-color);
 }
 
 ::-webkit-scrollbar-button {

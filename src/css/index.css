@@ -1,14 +1,28 @@
 :root {
-  --primary-color: #ffe81f;
-  --primary-color: #b0b0b0;
+  /* 
+  --primary-color: #ffe81f; original color from star wars logo 
+  --r2d2-primary-color: #274294; original color from r2d2 body
+  --r2d2-secondary-color: #ae3237; original color from r2d2 body
+  */
+
+  --primary-color: #ffd43b;
   --secondary-color: #ffffff;
-  --bg-color: #0e0e16;
-  --error-color: crimson;
-  --edit-color: rgb(253, 140, 83);
-  --darth-color: #cb0407;
+  --bg-light-color: #f3f3f3;
+  --bg-color: #212529;
   --gray-color: #8a8b8d;
-  --r2d2-primary-color: #2f427c;
+  --error-color: #d31013;
+  --edit-color: #ffa94d;
+  --r2d2-primary-color: #274294;
   --r2d2-secondary-color: #ae3237;
+  --r2d2-head-color: #bbbfbf;
+
+/* lighter version for hover state */
+  --primary-color-hover: #fcc419;
+  --error-color-hover: #f03e3e;
+  --edit-color-hover: #ffc078;
+
+/* less opacity for bg modals*/
+  --bg-color-modal: #0f1010f1;
 }
 
 @font-face {
@@ -36,14 +50,14 @@ body {
 .background-color-bg {
   background-color: var(--bg-color) !important;
 }
+.background-color-bg-light {
+  background-color: var(--bg-light-color) !important;
+}
 .background-color-error {
   background-color: var(--error-color) !important;
 }
 .background-color-edit {
   background-color: var(--edit-color) !important;
-}
-.background-color-darth {
-  background-color: var(--darth-color) !important;
 }
 .background-color-gray {
   background-color: var(--gray-color) !important;
@@ -54,7 +68,9 @@ body {
 .background-color-r2d2-secondary {
   background-color: var(--r2d2-secondary-color) !important;
 }
-
+.background-color-r2d2-head {
+  background-color: var(--r2d2-head-color) !important;
+}
 
 .color-primary {
   color: var(--primary-color) !important;
@@ -71,9 +87,6 @@ body {
 .color-edit {
   color: var(--edit-color) !important;
 }
-.color-darth {
-  color: var(--darth-color) !important;
-}
 .color-gray {
   color: var(--gray-color) !important;
 }
@@ -83,18 +96,9 @@ body {
 .color-r2d2-secondary {
   color: var(--r2d2-secondary-color) !important;
 }
-
-
-
-
-
-
-
-
-
-
-
-
+.color-r2d2-head {
+  color: var(--r2d2-head-color) !important;
+}
 
 
 
@@ -107,34 +111,10 @@ body {
   display: flex;
   flex-direction: column;
   justify-items: center;
+  margin: 0 auto;
+  width: 95%;
   padding: 5px;
   gap: 5px;
-}
-.overflow-hidden {
-  overflow: hidden;
-}
-
-.relative {
-  position: relative;
-}
-
-.hidden {
-  display: none;
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-
-.text-underline {
-  text-decoration: underline;
-}
-
-.z-index-high {
-  z-index: 9999;
-}
-.z-index-low {
-  z-index: 1;
 }
 
 .grid-center {
@@ -143,30 +123,35 @@ body {
   max-height: 100%;
   place-items: center;
 }
-.self-center {
-  justify-self: center;
-}
-.self-end {
-  justify-self: end;
-}
-
-.self-start {
-  justify-self: start;
-}
 
 
 
-
-.letter-spacing {
-  letter-spacing: 2px;
-}
-.button {
+.btn {
   all: unset;
   position: relative;
   z-index: 1;
   font-family: star_wars;
   font-size: 0.6em;
-  letter-spacing: 0.2rem;
+  letter-spacing: 0.1rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 15px;
+  margin: 5px;
+  cursor: pointer;
+
+  --cut-height: 6px;
+  clip-path: polygon(
+    calc(100% - var(--cut-height)) 0%,
+    100% var(--cut-height),
+    100% 100%,
+    var(--cut-height) 100%,
+    0% calc(100% - var(--cut-height)),
+    0 0
+  );
+}
+
+.btn-add {
 
   padding: 5px 15px;
   margin: 5px;
@@ -185,54 +170,31 @@ body {
   );
 }
 
-.button-edit {
-  all: unset;
-  position: relative;
-  z-index: 1;
-  font-family: star_wars;
-  font-size: 0.6em;
-  letter-spacing: 0.2rem;
-
-  padding: 5px 15px;
-  margin: 5px;
-  background-color: var(--edit-color);
-  color: var(--bg-color);
-  cursor: pointer;
-
-  --cut-height: 6px;
-  clip-path: polygon(
-    calc(100% - var(--cut-height)) 0%,
-    100% var(--cut-height),
-    100% 100%,
-    var(--cut-height) 100%,
-    0% calc(100% - var(--cut-height)),
-    0 0
-  );
+.btn-add:hover {
+  background-color: var(--primary-color-hover);
 }
 
-.button-delete {
-  all: unset;
-  position: relative;
-  z-index: 1;
-  font-family: star_wars;
-  font-size: 0.6em;
-  letter-spacing: 0.2rem;
-
-  padding: 5px 15px;
-  margin: 5px;
-  background-color: var(--darth-color);
+.btn-edit {
+  background-color: var(--edit-color);
   color: var(--bg-color);
-  cursor: pointer;
+}
 
-  --cut-height: 6px;
-  clip-path: polygon(
-    calc(100% - var(--cut-height)) 0%,
-    100% var(--cut-height),
-    100% 100%,
-    var(--cut-height) 100%,
-    0% calc(100% - var(--cut-height)),
-    0 0
-  );
+.btn-edit:hover {
+  background-color: var(--edit-color-hover);
+}
+
+.btn-delete {
+  background-color: var(--error-color);
+  color: var(--bg-color);
+}
+
+.btn-delete:hover {
+  background-color: var(--error-color-hover);
+}
+
+.btn-icon{
+  font-size: 1.8em;
+  padding-right: 4px;
 }
 
 /* validate messages */
@@ -252,12 +214,13 @@ body {
     opacity: 1;
   }
 }
+
 .required-field {
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  color: rgb(255, 255, 255);
+  color: var(--bg-light-color);
   font-size: 8px;
   letter-spacing: 2px;
   background-color: var(--error-color);
@@ -272,6 +235,7 @@ body {
     0 0
   );
 }
+
 .required-field-after {
   position: absolute;
   top: -3px;
@@ -289,22 +253,6 @@ body {
   right: -6px;
   font-size: 10px;
   color: var(--error-color);
-}
-
-.margin-top-1 {
-  margin-top: 1em;
-}
-
-.margin-top-2 {
-  margin-top: 2em;
-}
-
-.margin-top-3 {
-  margin-top: 3em;
-}
-
-.margin-top-4 {
-  margin-top: 4em;
 }
 
 /* phones in landscape mode */

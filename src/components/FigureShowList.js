@@ -16,18 +16,18 @@ function FigureShowList({
   let cssClassContainer = "r2d2-container";
   let cssClassWrapper = "r2d2-wrapper";
   let cssClassImg = "r2d2-img-wrapper cursor-pointer";
-  let cssClassItem = "r2d2-item color-bg";
+  let cssClassItem = "r2d2-item color-secondary";
   let cssClassHeader =
-    "r2d2-item letter-spacing cursor-pointer color-r2d2-secondary text-underline";
+    "r2d2-item letter-spacing cursor-pointer text-underline color-secondary";
     let cssClassLogo = "r2d2-logo-wrapper";
 
   if (!isFigureEven) {
     cssClassContainer = "r2d2-container-even";
     cssClassWrapper = "r2d2-wrapper-even";
     cssClassImg = "r2d2-img-wrapper cursor-pointer r2d2-even";
-    cssClassItem = "r2d2-item-even color-bg";
+    cssClassItem = "r2d2-item-even color-secondary";
     cssClassHeader =
-      "r2d2-item-even letter-spacing cursor-pointer color-r2d2-secondary text-underline";
+      "r2d2-item-even letter-spacing cursor-pointer text-underline color-secondary";
       cssClassLogo = "r2d2-logo-wrapper r2d2-even";
   }
 
@@ -50,7 +50,7 @@ function FigureShowList({
           <h3>{figure.mainName}</h3>
         </div>
         <div className={cssClassItem}>
-          <h4>{figure.additionalName}</h4>
+          {figure.additionalName}
         </div>
         <div className={cssClassItem}>
           {figure.number} - {figure.releaseYear}

@@ -7,6 +7,7 @@ import InputCheckbox from "./InputCheckbox";
 import FigurePhoto from "./FigurePhoto";
 import { useState, useEffect } from "react";
 import { ImCross } from "react-icons/im";
+import { BsTrash3, BsSave } from "react-icons/bs";
 import seriesList from "../data/seriesList.json";
 import weaponList from "../data/weaponList.json";
 import saveImageToHdd from "../js/saveImageToHdd";
@@ -35,6 +36,7 @@ function FigureEdit({ onClose }) {
   const [deleteFigure, setDeleteFigure] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [figureToDelete, setFigureToDelete] = useState(false);
+  const cssClassLabel = "add-figure-input-label color-edit";
 
   const dispatch = useDispatch();
   const figure = useSelector(state => {
@@ -171,7 +173,8 @@ function FigureEdit({ onClose }) {
           <div className="add-figure-div grid-2-left color-edit">
             <input type="hidden" value={figure.id} name="id" />
             <InputText
-              cssClass="add-figure-input background-color-edit"
+              cssClass="add-figure-input background-color-edit color-bg"
+              cssClassLabel={cssClassLabel}
               maxLength="8"
               name="number"
               onChange={handleChangeInput}
@@ -190,7 +193,8 @@ function FigureEdit({ onClose }) {
           {/* Main name */}
           <div className="add-figure-div grid-2-left color-edit">
             <InputText
-              cssClass="add-figure-input background-color-edit"
+              cssClass="add-figure-input background-color-edit color-bg"
+              cssClassLabel={cssClassLabel}
               maxLength="22"
               name="mainName"
               onChange={handleChangeInput}
@@ -205,7 +209,8 @@ function FigureEdit({ onClose }) {
           {/* Additional name */}
           <div className="add-figure-div grid-2-left color-edit">
             <InputText
-              cssClass="add-figure-input background-color-edit"
+              cssClass="add-figure-input background-color-edit color-bg"
+              cssClassLabel={cssClassLabel}
               maxLength="22"
               name="additionalName"
               onChange={handleChangeInput}
@@ -217,7 +222,8 @@ function FigureEdit({ onClose }) {
           {/* Purchase Price */}
           <div className="add-figure-div grid-2-left color-edit">
             <InputNumber
-              cssClass="add-figure-input background-color-edit"
+              cssClass="add-figure-input background-color-edit color-bg"
+              cssClassLabel={cssClassLabel}
               maxLength="7"
               name="purchasePrice"
               number="number"
@@ -233,7 +239,8 @@ function FigureEdit({ onClose }) {
           {/* Bricklink Price */}
           <div className="add-figure-div grid-2-left color-edit">
             <InputNumber
-              cssClass="add-figure-input background-color-edit"
+              cssClass="add-figure-input background-color-edit color-bg"
+              cssClassLabel={cssClassLabel}
               maxLength="7"
               number="number"
               name="bricklinkPrice"
@@ -247,8 +254,9 @@ function FigureEdit({ onClose }) {
           {/* Release Year */}
           <div className="add-figure-div grid-2-left cursor-pointer color-edit">
             <Dropdown
-              cssClass="add-figure-input background-color-edit"
-              cssPanelClass="add-figure-input select-height background-color-edit"
+              cssClassLabel={cssClassLabel}
+              cssDropdown="add-figure-input background-color-edit color-bg"
+              cssPanelClass="add-figure-input select-height background-color-edit color-bg"
               cssDropdownElement="dropdown-el"
               name="releaseYear"
               onChange={handleChangeSelect}
@@ -264,8 +272,9 @@ function FigureEdit({ onClose }) {
           {/* Series */}
           <div className="add-figure-div grid-2-right cursor-pointer color-edit">
             <Dropdown
-              cssClass="add-figure-input background-color-edit"
-              cssPanelClass="add-figure-input select-height background-color-edit"
+              cssClassLabel={cssClassLabel}
+              cssDropdown="add-figure-input background-color-edit color-bg"
+              cssPanelClass="add-figure-input select-height background-color-edit color-bg"
               cssDropdownElement="dropdown-el"
               name="series"
               onChange={handleChangeSelect}
@@ -281,7 +290,8 @@ function FigureEdit({ onClose }) {
           {/* Bricklink */}
           <div className="add-figure-div grid-3-left color-edit">
             <InputText
-              cssClass="add-figure-input background-color-edit"
+              cssClass="add-figure-input background-color-edit color-bg"
+              cssClassLabel={cssClassLabel}
               name="bricklink"
               onChange={handleChangeInput}
               value={figure.bricklink}
@@ -292,8 +302,9 @@ function FigureEdit({ onClose }) {
           {/* Label */}
           <div className="add-figure-div grid-1-right color-edit">
             <InputCheckbox
-              cssClass="add-figure-checkbox-div grid-center background-color-edit"
-              cssCheckboxClass="cursor-pointer background-color-edit"
+              cssClass="add-figure-checkbox-div grid-center background-color-edit color-bg"
+              cssCheckboxClass="cursor-pointer background-color-edit color-bg"
+              cssClassLabel={cssClassLabel}
               name="label"
               onChange={handleChangeInput}
               checked={figure.label}
@@ -304,8 +315,9 @@ function FigureEdit({ onClose }) {
           {/* Weapon */}
           <div className="add-figure-div grid-2-left cursor-pointer color-edit">
             <Dropdown
-              cssClass="add-figure-input background-color-edit"
-              cssPanelClass="add-figure-input select-height background-color-edit"
+              cssClassLabel={cssClassLabel}
+              cssDropdown="add-figure-input background-color-edit color-bg"
+              cssPanelClass="add-figure-input select-height background-color-edit color-bg"
               cssDropdownElement="dropdown-el"
               name="weapon"
               onChange={handleChangeSelect}
@@ -321,7 +333,8 @@ function FigureEdit({ onClose }) {
           {/* Purchase date */}
           <div className="add-figure-div grid-2-right color-edit">
             <InputText
-              cssClass="add-figure-input background-color-edit"
+              cssClass="add-figure-input background-color-edit color-bg"
+              cssClassLabel={cssClassLabel}
               maxLength="10"
               name="purchaseDate"
               onChange={handleChangeInput}
@@ -334,11 +347,18 @@ function FigureEdit({ onClose }) {
             {formErrors.purchaseDate}
           </div>
           <div className="grid-full-line">
-            <Button cssClass="button-edit">Save</Button>
+            <Button cssClass="btn btn-edit">
+              <BsSave className="btn-icon" />
+              Save
+            </Button>
           </div>
         </form>
         <div className="grid-full-line grid-center margin-top-2">
-          <Button cssClass="button-delete" onClick={() => handleDelete(figure)}>
+          <Button
+            cssClass="btn btn-delete"
+            onClick={() => handleDelete(figure)}
+          >
+            <BsTrash3 className="btn-icon" />
             delete
           </Button>
         </div>

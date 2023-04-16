@@ -3,7 +3,8 @@ import { BsCaretDownFill } from "react-icons/bs";
 import Panel from "./Panel.js";
 
 function Dropdown({
-  cssClass,
+  cssClassLabel,
+  cssDropdown,
   cssPanelClass,
   cssDropdownElement,
   name,
@@ -64,9 +65,9 @@ function Dropdown({
 
   return (
     <>
-      <label className="add-figure-input-label">{children}</label>
+      <label className={cssClassLabel}>{children}</label>
       <div ref={divEl} className="input-wrapper">
-        <Panel onClick={handleClick} className={cssClass}>
+        <Panel onClick={handleClick} className={cssDropdown}>
           {value || placeholder}
 
           <BsCaretDownFill className="icon-arrow-down" />

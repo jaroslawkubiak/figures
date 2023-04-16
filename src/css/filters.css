@@ -1,9 +1,20 @@
 .filter-container {
-  color: black;
   display: grid;
+  width: 95%;
+  margin: 0 auto;
   grid-template-columns: 1fr 2fr 1fr 1fr;
   border-bottom: 2px solid var(--bg-color);
   margin-bottom: 3px;
+
+  --cut-height: 10px;
+  clip-path: polygon(
+    var(--cut-height) 0%,
+    100% 0,
+    100% calc(100% - var(--cut-height)),
+    calc(100% - var(--cut-height)) 100%,
+    0 100%,
+    0% var(--cut-height)
+  );
 }
 
 .filter-icon {
@@ -16,9 +27,15 @@
   display: flex;
   align-self: center;
   align-items: center;
-  border: 3px solid var(--bg-color);
   border-radius: 5px;
   padding: 4px;
+}
+
+.filter-quantity-wprapper-border-card {
+  border: 3px solid var(--bg-color);
+}
+.filter-quantity-wprapper-border-list {
+  border: 3px solid var(--r2d2-primary-color);
 }
 
 .filter-quantity-icon {
@@ -27,19 +44,20 @@
 }
 
 .filter-icon:hover {
-  fill: var(--darth-color);
+  fill: var(--error-color);
 }
 
 .filter-container-expand {
   position: relative;
   display: grid;
+  width: 95%;
+  margin: 0 auto;
   grid-template-columns: repeat(2, 1fr);
   font-family: star_wars;
-  color: black;
-  border-bottom: 3px solid var(--darth-color);
+  color: var(--bg-color);
+  border-bottom: 3px solid var(--error-color);
   margin-bottom: 3px;
 }
-
 
 .filter-container-expand::after,
 .filter-container-expand::before {
@@ -71,5 +89,5 @@
   top: 11px;
   right: -6px;
   z-index: 999;
-  color: var(--darth-color);
+  color: var(--error-color);
 }

@@ -75,21 +75,38 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
     setExpandFilters(!expandFilters);
   };
 
-  const cssBackground = listView
-    ? "filter-container background-color-r2d2-secondary"
-    : "filter-container background-color-primary";
+  // class list for list view
+  let cssBackground = "filter-container background-color-r2d2-head";
+  let cssFilterBackground =
+    "background-color-r2d2-head filter-container-expand";
+  let cssSvgFillColor = "#274294";
+  let cssLegoIconFill = "svg-fill-r2d2-primary";
+  let cssQuantityWrapper =
+    "filter-quantity-wprapper self-center filter-quantity-wprapper-border-list";
+  let cssInputText =
+    "add-figure-input background-color-r2d2-primary color-primary";
+  let cssClassLabel = "add-figure-input-label color-r2d2-primary";
 
-  const cssFilterBackground = listView
-    ? "background-color-r2d2-secondary filter-container-expand"
-    : "background-color-primary filter-container-expand";
+  let cssDropdown = "add-figure-input background-color-r2d2-primary color-r2d2-head";
+  let cssPanelClass =
+    "add-figure-input select-height background-color-bg color-r2d2-head";
+  let cssDropdownElement = "dropdown-el-primary";
 
-  // let cssFilterBackground = "filter-container-expand";
-  // if (listView) cssFilterBackground += " background-color-gray";
-  // else cssFilterBackground += " background-color-primary";
-  // if (expandFilters) cssFilterBackground += " filter-expand-animation";
-  // else cssFilterBackground += " filter-collapse-animation";
-
-  const fillColor = "#0e0e16";
+  // class list for card view
+  if (!listView) {
+    cssBackground = "filter-container background-color-primary";
+    cssFilterBackground = "background-color-primary filter-container-expand";
+    cssSvgFillColor = "#212529";
+    cssLegoIconFill = "svg-fill-lego-quantity";
+    cssQuantityWrapper =
+      "filter-quantity-wprapper self-center filter-quantity-wprapper-border-card";
+    cssInputText = "add-figure-input background-color-bg color-primary";
+    cssClassLabel = "add-figure-input-label";
+    cssDropdown = "add-figure-input background-color-bg color-primary";
+    cssPanelClass =
+      "add-figure-input select-height background-color-bg color-primary";
+    cssDropdownElement = "dropdown-el-primary";
+  }
 
   return (
     <>
@@ -97,26 +114,23 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
         <div className="self-start">
           <BsPlusSquare
             onClick={onAddFigure}
-            fill={fillColor}
+            fill={cssSvgFillColor}
             className="cursor-pointer filter-icon"
             title="Add figure"
           />
         </div>
 
         {/* display quantity of minifigures */}
-        <div
-          className="filter-quantity-wprapper self-center"
-          title="Figures quantity"
-        >
-          <LegoMinifigure width="30" cssClass="svg-fill-bg" />
-          <FigureQuantity quantity={quantity} fillColor={fillColor} />
+        <div className={cssQuantityWrapper} title="Figures quantity">
+          <LegoMinifigure width="30" cssClass={cssLegoIconFill} />
+          <FigureQuantity quantity={quantity} fillColor={cssSvgFillColor} />
         </div>
 
         <div className=" self-center">
           {/* show list view */}
           {!listView && (
             <BsListColumnsReverse
-              fill={fillColor}
+              fill={cssSvgFillColor}
               onClick={onHandleView}
               className="cursor-pointer filter-icon"
               title="List view"
@@ -125,7 +139,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
           {/* show card view */}
           {listView && (
             <BsGrid
-              fill={fillColor}
+              fill={cssSvgFillColor}
               onClick={onHandleView}
               className="cursor-pointer filter-icon"
               title="Card view"
@@ -137,7 +151,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
           {/* collapse filters */}
           {expandFilters && (
             <BsFilterSquareFill
-              fill={fillColor}
+              fill={cssSvgFillColor}
               onClick={handleExpandCollapseFilters}
               className="cursor-pointer filter-icon"
               title="Collapse filters"
@@ -146,7 +160,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
           {/* expand filters */}
           {!expandFilters && (
             <BsFilterSquare
-              fill={fillColor}
+              fill={cssSvgFillColor}
               onClick={handleExpandCollapseFilters}
               className="cursor-pointer filter-icon"
               title="Expand filters"
@@ -164,7 +178,8 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
                 value={searchingNumber}
                 name="number"
                 maxLength="8"
-                cssClass="add-figure-input background-color-bg color-primary"
+                cssClass={cssInputText}
+                cssClassLabel={cssClassLabel}
               >
                 Number
               </InputText>
@@ -184,7 +199,8 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
                 onChange={handleChangeSearchingMainName}
                 value={searchingMainName}
                 name="mainName"
-                cssClass="add-figure-input background-color-bg color-primary"
+                cssClass={cssInputText}
+                cssClassLabel={cssClassLabel}
               >
                 Name
               </InputText>
@@ -201,9 +217,10 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
           <div className="filter-item-wrapper self-center cursor-pointer relative">
             <div>
               <Dropdown
-                cssClass="add-figure-input background-color-bg color-primary"
-                cssPanelClass="add-figure-input select-height background-color-bg color-primary"
-                cssDropdownElement="dropdown-el-primary"
+              cssClassLabel={cssClassLabel}
+                cssDropdown={cssDropdown}
+                cssPanelClass={cssPanelClass}
+                cssDropdownElement={cssDropdownElement}
                 name="releaseYear"
                 onChange={handleChangeSearchingReleaseYear}
                 options={yearsList}
@@ -225,9 +242,11 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
           <div className="filter-item-wrapper self-center cursor-pointer relative">
             <div>
               <Dropdown
-                cssClass="add-figure-input background-color-bg color-primary"
-                cssPanelClass="add-figure-input select-height background-color-bg color-primary"
-                cssDropdownElement="dropdown-el-primary"
+              cssClassLabel={cssClassLabel}
+
+                cssDropdown={cssDropdown}
+                cssPanelClass={cssPanelClass}
+                cssDropdownElement={cssDropdownElement}
                 name="series"
                 onChange={handleChangeSearchingSeries}
                 options={seriesList}

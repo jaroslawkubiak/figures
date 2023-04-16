@@ -11,7 +11,7 @@ function FigureCard({ figure, clickedImage, onModal, onEdit }) {
     <div className="container">
       <div className="name">
         <span
-          className="cell-text cursor-pointer color-darth text-underline"
+          className="cell-text cursor-pointer color-r2d2-primary text-underline"
           figure={figure}
           onClick={() => onEdit(figure)}
         >
