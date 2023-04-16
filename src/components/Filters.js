@@ -76,11 +76,11 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
   };
 
   const cssBackground = listView
-    ? "filter-container background-color-gray"
+    ? "filter-container background-color-r2d2-secondary"
     : "filter-container background-color-primary";
 
   const cssFilterBackground = listView
-    ? "background-color-gray filter-container-expand"
+    ? "background-color-r2d2-secondary filter-container-expand"
     : "background-color-primary filter-container-expand";
 
   // let cssFilterBackground = "filter-container-expand";

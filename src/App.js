@@ -8,7 +8,7 @@ import Filters from "./components/Filters";
 import FigureAdd from "./components/FigureAdd";
 
 function App() {
-  const [listView, setListView] = useState(false);
+  const [listView, setListView] = useState(true);
   const [showFigureAddForm, setShowFigureAddForm] = useState(false);
   const handleListView = () => {
     setListView(!listView);
@@ -18,26 +18,31 @@ function App() {
   // getting info about all figures or filtered figures
   const figures = useSelector(
     ({
-      figures: { data, searchNumber, searchMainName, searchReleaseYear, searchSeries },
+      figures: {
+        data,
+        searchNumber,
+        searchMainName,
+        searchReleaseYear,
+        searchSeries,
+      },
     }) => {
       // filtering logic
-      return data.filter(
-        fig => {
-          const searchReleaseYearConditions = searchReleaseYear
-            ? fig.releaseYear === searchReleaseYear
-            : fig;
+      return data.filter(fig => {
+        const searchReleaseYearConditions = searchReleaseYear
+          ? fig.releaseYear === searchReleaseYear
+          : fig;
 
-          const searchSeriesConditions = searchSeries
-            ? fig.series === searchSeries
-            : fig;
+        const searchSeriesConditions = searchSeries
+          ? fig.series === searchSeries
+          : fig;
 
-          return (
-            fig.number.toLowerCase().includes(searchNumber.toLowerCase()) &&
-            fig.mainName.toLowerCase().includes(searchMainName.toLowerCase()) &&
-            searchReleaseYearConditions && searchSeriesConditions
-          );
-        }
-      );
+        return (
+          fig.number.toLowerCase().includes(searchNumber.toLowerCase()) &&
+          fig.mainName.toLowerCase().includes(searchMainName.toLowerCase()) &&
+          searchReleaseYearConditions &&
+          searchSeriesConditions
+        );
+      });
     }
   );
   const quantity = figures.length;
@@ -51,7 +56,7 @@ function App() {
         quantity={quantity}
       />
       {showFigureAddForm && <FigureAdd onClose={handleAddFigureForm} />}
-      <FigureList listView={listView} figures={figures}/>
+      <FigureList listView={listView} figures={figures} />
     </>
   );
 }

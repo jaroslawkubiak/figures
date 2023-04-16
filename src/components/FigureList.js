@@ -97,6 +97,7 @@ function FigureList({ listView, figures }) {
 
   const renderedFigures = figures.map((figure, index) => {
     if (listView) {
+      let isFigureEven = index % 2;
       return (
         <FigureShowList
           onEdit={() => handleEdit(figure)}
@@ -104,6 +105,7 @@ function FigureList({ listView, figures }) {
           figure={figure}
           clickedImage={index}
           onModal={handleChange}
+          isFigureEven={isFigureEven}
         />
       );
     } else {
@@ -135,7 +137,7 @@ function FigureList({ listView, figures }) {
         id="figContainer"
         className={
           listView
-            ? "figure-container-list background-color-gray"
+            ? "figure-container-list background-color-secondary"
             : "figure-container-card background-color-bg"
         }
       >
