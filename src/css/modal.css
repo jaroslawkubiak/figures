@@ -1,7 +1,12 @@
+:root{
+  --width-modal: 300px;
+  --height-modal: 150px;
+}
+
 .modal-wrapper {
   position: fixed;
   inset: 0;
-  background-color: var(--bg-color-modal); 
+  background-color: var(--bg-color-modal);
   z-index: 3;
   display: flex;
   justify-content: center;
@@ -102,7 +107,7 @@
 
 .confirm-modal-wrapper {
   z-index: 99;
-  background-color: var(--bg-color-modal); 
+  background-color: var(--bg-color-modal);
   position: absolute;
   top: -30px;
   bottom: -30px;
@@ -113,16 +118,49 @@
   padding: 55px;
 }
 
-.confirm-modal-container{
-  border-radius: 10px;
-  text-align: center;
-  padding: 20px;
-  border: 2px solid var(--error-color);
+.confirm-modal-container {
+  /* padding: 20px; */
+  --cut-height: 10px;
+
+  width: var(--width-modal);
+  height: var(--height-modal);
+  display: grid;
+  place-content: center;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+
+  clip-path: polygon(
+    calc(100% - var(--cut-height)) 0%,
+    100% var(--cut-height),
+    100% 100%,
+    var(--cut-height) 100%,
+    0% calc(100% - var(--cut-height)),
+    0 0
+  );
 }
 
-.grid-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  padding: 25px;
+.confirm-modal-container-inner {
+  width: calc(var(--width-modal) + 4px);
+  height: calc(var(--height-modal) + 4px);
+  /* width: 306px;
+  height: 156px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  --cut-height: 10px;
+  background-color: var(--error-color);
+  clip-path: polygon(
+    calc(100% - var(--cut-height)) 0%,
+    100% var(--cut-height),
+    100% 100%,
+    var(--cut-height) 100%,
+    0% calc(100% - var(--cut-height)),
+    0 0
+  );
+}
+
+.confirm-modal-grid-line {
+  grid-column: 1/3;
+  justify-self: center;
 }

@@ -84,7 +84,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
   let cssQuantityWrapper =
     "filter-quantity-wprapper self-center filter-quantity-wprapper-border-list";
   let cssInputText =
-    "add-figure-input background-color-r2d2-primary color-primary";
+    "add-figure-input background-color-r2d2-primary color-r2d2-head";
   let cssClassLabel = "add-figure-input-label color-r2d2-primary";
 
   let cssDropdown = "add-figure-input background-color-r2d2-primary color-r2d2-head";

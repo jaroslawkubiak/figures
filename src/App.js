@@ -38,7 +38,10 @@ function App() {
 
         return (
           fig.number.toLowerCase().includes(searchNumber.toLowerCase()) &&
-          fig.mainName.toLowerCase().includes(searchMainName.toLowerCase()) &&
+          (fig.mainName.toLowerCase().includes(searchMainName.toLowerCase()) ||
+            fig.additionalName
+              .toLowerCase()
+              .includes(searchMainName.toLowerCase())) &&
           searchReleaseYearConditions &&
           searchSeriesConditions
         );

@@ -129,7 +129,7 @@ function FigureAdd({ onClose }) {
     <div className="add-figure-wrapper">
       <div className="add-figure-container">
         <div className="add-figure-close-btn" onClick={() => onClose()}>
-          <ImCross className="svg-fill-bg" />
+          <ImCross className="svg-fill-bg font-size-1-4" />
         </div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
           <div className="grid-full-line add-figure-heading">
@@ -267,7 +267,7 @@ function FigureAdd({ onClose }) {
           {/* Label */}
           <div className="add-figure-div grid-1-right">
             <InputCheckbox
-              cssClass="add-figure-checkbox-div grid-center"
+              cssClass="add-figure-checkbox-div add-figure-checkbox-wrapper"
               cssCheckboxClass="cursor-pointer"
               cssClassLabel={cssClassLabel}
               name="label"
@@ -313,7 +313,7 @@ function FigureAdd({ onClose }) {
           </div>
           <div className="grid-full-line">
             <Button cssClass="btn btn-add">
-              <BsPlus className="btn-icon" />
+              <BsPlus className="btn-icon font-size-2-8" />
               Add
             </Button>
           </div>

@@ -196,7 +196,7 @@
   background-color: rgb(174, 174, 174); 
 } */
 
-.arrow-up{
+.arrow-up {
   z-index: 99;
   position: fixed;
   font-size: 3em;
@@ -212,68 +212,73 @@ h3 {
 }
 
 .r2d2-container {
+  --inner-cut: 25%;
+  font-family: star_wars;
   margin-bottom: 5px;
   height: 80px;
   width: 100%;
   display: flex;
   align-items: center;
-  background-color: var(--r2d2-primary-color); 
+  background-color: var(--r2d2-primary-color);
   clip-path: polygon(
-    60% 100%, 
-    60% 90%, 
-    80% 90%, 
-    83% 100%, 
-    100% 85%, 
-    100% 15%, 
-    83% 0%, 
-    80% 10%, 
-    60% 10%, 
-    60% 0%, 
-    15% 0%, 
-    13% 8%, 
-    0% 8%, 
-    0% 92%, 
-    13% 92%, 
-    15% 100%);
+    65% 100%,
+    65% calc(100% - var(--inner-cut)),
+    80% calc(100% - var(--inner-cut)),
+    83% 95%,
+    100% 85%,
+    100% 15%,
+    83% 5%,
+    80% var(--inner-cut),
+    65% var(--inner-cut),
+    65% 0%,
+    15% 0%,
+    13% 8%,
+    0% 8%,
+    0% 92%,
+    13% 92%,
+    15% 100%
+  );
 }
 .r2d2-container-even {
+  --inner-cut: 25%;
+  font-family: star_wars;
   margin-bottom: 5px;
   height: 80px;
   width: 100%;
   display: flex;
   align-items: center;
   transform: rotate(180deg);
-  background-color: var(--r2d2-primary-color); 
+  background-color: var(--r2d2-primary-color);
   clip-path: polygon(
-    60% 100%, 
-    60% 90%, 
-    80% 90%, 
-    83% 100%, 
-    100% 85%, 
-    100% 15%, 
-    83% 0%, 
-    80% 10%, 
-    60% 10%, 
-    60% 0%, 
-    15% 0%, 
-    13% 8%, 
-    0% 8%, 
-    0% 92%, 
-    13% 92%, 
-    15% 100%);
+    65% 100%,
+    65% calc(100% - var(--inner-cut)),
+    80% calc(100% - var(--inner-cut)),
+    83% 95%,
+    100% 85%,
+    100% 15%,
+    83% 5%,
+    80% var(--inner-cut),
+    65% var(--inner-cut),
+    65% 0%,
+    15% 0%,
+    13% 8%,
+    0% 8%,
+    0% 92%,
+    13% 92%,
+    15% 100%
+  );
 }
 
-
 .r2d2-img-wrapper {
-  height: 50px;
-  width: 50px;
-  margin-left: 5px;
-  background-color: white; 
-  padding: 3px;
+  height: 60px;
+  width: 60px;
+  margin-left: 3px;
+  background-color: white;
+  padding: 1px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--bg-color);
+  /* border: 1px solid var(--bg-color); */
 }
 
 .r2d2-figure-img {
@@ -286,9 +291,9 @@ h3 {
   max-width: 40px;
 }
 
-.r2d2-logo-wrapper{
-  height: 50px;
-  width: 50px;
+.r2d2-logo-wrapper {
+  height: 60px;
+  width: 60px;
   /* background-color: var(--r2d2-secondary-color); */
   display: flex;
   align-items: center;
@@ -300,10 +305,9 @@ h3 {
   transform: rotate(180deg);
 }
 
-
-.r2d2-wrapper{
+.r2d2-wrapper {
   margin-left: 10px;
-  width: 65%;
+  width: 45%;
 }
 
 .r2d2-item {
@@ -311,9 +315,9 @@ h3 {
   font-size: 0.8em;
 }
 
-.r2d2-wrapper-even{
+.r2d2-wrapper-even {
   margin-left: 10px;
-  width: 65%;
+  width: 45%;
   transform: rotate(180deg);
 }
 
@@ -321,4 +325,17 @@ h3 {
   display: flex;
   justify-content: end;
   font-size: 0.8em;
+}
+
+.r2d2-price {
+  display: grid;
+  justify-content: center;
+  width: 70px;
+}
+
+.r2d2-price-even {
+  display: grid;
+  justify-content: center;
+  width: 70px;
+  transform: rotate(180deg);
 }

@@ -163,7 +163,7 @@ function FigureEdit({ onClose }) {
           className="add-figure-close-btn background-color-edit"
           onClick={() => onClose()}
         >
-          <ImCross className="svg-fill-bg" />
+          <ImCross className="svg-fill-bg font-size-1-4" />
         </div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
           <div className="grid-full-line add-figure-heading color-edit">
@@ -302,7 +302,7 @@ function FigureEdit({ onClose }) {
           {/* Label */}
           <div className="add-figure-div grid-1-right color-edit">
             <InputCheckbox
-              cssClass="add-figure-checkbox-div grid-center background-color-edit color-bg"
+              cssClass="add-figure-checkbox-div add-figure-checkbox-wrapper background-color-edit color-bg"
               cssCheckboxClass="cursor-pointer background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
               name="label"
@@ -348,17 +348,17 @@ function FigureEdit({ onClose }) {
           </div>
           <div className="grid-full-line">
             <Button cssClass="btn btn-edit">
-              <BsSave className="btn-icon" />
+              <BsSave className="btn-icon font-size-1-8" />
               Save
             </Button>
           </div>
         </form>
-        <div className="grid-full-line grid-center margin-top-2">
+        <div className="grid-full-line margin-top-1 justify-content-center">
           <Button
             cssClass="btn btn-delete"
             onClick={() => handleDelete(figure)}
           >
-            <BsTrash3 className="btn-icon" />
+            <BsTrash3 className="btn-icon font-size-1-8" />
             delete
           </Button>
         </div>

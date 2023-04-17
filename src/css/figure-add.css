@@ -70,6 +70,7 @@
 }
 
 .grid-full-line {
+  display: grid;
   grid-column: 1/-1;
 }
 
@@ -111,19 +112,17 @@
 .add-figure-close-btn {
   display: grid;
   place-content: center;
-  --close-btn-width: 20px;
+  --close-btn-width: 30px;
   position: absolute;
   width: var(--close-btn-width);
   height: var(--close-btn-width);
-  top: calc(-1 * var(--close-btn-width) / 2);
-  right: calc(-1 * var(--close-btn-width) / 2);
+  top: calc(-1 * var(--close-btn-width) / 3);
+  right: calc(-1 * var(--close-btn-width) / 3);
   background-color: var(--primary-color);
   cursor: pointer;
   clip-path: polygon(0 22%, 22% 0, 100% 0, 100% 78%, 78% 100%, 0% 100%, 0 0);
   
 }
-
-
 
 .input-wrapper {
   position: relative;
@@ -216,6 +215,13 @@ input[type="checkbox"]:checked::after {
   transform: rotate(-45deg);
 }
 
+.add-figure-checkbox-wrapper {
+  display: grid;
+  width: 100%;
+  max-height: 100%;
+  place-items: center;
+}
+
 /* styling dropdown menu - instead of default select html element */
 .icon-arrow-down {
   font-size: 2em;
@@ -282,7 +288,7 @@ input[type="checkbox"]:checked::after {
   background-color: transparent;
 }
 
-.flex-row {
+.img-wrapper{
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -2,6 +2,7 @@ TODO list
 
 figure add:
 [ ] check if adding number dont exist in DB
+[ ] if figure img don't exists - upload img from hdd
 [ x ] layout form
 [ x ] when typing a figure number, after length 6 get request fo figure photo from bricklink.
 [ x ] check if figure number is correct: display img or display error
@@ -9,16 +10,17 @@ figure add:
 [ x ] limit inputs main name and additional name to character length that fit into label.
 [ x ] validate form inputs - figure number, main name, price, series, release Year, weapon and purchase date.
 [ x ] display error message - that field is required.
-[ x ] hide erroe message when input field is in focus or dropdown menu is clicked.
+[ x ] hide error message when input field is in focus or dropdown menu is clicked.
 [ x ] download photo from server to local disk
 [ ] upload photo from local disk to server
-[ ] when adding figure to DB - add purchase day, month and year separatlly.
+[ ] when adding figure to DB - add purchase day, month and year add separatlly.
 [ ] stop generating id from JS - id have to be from DB
 [ x ] input field for bricklink price
 
 figure edit:
 [ x ] all inputs are eddited
 [ x ] delete figure
+[ ] if edited figure don't have related photo in BL catalog - get img from local/server disk
 
 figure list:
 [ x ] after click on img - show on full screen
@@ -27,7 +29,8 @@ figure list:
 
 Filters:
 [ x ] searching by: name, number: change with every typed character - useState
-[ x ] searching list by: series, year,
+[ x ] combine searching by name - have to include searching both : mainNAme adn additionalName
+[ x ] searching list by: series, year
 [ ] sorting by: series, number, main name, additional name, price. ASC and DESC
 [ ] reset all filters button
 

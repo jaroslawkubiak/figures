@@ -20,7 +20,7 @@ function FigurePhoto({ figNumber, svgBg }) {
   }
 
   let renderedData = (
-    <div className="flex-row">
+    <div className="img-wrapper">
       <span> &nbsp;</span>
       <GalacticEmpire width="130" cssClass={svgBg} />
     </div>
@@ -36,7 +36,7 @@ function FigurePhoto({ figNumber, svgBg }) {
       setFigImg({ ...figImg, isLoading: true });
     const cssSvgClass = `${svgBg} svg-galactic-empire-rotate`;
     renderedData = (
-      <div className="flex-row">
+      <div className="img-wrapper">
         <span className="image-prev-error">&nbsp;</span>
         <GalacticEmpire width="130" cssClass={cssSvgClass} />
       </div>
@@ -63,7 +63,7 @@ function FigurePhoto({ figNumber, svgBg }) {
   if (figNumber.length >= 6 && !imageExists(renderedPhoto)) {
     if (!figImg.error) setFigImg({ ...figImg, error: "Not found" });
     renderedData = (
-      <div className="flex-row">
+      <div className="img-wrapper">
         <span className="image-prev-error">img not found</span>
         <GalacticEmpire width="130" cssClass="svg-fill-error" />
       </div>

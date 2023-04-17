@@ -100,8 +100,6 @@ body {
   color: var(--r2d2-head-color) !important;
 }
 
-
-
 .figure-container-card {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -116,15 +114,6 @@ body {
   padding: 5px;
   gap: 5px;
 }
-
-.grid-center {
-  display: grid;
-  width: 100%;
-  max-height: 100%;
-  place-items: center;
-}
-
-
 
 .btn {
   all: unset;
@@ -193,7 +182,6 @@ body {
 }
 
 .btn-icon{
-  font-size: 1.8em;
   padding-right: 4px;
 }
 
