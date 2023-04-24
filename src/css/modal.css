@@ -119,9 +119,7 @@
 }
 
 .confirm-modal-container {
-  /* padding: 20px; */
   --cut-height: 10px;
-
   width: var(--width-modal);
   height: var(--height-modal);
   display: grid;
@@ -142,8 +140,6 @@
 .confirm-modal-container-inner {
   width: calc(var(--width-modal) + 4px);
   height: calc(var(--height-modal) + 4px);
-  /* width: 306px;
-  height: 156px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -163,4 +159,57 @@
 .confirm-modal-grid-line {
   grid-column: 1/3;
   justify-self: center;
+}
+
+
+/* PC  */
+@media screen and (width > 845px) {
+  .modal-container {
+    font-size: 2em;
+  }
+  .modal-figure-img {
+    min-width: 600px;
+  }
+  
+  .modal-close-btn {
+    --close-btn-width: 50px;
+    top: -25px;
+    right: -20px;
+    clip-path: polygon(0 22%, 22% 0, 100% 0, 100% 78%, 78% 100%, 0% 100%, 0 0);
+  }
+  
+  .modal-close {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .modal-label {
+    bottom: -15px;
+    font-size: 24px;
+    --cut-height: 18px;
+  }
+
+  .modal-arrow {
+    font-size: 6em;
+    clip-path: polygon(0 32%, 32% 0, 100% 0, 100% 68%, 68% 100%, 0% 100%, 0 0);
+  }
+  .modal-arrow-right {
+    right: 50px;
+  }
+  
+  .modal-arrow-left {
+    left: 50px;
+  }
+  
+  .modal-next-image {
+    right: -80%;
+    width: 120%;
+  }
+  
+  .modal-prev-image {
+    left: -80%;
+    width: 120%;
+  }
+  
+  
 }

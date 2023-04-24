@@ -16,12 +16,12 @@
   --r2d2-secondary-color: #ae3237;
   --r2d2-head-color: #bbbfbf;
 
-/* lighter version for hover state */
+  /* lighter version for hover state */
   --primary-color-hover: #fcc419;
   --error-color-hover: #f03e3e;
   --edit-color-hover: #ffc078;
 
-/* less opacity for bg modals*/
+  /* less opacity for bg modals*/
   --bg-color-modal: #0f1010f1;
 }
 
@@ -140,8 +140,11 @@ body {
   );
 }
 
-.btn-add {
+a {
+  line-height: 1;
+}
 
+.btn-add {
   padding: 5px 15px;
   margin: 5px;
   background-color: var(--primary-color);
@@ -181,7 +184,7 @@ body {
   background-color: var(--error-color-hover);
 }
 
-.btn-icon{
+.btn-icon {
   padding-right: 4px;
 }
 
@@ -248,7 +251,24 @@ body {
   .figure-container-card {
     grid-template-columns: repeat(4, 1fr);
   }
+
+  .figure-container-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
 }
 
+/* PC  */
 @media screen and (width > 845px) {
+  .app-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    border: 2px solid green;
+  }
+
+  .figure-container-card {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
 }

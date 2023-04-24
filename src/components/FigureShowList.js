@@ -58,7 +58,7 @@ function FigureShowList({
 
       <div className={cssClassWrapper}>
         <div className={cssClassHeader} onClick={() => onEdit(figure)}>
-          <h3 className="font-size-1 color-primary">{figure.mainName}</h3>
+          <p className="font-size-1 color-primary">{figure.mainName}</p>
         </div>
         <div className={cssClassItem}>{figure.additionalName}</div>
         <div className={cssClassItem}>

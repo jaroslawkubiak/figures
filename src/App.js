@@ -8,7 +8,7 @@ import Filters from "./components/Filters";
 import FigureAdd from "./components/FigureAdd";
 
 function App() {
-  const [listView, setListView] = useState(true);
+  const [listView, setListView] = useState(false);
   const [showFigureAddForm, setShowFigureAddForm] = useState(false);
   const handleListView = () => {
     setListView(!listView);
@@ -51,7 +51,7 @@ function App() {
   const quantity = figures.length;
 
   return (
-    <>
+    <div className="app-container">
       <Filters
         onHandleView={handleListView}
         listView={listView}
@@ -60,7 +60,7 @@ function App() {
       />
       {showFigureAddForm && <FigureAdd onClose={handleAddFigureForm} />}
       <FigureList listView={listView} figures={figures} />
-    </>
+    </div>
   );
 }
 

@@ -7,7 +7,7 @@
 .add-figure-wrapper {
   position: fixed;
   inset: 0;
-  background-color: var(--bg-color-modal); 
+  background-color: var(--bg-color-modal);
   z-index: 3;
 }
 
@@ -46,6 +46,27 @@
   font-size: 8px;
   letter-spacing: 1px;
   padding-left: 10px;
+}
+
+.add-figure-input {
+  all: unset;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  letter-spacing: 2px;
+  height: auto;
+  font-size: 8px;
+  padding: 0px 10px;
+  --cut-height: 6px;
+  clip-path: polygon(
+    calc(100% - var(--cut-height)) 0%,
+    100% var(--cut-height),
+    100% 100%,
+    var(--cut-height) 100%,
+    0% calc(100% - var(--cut-height)),
+    0 0
+  );
 }
 
 .add-figure-heading {
@@ -121,32 +142,11 @@
   background-color: var(--primary-color);
   cursor: pointer;
   clip-path: polygon(0 22%, 22% 0, 100% 0, 100% 78%, 78% 100%, 0% 100%, 0 0);
-  
 }
 
 .input-wrapper {
   position: relative;
   height: var(--input-height);
-}
-
-.add-figure-input {
-  all: unset;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: auto;
-  font-size: 8px;
-  padding: 0px 10px;
-  --cut-height: 6px;
-  clip-path: polygon(
-    calc(100% - var(--cut-height)) 0%,
-    100% var(--cut-height),
-    100% 100%,
-    var(--cut-height) 100%,
-    0% calc(100% - var(--cut-height)),
-    0 0
-  );
 }
 
 .add-figure-checkbox-div {
@@ -238,7 +238,7 @@ input[type="checkbox"]:checked::after {
   cursor: pointer;
   position: relative;
   z-index: 999;
-  font-size: 8px;
+  font-size: 6px;
   line-height: 2;
 }
 
@@ -265,7 +265,7 @@ input[type="checkbox"]:checked::after {
 .select-height {
   max-height: 200px;
   overflow: auto;
-  z-index: 9999999;
+  z-index: 99999;
 }
 ::-webkit-scrollbar {
   width: 10px; /* Total width including `border-width` of scrollbar thumb */
@@ -288,7 +288,7 @@ input[type="checkbox"]:checked::after {
   background-color: transparent;
 }
 
-.img-wrapper{
+.img-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -297,4 +297,42 @@ input[type="checkbox"]:checked::after {
 
 .edit-figure-border {
   border: 2px solid var(--edit-color);
+}
+
+/* PC  */
+@media screen and (width > 845px) {
+  .add-figure-input {
+    font-size: 18px;
+    --cut-height: 12px;
+    padding-left: 20px;
+  }
+
+  .add-figure-input-label {
+    font-size: 22px;
+    letter-spacing: 2px;
+  }
+
+  .dropdown-el,
+  .dropdown-el-primary {
+    padding: 3px;
+    padding-left: 6px;
+    font-size: 16px;
+    line-height: 2;
+  }
+  .select-height {
+    max-height: 600px;
+    overflow: auto;
+    z-index: 99999;
+  }
+
+  .dropdown-el:hover::after {
+    width: 6px;
+    left: -10px;
+  }
+  
+  .dropdown-el-primary:hover::after {
+    width: 6px;
+    left: -10px;
+  }
+  
 }

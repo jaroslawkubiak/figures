@@ -201,18 +201,14 @@
   position: fixed;
   font-size: 3em;
   fill: rgb(0, 0, 0);
-  background-color: var(--primary-color);
+  /* background-color: var(--primary-color); */
   clip-path: polygon(0 22%, 22% 0, 100% 0, 100% 78%, 78% 100%, 0% 100%, 0 0);
-  bottom: 10px;
-  right: 10px;
-}
-
-h3 {
-  color: var(--bg-light-color);
+  bottom: 20px;
+  right: 20px;
 }
 
 .r2d2-container {
-  --inner-cut: 25%;
+  --inner-cut: 15%;
   font-family: star_wars;
   margin-bottom: 5px;
   height: 80px;
@@ -240,7 +236,7 @@ h3 {
   );
 }
 .r2d2-container-even {
-  --inner-cut: 25%;
+  --inner-cut: 15%;
   font-family: star_wars;
   margin-bottom: 5px;
   height: 80px;
@@ -289,12 +285,12 @@ h3 {
 .r2d2-logo-img {
   max-height: 40px;
   max-width: 40px;
+  
 }
 
 .r2d2-logo-wrapper {
   height: 60px;
   width: 60px;
-  /* background-color: var(--r2d2-secondary-color); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -306,8 +302,10 @@ h3 {
 }
 
 .r2d2-wrapper {
-  margin-left: 10px;
-  width: 45%;
+  margin-left: 5px;
+  width: 49%;
+  align-self: flex-start;
+  padding-top: 10px;
 }
 
 .r2d2-item {
@@ -316,8 +314,11 @@ h3 {
 }
 
 .r2d2-wrapper-even {
-  margin-left: 10px;
-  width: 45%;
+  margin-left: 5px;
+  width: 49%;
+  align-self: flex-end;
+  padding-top: 10px;
+
   transform: rotate(180deg);
 }
 
@@ -338,4 +339,41 @@ h3 {
   justify-content: center;
   width: 70px;
   transform: rotate(180deg);
+}
+
+
+
+
+/* PC  */
+@media screen and (width > 845px) {
+
+  :root {
+    --width-card: 350px;
+    --height-card: 430px;
+    --border-width: 15px;
+  }
+
+  .name {
+    height: 35px;
+  }
+
+  .number {
+    border-top: 4px solid rgb(0, 0, 0);
+    height: 35px;
+    background-color: var(--primary-color);
+    --skew: 20px;
+  }
+  
+  .cell-text {
+    font-size: 1.4em;
+  }
+  
+  .arrow-up {
+    position: sticky;
+    font-size: 8em;
+    left: 100%;
+    bottom: 2%;
+    margin: 30px;
+  }
+  
 }

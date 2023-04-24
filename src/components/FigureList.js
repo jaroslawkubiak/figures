@@ -121,6 +121,7 @@ function FigureList({ listView, figures }) {
     }
   });
 
+  // after click go to top of page
   const handleGoUp = () => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
@@ -144,7 +145,9 @@ function FigureList({ listView, figures }) {
         {showFigureEditForm && FigureEditComponent}
         {renderedFigures}
 
-        {(positionFromTop < -1500) && <ImArrowUp2 onClick={handleGoUp} className="arrow-up cursor-pointer" />}
+        {(positionFromTop < -1500) && <ImArrowUp2 onClick={handleGoUp} className={listView
+            ? "arrow-up cursor-pointer background-color-r2d2-secondary"
+            : "arrow-up cursor-pointer background-color-primary"}/>}
       </div>
       {clickedImage && (
         <Modal

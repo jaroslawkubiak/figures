@@ -88,6 +88,47 @@
   position: absolute;
   top: 11px;
   right: -6px;
-  z-index: 999;
   color: var(--error-color);
+}
+
+
+/* PC  */
+@media screen and (width > 845px) {
+  .filter-icon {
+    font-size: 6em;
+    margin: 10px;
+  }
+
+  .filter-container {
+    --cut-height: 20px;
+  }  
+  .filter-quantity-icon {
+    font-size: 5.4em;
+  }
+
+  .filter-container-expand {
+    margin-bottom: 6px;
+  }
+
+  .filter-container-expand::after,
+  .filter-container-expand::before {
+    width: 23px;
+    height: 23px;
+  }
+
+  .filter-item-wrapper {
+    height: 100px;
+  }
+
+  .filter-reset-icon {
+    top: 11px;
+    right: -22px;
+  }
+  .filter-quantity-wprapper-border-card {
+    border: 4px solid var(--bg-color);
+  }
+  .filter-quantity-wprapper-border-list {
+    border: 4px solid var(--r2d2-primary-color);
+  }
+  
 }

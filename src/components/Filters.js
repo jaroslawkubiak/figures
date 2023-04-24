@@ -75,6 +75,9 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
     setExpandFilters(!expandFilters);
   };
 
+  const w = window.innerWidth;
+  const cssImCross = w < 376 ? 'font-size-1' : 'font-size-2-4';
+
   // class list for list view
   let cssBackground = "filter-container background-color-r2d2-head";
   let cssFilterBackground =
@@ -87,9 +90,10 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
     "add-figure-input background-color-r2d2-primary color-r2d2-head";
   let cssClassLabel = "add-figure-input-label color-r2d2-primary";
 
-  let cssDropdown = "add-figure-input background-color-r2d2-primary color-r2d2-head";
+  let cssDropdown =
+    "add-figure-input background-color-r2d2-primary color-r2d2-head";
   let cssPanelClass =
-    "add-figure-input select-height background-color-bg color-r2d2-head";
+    "add-figure-input select-height background-color-bg color-r2d2-head ";
   let cssDropdownElement = "dropdown-el-primary";
 
   // class list for card view
@@ -122,7 +126,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
 
         {/* display quantity of minifigures */}
         <div className={cssQuantityWrapper} title="Figures quantity">
-          <LegoMinifigure width="30" cssClass={cssLegoIconFill} />
+          <LegoMinifigure cssClass={cssLegoIconFill} />
           <FigureQuantity quantity={quantity} fillColor={cssSvgFillColor} />
         </div>
 
@@ -186,10 +190,10 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
             </div>
             {searchingNumber && (
               <div
-                className="filter-reset-icon cursor-pointer"
+                className={`filter-reset-icon cursor-pointer ${cssImCross}`}
                 onClick={handleResetSearchNumber}
               >
-                <ImCross />
+                <ImCross/>
               </div>
             )}
           </div>
@@ -207,17 +211,17 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
             </div>
             {searchingMainName && (
               <div
-                className="filter-reset-icon cursor-pointer"
+                className={`filter-reset-icon cursor-pointer ${cssImCross}`}
                 onClick={handleResetSearchMainName}
               >
-                <ImCross />
+                <ImCross/>
               </div>
             )}
           </div>
           <div className="filter-item-wrapper self-center cursor-pointer relative">
             <div>
               <Dropdown
-              cssClassLabel={cssClassLabel}
+                cssClassLabel={cssClassLabel}
                 cssDropdown={cssDropdown}
                 cssPanelClass={cssPanelClass}
                 cssDropdownElement={cssDropdownElement}
@@ -232,7 +236,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
             </div>
             {searchingReleaseYear && (
               <div
-                className="filter-reset-icon cursor-pointer "
+                className={`filter-reset-icon cursor-pointer ${cssImCross}`}
                 onClick={handleResetSearchReleaseYear}
               >
                 <ImCross />
@@ -242,8 +246,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
           <div className="filter-item-wrapper self-center cursor-pointer relative">
             <div>
               <Dropdown
-              cssClassLabel={cssClassLabel}
-
+                cssClassLabel={cssClassLabel}
                 cssDropdown={cssDropdown}
                 cssPanelClass={cssPanelClass}
                 cssDropdownElement={cssDropdownElement}
@@ -258,7 +261,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
             </div>
             {searchingSeries && (
               <div
-                className="filter-reset-icon cursor-pointer "
+                className={`filter-reset-icon cursor-pointer ${cssImCross}`}
                 onClick={handleResetSearchSeries}
               >
                 <ImCross />

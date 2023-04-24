@@ -29,6 +29,7 @@ figure list:
 
 Filters:
 [ x ] searching by: name, number: change with every typed character - useState
+[ ] use onlynumbers funct to check input characters
 [ x ] combine searching by name - have to include searching both : mainNAme adn additionalName
 [ x ] searching list by: series, year
 [ ] sorting by: series, number, main name, additional name, price. ASC and DESC
