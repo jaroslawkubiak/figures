@@ -1,6 +1,6 @@
 export const LegoMinifigure = ({ cssClass }) => {
   const w = window.innerWidth;
-  const iconWidth = w < 376 ? 30 : 60;
+  const iconWidth = w < 814 ? 30 : 60;
   return (
     <svg
       className={cssClass}

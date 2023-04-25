@@ -76,7 +76,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
   };
 
   const w = window.innerWidth;
-  const cssImCross = w < 376 ? 'font-size-1' : 'font-size-2-4';
+  const cssImCross = w < 814 ? 'font-size-1' : 'font-size-2-4';
 
   // class list for list view
   let cssBackground = "filter-container background-color-r2d2-head";

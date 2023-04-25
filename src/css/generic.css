@@ -147,3 +147,10 @@
 .justify-content-end {
   justify-content: end;
 }
+
+.align-self-flex-end {
+  align-self: flex-end;
+}
+.align-self-flex-start {
+  align-self: flex-start;
+}

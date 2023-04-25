@@ -14,23 +14,6 @@ function FigureShowList({
   const [figImage, setFigImage] = useState(showImage.url);
   // set bricklink logo
   const bricklinkLogo = showFigureImage("");
-  let cssClassContainer = "r2d2-container";
-  let cssClassWrapper = "r2d2-wrapper font-size-0-8";
-  let cssClassImg = "r2d2-img-wrapper cursor-pointer";
-  let cssClassItem = "r2d2-item color-secondary";
-  let cssClassHeader = "r2d2-item letter-spacing cursor-pointer";
-  let cssClassLogo = "r2d2-logo-wrapper";
-  let cssClassPrice = "r2d2-price color-secondary font-size-0-8";
-
-  if (!isFigureEven) {
-    cssClassContainer = "r2d2-container-even";
-    cssClassWrapper = "r2d2-wrapper-even font-size-0-8";
-    cssClassImg = "r2d2-img-wrapper cursor-pointer r2d2-even";
-    cssClassItem = "r2d2-item-even color-secondary";
-    cssClassHeader = "r2d2-item-even letter-spacing cursor-pointer";
-    cssClassLogo = "r2d2-logo-wrapper r2d2-even";
-    cssClassPrice = "r2d2-price-even color-secondary font-size-0-8";
-  }
 
   const renderedData =
     parse(`<a href="https://www.bricklink.com/v2/catalog/catalogitem.page?M=${figure.number}" target="_blank">
@@ -43,9 +26,9 @@ function FigureShowList({
   </a>`);
 
   return (
-    <div className={cssClassContainer}>
+    <div className={`r2d2-container ${isFigureEven || "r2d2-even"}`}>
       <div
-        className={cssClassImg}
+        className={`r2d2-img-wrapper cursor-pointer ${isFigureEven || "r2d2-even"}`}
         onClick={() => onModal(figure, clickedImage)}
       >
         <img
@@ -56,22 +39,22 @@ function FigureShowList({
         />
       </div>
 
-      <div className={cssClassWrapper}>
-        <div className={cssClassHeader} onClick={() => onEdit(figure)}>
+      <div className={`r2d2-wrapper font-size-0-8 ${isFigureEven || "r2d2-even align-self-flex-end"} ${!isFigureEven || "align-self-flex-start"}`}>
+        <div className={`r2d2-item letter-spacing cursor-pointer`} onClick={() => onEdit(figure)}>
           <p className="font-size-1 color-primary">{figure.mainName}</p>
         </div>
-        <div className={cssClassItem}>{figure.additionalName}</div>
-        <div className={cssClassItem}>
+        <div className={`r2d2-item color-secondary ${isFigureEven || "justify-content-start"}`}>{figure.additionalName}</div>
+        <div className={`r2d2-item color-secondary ${isFigureEven || "justify-content-start"}`}>
           {figure.number} - {figure.releaseYear}
         </div>
-        <div className={cssClassItem}>Series : {figure.series}</div>
+        <div className={`r2d2-item color-secondary ${isFigureEven || "justify-content-start"}`}>Series : {figure.series}</div>
       </div>
-      <div className={cssClassPrice}>
+      <div className={`r2d2-price color-secondary ${isFigureEven || "r2d2-even"}`}>
         <p>Price</p>
         <p>{figure.purchasePrice} zł</p>
       </div>
 
-      <div className={cssClassLogo}>
+      <div className={`r2d2-logo-wrapper ${isFigureEven || "r2d2-even"}`}>
         {renderedData}
       </div>
     </div>
@@ -79,35 +62,3 @@ function FigureShowList({
 }
 
 export default FigureShowList;
-
-// return (
-//   <div className="list-container">
-//     <div
-//       className="list-img cursor-pointer"
-//       onClick={() => onModal(figure, clickedImage)}
-//     >
-//       <img
-//         src={figImage}
-//         alt={showImage.description}
-//         title={showImage.description}
-//         className="list-figure-img"
-//       />
-//     </div>
-//     <div className="list-wrapper">
-//       <div
-//         className="list-item letter-spacing cursor-pointer color-grogu text-underline"
-//         onClick={() => onEdit(figure)}
-//       >
-//         <h3>{figure.mainName}</h3>{" "}
-//       </div>
-//       <div className="list-item">
-//         <h4>{figure.additionalName}</h4>{" "}
-//       </div>
-//       <div className="list-item">
-//         {figure.number} - {figure.releaseYear}
-//       </div>
-//       <div className="list-item">Series : {figure.series}</div>
-//       <div className="list-item">Purchase Date : {figure.purchaseDate}</div>
-//     </div>
-//   </div>
-// );
