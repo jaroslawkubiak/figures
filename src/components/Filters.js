@@ -31,7 +31,8 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
     return state.figures.searchNumber;
   });
   const handleChangeSearchingNumber = e => {
-    dispatch(changeSearchNumber(e.target.value));
+    if (onlyNumbersRegex.test(e.target.value))
+      dispatch(changeSearchNumber(e.target.value));
   };
   const handleResetSearchNumber = () => {
     dispatch(changeSearchNumber(""));
@@ -76,16 +77,15 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
   };
 
   const w = window.innerWidth;
-  const cssImCross = w < 814 ? 'font-size-1' : 'font-size-2-4';
+  const cssImCross = w < 814 ? "font-size-1" : "font-size-2-4";
 
   // class list for list view
-  let cssBackground = "filter-container background-color-r2d2-head";
   let cssFilterBackground =
     "background-color-r2d2-head filter-container-expand";
   let cssSvgFillColor = "#274294";
   let cssLegoIconFill = "svg-fill-r2d2-primary";
   let cssQuantityWrapper =
-    "filter-quantity-wprapper self-center filter-quantity-wprapper-border-list";
+    "filter-quantity-wprapper justify-self-center filter-quantity-wprapper-border-list";
   let cssInputText =
     "add-figure-input background-color-r2d2-primary color-r2d2-head";
   let cssClassLabel = "add-figure-input-label color-r2d2-primary";
@@ -98,12 +98,11 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
 
   // class list for card view
   if (!listView) {
-    cssBackground = "filter-container background-color-primary";
     cssFilterBackground = "background-color-primary filter-container-expand";
     cssSvgFillColor = "#212529";
     cssLegoIconFill = "svg-fill-lego-quantity";
     cssQuantityWrapper =
-      "filter-quantity-wprapper self-center filter-quantity-wprapper-border-card";
+      "filter-quantity-wprapper justify-self-center filter-quantity-wprapper-border-card";
     cssInputText = "add-figure-input background-color-bg color-primary";
     cssClassLabel = "add-figure-input-label";
     cssDropdown = "add-figure-input background-color-bg color-primary";
@@ -114,8 +113,12 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
 
   return (
     <>
-      <div className={cssBackground}>
-        <div className="self-start">
+      <div
+        className={`filter-container ${
+          listView || "background-color-primary"
+        } ${!listView || "background-color-r2d2-head"}`}
+      >
+        <div className="justify-self-start">
           <BsPlusSquare
             onClick={onAddFigure}
             fill={cssSvgFillColor}
@@ -130,7 +133,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
           <FigureQuantity quantity={quantity} fillColor={cssSvgFillColor} />
         </div>
 
-        <div className=" self-center">
+        <div className=" justify-self-center">
           {/* show list view */}
           {!listView && (
             <BsListColumnsReverse
@@ -151,7 +154,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
           )}
         </div>
 
-        <div className=" self-end">
+        <div className="justify-self-end">
           {/* collapse filters */}
           {expandFilters && (
             <BsFilterSquareFill
@@ -175,7 +178,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
 
       {expandFilters && (
         <div className={cssFilterBackground}>
-          <div className="filter-item-wrapper self-center relative">
+          <div className="filter-item-wrapper justify-self-center relative">
             <div>
               <InputText
                 onChange={handleChangeSearchingNumber}
@@ -193,11 +196,11 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
                 className={`filter-reset-icon cursor-pointer ${cssImCross}`}
                 onClick={handleResetSearchNumber}
               >
-                <ImCross/>
+                <ImCross />
               </div>
             )}
           </div>
-          <div className="filter-item-wrapper self-center relative">
+          <div className="filter-item-wrapper justify-self-center relative">
             <div>
               <InputText
                 onChange={handleChangeSearchingMainName}
@@ -214,11 +217,11 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
                 className={`filter-reset-icon cursor-pointer ${cssImCross}`}
                 onClick={handleResetSearchMainName}
               >
-                <ImCross/>
+                <ImCross />
               </div>
             )}
           </div>
-          <div className="filter-item-wrapper self-center cursor-pointer relative">
+          <div className="filter-item-wrapper justify-self-center cursor-pointer relative">
             <div>
               <Dropdown
                 cssClassLabel={cssClassLabel}
@@ -243,7 +246,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
               </div>
             )}
           </div>
-          <div className="filter-item-wrapper self-center cursor-pointer relative">
+          <div className="filter-item-wrapper justify-self-center cursor-pointer relative">
             <div>
               <Dropdown
                 cssClassLabel={cssClassLabel}

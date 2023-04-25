@@ -34,6 +34,14 @@ function FigureAdd({ onClose }) {
   const [isSubmit, setIsSubmit] = useState(false);
   const svgBg = "svg-fill-primary";
   const cssClassLabel = "add-figure-input-label color-primary";
+  
+  useEffect(() => {
+    document.body.classList.add("overflow-hidden");
+
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, []);
 
   // add figure form submit
   const handleSubmit = e => {
@@ -125,18 +133,21 @@ function FigureAdd({ onClose }) {
     if (isSubmit) setFormErrors({ ...formErrors, [e.target.name]: null });
   };
 
+  const w = window.innerWidth;
+  const mobileView = w < 814 ? "font-size-1-4" : "font-size-2-4";
+
   return (
     <div className="add-figure-wrapper">
       <div className="add-figure-container">
         <div className="add-figure-close-btn" onClick={() => onClose()}>
-          <ImCross className="svg-fill-bg font-size-1-4" />
+          <ImCross className={`svg-fill-bg ${mobileView}`} />
         </div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
-          <div className="grid-full-line add-figure-heading">
+          <div className="add-header add-figure-heading">
             Add new minifigure
           </div>
           {/* Number */}
-          <div className="add-figure-div grid-2-left">
+          <div className="add-figure-div add-number">
             <InputText
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}
@@ -152,11 +163,11 @@ function FigureAdd({ onClose }) {
             {formErrors.number}
           </div>
           {/* Image */}
-          <div id="add-figure-photo" className="add-figure-div grid-height-3">
+          <div id="add-figure-photo" className="add-photo">
             <FigurePhoto figNumber={currentFigure.number} svgBg={svgBg} />
           </div>
           {/* Main name */}
-          <div className="add-figure-div grid-2-left">
+          <div className="add-figure-div add-main-name">
             <InputText
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}
@@ -172,7 +183,7 @@ function FigureAdd({ onClose }) {
             {formErrors.mainName}
           </div>
           {/* Additional name */}
-          <div className="add-figure-div grid-2-left">
+          <div className="add-figure-div add-additional-name">
             <InputText
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}
@@ -185,7 +196,7 @@ function FigureAdd({ onClose }) {
             </InputText>
           </div>
           {/* Purchase Price */}
-          <div className="add-figure-div grid-2-left">
+          <div className="add-figure-div add-purchase-price">
             <InputNumber
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}
@@ -202,7 +213,7 @@ function FigureAdd({ onClose }) {
             {formErrors.purchasePrice}
           </div>
           {/* Bricklink Price */}
-          <div className="add-figure-div grid-2-left">
+          <div className="add-figure-div add-bricklink-price">
             <InputNumber
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}
@@ -217,7 +228,7 @@ function FigureAdd({ onClose }) {
             </InputNumber>
           </div>
           {/* Release Year */}
-          <div className="add-figure-div grid-2-left cursor-pointer">
+          <div className="add-figure-div add-release-year cursor-pointer">
             <Dropdown
               cssDropdown="add-figure-input background-color-primary color-bg"
               cssPanelClass="add-figure-input background-color-primary color-bg select-height"
@@ -235,7 +246,7 @@ function FigureAdd({ onClose }) {
             {formErrors.releaseYear}
           </div>
           {/* Series */}
-          <div className="add-figure-div grid-2-right cursor-pointer">
+          <div className="add-figure-div add-series cursor-pointer">
             <Dropdown
               cssDropdown="add-figure-input background-color-primary color-bg"
               cssPanelClass="add-figure-input background-color-primary color-bg select-height"
@@ -253,7 +264,7 @@ function FigureAdd({ onClose }) {
             {formErrors.series}
           </div>
           {/* Bricklink */}
-          <div className="add-figure-div grid-3-left">
+          <div className="add-figure-div add-bricklink">
             <InputText
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}
@@ -265,7 +276,7 @@ function FigureAdd({ onClose }) {
             </InputText>
           </div>
           {/* Label */}
-          <div className="add-figure-div grid-1-right">
+          <div className="add-figure-div add-label">
             <InputCheckbox
               cssClass="add-figure-checkbox-div add-figure-checkbox-wrapper"
               cssCheckboxClass="cursor-pointer"
@@ -278,7 +289,7 @@ function FigureAdd({ onClose }) {
             </InputCheckbox>
           </div>
           {/* Weapon */}
-          <div className="add-figure-div grid-2-left cursor-pointer">
+          <div className="add-figure-div add-weapon cursor-pointer">
             <Dropdown
               cssDropdown="add-figure-input background-color-primary color-bg"
               cssPanelClass="add-figure-input background-color-primary color-bg select-height"
@@ -296,7 +307,7 @@ function FigureAdd({ onClose }) {
             {formErrors.weapon}
           </div>
           {/* Purchase date */}
-          <div className="add-figure-div grid-2-right">
+          <div className="add-figure-div add-purchase-date">
             <InputText
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}
@@ -311,7 +322,7 @@ function FigureAdd({ onClose }) {
             </InputText>
             {formErrors.purchaseDate}
           </div>
-          <div className="grid-full-line">
+          <div className="add-button">
             <Button cssClass="btn btn-add">
               <BsPlus className="btn-icon font-size-2-8" />
               Add

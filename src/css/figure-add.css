@@ -27,13 +27,6 @@
   border: 2px solid var(--primary-color);
 }
 
-#add-figure-form {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  place-items: center;
-  gap: 20px 5px;
-}
-
 .add-figure-div {
   position: relative;
   width: 100%;
@@ -74,36 +67,71 @@
   font-size: 0.8em;
 }
 
-.grid-2-left {
-  grid-column: 1/3;
-}
-
-.grid-2-right {
-  grid-column: 3/5;
-}
-
-.grid-3-left {
-  grid-column: 1/4;
-}
-
-.grid-1-right {
-  grid-column: 4/5;
-}
-
-.grid-full-line {
+#add-figure-form {
   display: grid;
-  grid-column: 1/-1;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
+  gap: 25px 10px;
+  grid-template-areas:
+    "header header header header"
+    "number number photo photo"
+    "main-name main-name photo photo"
+    "additional-name additional-name photo photo"
+    "purchase-price purchase-price photo photo"
+    "bricklink-price bricklink-price photo photo"
+    "release-year release-year series series"
+    "bricklink bricklink bricklink label"
+    "weapon weapon purchase-date purchase-date"
+    "button button button button"
+    "delete-button delete-button delete-button delete-button";
+}
+.add-header {
+  grid-area: header;
+}
+.add-number {
+  grid-area: number;
+}
+.add-photo {
+  grid-area: photo;
+  align-items: start;
+}
+.add-main-name {
+  grid-area: main-name;
+}
+.add-additional-name {
+  grid-area: additional-name;
+}
+.add-purchase-price {
+  grid-area: purchase-price;
+}
+.add-bricklink-price {
+  grid-area: bricklink-price;
+}
+.add-series {
+  grid-area: series;
+}
+.add-release-year {
+  grid-area: release-year;
+}
+.add-bricklink {
+  grid-area: bricklink;
+}
+.add-label {
+  grid-area: label;
+}
+.add-weapon {
+  grid-area: weapon;
+}
+.add-purchase-date {
+  grid-area: purchase-date;
+}
+.add-button {
+  grid-area: button;
+}
+.edit-delete-button {
+  grid-area: delete-button;
 }
 
-.grid-height-3 {
-  height: 100%;
-  grid-row: 2 / span 5;
-  grid-column: 3/5;
-}
-
-.font-size-6 {
-  font-size: 6em;
-}
 #add-figure-photo {
   display: grid;
   align-items: center;
@@ -230,7 +258,6 @@ input[type="checkbox"]:checked::after {
   right: 5px;
   transform: translateY(-50%);
 }
-
 .dropdown-el,
 .dropdown-el-primary {
   padding: 3px;
@@ -299,8 +326,76 @@ input[type="checkbox"]:checked::after {
   border: 2px solid var(--edit-color);
 }
 
+/* phones in landscape mode */
+@media screen and (orientation: landscape) and (max-width: 814px) {
+  #add-figure-form {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 25px 10px;
+    grid-template-areas:
+      "header header header photo photo"
+      "number main-name additional-name photo photo"
+      "purchase-price bricklink-price purchase-date photo photo"
+      "release-year series weapon photo photo"
+      "bricklink bricklink label photo photo"
+      ". button delete-button photo photo";
+  }
+
+  #add-img {
+    max-height: 60%;
+    max-width: 60%;
+  }
+}
+
 /* PC  */
 @media screen and (width > 845px) {
+  :root {
+    --input-height: 35px;
+  }
+
+  .add-figure-wrapper {
+    position: fixed;
+    margin: 0 auto;
+    max-width: 1280px;
+    background-color: var(--bg-color-modal);
+  }
+
+  #add-figure-form {
+    gap: 95px 40px;
+    grid-template-areas:
+      "header header header header"
+      "number number photo photo"
+      "main-name main-name photo photo"
+      "additional-name additional-name photo photo"
+      "purchase-price purchase-price photo photo"
+      "bricklink-price bricklink-price photo photo"
+      "release-year release-year series series"
+      "bricklink bricklink bricklink label"
+      "weapon weapon purchase-date purchase-date"
+      "button button button button"
+      "delete-button delete-button delete-button delete-button";
+  }
+
+  .add-figure-container {
+    --margin: 3em;
+    padding: 2em;
+    border: 5px solid var(--primary-color);
+  }
+
+  .image-prev-error {
+    font-size: 3em;
+  }
+
+  #add-img {
+    max-height: 100%;
+    max-width: 100%;
+    --cut-height: 20px;
+  }
+
+  .add-figure-heading {
+    letter-spacing: 4px;
+    font-size: 2.8em;
+  }
+
   .add-figure-input {
     font-size: 18px;
     --cut-height: 12px;
@@ -309,7 +404,13 @@ input[type="checkbox"]:checked::after {
 
   .add-figure-input-label {
     font-size: 22px;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+  }
+
+  .add-figure-close-btn {
+    --close-btn-width: 60px;
+    top: calc(-1 * var(--close-btn-width) / 2);
+    right: calc(-1 * var(--close-btn-width) / 2);
   }
 
   .dropdown-el,
@@ -324,15 +425,40 @@ input[type="checkbox"]:checked::after {
     overflow: auto;
     z-index: 99999;
   }
-
   .dropdown-el:hover::after {
     width: 6px;
     left: -10px;
   }
-  
   .dropdown-el-primary:hover::after {
     width: 6px;
     left: -10px;
+  }
+  ::-webkit-scrollbar {
+    width: 30px; /* Total width including `border-width` of scrollbar thumb */
+  }
+
+  /* checkbox style  */
+  input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
+    border: 3px solid var(--bg-color);
+    border-radius: 5px;
+  }
+
+  input[type="checkbox"]:checked::before,
+  input[type="checkbox"]:checked::after {
+    top: 7px;
+    left: 49%;
+    width: 4px;
+    height: 22px;
+  }
+
+  .add-figure-checkbox-div {
+    height: var(--input-height);
+    --cut-height: 12px;
+  }
+  .edit-figure-border {
+    border: 8px solid var(--edit-color);
   }
   
 }

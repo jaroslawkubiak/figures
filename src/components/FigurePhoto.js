@@ -4,6 +4,12 @@ import { GalacticEmpire } from "../svg/GalacticEmpire";
 // import fetchFigureInfo from "../fetch/bricklink";
 
 function FigurePhoto({ figNumber, svgBg }) {
+  const w = window.innerWidth;
+  const iconWidth = w < 814 ? 130 : 300;
+
+
+
+
   //state for fetching img from bricklink server
   const [figImg, setFigImg] = useState({
     isLoading: false,
@@ -22,7 +28,7 @@ function FigurePhoto({ figNumber, svgBg }) {
   let renderedData = (
     <div className="img-wrapper">
       <span> &nbsp;</span>
-      <GalacticEmpire width="130" cssClass={svgBg} />
+      <GalacticEmpire width={iconWidth} cssClass={svgBg} />
     </div>
   );
   let renderedPhoto = `https://img.bricklink.com/ItemImage/MN/0/${figNumber}.png`;
@@ -38,7 +44,7 @@ function FigurePhoto({ figNumber, svgBg }) {
     renderedData = (
       <div className="img-wrapper">
         <span className="image-prev-error">&nbsp;</span>
-        <GalacticEmpire width="130" cssClass={cssSvgClass} />
+        <GalacticEmpire width={iconWidth} cssClass={cssSvgClass} />
       </div>
     );
 
@@ -59,13 +65,13 @@ function FigurePhoto({ figNumber, svgBg }) {
         </a>`);
   }
 
-  // image doesnt exists on server
+  // image dont exists on server
   if (figNumber.length >= 6 && !imageExists(renderedPhoto)) {
     if (!figImg.error) setFigImg({ ...figImg, error: "Not found" });
     renderedData = (
       <div className="img-wrapper">
         <span className="image-prev-error">img not found</span>
-        <GalacticEmpire width="130" cssClass="svg-fill-error" />
+        <GalacticEmpire width={iconWidth} cssClass="svg-fill-error" />
       </div>
     );
   }

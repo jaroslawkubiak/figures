@@ -35,8 +35,15 @@ function FigureEdit({ onClose }) {
   const [isSubmit, setIsSubmit] = useState(false);
   const [deleteFigure, setDeleteFigure] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const [figureToDelete, setFigureToDelete] = useState(false);
   const cssClassLabel = "add-figure-input-label color-edit";
+  
+  useEffect(() => {
+    document.body.classList.add("overflow-hidden");
+
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, []);
 
   const dispatch = useDispatch();
   const figure = useSelector(state => {
@@ -55,6 +62,9 @@ function FigureEdit({ onClose }) {
       bricklinkPrice: state.edit.bricklinkPrice,
     };
   });
+  const [figureToDelete, setFigureToDelete] = useState(figure);
+  const [figureMainName, setFigureMainName] = useState(figure.mainName);
+
   const svgBg = "svg-fill-edit";
 
   // edit figure form submit
@@ -139,9 +149,9 @@ function FigureEdit({ onClose }) {
   }, [deleteFigure]);
 
   //deleting figure
-  const handleDelete = fig => {
+  const handleDelete = e => {
+    e.preventDefault();
     setShowConfirmModal(true);
-    setFigureToDelete(fig);
   };
 
   // after error - when on focus input - clear error message
@@ -149,9 +159,12 @@ function FigureEdit({ onClose }) {
     if (isSubmit) setFormErrors({ ...formErrors, [e.target.name]: null });
   };
 
+  const w = window.innerWidth;
+  const mobileView = w < 814 ? "font-size-1-4" : "font-size-1-8";
+
   return (
     <div className="add-figure-wrapper">
-      <div className="add-figure-container edit-figure-border">
+      <div className="add-figure-container edit-figure-border ">
         {showConfirmModal && (
           <ConfirmModal
             figure={figure.mainName}
@@ -163,14 +176,14 @@ function FigureEdit({ onClose }) {
           className="add-figure-close-btn background-color-edit"
           onClick={() => onClose()}
         >
-          <ImCross className="svg-fill-bg font-size-1-4" />
+          <ImCross className={`svg-fill-bg ${mobileView}`} />
         </div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
-          <div className="grid-full-line add-figure-heading color-edit">
-            Edit - {figure.mainName}
+          <div className="add-header add-figure-heading color-edit">
+            Edit - {figureMainName}
           </div>
           {/* Number */}
-          <div className="add-figure-div grid-2-left color-edit">
+          <div className="add-figure-div add-number color-edit">
             <input type="hidden" value={figure.id} name="id" />
             <InputText
               cssClass="add-figure-input background-color-edit color-bg"
@@ -187,11 +200,11 @@ function FigureEdit({ onClose }) {
             {formErrors.number}
           </div>
           {/* Image */}
-          <div id="add-figure-photo" className="add-figure-div grid-height-3">
+          <div id="add-figure-photo" className="add-photo">
             <FigurePhoto figNumber={figure.number} svgBg={svgBg} />
           </div>
           {/* Main name */}
-          <div className="add-figure-div grid-2-left color-edit">
+          <div className="add-figure-div add-main-name color-edit">
             <InputText
               cssClass="add-figure-input background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
@@ -207,7 +220,7 @@ function FigureEdit({ onClose }) {
             {formErrors.mainName}
           </div>
           {/* Additional name */}
-          <div className="add-figure-div grid-2-left color-edit">
+          <div className="add-figure-div add-additional-name color-edit">
             <InputText
               cssClass="add-figure-input background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
@@ -220,7 +233,7 @@ function FigureEdit({ onClose }) {
             </InputText>
           </div>
           {/* Purchase Price */}
-          <div className="add-figure-div grid-2-left color-edit">
+          <div className="add-figure-div add-purchase-price color-edit">
             <InputNumber
               cssClass="add-figure-input background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
@@ -237,7 +250,7 @@ function FigureEdit({ onClose }) {
             {formErrors.purchasePrice}
           </div>
           {/* Bricklink Price */}
-          <div className="add-figure-div grid-2-left color-edit">
+          <div className="add-figure-div add-bricklink-price color-edit">
             <InputNumber
               cssClass="add-figure-input background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
@@ -252,7 +265,7 @@ function FigureEdit({ onClose }) {
             </InputNumber>
           </div>
           {/* Release Year */}
-          <div className="add-figure-div grid-2-left cursor-pointer color-edit">
+          <div className="add-figure-div add-release-year cursor-pointer color-edit">
             <Dropdown
               cssClassLabel={cssClassLabel}
               cssDropdown="add-figure-input background-color-edit color-bg"
@@ -270,7 +283,7 @@ function FigureEdit({ onClose }) {
             {formErrors.releaseYear}
           </div>
           {/* Series */}
-          <div className="add-figure-div grid-2-right cursor-pointer color-edit">
+          <div className="add-figure-div add-series cursor-pointer color-edit">
             <Dropdown
               cssClassLabel={cssClassLabel}
               cssDropdown="add-figure-input background-color-edit color-bg"
@@ -288,7 +301,7 @@ function FigureEdit({ onClose }) {
             {formErrors.series}
           </div>
           {/* Bricklink */}
-          <div className="add-figure-div grid-3-left color-edit">
+          <div className="add-figure-div add-bricklink color-edit">
             <InputText
               cssClass="add-figure-input background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
@@ -300,7 +313,7 @@ function FigureEdit({ onClose }) {
             </InputText>
           </div>
           {/* Label */}
-          <div className="add-figure-div grid-1-right color-edit">
+          <div className="add-figure-div add-label color-edit">
             <InputCheckbox
               cssClass="add-figure-checkbox-div add-figure-checkbox-wrapper background-color-edit color-bg"
               cssCheckboxClass="cursor-pointer background-color-edit color-bg"
@@ -313,7 +326,7 @@ function FigureEdit({ onClose }) {
             </InputCheckbox>
           </div>
           {/* Weapon */}
-          <div className="add-figure-div grid-2-left cursor-pointer color-edit">
+          <div className="add-figure-div add-weapon cursor-pointer color-edit">
             <Dropdown
               cssClassLabel={cssClassLabel}
               cssDropdown="add-figure-input background-color-edit color-bg"
@@ -331,7 +344,7 @@ function FigureEdit({ onClose }) {
             {formErrors.weapon}
           </div>
           {/* Purchase date */}
-          <div className="add-figure-div grid-2-right color-edit">
+          <div className="add-figure-div add-purchase-date color-edit">
             <InputText
               cssClass="add-figure-input background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
@@ -346,22 +359,22 @@ function FigureEdit({ onClose }) {
             </InputText>
             {formErrors.purchaseDate}
           </div>
-          <div className="grid-full-line">
+          <div className="add-button">
             <Button cssClass="btn btn-edit">
-              <BsSave className="btn-icon font-size-1-8" />
+              <BsSave className={`btn-icon ${mobileView}`} />
               Save
             </Button>
           </div>
+          <div className="edit-delete-button">
+            <Button
+              cssClass="btn btn-delete"
+              onClick={handleDelete}
+            >
+              <BsTrash3 className={`btn-icon ${mobileView}`} />
+              delete
+            </Button>
+          </div>
         </form>
-        <div className="grid-full-line margin-top-1 justify-content-center">
-          <Button
-            cssClass="btn btn-delete"
-            onClick={() => handleDelete(figure)}
-          >
-            <BsTrash3 className="btn-icon font-size-1-8" />
-            delete
-          </Button>
-        </div>
       </div>
     </div>
   );
