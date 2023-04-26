@@ -160,7 +160,8 @@ function FigureEdit({ onClose }) {
   };
 
   const w = window.innerWidth;
-  const mobileView = w < 814 ? "font-size-1-4" : "font-size-1-8";
+  const btnCloseMobileView = w < 814 ? "font-size-1-4" : "font-size-2-8";
+  const btnSaveMobileView = w < 814 ? "font-size-2" : "font-size-1-4";
 
   return (
     <div className="add-figure-wrapper">
@@ -176,7 +177,7 @@ function FigureEdit({ onClose }) {
           className="add-figure-close-btn background-color-edit"
           onClick={() => onClose()}
         >
-          <ImCross className={`svg-fill-bg ${mobileView}`} />
+          <ImCross className={`svg-fill-bg ${btnCloseMobileView}`} />
         </div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
           <div className="add-header add-figure-heading color-edit">
@@ -315,7 +316,7 @@ function FigureEdit({ onClose }) {
           {/* Label */}
           <div className="add-figure-div add-label color-edit">
             <InputCheckbox
-              cssClass="add-figure-checkbox-div add-figure-checkbox-wrapper background-color-edit color-bg"
+              cssClass="add-figure-checkbox-div background-color-edit color-bg"
               cssCheckboxClass="cursor-pointer background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
               name="label"
@@ -361,7 +362,7 @@ function FigureEdit({ onClose }) {
           </div>
           <div className="add-button">
             <Button cssClass="btn btn-edit">
-              <BsSave className={`btn-icon ${mobileView}`} />
+              <BsSave className={btnSaveMobileView} />
               Save
             </Button>
           </div>
@@ -370,7 +371,7 @@ function FigureEdit({ onClose }) {
               cssClass="btn btn-delete"
               onClick={handleDelete}
             >
-              <BsTrash3 className={`btn-icon ${mobileView}`} />
+              <BsTrash3 className={btnSaveMobileView} />
               delete
             </Button>
           </div>

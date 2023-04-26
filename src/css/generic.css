@@ -28,11 +28,22 @@
 .align-self-flex-start {
   align-self: flex-start;
 }
+.text-align-left {
+  text-align: left;
+}
+.text-align-right {
+  text-align: right;
+}
 
 
-
-.letter-spacing {
+.letter-spacing-2 {
   letter-spacing: 2px;
+}
+.letter-spacing-3 {
+  letter-spacing: 3px;
+}
+.letter-spacing-4 {
+  letter-spacing: 4px;
 }
 .overflow-hidden {
   overflow: hidden;
@@ -69,6 +80,9 @@
   font-size: 1em;
 }
 .font-size-1-1 {
+  font-size: 1.1em;
+}
+.font-size-1-2 {
   font-size: 1.2em;
 }
 .font-size-1-4 {

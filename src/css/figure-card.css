@@ -196,18 +196,17 @@
 
 .r2d2-item {
   font-size: 0.8em;
-
 }
 
 .r2d2-wrapper {
   margin-left: 5px;
   width: 44%;
-  padding-top: 10px;
 }
 
 .r2d2-price {
   display: grid;
   justify-content: center;
+  text-align: center;
   width: 70px;
   font-size: 0.8em;
 }
@@ -276,7 +275,6 @@
 
   .r2d2-item {
     font-size: 1.2em;
-  
   }
   
   .r2d2-price {

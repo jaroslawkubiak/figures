@@ -92,27 +92,27 @@
 }
 
 .modal-arrow-right {
-  right: 5px;
+  right: -5px;
 }
 
 .modal-arrow-left {
-  left: 5px;
+  left: -5px;
 }
 
 .modal-next-image {
   position: absolute;
   top: 0px;
   bottom: 0px;
-  right: -20px;
-  width: 170px;
+  right: -30px;
+  left: 50%;
 }
 
 .modal-prev-image {
   position: absolute;
   top: 0px;
   bottom: 0px;
-  left: -20px;
-  width: 170px;
+  left: -30px;
+  right: 50%;
 }
 
 .confirm-modal-wrapper {
@@ -175,18 +175,21 @@
 @media screen and (orientation: landscape) and (max-width: 814px) {
   .modal-container {
     height: 85%;
+    max-width: 600px;
     padding: 10px;
   }
   .modal-figure-img {
     max-height: 330px;
     max-width: 600px;
   }
-  .modal-next-image {
-    width: 370px;
+  .modal-arrow-right {
+    right: -50px;
   }
-  .modal-prev-image {
-    width: 370px;
+  
+  .modal-arrow-left {
+    left: -50px;
   }
+  
 }
 /* PC  */
 @media screen and (width > 845px) {
@@ -195,7 +198,7 @@
     --height-confirm-modal: 300px;
   }
   .modal-container {
-    width: 40%;
+    max-width: 600px;
     height: auto;
     padding: 10px;
   }
@@ -222,22 +225,16 @@
   }
 
   .modal-arrow {
-    font-size: 6em;
+    font-size: 5em;
   }
   .modal-arrow-right {
-    right: 50px;
+    right: -80px;
   }
+  
   .modal-arrow-left {
-    left: 50px;
+    left: -80px;
   }
-  .modal-next-image {
-    right: -60%;
-    width: 105%;
-  }
-  .modal-prev-image {
-    left: -60%;
-    width: 105%;
-  }
+  
 
   .confirm-modal-container {
     --cut-height: 20px;

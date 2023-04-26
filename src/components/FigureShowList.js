@@ -40,14 +40,15 @@ function FigureShowList({
       </div>
 
       <div className={`r2d2-wrapper font-size-0-8 ${isFigureEven || "r2d2-even align-self-flex-end"} ${!isFigureEven || "align-self-flex-start"}`}>
-        <div className={`r2d2-item letter-spacing cursor-pointer`} onClick={() => onEdit(figure)}>
-          <p className="font-size-1 color-primary">{figure.mainName}</p>
+        <div className={`r2d2-item letter-spacing-2 cursor-pointer ${isFigureEven || "text-align-right"}`} onClick={() => onEdit(figure)}>
+          {figure.mainName}
         </div>
-        <div className={`r2d2-item color-secondary ${isFigureEven || "justify-content-start"}`}>{figure.additionalName}</div>
-        <div className={`r2d2-item color-secondary ${isFigureEven || "justify-content-start"}`}>
+        <div className={`r2d2-item color-secondary ${isFigureEven || "text-align-right"}`}>{figure.additionalName}</div>
+        <div className={`r2d2-item color-secondary ${isFigureEven || "text-align-right"}`}>
           {figure.number} - {figure.releaseYear}
         </div>
-        <div className={`r2d2-item color-secondary ${isFigureEven || "justify-content-start"}`}>Series : {figure.series}</div>
+        <div className={`r2d2-item color-secondary ${isFigureEven || "text-align-right"}`}>Series : {figure.series}</div>
+        <div className={`r2d2-item color-secondary ${isFigureEven || "text-align-right"}`}>purchase date : {figure.purchaseDate}</div>
       </div>
       <div className={`r2d2-price color-secondary ${isFigureEven || "r2d2-even"}`}>
         <p>Price</p>

@@ -20,7 +20,6 @@
   --primary-color-hover: #fcc419;
   --error-color-hover: #f03e3e;
   --edit-color-hover: #ffc078;
-
   /* less opacity for bg modals*/
   --bg-color-modal: #0f1010f1;
 }
@@ -124,8 +123,8 @@ body {
   letter-spacing: 0.1rem;
   display: flex;
   align-items: center;
-  gap: 5px;
-  padding: 5px 15px;
+  gap: 15px;
+  padding: 10px 15px;
   margin: 5px;
   cursor: pointer;
 
@@ -169,10 +168,6 @@ a {
 
 .btn-delete:hover {
   background-color: var(--error-color-hover);
-}
-
-.btn-icon {
-  padding-right: 4px;
 }
 
 /* validate messages */
@@ -265,12 +260,15 @@ a {
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
   }
-
+  
+  .required-field-container {
+    top: 20px;
+  }
+  
   .required-field {
     top: 50px;
     width: 40%;
     transform: translateX(-50%);
-
     font-size: 18px;
     --cut-height: 8px;
   }
@@ -293,13 +291,13 @@ a {
 
   .btn {
     font-size: 1.8em;
-    letter-spacing: 0.2rem;
-    gap: 10px;
-    padding: 5px 15px;
-    --cut-height: 18px;
+    letter-spacing: 6px;
+    --cut-height: 20px;
+    gap: 30px;
+    padding: 10px 25px;
+
+
   }
-  .btn-icon {
-    padding-right: 10px;
-  }
+
   
 }

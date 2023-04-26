@@ -126,7 +126,6 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
             title="Add figure"
           />
         </div>
-
         {/* display quantity of minifigures */}
         <div className={cssQuantityWrapper} title="Figures quantity">
           <LegoMinifigure cssClass={cssLegoIconFill} />

@@ -8,7 +8,7 @@ import FigurePhoto from "./FigurePhoto";
 import { useState, useEffect } from "react";
 
 import { ImCross } from "react-icons/im";
-import { BsPlus } from "react-icons/bs";
+import { BsPlusLg } from "react-icons/bs";
 import seriesList from "../data/seriesList.json";
 import weaponList from "../data/weaponList.json";
 import saveImageToHdd from "../js/saveImageToHdd";
@@ -134,13 +134,14 @@ function FigureAdd({ onClose }) {
   };
 
   const w = window.innerWidth;
-  const mobileView = w < 814 ? "font-size-1-4" : "font-size-2-4";
+  const btnCloseMobileView = w < 814 ? "font-size-1-4" : "font-size-2-8";
+  const btnAddMobileView = w < 814 ? "font-size-2" : "font-size-2-4";
 
   return (
     <div className="add-figure-wrapper">
       <div className="add-figure-container">
         <div className="add-figure-close-btn" onClick={() => onClose()}>
-          <ImCross className={`svg-fill-bg ${mobileView}`} />
+          <ImCross className={`svg-fill-bg ${btnCloseMobileView}`} />
         </div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
           <div className="add-header add-figure-heading">
@@ -278,7 +279,7 @@ function FigureAdd({ onClose }) {
           {/* Label */}
           <div className="add-figure-div add-label">
             <InputCheckbox
-              cssClass="add-figure-checkbox-div add-figure-checkbox-wrapper"
+              cssClass="add-figure-checkbox-div"
               cssCheckboxClass="cursor-pointer"
               cssClassLabel={cssClassLabel}
               name="label"
@@ -324,7 +325,7 @@ function FigureAdd({ onClose }) {
           </div>
           <div className="add-button">
             <Button cssClass="btn btn-add">
-              <BsPlus className="btn-icon font-size-2-8" />
+              <BsPlusLg className={btnAddMobileView}/>
               Add
             </Button>
           </div>

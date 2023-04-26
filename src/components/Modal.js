@@ -29,24 +29,25 @@ const Modal = ({
 
   return (
     <div className="modal-wrapper dismiss" onClick={handleClick}>
-      <ImArrowLeft2
-        onClick={handleSwapLeft}
-        className="modal-arrow-left modal-arrow cursor-pointer"
-      />
-      <ImArrowRight2
-        onClick={handleSwapRight}
-        className="modal-arrow-right modal-arrow cursor-pointer"
-      />
-
       <div className="modal-container">
         <div
           className="modal-next-image cursor-pointer"
           onClick={handleSwapRight}
         ></div>
+        <ImArrowLeft2
+          onClick={handleSwapLeft}
+          className="modal-arrow-left modal-arrow cursor-pointer"
+        />
+
         <div
           className="modal-prev-image cursor-pointer"
           onClick={handleSwapLeft}
         ></div>
+        <ImArrowRight2
+          onClick={handleSwapRight}
+          className="modal-arrow-right modal-arrow cursor-pointer"
+        />
+
         <div className="modal-close-btn" onClick={handleClick}>
           <ImCross className={`svg-fill-bg ${mobileView}`} />
           <div className="modal-close dismiss"></div>
