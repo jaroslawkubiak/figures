@@ -7,7 +7,9 @@ import {
   BsGrid,
 } from "react-icons/bs";
 import { ImCross } from "react-icons/im";
-import { onlyNumbersRegex, yearsList } from "../js/helpers";
+import { onlyNumbersRegex } from "../utils/validate";
+import { yearsList } from "../utils/yearList";
+
 import seriesList from "../data/seriesList.json";
 
 import FigureQuantity from "./FigureQuantity";

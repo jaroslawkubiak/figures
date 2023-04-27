@@ -9,6 +9,7 @@ import {
   editFigure,
   removeFigure,
 } from "./slice/figureSlice";
+
 import {
   formReducer,
   changeNumber,

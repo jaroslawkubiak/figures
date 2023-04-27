@@ -22,7 +22,7 @@ function InputCheckbox({
               type="checkbox"
               id="cb"
             />
-            <label for="cb"></label>
+            <label htmlFor="cb"></label>
           </div>
         </div>
       </div>

@@ -8,6 +8,7 @@ const figuresSlice = createSlice({
     searchMainName: "",
     searchReleaseYear: "",
     searchSeries: "",
+    figureExist: "",
     data: figuresData,
   },
   reducers: {

@@ -10,10 +10,12 @@ import { ImCross } from "react-icons/im";
 import { BsTrash3, BsSave } from "react-icons/bs";
 import seriesList from "../data/seriesList.json";
 import weaponList from "../data/weaponList.json";
-import saveImageToHdd from "../js/saveImageToHdd";
+import saveImageToHdd from "../utils/saveImageToHdd";
 
 import { useDispatch, useSelector } from "react-redux";
-import { onlyNumbersRegex, validate, yearsList } from "../js/helpers";
+import { onlyNumbersRegex, validate } from "../utils/validate";
+import { yearsList } from "../utils/yearList";
+
 import {
   editNumber,
   editMainName,

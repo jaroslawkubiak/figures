@@ -1,19 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { addFigure } from "./figureSlice";
 
-// getting today date
-const today = new Date()
-  .toLocaleDateString("pl-PL", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  })
-  .replaceAll(".", "-");
 
 const formSlice = createSlice({
   name: "form",
   initialState: {
-    number: "sw",
+    number: "",
     mainName: "",
     additionalName: "",
     releaseYear: "",
@@ -22,7 +14,7 @@ const formSlice = createSlice({
     series: "",
     purchasePrice: "",
     weapon: "",
-    purchaseDate: today,
+    purchaseDate: "",
     bricklinkPrice: "",
   },
   reducers: {

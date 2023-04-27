@@ -11,8 +11,13 @@ import { ImCross } from "react-icons/im";
 import { BsPlusLg } from "react-icons/bs";
 import seriesList from "../data/seriesList.json";
 import weaponList from "../data/weaponList.json";
-import saveImageToHdd from "../js/saveImageToHdd";
-import { onlyNumbersRegex, validate, yearsList } from "../js/helpers";
+import saveImageToHdd from "../utils/saveImageToHdd";
+import {
+  onlyNumbersRegex,
+  validate,
+  inputFieldNotValid,
+} from "../utils/validate";
+import { yearsList } from "../utils/yearList";
 import { useDispatch, useSelector } from "react-redux";
 import {
   changeNumber,
@@ -32,9 +37,10 @@ import {
 function FigureAdd({ onClose }) {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
+  const [figureExistInDB, setFigureExistInDB] = useState(false);
   const svgBg = "svg-fill-primary";
   const cssClassLabel = "add-figure-input-label color-primary";
-  
+
   useEffect(() => {
     document.body.classList.add("overflow-hidden");
 
@@ -47,7 +53,7 @@ function FigureAdd({ onClose }) {
   const handleSubmit = e => {
     e.preventDefault();
     setIsSubmit(true);
-    setFormErrors(validate(currentFigure));
+    setFormErrors(validate(currentFigure, true, figureExistInDB));
   };
 
   useEffect(() => {
@@ -55,6 +61,8 @@ function FigureAdd({ onClose }) {
       // saveImageToHdd(currentFigure.number);
       dispatch(addFigure(currentFigure));
       onClose();
+    } else {
+      setIsSubmit(false);
     }
   }, [isSubmit]);
 
@@ -74,6 +82,19 @@ function FigureAdd({ onClose }) {
       bricklinkPrice: state.form.bricklinkPrice,
     };
   });
+
+  // getting today date
+  const today = new Date()
+    .toLocaleDateString("pl-PL", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    })
+    .replaceAll(".", "-");
+
+  //setting initial value for number and date
+  if (!currentFigure.number) currentFigure.number = "sw";
+  if (!currentFigure.purchaseDate) currentFigure.purchaseDate = today;
 
   // handle change to inputs fields
   const handleChangeInput = e => {
@@ -112,7 +133,7 @@ function FigureAdd({ onClose }) {
 
   // handle change to dropdown menu list
   const handleChangeSelect = (value, name) => {
-    if (isSubmit) setFormErrors({ ...formErrors, [name]: null });
+    setFormErrors({ ...formErrors, [name]: null });
     switch (name) {
       case "weapon":
         dispatch(changeWeapon(value));
@@ -130,12 +151,30 @@ function FigureAdd({ onClose }) {
 
   // after error - when on focus input - clear error message
   const handleOnFocus = e => {
-    if (isSubmit) setFormErrors({ ...formErrors, [e.target.name]: null });
+    setFormErrors({ ...formErrors, [e.target.name]: null });
   };
 
+  // check if is mobile view to change font size for icon buttons
   const w = window.innerWidth;
   const btnCloseMobileView = w < 814 ? "font-size-1-4" : "font-size-2-8";
   const btnAddMobileView = w < 814 ? "font-size-2" : "font-size-2-4";
+
+  // filtering all figures to find currently adding
+  const allFigures = useSelector(({ figures: { data } }) => {
+    return data.filter(fig =>
+      fig.number.toLowerCase().includes(currentFigure.number.toLowerCase())
+    );
+  });
+
+  // let duplicateFigureMessage = "";
+  useEffect(() => {
+    if (currentFigure.number.length > 5 && allFigures.length === 1) {
+      setFigureExistInDB(inputFieldNotValid("Have this"));
+    } else {
+      setFormErrors({ ...formErrors, number: null });
+      setFigureExistInDB(false);
+    }
+  }, [currentFigure.number]);
 
   return (
     <div className="add-figure-wrapper">
@@ -150,7 +189,7 @@ function FigureAdd({ onClose }) {
           {/* Number */}
           <div className="add-figure-div add-number">
             <InputText
-              cssClass="add-figure-input background-color-primary color-bg"
+              cssClass={`add-figure-input background-color-primary color-bg`}
               cssClassLabel={cssClassLabel}
               maxLength="8"
               name="number"
@@ -162,6 +201,7 @@ function FigureAdd({ onClose }) {
               Number
             </InputText>
             {formErrors.number}
+            {figureExistInDB}
           </div>
           {/* Image */}
           <div id="add-figure-photo" className="add-photo">
@@ -325,7 +365,7 @@ function FigureAdd({ onClose }) {
           </div>
           <div className="add-button">
             <Button cssClass="btn btn-add">
-              <BsPlusLg className={btnAddMobileView}/>
+              <BsPlusLg className={btnAddMobileView} />
               Add
             </Button>
           </div>

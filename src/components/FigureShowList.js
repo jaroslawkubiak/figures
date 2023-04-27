@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../css/figure-card.css";
-import showFigureImage from "../js/showFigureImage";
+import showFigureImage from "../utils/showFigureImage";
 import parse from "html-react-parser";
 
 function FigureShowList({
