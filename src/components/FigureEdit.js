@@ -64,8 +64,8 @@ function FigureEdit({ onClose }) {
       bricklinkPrice: state.edit.bricklinkPrice,
     };
   });
-  const [figureToDelete, setFigureToDelete] = useState(figure);
-  const [figureMainName, setFigureMainName] = useState(figure.mainName);
+  const [figureToDelete] = useState(figure);
+  const [figureMainName] = useState(figure.mainName);
 
   const svgBg = "svg-fill-edit";
 
@@ -162,8 +162,8 @@ function FigureEdit({ onClose }) {
   };
 
   const w = window.innerWidth;
-  const btnCloseMobileView = w < 814 ? "font-size-1-4" : "font-size-2-8";
-  const btnSaveMobileView = w < 814 ? "font-size-2" : "font-size-1-4";
+  const btnCloseMobileView = w < 814 ? "font-size-1-4" : "font-size-2";
+  const btnSaveMobileView = w < 814 ? "font-size-2" : "font-size-1-2";
 
   return (
     <div className="add-figure-wrapper">
@@ -186,7 +186,7 @@ function FigureEdit({ onClose }) {
             Edit - {figureMainName}
           </div>
           {/* Number */}
-          <div className="add-figure-div add-number color-edit">
+          <div className="add-figure-div add-number color-edit add-grid-cell">
             <input type="hidden" value={figure.id} name="id" />
             <InputText
               cssClass="add-figure-input background-color-edit color-bg"
@@ -207,7 +207,7 @@ function FigureEdit({ onClose }) {
             <FigurePhoto figNumber={figure.number} svgBg={svgBg} />
           </div>
           {/* Main name */}
-          <div className="add-figure-div add-main-name color-edit">
+          <div className="add-figure-div add-main-name color-edit add-grid-cell">
             <InputText
               cssClass="add-figure-input background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
@@ -223,7 +223,7 @@ function FigureEdit({ onClose }) {
             {formErrors.mainName}
           </div>
           {/* Additional name */}
-          <div className="add-figure-div add-additional-name color-edit">
+          <div className="add-figure-div add-additional-name color-edit add-grid-cell">
             <InputText
               cssClass="add-figure-input background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
@@ -236,7 +236,7 @@ function FigureEdit({ onClose }) {
             </InputText>
           </div>
           {/* Purchase Price */}
-          <div className="add-figure-div add-purchase-price color-edit">
+          <div className="add-figure-div add-purchase-price color-edit add-grid-cell">
             <InputNumber
               cssClass="add-figure-input background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
@@ -253,7 +253,7 @@ function FigureEdit({ onClose }) {
             {formErrors.purchasePrice}
           </div>
           {/* Bricklink Price */}
-          <div className="add-figure-div add-bricklink-price color-edit">
+          <div className="add-figure-div add-bricklink-price color-edit add-grid-cell">
             <InputNumber
               cssClass="add-figure-input background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
@@ -268,7 +268,7 @@ function FigureEdit({ onClose }) {
             </InputNumber>
           </div>
           {/* Release Year */}
-          <div className="add-figure-div add-release-year cursor-pointer color-edit">
+          <div className="add-figure-div add-release-year cursor-pointer color-edit add-grid-cell">
             <Dropdown
               cssClassLabel={cssClassLabel}
               cssDropdown="add-figure-input background-color-edit color-bg"
@@ -286,7 +286,7 @@ function FigureEdit({ onClose }) {
             {formErrors.releaseYear}
           </div>
           {/* Series */}
-          <div className="add-figure-div add-series cursor-pointer color-edit">
+          <div className="add-figure-div add-series cursor-pointer color-edit add-grid-cell">
             <Dropdown
               cssClassLabel={cssClassLabel}
               cssDropdown="add-figure-input background-color-edit color-bg"
@@ -304,7 +304,7 @@ function FigureEdit({ onClose }) {
             {formErrors.series}
           </div>
           {/* Bricklink */}
-          <div className="add-figure-div add-bricklink color-edit">
+          <div className="add-figure-div add-bricklink color-edit add-grid-cell">
             <InputText
               cssClass="add-figure-input background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
@@ -316,7 +316,7 @@ function FigureEdit({ onClose }) {
             </InputText>
           </div>
           {/* Label */}
-          <div className="add-figure-div add-label color-edit">
+          <div className="add-figure-div add-label color-edit add-grid-cell">
             <InputCheckbox
               cssClass="add-figure-checkbox-div background-color-edit color-bg"
               cssCheckboxClass="cursor-pointer background-color-edit color-bg"
@@ -329,7 +329,7 @@ function FigureEdit({ onClose }) {
             </InputCheckbox>
           </div>
           {/* Weapon */}
-          <div className="add-figure-div add-weapon cursor-pointer color-edit">
+          <div className="add-figure-div add-weapon cursor-pointer color-edit add-grid-cell">
             <Dropdown
               cssClassLabel={cssClassLabel}
               cssDropdown="add-figure-input background-color-edit color-bg"
@@ -347,7 +347,7 @@ function FigureEdit({ onClose }) {
             {formErrors.weapon}
           </div>
           {/* Purchase date */}
-          <div className="add-figure-div add-purchase-date color-edit">
+          <div className="add-figure-div add-purchase-date color-edit add-grid-cell">
             <InputText
               cssClass="add-figure-input background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
@@ -370,7 +370,7 @@ function FigureEdit({ onClose }) {
           </div>
           <div className="edit-delete-button">
             <Button
-              cssClass="btn btn-delete"
+              cssClass="btn btn-delete "
               onClick={handleDelete}
             >
               <BsTrash3 className={btnSaveMobileView} />

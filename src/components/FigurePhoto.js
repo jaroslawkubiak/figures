@@ -43,7 +43,7 @@ function FigurePhoto({ figNumber, svgBg }) {
     const cssSvgClass = `${svgBg} svg-galactic-empire-rotate`;
     renderedData = (
       <div className="img-wrapper">
-        <span className="image-prev-error">&nbsp;</span>
+        <span className="color-error">&nbsp;</span>
         <GalacticEmpire width={iconWidth} cssClass={cssSvgClass} />
       </div>
     );
@@ -70,7 +70,7 @@ function FigurePhoto({ figNumber, svgBg }) {
     if (!figImg.error) setFigImg({ ...figImg, error: "Not found" });
     renderedData = (
       <div className="img-wrapper">
-        <span className="image-prev-error">img not found</span>
+        <span className="color-error">img not found</span>
         <GalacticEmpire width={iconWidth} cssClass="svg-fill-error" />
       </div>
     );

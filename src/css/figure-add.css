@@ -1,12 +1,14 @@
 :root {
   --input-height: 30px;
 }
-.image-prev-error {
-  color: var(--error-color);
-}
+
 .add-figure-wrapper {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
   background-color: var(--bg-color-modal);
   z-index: 3;
 }
@@ -20,8 +22,6 @@
   top: var(--margin);
   left: var(--margin);
   right: var(--margin);
-  bottom: 50%;
-  bottom: var(--margin);
   padding: 0.5em;
   background-color: var(--bg-color);
   border: 2px solid var(--primary-color);
@@ -71,7 +71,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   place-items: center;
-  gap: 25px 10px;
+  gap: 2px 10px;
   grid-template-areas:
     "header header header header"
     "number number photo photo"
@@ -85,6 +85,10 @@
     "button button button button"
     "delete-button delete-button delete-button delete-button";
 }
+.add-grid-cell {
+  margin-bottom: 20px;
+}
+
 .add-header {
   grid-area: header;
 }
@@ -224,11 +228,6 @@
   border: 1.5px solid var(--bg-color);
 }
 
-.checkbox-container label:hover::before,
-.checkbox-container input[type="checkbox"]:hover + label::before {
-  background-color: var(--error-color-hover);
-}
-
 .checkbox-container input[type="checkbox"]:checked + label::before {
   content: "\002716";
   color: var(--bg-color);
@@ -247,26 +246,19 @@
 }
 .dropdown-el,
 .dropdown-el-primary {
-  padding: 3px;
-  padding-left: 6px;
+  padding: 2px 0;
   cursor: pointer;
   position: relative;
   z-index: 999;
   font-size: 6px;
   line-height: 2;
 }
-
-.dropdown-el:hover::after {
-  content: "";
-  position: absolute;
-  width: 3px;
-  top: -1px;
-  bottom: -1px;
-  left: -5px;
-  background-color: var(--error-color);
+.dropdown-el:not(:last-child),
+.dropdown-el-primary:not(:last-child) {
+  border-bottom: 1px solid var(--error-color);
 }
 
-.dropdown-el-primary:hover::after {
+.dropdown-el:hover::after {
   content: "";
   position: absolute;
   width: 3px;
@@ -282,7 +274,7 @@
   z-index: 99999;
 }
 ::-webkit-scrollbar {
-  width: 10px; /* Total width including `border-width` of scrollbar thumb */
+  width: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -317,7 +309,7 @@
 @media screen and (orientation: landscape) and (max-width: 814px) {
   #add-figure-form {
     grid-template-columns: repeat(5, 1fr);
-    gap: 25px 10px;
+    gap: 0px 10px;
     grid-template-areas:
       "header header header photo photo"
       "number main-name additional-name photo photo"
@@ -364,7 +356,7 @@
 
   .add-figure-container {
     --margin: 2em;
-    padding: 0 2em;
+    padding:1em 2em;
     border: 5px solid var(--primary-color);
   }
 
@@ -395,9 +387,9 @@
   }
 
   .add-figure-close-btn {
-    --close-btn-width: 60px;
-    top: calc(-1 * var(--close-btn-width) / 2);
-    right: calc(-1 * var(--close-btn-width) / 2);
+    --close-btn-width: 45px;
+    top: calc(-1 * var(--close-btn-width) / 1.8);
+    right: calc(-1 * var(--close-btn-width) / 1.8);
   }
 
   .dropdown-el,
@@ -408,9 +400,7 @@
     line-height: 2;
   }
   .select-height {
-    max-height: 600px;
-    overflow: auto;
-    z-index: 99999;
+    max-height: 500px;
   }
   .dropdown-el:hover::after {
     width: 6px;
@@ -437,7 +427,6 @@
   .checkbox-container label {
     font-size: 22px;
   }
-  
 
   .edit-figure-border {
     border: 8px solid var(--edit-color);

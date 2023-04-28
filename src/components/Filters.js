@@ -96,7 +96,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
     "add-figure-input background-color-r2d2-primary color-r2d2-head";
   let cssPanelClass =
     "add-figure-input select-height background-color-bg color-r2d2-head ";
-  let cssDropdownElement = "dropdown-el-primary";
+  // let cssDropdownElement = "dropdown-el-primary";
 
   // class list for card view
   if (!listView) {
@@ -110,7 +110,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
     cssDropdown = "add-figure-input background-color-bg color-primary";
     cssPanelClass =
       "add-figure-input select-height background-color-bg color-primary";
-    cssDropdownElement = "dropdown-el-primary";
+    // cssDropdownElement = "dropdown-el-primary";
   }
 
   return (
@@ -228,7 +228,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
                 cssClassLabel={cssClassLabel}
                 cssDropdown={cssDropdown}
                 cssPanelClass={cssPanelClass}
-                cssDropdownElement={cssDropdownElement}
+                cssDropdownElement="dropdown-el"
                 name="releaseYear"
                 onChange={handleChangeSearchingReleaseYear}
                 options={yearsList}
@@ -253,7 +253,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
                 cssClassLabel={cssClassLabel}
                 cssDropdown={cssDropdown}
                 cssPanelClass={cssPanelClass}
-                cssDropdownElement={cssDropdownElement}
+                cssDropdownElement="dropdown-el"
                 name="series"
                 onChange={handleChangeSearchingSeries}
                 options={seriesList}

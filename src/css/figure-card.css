@@ -144,16 +144,16 @@
   align-items: center;
   background-color: var(--r2d2-primary-color);
   clip-path: polygon(
-    65% 100%,
-    65% calc(100% - var(--inner-cut)),
+    70% 100%,
     70% calc(100% - var(--inner-cut)),
-    85% 90%,
+    74% calc(100% - var(--inner-cut)),
+    87% 90%,
     100% calc(100% - var(--inner-cut)),
     100% var(--inner-cut),
-    85% 10%,
-    70% var(--inner-cut),
-    65% var(--inner-cut),
-    65% 0%,
+    87% 10%,
+    74% var(--inner-cut),
+  70% var(--inner-cut),
+    70% 0%,
     20% 0%,
     13% 8%,
     0% 8%,
@@ -186,27 +186,30 @@
 }
 
 .r2d2-logo-wrapper {
-  height: 60px;
-  width: 60px;
+  height: 40px;
+  width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 100px;
 }
 
 .r2d2-item {
-  font-size: 0.8em;
+  font-size: 8px;
+  line-height: 1.4;
+  letter-spacing: 1px;
+
 }
 
 .r2d2-wrapper {
   margin-left: 5px;
-  width: 44%;
+  width: 50%;
 }
 
 .r2d2-price {
   display: grid;
   justify-content: center;
   text-align: center;
+  letter-spacing: 1px;
   width: 70px;
   font-size: 0.8em;
 }

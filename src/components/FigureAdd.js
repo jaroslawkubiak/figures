@@ -156,8 +156,8 @@ function FigureAdd({ onClose }) {
 
   // check if is mobile view to change font size for icon buttons
   const w = window.innerWidth;
-  const btnCloseMobileView = w < 814 ? "font-size-1-4" : "font-size-2-8";
-  const btnAddMobileView = w < 814 ? "font-size-2" : "font-size-2-4";
+  const btnCloseMobileView = w < 814 ? "font-size-1-4" : "font-size-2";
+  const btnAddMobileView = w < 814 ? "font-size-1-6" : "font-size-2";
 
   // filtering all figures to find currently adding
   const allFigures = useSelector(({ figures: { data } }) => {
@@ -166,7 +166,6 @@ function FigureAdd({ onClose }) {
     );
   });
 
-  // let duplicateFigureMessage = "";
   useEffect(() => {
     if (currentFigure.number.length > 5 && allFigures.length === 1) {
       setFigureExistInDB(inputFieldNotValid("Have this"));
@@ -187,7 +186,7 @@ function FigureAdd({ onClose }) {
             Add new minifigure
           </div>
           {/* Number */}
-          <div className="add-figure-div add-number">
+          <div className="add-figure-div add-number add-grid-cell">
             <InputText
               cssClass={`add-figure-input background-color-primary color-bg`}
               cssClassLabel={cssClassLabel}
@@ -208,7 +207,7 @@ function FigureAdd({ onClose }) {
             <FigurePhoto figNumber={currentFigure.number} svgBg={svgBg} />
           </div>
           {/* Main name */}
-          <div className="add-figure-div add-main-name">
+          <div className="add-figure-div add-main-name add-grid-cell">
             <InputText
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}
@@ -224,7 +223,7 @@ function FigureAdd({ onClose }) {
             {formErrors.mainName}
           </div>
           {/* Additional name */}
-          <div className="add-figure-div add-additional-name">
+          <div className="add-figure-div add-additional-name add-grid-cell">
             <InputText
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}
@@ -237,7 +236,7 @@ function FigureAdd({ onClose }) {
             </InputText>
           </div>
           {/* Purchase Price */}
-          <div className="add-figure-div add-purchase-price">
+          <div className="add-figure-div add-purchase-price add-grid-cell">
             <InputNumber
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}
@@ -254,7 +253,7 @@ function FigureAdd({ onClose }) {
             {formErrors.purchasePrice}
           </div>
           {/* Bricklink Price */}
-          <div className="add-figure-div add-bricklink-price">
+          <div className="add-figure-div add-bricklink-price add-grid-cell">
             <InputNumber
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}
@@ -269,7 +268,7 @@ function FigureAdd({ onClose }) {
             </InputNumber>
           </div>
           {/* Release Year */}
-          <div className="add-figure-div add-release-year cursor-pointer">
+          <div className="add-figure-div add-release-year add-grid-cell cursor-pointer">
             <Dropdown
               cssDropdown="add-figure-input background-color-primary color-bg"
               cssPanelClass="add-figure-input background-color-primary color-bg select-height"
@@ -278,7 +277,7 @@ function FigureAdd({ onClose }) {
               name="releaseYear"
               onChange={handleChangeSelect}
               options={yearsList}
-              placeholder="Select year..."
+              placeholder="Select ..."
               required={true}
               value={currentFigure.releaseYear}
             >
@@ -287,7 +286,7 @@ function FigureAdd({ onClose }) {
             {formErrors.releaseYear}
           </div>
           {/* Series */}
-          <div className="add-figure-div add-series cursor-pointer">
+          <div className="add-figure-div add-series  add-grid-cell cursor-pointer">
             <Dropdown
               cssDropdown="add-figure-input background-color-primary color-bg"
               cssPanelClass="add-figure-input background-color-primary color-bg select-height"
@@ -296,7 +295,7 @@ function FigureAdd({ onClose }) {
               name="series"
               onChange={handleChangeSelect}
               options={seriesList}
-              placeholder="Select series..."
+              placeholder="Select ..."
               required={true}
               value={currentFigure.series}
             >
@@ -305,7 +304,7 @@ function FigureAdd({ onClose }) {
             {formErrors.series}
           </div>
           {/* Bricklink */}
-          <div className="add-figure-div add-bricklink">
+          <div className="add-figure-div add-bricklink add-grid-cell">
             <InputText
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}
@@ -317,7 +316,7 @@ function FigureAdd({ onClose }) {
             </InputText>
           </div>
           {/* Label */}
-          <div className="add-figure-div add-label">
+          <div className="add-figure-div add-label add-grid-cell">
             <InputCheckbox
               cssClass="add-figure-checkbox-div"
               cssCheckboxClass="cursor-pointer"
@@ -330,7 +329,7 @@ function FigureAdd({ onClose }) {
             </InputCheckbox>
           </div>
           {/* Weapon */}
-          <div className="add-figure-div add-weapon cursor-pointer">
+          <div className="add-figure-div add-weapon add-grid-cell cursor-pointer">
             <Dropdown
               cssDropdown="add-figure-input background-color-primary color-bg"
               cssPanelClass="add-figure-input background-color-primary color-bg select-height"
@@ -339,7 +338,7 @@ function FigureAdd({ onClose }) {
               name="weapon"
               onChange={handleChangeSelect}
               options={weaponList}
-              placeholder="Select weapon..."
+              placeholder="Select ..."
               required={true}
               value={currentFigure.weapon}
             >
@@ -348,7 +347,7 @@ function FigureAdd({ onClose }) {
             {formErrors.weapon}
           </div>
           {/* Purchase date */}
-          <div className="add-figure-div add-purchase-date">
+          <div className="add-figure-div add-purchase-date add-grid-cell">
             <InputText
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}

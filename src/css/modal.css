@@ -5,7 +5,8 @@
 
 .modal-wrapper {
   position: fixed;
-  inset: 0;
+  inset: 0px;
+  top: -10px;
   background-color: var(--bg-color-modal);
   z-index: 100;
 }
@@ -23,7 +24,6 @@
   padding: 10px;
   display: grid;
   place-content: center;
-  align-items: center;
   background-color: rgb(255, 255, 255);
 }
 
@@ -80,13 +80,12 @@
 }
 
 .modal-arrow {
-  z-index: 99;
   position: absolute;
+  z-index: 99;
   bottom: 50%;
   transform: translateY(50%);
   font-size: 3em;
   fill: var(--bg-color);
-
   background-color: var(--primary-color);
   clip-path: polygon(0 22%, 22% 0, 100% 0, 100% 78%, 78% 100%, 0% 100%, 0 0);
 }
@@ -106,7 +105,6 @@
   right: -30px;
   left: 50%;
 }
-
 .modal-prev-image {
   position: absolute;
   top: 0px;
@@ -173,14 +171,23 @@
 
 /* phones in landscape mode */
 @media screen and (orientation: landscape) and (max-width: 814px) {
+
+  .modal-wrapper {
+    display: grid;
+    align-content: end;
+ }
+  
   .modal-container {
-    height: 85%;
     max-width: 600px;
-    padding: 10px;
+    height: 210px;
+    margin-bottom: 80px;
   }
+
   .modal-figure-img {
-    max-height: 330px;
-    max-width: 600px;
+    max-height: 200px;
+    height: auto;
+    max-width: 580px;
+    
   }
   .modal-arrow-right {
     right: -50px;
