@@ -32,6 +32,13 @@
 .svg-fill-r2d2-primary {
   fill: var(--r2d2-primary-color);
 }
+.svg-fill-r2d2-secondary {
+  fill: var(--r2d2-secondary-color);
+}
+.svg-fill-bg-light-color {
+  fill: var(--bg-light-color);
+}
+
 .svg-fill-lego-quantity {
   fill: var(--bg-color);
 }

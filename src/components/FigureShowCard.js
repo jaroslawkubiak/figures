@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../css/figure-card.css";
+import "../css/figure-view.css";
 
 import showFigureImage from "../utils/showFigureImage";
 

@@ -1,3 +1,4 @@
+/* dispaly grid and positioning */
 .display-grid {
   display: grid;
 }
@@ -35,7 +36,6 @@
   text-align: right;
 }
 
-
 .letter-spacing-2 {
   letter-spacing: 2px;
 }
@@ -67,6 +67,7 @@
   z-index: 1;
 }
 
+/* font sizes */
 .font-size-0-4 {
   font-size: 0.4em;
 }
@@ -146,18 +147,16 @@
   font-size: 10em;
 }
 
+/* margins */
 .margin-top-1 {
   margin-top: 1em;
 }
-
 .margin-top-2 {
   margin-top: 2em;
 }
-
 .margin-top-3 {
   margin-top: 3em;
 }
-
 .margin-top-4 {
   margin-top: 4em;
 }

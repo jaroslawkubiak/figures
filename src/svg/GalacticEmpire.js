@@ -3,8 +3,8 @@ export const GalacticEmpire = ({ cssClass }) => {
     <svg
       className={cssClass}
       viewBox="516 840 200 200"
-        width="70%"
-        height="70%"
+        width="100%"
+        height="100%"
     >
       <g id="galactic empire">
         <g id="XMLID_17_">

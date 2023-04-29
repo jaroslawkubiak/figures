@@ -173,44 +173,73 @@
   justify-self: center;
 }
 
-/* phones in landscape mode */
-@media screen and (orientation: landscape) and (max-width: 814px) {
+/*############################## Small devices (portrait tablets and large phones, 600px and up) ##############################*/
+@media only screen and (min-width: 600px) {
   .modal-wrapper {
     display: grid;
-    align-content: end;
   }
 
   .modal-container {
     max-width: 600px;
-    height: 210px;
+    height: 610px;
     margin-bottom: 80px;
   }
 
   .modal-figure-img {
-    height: 200px;
+    height: 600px;
     max-width: 580px;
     object-fit: contain;
   }
   .modal-arrow-right {
-    right: -50px;
+    right: -20px;
   }
 
   .modal-arrow-left {
+    left: -20px;
+  }
+
+
+  .modal-close-svg {
+    font-size: 2.6em;
+  }
+  .modal-arrow {
+    font-size: 4em;
+  }
+
+  .modal-next-image {
+    right: -50px;
+  }
+  .modal-prev-image {
     left: -50px;
   }
+  
+  .modal-close-btn {
+    --close-btn-width: 45px;
+    top: -20px;
+    right: -25px;
+  }
+
+  .modal-close {
+    width: 45px;
+    height: 45px;
+  }
 }
-/* tablet */
-@media only screen and (orientation: portrait) and (min-width: 768px) {
+/*############################## Medium devices (landscape tablets, 768px and up) ##############################*/
+@media only screen and (min-width: 768px) {
   :root {
     --width-confirm-modal: 400px;
     --height-confirm-modal: 250px;
   }
+  .modal-wrapper {
+    display: grid;
+  }
+
   .modal-label {
     bottom: -40px;
     font-size: 24px;
     --cut-height: 12px;
   }
-  
+
   .confirm-modal-container {
     --cut-height: 20px;
     gap: 30px;
@@ -226,18 +255,18 @@
   }
 
   .modal-close-btn {
-    --close-btn-width: 50px;
-    top: -25px;
-    right: -20px;
+    --close-btn-width: 45px;
+    top: -20px;
+    right: -25px;
   }
 
   .modal-close {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
   }
 
   .modal-close-svg {
-    font-size: 2.2em;
+    font-size: 2em;
   }
   .modal-arrow {
     font-size: 5em;
@@ -250,23 +279,38 @@
     left: -20px;
   }
 
+  .modal-next-image {
+    right: -400px;
+  }
+  .modal-prev-image {
+    left: -400px;
+  }
+  .modal-figure-img {
+    height: 600px;
+    max-width: 580px;
+    object-fit: contain;
+  }
+
 }
-
-
-/* PC  */
-@media screen and (min-width: 1200px) {
+/*############################## Extra large devices (large laptops and desktops, 1200px and up) ##############################*/
+@media only screen and (min-width: 1200px) {
   :root {
     --width-confirm-modal: 600px;
     --height-confirm-modal: 300px;
   }
+  .modal-wrapper {
+    display: grid;
+  }
+
   .modal-container {
-    max-width: 600px;
+    max-width: 800px;
     height: auto;
     padding: 10px;
   }
 
   .modal-figure-img {
-    width: 95%;
+    /* height: 800px; */
+    max-width: 780px;
   }
 
   .modal-close-btn {

@@ -1,9 +1,10 @@
 :root {
   --width-card: 180px;
   --height-card: 210px;
+  --border-width: 6px;
+
   --width-list: 350px;
   --height-list: 80px;
-  --border-width: 6px;
   --r2d2-bricklink-logo-width: 50px;
   --r2d2-price-width: 70px;
   --r2d2-figure-image-width: calc(var(--height-list) - 20px);
@@ -120,9 +121,11 @@
   );
 }
 .card-figure-img {
-  max-height: 80%;
-  max-width: 90%;
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
 }
+
 .arrow-up {
   z-index: 99;
   position: fixed;
@@ -196,12 +199,12 @@
 }
 
 .r2d2-item {
-  font-size: 8px;
+  font-size: 0.8em;
   line-height: 1.4;
   letter-spacing: 1px;
 }
 
-.r2d2-item:first-child{
+.r2d2-item:first-child {
   padding-top: 3px;
 }
 
@@ -220,25 +223,37 @@
   font-size: 0.8em;
 }
 
-/* phones in landscape mode */
-@media screen and (orientation: landscape) and (max-width: 814px) {
+/*############################## Small devices (portrait tablets and large phones, 600px and up) ##############################*/
+@media only screen and (min-width: 600px) {
   :root {
     --width-card: 190px;
-    --height-card: 190px;
-    --width-list: 390px;
-    --height-list: 90px;
+    --height-card: 220px;
+    --width-list: 280px;
+    --height-list: 70px;
+    --r2d2-figure-image-width: calc(var(--height-list) - 20px);
+  }
+  .r2d2-item {
+    font-size: 0.6em;
   }
 }
 
-/* tablet */
-@media only screen and (orientation: portrait) and (min-width: 768px) {
+/*############################## Medium devices (landscape tablets, 768px and up) ##############################*/
+@media only screen and (min-width: 768px) {
   :root {
-    --width-card: 195px;
-    --height-card: 250px;
+    --width-card: 170px;
+    --height-card: 220px;
     --border-width: 8px;
 
-    --width-list: 390px;
-    --height-list: 100px;
+    --width-list: 350px;
+    --height-list: 80px;
+    --r2d2-figure-image-width: calc(var(--height-list) - 20px);
+  }
+  .card-figure-img {
+    object-fit: contain;
+  }
+
+  .r2d2-item {
+    font-size: 0.8em;
   }
   .card-name {
     height: 20px;
@@ -251,34 +266,48 @@
   }
 }
 
-/* PC  */
-@media screen and (min-width: 1200px) {
+/*############################## Large devices (laptops/desktops, 992px and up) ##############################*/
+@media only screen and (min-width: 992px) {
   :root {
-    --width-card: 380px;
-    --height-card: 430px;
-    --border-width: 15px;
+    --width-card: 170px;
+    --height-card: 220px;
+    --border-width: 8px;
 
-    --width-list: 350px;
+    --width-list: 320px;
     --height-list: 80px;
+    --r2d2-figure-image-width: calc(var(--height-list) - 20px);
+  }
+  .r2d2-item {
+    font-size: 0.7em;
+  }
+}
+
+/*############################## Extra large devices (large laptops and desktops, 1200px and up) ##############################*/
+@media only screen and (min-width: 1200px) {
+  :root {
+    --width-card: 190px;
+    --height-card: 250px;
+    --border-width: 10px;
+
+    --width-list: 360px;
+    --height-list: 90px;
 
     --r2d2-bricklink-logo-width: 50px;
     --r2d2-price-width: 70px;
-    --r2d2-figure-image-width: 60px;
+    --r2d2-figure-image-width: calc(var(--height-list) - 30px);
   }
 
   .card-name {
-    height: 35px;
+    height: 20px;
   }
 
   .card-number {
-    border-top: 4px solid rgb(0, 0, 0);
-    height: 35px;
-    background-color: var(--primary-color);
-    --skew: 20px;
+    border-top: 3px solid rgb(0, 0, 0);
+    height: 20px;
   }
 
   .card-cell-text {
-    font-size: 1.4em;
+    font-size: 0.6em;
   }
 
   .arrow-up {
@@ -289,56 +318,15 @@
     margin: 30px;
   }
 
-  .r2d2-container {
-    height: 150px;
-    margin: 20px;
-  }
-
-  .r2d2-img-wrapper {
-    height: 120px;
-    width: 120px;
-    background-color: rgb(255, 255, 255);
-    padding: 1px;
-  }
-
-  .r2d2-logo-wrapper {
-    height: 100px;
-    width: 100px;
-  }
-
-  .r2d2-logo-img {
-    max-height: 100px;
-    max-width: 100px;
-  }
-
   .r2d2-wrapper {
-    margin-left: 5px;
-    width: 40%;
-    padding-top: 10px;
+    padding-top: 5px;
   }
 
   .r2d2-item {
-    font-size: 1.2em;
+    font-size: 0.8em;
   }
 
   .r2d2-price {
-    font-size: 1.2em;
-    width: 100px;
-  }
-}
-
-/* huuuge screen  */
-@media screen and (min-width: 1540px) {
-  :root {
-    --width-card: 480px;
-    --height-card: 530px;
-    --border-width: 20px;
-
-    --width-list: 350px;
-    --height-list: 80px;
-
-    --r2d2-bricklink-logo-width: 50px;
-    --r2d2-price-width: 70px;
-    --r2d2-figure-image-width: 60px;
+    font-size: 0.8em;
   }
 }

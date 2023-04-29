@@ -11,6 +11,7 @@
   overflow: auto;
   background-color: var(--bg-color-modal);
   z-index: 3;
+  border: 2px solid #ff0000;
 }
 
 .add-figure-container {
@@ -167,8 +168,8 @@
   position: absolute;
   width: var(--close-btn-width);
   height: var(--close-btn-width);
-  top: calc(-1 * var(--close-btn-width) / 3);
-  right: calc(-1 * var(--close-btn-width) / 3);
+  top: calc(-1 * var(--close-btn-width) / 2);
+  right: calc(-1 * var(--close-btn-width) / 2);
   background-color: var(--primary-color);
   cursor: pointer;
   clip-path: polygon(0 22%, 22% 0, 100% 0, 100% 78%, 78% 100%, 0% 100%, 0 0);
@@ -310,19 +311,127 @@
 .edit-figure-border {
   border: 2px solid var(--edit-color);
 }
+/* validate messages */
+.required-field-container {
+  position: absolute;
+  top: 35px;
+  width: 100%;
+  height: 20px;
 
-/* phones in landscape mode */
-@media screen and (orientation: landscape) and (max-width: 814px) {
+  animation: hideMe 1s forwards;
+}
+
+@keyframes hideMe {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.required-field {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 60%;
+  text-align: center;
+  transform: translateX(-50%);
+  color: var(--bg-light-color);
+  font-size: 8px;
+  letter-spacing: 2px;
+  background-color: var(--error-color);
+  padding: 0 5px;
+
+  --cut-height: 4px;
+  clip-path: polygon(
+    calc(100% - var(--cut-height)) 0%,
+    100% var(--cut-height),
+    100% 100%,
+    var(--cut-height) 100%,
+    0% calc(100% - var(--cut-height)),
+    0 0
+  );
+}
+
+.required-field-after {
+  position: absolute;
+  top: -7px;
+  left: 20%;
+  z-index: 5;
+  border-left: 0px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 10px solid var(--error-color);
+}
+
+.input-required {
+  position: absolute;
+  top: -10px;
+  right: -6px;
+  font-size: 10px;
+  color: var(--error-color);
+}
+
+.btn {
+  all: unset;
+  position: relative;
+  z-index: 1;
+  font-family: star_wars;
+  font-size: 0.6em;
+  letter-spacing: 0.1rem;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px 15px;
+  margin: 5px;
+  cursor: pointer;
+
+  --cut-height: 6px;
+  clip-path: polygon(
+    calc(100% - var(--cut-height)) 0%,
+    100% var(--cut-height),
+    100% 100%,
+    var(--cut-height) 100%,
+    0% calc(100% - var(--cut-height)),
+    0 0
+  );
+}
+
+.btn-add {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+}
+
+.btn-add:hover {
+  background-color: var(--primary-color-hover);
+}
+
+.btn-edit {
+  background-color: var(--edit-color);
+  color: var(--bg-color);
+}
+
+.btn-edit:hover {
+  background-color: var(--edit-color-hover);
+}
+
+.btn-delete {
+  background-color: var(--error-color);
+  color: var(--bg-color);
+}
+
+.btn-delete:hover {
+  background-color: var(--error-color-hover);
+}
+
+/*############################## Small devices (portrait tablets and large phones, 600px and up) ##############################*/
+@media only screen and (min-width: 600px) {
+  /* .add-figure-wrapper {
+    border: 2px solid #ff9900;
+  } */
   #add-figure-form {
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0px 10px;
-    grid-template-areas:
-      "header header header photo photo"
-      "number main-name additional-name photo photo"
-      "purchase-price bricklink-price purchase-date photo photo"
-      "release-year series weapon photo photo"
-      "bricklink bricklink label photo photo"
-      ". button delete-button photo photo";
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px 10px;
   }
 
   #add-img {
@@ -331,11 +440,22 @@
   }
 }
 
-/* tablet */
-@media only screen and (orientation: portrait) and (min-width: 768px) {
+/*############################## Medium devices (landscape tablets, 768px and up) ##############################*/
+@media only screen and (min-width: 768px) {
   :root {
     --input-height: 40px;
   }
+  .btn {
+    font-size: 1.2em;
+    letter-spacing: 4px;
+    --cut-height: 10px;
+    gap: 20px;
+  }
+
+  /* .add-figure-wrapper {
+    border: 2px solid #008000;
+  } */
+
   .add-figure-container {
     --margin: 2em;
     padding: 1em 2em;
@@ -376,21 +496,125 @@
   }
 
   #add-figure-form {
-    gap: 30px;
+    gap: 20px 40px;
   }
+
   .select-height {
     max-height: 350px;
   }
   .edit-figure-border {
     border: 3px solid var(--edit-color);
   }
-  
+
+  .required-field-container {
+    top: 12px;
+  }
+
+  .required-field {
+    top: 50px;
+    font-size: 12px;
+    --cut-height: 6px;
+  }
+
+  .required-field-after {
+    top: 42px;
+  }
+
+  .input-required {
+    top: -35px;
+    right: -25px;
+    font-size: 30px;
+  }
 }
-/* PC  */
-@media screen and (min-width: 1200px) {
+
+/*############################## Medium devices (landscape tablets, 768px and up) ##############################*/
+@media only screen and (orientation: landscape) and (min-width: 768px) {
+  /* .add-figure-wrapper {
+    border: 2px solid #370080;
+  } */
+  /* body {
+    border: 2px solid green;
+  }
+ */
+  .btn {
+    font-size: 0.6em;
+    letter-spacing: 0.1rem;
+    gap: 15px;
+    padding: 10px 15px;
+  }
+
+  .add-figure-input {
+    font-size: 8px;
+  }
+  .add-figure-checkbox-div {
+    height: 16px;
+  }
+  .dropdown-el {
+    font-size: 6px;
+    line-height: 2;
+  }
+  .btn-close-svg {
+    font-size: 1em;
+  }
+  .add-figure-heading {
+    letter-spacing: 3px;
+    font-size: 0.8em;
+  }
+  .checkbox-container label {
+    font-size: 10px;
+  }
+  .checkbox-container label::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border: 1.5px solid var(--bg-color);
+  }
+  .add-figure-input-label {
+    font-size: 6px;
+    letter-spacing: 2px;
+  }
+  .select-height {
+    max-height: 190px;
+  }
+  .edit-figure-border {
+    border: 2px solid var(--edit-color);
+  }
+  .required-field-container {
+    top: 30px;
+  }
+  .required-field {
+    top: 0px;
+    font-size: 6px;
+    --cut-height: 6px;
+  }
+  .required-field-after {
+    top: -6px;
+  }
+
+  .input-required {
+    top: -12px;
+    right: -8px;
+    font-size: 10px;
+  }
+  #add-figure-form {
+    gap: 10px 15px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-areas:
+      "header header header photo photo"
+      "number main-name additional-name photo photo"
+      "purchase-price bricklink-price purchase-date photo photo"
+      "release-year series weapon photo photo"
+      "bricklink bricklink label photo photo"
+      ". button delete-button photo photo";
+  }
+}
+
+/*############################## Extra large devices (large laptops and desktops, 1200px and up) ##############################*/
+@media only screen and (min-width: 1200px) {
   :root {
     --input-height: 65px;
   }
+
   .btn-close-svg {
     font-size: 2em;
   }
@@ -405,21 +629,11 @@
     position: fixed;
     margin: 0 auto;
     background-color: var(--bg-color-modal);
+    /* border: 2px solid #f200ff; */
   }
 
   #add-figure-form {
     gap: 40px;
-    grid-template-areas:
-      "header header header header"
-      "number number photo photo"
-      "main-name main-name photo photo"
-      "additional-name additional-name photo photo"
-      "purchase-price purchase-price photo photo"
-      "bricklink-price bricklink-price photo photo"
-      "release-year release-year series series"
-      "bricklink bricklink bricklink label"
-      "weapon weapon purchase-date purchase-date"
-      ". button delete-button .";
   }
 
   .add-figure-container {
@@ -495,11 +709,37 @@
   .edit-figure-border {
     border: 8px solid var(--edit-color);
   }
-}
 
-/* huuuge screen  */
-@media screen and (min-width: 1540px) {
-  .add-figure-wrapper {
-    max-width: none;
+  .required-field-container {
+    top: 20px;
+  }
+
+  .required-field {
+    top: 50px;
+    width: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    --cut-height: 8px;
+  }
+
+  .required-field-after {
+    top: 32px;
+    left: 25%;
+    border-left: 0px solid transparent;
+    border-right: 14px solid transparent;
+    border-bottom: 20px solid var(--error-color);
+  }
+
+  .input-required {
+    top: -35px;
+    right: -25px;
+    font-size: 30px;
+  }
+  .btn {
+    font-size: 1.4em;
+    letter-spacing: 6px;
+    --cut-height: 20px;
+    gap: 30px;
+    padding: 10px 20px;
   }
 }

@@ -1,4 +1,4 @@
-import "../css/figure-add.css";
+import "../css/figure-form.css";
 import Button from "./Button";
 import InputText from "./InputText";
 import InputNumber from "./InputNumber";
@@ -178,7 +178,7 @@ function FigureAdd({ onClose }) {
         </div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
           <div className="add-header add-figure-heading">
-            Add new minifigure
+            add new minifigure
           </div>
           {/* Number */}
           <div className="add-figure-div add-number ">
@@ -192,7 +192,7 @@ function FigureAdd({ onClose }) {
               required={true}
               value={currentFigure.number}
             >
-              Number
+              number
             </InputText>
             {formErrors.number}
             {figureExistInDB}
@@ -213,7 +213,7 @@ function FigureAdd({ onClose }) {
               required={true}
               value={currentFigure.mainName}
             >
-              Main name
+              main name
             </InputText>
             {formErrors.mainName}
           </div>
@@ -227,7 +227,7 @@ function FigureAdd({ onClose }) {
               onChange={handleChangeInput}
               value={currentFigure.additionalName}
             >
-              Additional name
+              additional name
             </InputText>
           </div>
           {/* Purchase Price */}
@@ -243,7 +243,7 @@ function FigureAdd({ onClose }) {
               required={true}
               value={currentFigure.purchasePrice}
             >
-              Purchase Price
+              purchase price
             </InputNumber>
             {formErrors.purchasePrice}
           </div>
@@ -259,7 +259,7 @@ function FigureAdd({ onClose }) {
               onFocus={handleOnFocus}
               value={currentFigure.bricklinkPrice}
             >
-              Bricklink av Price
+              bricklink av price
             </InputNumber>
           </div>
           {/* Release Year */}
@@ -272,11 +272,11 @@ function FigureAdd({ onClose }) {
               name="releaseYear"
               onChange={handleChangeSelect}
               options={yearsList}
-              placeholder="Select ..."
+              placeholder="select ..."
               required={true}
               value={currentFigure.releaseYear}
             >
-              Release Year
+              release year
             </Dropdown>
             {formErrors.releaseYear}
           </div>
@@ -290,11 +290,11 @@ function FigureAdd({ onClose }) {
               name="series"
               onChange={handleChangeSelect}
               options={seriesList}
-              placeholder="Select ..."
+              placeholder="select ..."
               required={true}
               value={currentFigure.series}
             >
-              Series
+              series
             </Dropdown>
             {formErrors.series}
           </div>
@@ -307,7 +307,7 @@ function FigureAdd({ onClose }) {
               onChange={handleChangeInput}
               value={currentFigure.bricklink}
             >
-              Bricklink
+              bricklink
             </InputText>
           </div>
           {/* Label */}
@@ -320,7 +320,7 @@ function FigureAdd({ onClose }) {
               onChange={handleChangeInput}
               checked={currentFigure.label}
             >
-              Label
+              label
             </InputCheckbox>
           </div>
           {/* Weapon */}
@@ -333,11 +333,11 @@ function FigureAdd({ onClose }) {
               name="weapon"
               onChange={handleChangeSelect}
               options={weaponList}
-              placeholder="Select ..."
+              placeholder="select ..."
               required={true}
               value={currentFigure.weapon}
             >
-              Weapon
+              weapon
             </Dropdown>
             {formErrors.weapon}
           </div>
@@ -353,14 +353,14 @@ function FigureAdd({ onClose }) {
               required={true}
               value={currentFigure.purchaseDate}
             >
-              Purchase date
+              purchase date
             </InputText>
             {formErrors.purchaseDate}
           </div>
           <div className="add-button">
             <Button cssClass="btn btn-add">
               <BsPlusLg className="btn-add-svg" />
-              Add
+              add
             </Button>
           </div>
         </form>

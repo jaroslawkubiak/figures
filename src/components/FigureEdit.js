@@ -13,7 +13,11 @@ import weaponList from "../data/weaponList.json";
 import saveImageToHdd from "../utils/saveImageToHdd";
 
 import { useDispatch, useSelector } from "react-redux";
-import { onlyNumbersRegex, validate } from "../utils/validate";
+import {
+  onlyNumbersRegex,
+  validate,
+  inputFieldNotValid,
+} from "../utils/validate";
 import { yearsList } from "../utils/yearList";
 
 import {
@@ -66,12 +70,21 @@ function FigureEdit({ onClose }) {
   });
   const [figureToDelete] = useState(figure);
   const [figureMainName] = useState(figure.mainName);
+  const [figureNumber] = useState(figure.number);
+  const [figureExistInDB, setFigureExistInDB] = useState(false);
+
+  // filtering all figures to find currently adding
+  const allFigures = useSelector(({ figures: { data } }) => {
+    return data.filter(fig =>
+      fig.number.toLowerCase().includes(figure.number.toLowerCase())
+    );
+  });
 
   // edit figure form submit
   const handleSubmit = e => {
     e.preventDefault();
     setIsSubmit(true);
-    setFormErrors(validate(figure));
+    setFormErrors(validate(figure, true, figureExistInDB));
   };
 
   useEffect(() => {
@@ -79,8 +92,23 @@ function FigureEdit({ onClose }) {
       // saveImageToHdd(figure.number);
       dispatch(editFigure(figure));
       onClose();
+    } else {
+      setIsSubmit(false);
     }
   }, [isSubmit]);
+
+  useEffect(() => {
+    if (
+      figure.number.length > 5 &&
+      allFigures.length === 1 &&
+      figure.number !== figureNumber
+    ) {
+      setFigureExistInDB(inputFieldNotValid("Have this"));
+    } else {
+      setFormErrors({ ...formErrors, number: null });
+      setFigureExistInDB(false);
+    }
+  }, [figure.number]);
 
   // handle change to inputs fields
   const handleChangeInput = e => {
@@ -177,7 +205,7 @@ function FigureEdit({ onClose }) {
         </div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
           <div className="add-header add-figure-heading color-edit">
-            Edit - {figureMainName}
+            edit - {figureMainName}
           </div>
           {/* Number */}
           <div className="add-figure-div add-number color-edit">
@@ -192,9 +220,10 @@ function FigureEdit({ onClose }) {
               required={true}
               value={figure.number}
             >
-              Number
+              number
             </InputText>
             {formErrors.number}
+            {figureExistInDB}
           </div>
           {/* Image */}
           <div id="add-figure-photo" className="add-photo">
@@ -212,7 +241,7 @@ function FigureEdit({ onClose }) {
               required={true}
               value={figure.mainName}
             >
-              Main name
+              main name
             </InputText>
             {formErrors.mainName}
           </div>
@@ -242,7 +271,7 @@ function FigureEdit({ onClose }) {
               required={true}
               value={figure.purchasePrice}
             >
-              Purchase Price
+              purchase price
             </InputNumber>
             {formErrors.purchasePrice}
           </div>
@@ -258,7 +287,7 @@ function FigureEdit({ onClose }) {
               onFocus={handleOnFocus}
               value={figure.bricklinkPrice}
             >
-              Bricklink av Price
+              bricklink av price
             </InputNumber>
           </div>
           {/* Release Year */}
@@ -271,11 +300,11 @@ function FigureEdit({ onClose }) {
               name="releaseYear"
               onChange={handleChangeSelect}
               options={yearsList}
-              placeholder="Select year..."
+              placeholder="select..."
               required={true}
               value={figure.releaseYear}
             >
-              Release Year
+              release year
             </Dropdown>
             {formErrors.releaseYear}
           </div>
@@ -289,11 +318,11 @@ function FigureEdit({ onClose }) {
               name="series"
               onChange={handleChangeSelect}
               options={seriesList}
-              placeholder="Select series..."
+              placeholder="select..."
               required={true}
               value={figure.series}
             >
-              Series
+              series
             </Dropdown>
             {formErrors.series}
           </div>
@@ -306,7 +335,7 @@ function FigureEdit({ onClose }) {
               onChange={handleChangeInput}
               value={figure.bricklink}
             >
-              Bricklink
+              bricklink
             </InputText>
           </div>
           {/* Label */}
@@ -319,7 +348,7 @@ function FigureEdit({ onClose }) {
               onChange={handleChangeInput}
               checked={figure.label}
             >
-              Label
+              label
             </InputCheckbox>
           </div>
           {/* Weapon */}
@@ -332,11 +361,11 @@ function FigureEdit({ onClose }) {
               name="weapon"
               onChange={handleChangeSelect}
               options={weaponList}
-              placeholder="Select weapon..."
+              placeholder="select..."
               required={true}
               value={figure.weapon}
             >
-              Weapon
+              weapon
             </Dropdown>
             {formErrors.weapon}
           </div>
@@ -352,14 +381,14 @@ function FigureEdit({ onClose }) {
               required={true}
               value={figure.purchaseDate}
             >
-              Purchase date
+              purchase date
             </InputText>
             {formErrors.purchaseDate}
           </div>
           <div className="add-button">
             <Button cssClass="btn btn-edit">
               <BsSave className="btn-edit-svg" />
-              Save
+              save
             </Button>
           </div>
           <div className="edit-delete-button">

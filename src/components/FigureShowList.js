@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../css/figure-card.css";
+import "../css/figure-view.css";
 import showFigureImage from "../utils/showFigureImage";
 import parse from "html-react-parser";
 
@@ -48,7 +48,7 @@ function FigureShowList({
         <div className={`r2d2-item color-secondary ${isFigureEven || "text-align-right"}`}>
           {figure.number} - {figure.releaseYear}
         </div>
-        <div className={`r2d2-item color-secondary ${isFigureEven || "text-align-right"}`}>Series : {figure.series}</div>
+        <div className={`r2d2-item color-secondary ${isFigureEven || "text-align-right"}`}>series : {figure.series}</div>
         <div className={`r2d2-item color-secondary ${isFigureEven || "text-align-right"}`}>purchase date : {figure.purchaseDate}</div>
       </div>
       <div className={`r2d2-price color-secondary ${isFigureEven || "r2d2-even"}`}>

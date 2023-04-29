@@ -5,6 +5,7 @@ import {
   BsFilterSquare,
   BsListColumnsReverse,
   BsGrid,
+  BsFillPlusCircleFill,
 } from "react-icons/bs";
 import { ImCross } from "react-icons/im";
 import { onlyNumbersRegex } from "../utils/validate";
@@ -81,8 +82,9 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
   // class list for list view
   let cssFilterBackground =
     "background-color-r2d2-head filter-container-expand";
-  let cssSvgFillColor = "#274294";
-  let cssLegoIconFill = "svg-fill-r2d2-primary";
+  let cssSvgFillColor = "#212529";
+  let cssQuantityFillColor = "#ae3237";
+  let cssLegoIconFill = "svg-fill-bg-light-color";
   let cssQuantityWrapper =
     "filter-quantity-wprapper justify-self-center filter-quantity-wprapper-border-list";
   let cssInputText =
@@ -98,6 +100,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
   if (!listView) {
     cssFilterBackground = "background-color-primary filter-container-expand";
     cssSvgFillColor = "#212529";
+    cssQuantityFillColor = "#212529";
     cssLegoIconFill = "svg-fill-lego-quantity";
     cssQuantityWrapper =
       "filter-quantity-wprapper justify-self-center filter-quantity-wprapper-border-card";
@@ -116,17 +119,26 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
         } ${!listView || "background-color-r2d2-head"}`}
       >
         <div className="justify-self-start">
+          {!listView && 
           <BsPlusSquare
             onClick={onAddFigure}
-            fill={cssSvgFillColor}
+            fill="#212529"
             className="cursor-pointer filter-icon"
             title="Add figure"
-          />
+          />}
+
+          {listView && 
+          <BsFillPlusCircleFill
+            onClick={onAddFigure}
+            fill="#212529"
+            className="cursor-pointer filter-icon"
+            title="Add figure"
+          />}
         </div>
         {/* display quantity of minifigures */}
         <div className={cssQuantityWrapper} title="Figures quantity">
           <LegoMinifigure cssClass={cssLegoIconFill} />
-          <FigureQuantity quantity={quantity} fillColor={cssSvgFillColor} />
+          <FigureQuantity quantity={quantity} fillColor={cssQuantityFillColor} />
         </div>
 
         <div className=" justify-self-center">
@@ -184,7 +196,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
                 cssClass={cssInputText}
                 cssClassLabel={cssClassLabel}
               >
-                Number
+                number
               </InputText>
             </div>
             {searchingNumber && (
@@ -205,7 +217,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
                 cssClass={cssInputText}
                 cssClassLabel={cssClassLabel}
               >
-                Name
+                name
               </InputText>
             </div>
             {searchingMainName && (
@@ -227,10 +239,10 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
                 name="releaseYear"
                 onChange={handleChangeSearchingReleaseYear}
                 options={yearsList}
-                placeholder="Select year..."
+                placeholder="select..."
                 value={searchingReleaseYear}
               >
-                Release Year
+                release year
               </Dropdown>
             </div>
             {searchingReleaseYear && (
@@ -252,10 +264,10 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
                 name="series"
                 onChange={handleChangeSearchingSeries}
                 options={seriesList}
-                placeholder="Select series..."
+                placeholder="select..."
                 value={searchingSeries}
               >
-                Series
+                series
               </Dropdown>
             </div>
             {searchingSeries && (
