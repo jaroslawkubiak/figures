@@ -3,13 +3,7 @@ import parse from "html-react-parser";
 import { GalacticEmpire } from "../svg/GalacticEmpire";
 // import fetchFigureInfo from "../fetch/bricklink";
 
-function FigurePhoto({ figNumber, svgBg }) {
-  const w = window.innerWidth;
-  const iconWidth = w < 814 ? 130 : 300;
-
-
-
-
+function FigurePhoto({ figNumber, cssSvgFill }) {
   //state for fetching img from bricklink server
   const [figImg, setFigImg] = useState({
     isLoading: false,
@@ -28,7 +22,7 @@ function FigurePhoto({ figNumber, svgBg }) {
   let renderedData = (
     <div className="img-wrapper">
       <span> &nbsp;</span>
-      <GalacticEmpire width={iconWidth} cssClass={svgBg} />
+      <GalacticEmpire cssClass={cssSvgFill} />
     </div>
   );
   let renderedPhoto = `https://img.bricklink.com/ItemImage/MN/0/${figNumber}.png`;
@@ -40,11 +34,11 @@ function FigurePhoto({ figNumber, svgBg }) {
   if (figNumber.length >= 6 && imageExists(renderedPhoto)) {
     if (!figImg.isLoading && figImg.result === "")
       setFigImg({ ...figImg, isLoading: true });
-    const cssSvgClass = `${svgBg} svg-galactic-empire-rotate`;
+    const cssSvgClass = `${cssSvgFill} svg-galactic-empire-rotate`;
     renderedData = (
       <div className="img-wrapper">
         <span className="color-error">&nbsp;</span>
-        <GalacticEmpire width={iconWidth} cssClass={cssSvgClass} />
+        <GalacticEmpire cssClass={cssSvgClass}/>
       </div>
     );
 
@@ -71,7 +65,7 @@ function FigurePhoto({ figNumber, svgBg }) {
     renderedData = (
       <div className="img-wrapper">
         <span className="color-error">img not found</span>
-        <GalacticEmpire width={iconWidth} cssClass="svg-fill-error" />
+        <GalacticEmpire cssClass="svg-fill-error" />
       </div>
     );
   }

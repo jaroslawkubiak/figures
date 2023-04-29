@@ -1,10 +1,14 @@
 :root {
-  --width-card: 170px;
+  --width-card: 180px;
   --height-card: 210px;
+  --width-list: 350px;
+  --height-list: 80px;
   --border-width: 6px;
+  --r2d2-bricklink-logo-width: 50px;
+  --r2d2-price-width: 70px;
+  --r2d2-figure-image-width: calc(var(--height-list) - 20px);
 }
-
-.container {
+.card-container {
   position: relative;
   font-family: star_wars;
   color: var(--bg-color);
@@ -38,7 +42,7 @@
     /* left indentation */ 0 calc(30% - var(--border-width))
   );
 }
-.wrapper {
+.card-wrapper {
   --border-edge: 0.7;
   display: flex;
   align-items: center;
@@ -75,12 +79,12 @@
       calc(30% - var(--border-width) * (1 - var(--border-edge) + 1))
   );
 }
-.cell-text {
+.card-cell-text {
   position: absolute;
   top: 0px;
   font-size: 0.6em;
 }
-.name {
+.card-name {
   position: absolute;
   z-index: 5;
   top: 0;
@@ -94,7 +98,7 @@
   height: 15px;
   background-color: var(--primary-color);
 }
-.number {
+.card-number {
   position: absolute;
   z-index: 5;
   bottom: 2px;
@@ -115,11 +119,10 @@
     0px 100%
   );
 }
-.figure-img {
+.card-figure-img {
   max-height: 80%;
   max-width: 90%;
 }
-
 .arrow-up {
   z-index: 99;
   position: fixed;
@@ -137,9 +140,8 @@
 .r2d2-container {
   --inner-cut: 20%;
   font-family: star_wars;
-  margin-bottom: 5px;
-  height: 80px;
-  width: 100%;
+  height: var(--height-list);
+  width: var(--width-list);
   display: flex;
   align-items: center;
   background-color: var(--r2d2-primary-color);
@@ -152,7 +154,7 @@
     100% var(--inner-cut),
     87% 10%,
     74% var(--inner-cut),
-  70% var(--inner-cut),
+    70% var(--inner-cut),
     70% 0%,
     20% 0%,
     13% 8%,
@@ -163,15 +165,16 @@
   );
 }
 
-.r2d2-img-wrapper {
-  height: 60px;
-  width: 60px;
+.r2d2-figure-img-wrapper {
+  height: var(--r2d2-figure-image-width);
+  width: var(--r2d2-figure-image-width);
   margin-left: 3px;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   padding: 1px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid var(--r2d2-gray-color);
 }
 
 .r2d2-figure-img {
@@ -179,15 +182,14 @@
   max-width: 100%;
 }
 
-.r2d2-logo-img {
+.r2d2-bricklink-logo-img {
   max-height: 40px;
   max-width: 40px;
-  
 }
 
-.r2d2-logo-wrapper {
-  height: 40px;
-  width: 40px;
+.r2d2-bricklink-logo-wrapper {
+  width: var(--r2d2-bricklink-logo-width);
+  height: var(--r2d2-bricklink-logo-width);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -197,48 +199,88 @@
   font-size: 8px;
   line-height: 1.4;
   letter-spacing: 1px;
+}
 
+.r2d2-item:first-child{
+  padding-top: 3px;
 }
 
 .r2d2-wrapper {
   margin-left: 5px;
-  width: 50%;
+  width: calc(
+    var(--width-list) - var(--r2d2-bricklink-logo-width) -
+      var(--r2d2-price-width) - var(--r2d2-figure-image-width)
+  );
 }
 
 .r2d2-price {
-  display: grid;
-  justify-content: center;
   text-align: center;
   letter-spacing: 1px;
-  width: 70px;
+  width: var(--r2d2-price-width);
   font-size: 0.8em;
 }
 
+/* phones in landscape mode */
+@media screen and (orientation: landscape) and (max-width: 814px) {
+  :root {
+    --width-card: 190px;
+    --height-card: 190px;
+    --width-list: 390px;
+    --height-list: 90px;
+  }
+}
+
+/* tablet */
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  :root {
+    --width-card: 195px;
+    --height-card: 250px;
+    --border-width: 8px;
+
+    --width-list: 390px;
+    --height-list: 100px;
+  }
+  .card-name {
+    height: 20px;
+    font-size: 1.2em;
+  }
+  .card-number {
+    bottom: 2px;
+    height: 18px;
+    font-size: 1.2em;
+  }
+}
 
 /* PC  */
-@media screen and (width > 845px) {
-
+@media screen and (min-width: 1200px) {
   :root {
-    --width-card: 350px;
+    --width-card: 380px;
     --height-card: 430px;
     --border-width: 15px;
+
+    --width-list: 350px;
+    --height-list: 80px;
+
+    --r2d2-bricklink-logo-width: 50px;
+    --r2d2-price-width: 70px;
+    --r2d2-figure-image-width: 60px;
   }
 
-  .name {
+  .card-name {
     height: 35px;
   }
 
-  .number {
+  .card-number {
     border-top: 4px solid rgb(0, 0, 0);
     height: 35px;
     background-color: var(--primary-color);
     --skew: 20px;
   }
-  
-  .cell-text {
+
+  .card-cell-text {
     font-size: 1.4em;
   }
-  
+
   .arrow-up {
     position: sticky;
     font-size: 8em;
@@ -251,7 +293,7 @@
     height: 150px;
     margin: 20px;
   }
-  
+
   .r2d2-img-wrapper {
     height: 120px;
     width: 120px;
@@ -263,13 +305,12 @@
     height: 100px;
     width: 100px;
   }
-  
+
   .r2d2-logo-img {
     max-height: 100px;
     max-width: 100px;
   }
-  
-  
+
   .r2d2-wrapper {
     margin-left: 5px;
     width: 40%;
@@ -279,10 +320,25 @@
   .r2d2-item {
     font-size: 1.2em;
   }
-  
+
   .r2d2-price {
     font-size: 1.2em;
     width: 100px;
   }
-  
+}
+
+/* huuuge screen  */
+@media screen and (min-width: 1540px) {
+  :root {
+    --width-card: 480px;
+    --height-card: 530px;
+    --border-width: 20px;
+
+    --width-list: 350px;
+    --height-list: 80px;
+
+    --r2d2-bricklink-logo-width: 50px;
+    --r2d2-price-width: 70px;
+    --r2d2-figure-image-width: 60px;
+  }
 }

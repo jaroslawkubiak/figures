@@ -55,6 +55,10 @@
   z-index: 999;
 }
 
+.modal-close-svg {
+  font-size: 1.4em;
+}
+
 .modal-label {
   position: absolute;
   bottom: -20px;
@@ -171,12 +175,11 @@
 
 /* phones in landscape mode */
 @media screen and (orientation: landscape) and (max-width: 814px) {
-
   .modal-wrapper {
     display: grid;
     align-content: end;
- }
-  
+  }
+
   .modal-container {
     max-width: 600px;
     height: 210px;
@@ -184,22 +187,74 @@
   }
 
   .modal-figure-img {
-    max-height: 200px;
-    height: auto;
+    height: 200px;
     max-width: 580px;
-    
+    object-fit: contain;
   }
   .modal-arrow-right {
     right: -50px;
   }
-  
+
   .modal-arrow-left {
     left: -50px;
   }
-  
 }
+/* tablet */
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  :root {
+    --width-confirm-modal: 400px;
+    --height-confirm-modal: 250px;
+  }
+  .modal-label {
+    bottom: -40px;
+    font-size: 24px;
+    --cut-height: 12px;
+  }
+  
+  .confirm-modal-container {
+    --cut-height: 20px;
+    gap: 30px;
+  }
+
+  .confirm-modal-container-inner {
+    width: calc(var(--width-confirm-modal) + 10px);
+    height: calc(var(--height-confirm-modal) + 10px);
+    --cut-height: 20px;
+  }
+  .confirm-modal-grid-line {
+    font-size: 1.4em;
+  }
+
+  .modal-close-btn {
+    --close-btn-width: 50px;
+    top: -25px;
+    right: -20px;
+  }
+
+  .modal-close {
+    width: 50px;
+    height: 50px;
+  }
+
+  .modal-close-svg {
+    font-size: 2.2em;
+  }
+  .modal-arrow {
+    font-size: 5em;
+  }
+  .modal-arrow-right {
+    right: -20px;
+  }
+
+  .modal-arrow-left {
+    left: -20px;
+  }
+
+}
+
+
 /* PC  */
-@media screen and (width > 845px) {
+@media screen and (min-width: 1200px) {
   :root {
     --width-confirm-modal: 600px;
     --height-confirm-modal: 300px;
@@ -224,6 +279,9 @@
     width: 50px;
     height: 50px;
   }
+  .modal-close-svg {
+    font-size: 2.8em;
+  }
 
   .modal-label {
     bottom: -35px;
@@ -237,11 +295,10 @@
   .modal-arrow-right {
     right: -80px;
   }
-  
+
   .modal-arrow-left {
     left: -80px;
   }
-  
 
   .confirm-modal-container {
     --cut-height: 20px;

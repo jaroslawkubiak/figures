@@ -24,8 +24,6 @@ const Modal = ({
       setClickedImage(null);
     }
   };
-  const w = window.innerWidth;
-  const mobileView = w < 814 ? "font-size-1-4" : "font-size-2-8";
 
   return (
     <div className="modal-wrapper dismiss" onClick={handleClick}>
@@ -49,7 +47,7 @@ const Modal = ({
         />
 
         <div className="modal-close-btn" onClick={handleClick}>
-          <ImCross className={`svg-fill-bg ${mobileView}`} />
+          <ImCross className={`svg-fill-bg modal-close-svg`} />
           <div className="modal-close dismiss"></div>
         </div>
         <div className="modal-label">{showImage.description}</div>

@@ -22,15 +22,15 @@ export function validate(values, isSubmit, duplicate) {
   if (isSubmit && values.mainName === "")
     errors.mainName = inputFieldNotValid("Required");
 
-  // if (isSubmit && (values.purchasePrice < 0 || values.purchasePrice === ""))
-  //   errors.purchasePrice = inputFieldNotValid("Required");
-  // if (isSubmit && values.releaseYear === "")
-  //   errors.releaseYear = inputFieldNotValid("Required");
-  // if (isSubmit && values.purchaseDate === "")
-  //   errors.purchaseDate = inputFieldNotValid("Required");
-  // if (isSubmit && values.series === "")
-  //   errors.series = inputFieldNotValid("Required");
-  // if (isSubmit && values.weapon === "")
-  //   errors.weapon = inputFieldNotValid("Required");
+  if (isSubmit && (values.purchasePrice < 0 || values.purchasePrice === ""))
+    errors.purchasePrice = inputFieldNotValid("Required");
+  if (isSubmit && values.releaseYear === "")
+    errors.releaseYear = inputFieldNotValid("Required");
+  if (isSubmit && values.purchaseDate === "")
+    errors.purchaseDate = inputFieldNotValid("Required");
+  if (isSubmit && values.series === "")
+    errors.series = inputFieldNotValid("Required");
+  if (isSubmit && values.weapon === "")
+    errors.weapon = inputFieldNotValid("Required");
   return errors;
 }

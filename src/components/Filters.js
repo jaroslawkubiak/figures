@@ -78,9 +78,6 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
     setExpandFilters(!expandFilters);
   };
 
-  const w = window.innerWidth;
-  const cssImCross = w < 814 ? "font-size-1" : "font-size-2-4";
-
   // class list for list view
   let cssFilterBackground =
     "background-color-r2d2-head filter-container-expand";
@@ -96,7 +93,6 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
     "add-figure-input background-color-r2d2-primary color-r2d2-head";
   let cssPanelClass =
     "add-figure-input select-height background-color-bg color-r2d2-head ";
-  // let cssDropdownElement = "dropdown-el-primary";
 
   // class list for card view
   if (!listView) {
@@ -110,7 +106,6 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
     cssDropdown = "add-figure-input background-color-bg color-primary";
     cssPanelClass =
       "add-figure-input select-height background-color-bg color-primary";
-    // cssDropdownElement = "dropdown-el-primary";
   }
 
   return (
@@ -194,7 +189,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
             </div>
             {searchingNumber && (
               <div
-                className={`filter-reset-icon cursor-pointer ${cssImCross}`}
+                className={`filter-reset-icon cursor-pointer filter-reset-svg`}
                 onClick={handleResetSearchNumber}
               >
                 <ImCross />
@@ -215,7 +210,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
             </div>
             {searchingMainName && (
               <div
-                className={`filter-reset-icon cursor-pointer ${cssImCross}`}
+                className={`filter-reset-icon cursor-pointer filter-reset-svg`}
                 onClick={handleResetSearchMainName}
               >
                 <ImCross />
@@ -240,7 +235,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
             </div>
             {searchingReleaseYear && (
               <div
-                className={`filter-reset-icon cursor-pointer ${cssImCross}`}
+                className={`filter-reset-icon cursor-pointer filter-reset-svg`}
                 onClick={handleResetSearchReleaseYear}
               >
                 <ImCross />
@@ -265,7 +260,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
             </div>
             {searchingSeries && (
               <div
-                className={`filter-reset-icon cursor-pointer ${cssImCross}`}
+                className={`filter-reset-icon cursor-pointer filter-reset-svg`}
                 onClick={handleResetSearchSeries}
               >
                 <ImCross />

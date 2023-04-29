@@ -38,7 +38,7 @@ function FigureEdit({ onClose }) {
   const [deleteFigure, setDeleteFigure] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const cssClassLabel = "add-figure-input-label color-edit";
-  
+
   useEffect(() => {
     document.body.classList.add("overflow-hidden");
 
@@ -66,8 +66,6 @@ function FigureEdit({ onClose }) {
   });
   const [figureToDelete] = useState(figure);
   const [figureMainName] = useState(figure.mainName);
-
-  const svgBg = "svg-fill-edit";
 
   // edit figure form submit
   const handleSubmit = e => {
@@ -161,10 +159,6 @@ function FigureEdit({ onClose }) {
     if (isSubmit) setFormErrors({ ...formErrors, [e.target.name]: null });
   };
 
-  const w = window.innerWidth;
-  const btnCloseMobileView = w < 814 ? "font-size-1-4" : "font-size-2";
-  const btnSaveMobileView = w < 814 ? "font-size-2" : "font-size-1-2";
-
   return (
     <div className="add-figure-wrapper">
       <div className="add-figure-container edit-figure-border ">
@@ -179,14 +173,14 @@ function FigureEdit({ onClose }) {
           className="add-figure-close-btn background-color-edit"
           onClick={() => onClose()}
         >
-          <ImCross className={`svg-fill-bg ${btnCloseMobileView}`} />
+          <ImCross className={`svg-fill-bg btn-close-svg `} />
         </div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
           <div className="add-header add-figure-heading color-edit">
             Edit - {figureMainName}
           </div>
           {/* Number */}
-          <div className="add-figure-div add-number color-edit add-grid-cell">
+          <div className="add-figure-div add-number color-edit">
             <input type="hidden" value={figure.id} name="id" />
             <InputText
               cssClass="add-figure-input background-color-edit color-bg"
@@ -204,10 +198,10 @@ function FigureEdit({ onClose }) {
           </div>
           {/* Image */}
           <div id="add-figure-photo" className="add-photo">
-            <FigurePhoto figNumber={figure.number} svgBg={svgBg} />
+            <FigurePhoto figNumber={figure.number} cssSvgFill="svg-fill-edit" />
           </div>
           {/* Main name */}
-          <div className="add-figure-div add-main-name color-edit add-grid-cell">
+          <div className="add-figure-div add-main-name color-edit">
             <InputText
               cssClass="add-figure-input background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
@@ -223,7 +217,7 @@ function FigureEdit({ onClose }) {
             {formErrors.mainName}
           </div>
           {/* Additional name */}
-          <div className="add-figure-div add-additional-name color-edit add-grid-cell">
+          <div className="add-figure-div add-additional-name color-edit">
             <InputText
               cssClass="add-figure-input background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
@@ -236,7 +230,7 @@ function FigureEdit({ onClose }) {
             </InputText>
           </div>
           {/* Purchase Price */}
-          <div className="add-figure-div add-purchase-price color-edit add-grid-cell">
+          <div className="add-figure-div add-purchase-price color-edit">
             <InputNumber
               cssClass="add-figure-input background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
@@ -253,7 +247,7 @@ function FigureEdit({ onClose }) {
             {formErrors.purchasePrice}
           </div>
           {/* Bricklink Price */}
-          <div className="add-figure-div add-bricklink-price color-edit add-grid-cell">
+          <div className="add-figure-div add-bricklink-price color-edit">
             <InputNumber
               cssClass="add-figure-input background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
@@ -268,7 +262,7 @@ function FigureEdit({ onClose }) {
             </InputNumber>
           </div>
           {/* Release Year */}
-          <div className="add-figure-div add-release-year cursor-pointer color-edit add-grid-cell">
+          <div className="add-figure-div add-release-year cursor-pointer color-edit">
             <Dropdown
               cssClassLabel={cssClassLabel}
               cssDropdown="add-figure-input background-color-edit color-bg"
@@ -286,7 +280,7 @@ function FigureEdit({ onClose }) {
             {formErrors.releaseYear}
           </div>
           {/* Series */}
-          <div className="add-figure-div add-series cursor-pointer color-edit add-grid-cell">
+          <div className="add-figure-div add-series cursor-pointer color-edit">
             <Dropdown
               cssClassLabel={cssClassLabel}
               cssDropdown="add-figure-input background-color-edit color-bg"
@@ -304,7 +298,7 @@ function FigureEdit({ onClose }) {
             {formErrors.series}
           </div>
           {/* Bricklink */}
-          <div className="add-figure-div add-bricklink color-edit add-grid-cell">
+          <div className="add-figure-div add-bricklink color-edit">
             <InputText
               cssClass="add-figure-input background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
@@ -316,7 +310,7 @@ function FigureEdit({ onClose }) {
             </InputText>
           </div>
           {/* Label */}
-          <div className="add-figure-div add-label color-edit add-grid-cell">
+          <div className="add-figure-div add-label color-edit">
             <InputCheckbox
               cssClass="add-figure-checkbox-div background-color-edit color-bg"
               cssCheckboxClass="cursor-pointer background-color-edit color-bg"
@@ -329,7 +323,7 @@ function FigureEdit({ onClose }) {
             </InputCheckbox>
           </div>
           {/* Weapon */}
-          <div className="add-figure-div add-weapon cursor-pointer color-edit add-grid-cell">
+          <div className="add-figure-div add-weapon cursor-pointer color-edit">
             <Dropdown
               cssClassLabel={cssClassLabel}
               cssDropdown="add-figure-input background-color-edit color-bg"
@@ -347,7 +341,7 @@ function FigureEdit({ onClose }) {
             {formErrors.weapon}
           </div>
           {/* Purchase date */}
-          <div className="add-figure-div add-purchase-date color-edit add-grid-cell">
+          <div className="add-figure-div add-purchase-date color-edit">
             <InputText
               cssClass="add-figure-input background-color-edit color-bg"
               cssClassLabel={cssClassLabel}
@@ -364,16 +358,13 @@ function FigureEdit({ onClose }) {
           </div>
           <div className="add-button">
             <Button cssClass="btn btn-edit">
-              <BsSave className={btnSaveMobileView} />
+              <BsSave className="btn-edit-svg" />
               Save
             </Button>
           </div>
           <div className="edit-delete-button">
-            <Button
-              cssClass="btn btn-delete "
-              onClick={handleDelete}
-            >
-              <BsTrash3 className={btnSaveMobileView} />
+            <Button cssClass="btn btn-delete " onClick={handleDelete}>
+              <BsTrash3 className="btn-edit-svg" />
               delete
             </Button>
           </div>

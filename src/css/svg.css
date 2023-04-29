@@ -17,12 +17,9 @@
 .svg-fill-bg {
   fill: var(--bg-color);
 }
-
 .svg-fill-bg:hover {
   fill: var(--error-color);
 }
-
-
 .svg-fill-error {
   fill: var(--error-color);
 }
@@ -38,4 +35,3 @@
 .svg-fill-lego-quantity {
   fill: var(--bg-color);
 }
-

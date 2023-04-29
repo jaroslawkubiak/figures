@@ -32,6 +32,7 @@
   width: 100%;
   display: grid;
   height: var(--input-height);
+  margin-bottom: 20px;
 }
 
 .add-figure-input-label {
@@ -84,9 +85,6 @@
     "weapon weapon purchase-date purchase-date"
     "button button button button"
     "delete-button delete-button delete-button delete-button";
-}
-.add-grid-cell {
-  margin-bottom: 20px;
 }
 
 .add-header {
@@ -176,6 +174,16 @@
   clip-path: polygon(0 22%, 22% 0, 100% 0, 100% 78%, 78% 100%, 0% 100%, 0 0);
 }
 
+.btn-close-svg {
+  font-size: 1.4em;
+}
+.btn-add-svg {
+  font-size: 1.6em;
+}
+.btn-edit-svg {
+  font-size: 2em;
+}
+
 .input-wrapper {
   position: relative;
   height: var(--input-height);
@@ -244,8 +252,7 @@
   right: 5px;
   transform: translateY(-50%);
 }
-.dropdown-el,
-.dropdown-el-primary {
+.dropdown-el {
   padding: 2px 0;
   cursor: pointer;
   position: relative;
@@ -253,8 +260,7 @@
   font-size: 6px;
   line-height: 2;
 }
-.dropdown-el:not(:last-child),
-.dropdown-el-primary:not(:last-child) {
+.dropdown-el:not(:last-child) {
   border-bottom: 1px solid var(--error-color);
 }
 
@@ -325,16 +331,79 @@
   }
 }
 
+/* tablet */
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  :root {
+    --input-height: 40px;
+  }
+  .add-figure-container {
+    --margin: 2em;
+    padding: 1em 2em;
+    border: 3px solid var(--primary-color);
+  }
+
+  .dropdown-el {
+    font-size: 14px;
+    line-height: 2;
+  }
+
+  .btn-close-svg {
+    font-size: 1.6em;
+  }
+  .add-figure-input {
+    font-size: 14px;
+  }
+  .add-figure-checkbox-div {
+    height: 27px;
+  }
+
+  .add-figure-heading {
+    letter-spacing: 3px;
+    font-size: 1.4em;
+  }
+  .checkbox-container label {
+    font-size: 16px;
+  }
+  .checkbox-container label::before {
+    content: "";
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--bg-color);
+  }
+  .add-figure-input-label {
+    font-size: 16px;
+    letter-spacing: 2px;
+  }
+
+  #add-figure-form {
+    gap: 30px;
+  }
+  .select-height {
+    max-height: 350px;
+  }
+  .edit-figure-border {
+    border: 3px solid var(--edit-color);
+  }
+  
+}
 /* PC  */
-@media screen and (width > 845px) {
+@media screen and (min-width: 1200px) {
   :root {
     --input-height: 65px;
+  }
+  .btn-close-svg {
+    font-size: 2em;
+  }
+  .btn-add-svg {
+    font-size: 2em;
+  }
+  .btn-edit-svg {
+    font-size: 1.2em;
   }
 
   .add-figure-wrapper {
     position: fixed;
     margin: 0 auto;
-    max-width: 1280px;
     background-color: var(--bg-color-modal);
   }
 
@@ -350,13 +419,12 @@
       "release-year release-year series series"
       "bricklink bricklink bricklink label"
       "weapon weapon purchase-date purchase-date"
-      "button button button button"
-      "delete-button delete-button delete-button delete-button";
+      ". button delete-button .";
   }
 
   .add-figure-container {
     --margin: 2em;
-    padding:1em 2em;
+    padding: 1em 2em;
     border: 5px solid var(--primary-color);
   }
 
@@ -392,8 +460,7 @@
     right: calc(-1 * var(--close-btn-width) / 1.8);
   }
 
-  .dropdown-el,
-  .dropdown-el-primary {
+  .dropdown-el {
     padding: 3px;
     padding-left: 6px;
     font-size: 16px;
@@ -406,10 +473,7 @@
     width: 6px;
     left: -10px;
   }
-  .dropdown-el-primary:hover::after {
-    width: 6px;
-    left: -10px;
-  }
+
   ::-webkit-scrollbar {
     width: 30px; /* Total width including `border-width` of scrollbar thumb */
   }
@@ -430,5 +494,12 @@
 
   .edit-figure-border {
     border: 8px solid var(--edit-color);
+  }
+}
+
+/* huuuge screen  */
+@media screen and (min-width: 1540px) {
+  .add-figure-wrapper {
+    max-width: none;
   }
 }

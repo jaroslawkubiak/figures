@@ -15,6 +15,7 @@
   --r2d2-primary-color: #274294;
   --r2d2-secondary-color: #ae3237;
   --r2d2-head-color: #bbbfbf;
+  --r2d2-gray-color: #a8a7aa;
 
   /* lighter version for hover state */
   --primary-color-hover: #fcc419;
@@ -34,12 +35,12 @@
   box-sizing: border-box;
 }
 body {
-  font-family: star_wars,verdana, arial, helvetica;
+  font-family: star_wars, verdana, arial, helvetica;
   font-size: 12px;
   background-color: var(--bg-color);
   color: var(--primary-color);
   max-height: 100%;
-overflow-y: auto;
+  overflow-y: auto;
 }
 
 .background-color-primary {
@@ -107,13 +108,11 @@ overflow-y: auto;
   justify-items: center;
 }
 .figure-container-list {
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  margin: 0 auto;
-  width: 95%;
-  padding: 5px;
-  gap: 5px;
+  display: grid;
+  place-content: center;
+  width: 100%;
+  padding: 10px 0;
+  gap: 10px;
 }
 
 a {
@@ -144,7 +143,6 @@ a {
     0 0
   );
 }
-
 
 .btn-add {
   background-color: var(--primary-color);
@@ -236,6 +234,9 @@ a {
 
 /* phones in landscape mode */
 @media screen and (orientation: landscape) and (max-width: 814px) {
+  body {
+    /* border: 2px solid rgb(255, 94, 0); */
+  }
   .figure-container-card {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -247,10 +248,64 @@ a {
   }
 }
 
+/* tablet */
+@media only screen and (orientation: portrait) and (min-width: 768px) {
+  body {
+    /* border: 4px solid green; */
+  }
+
+  .figure-container-card {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .figure-container-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+  .input-required {
+    top: -25px;
+    right: -15px;
+    font-size: 20px;
+  }
+  .btn {
+    font-size: 1.2em;
+    letter-spacing: 4px;
+    --cut-height: 10px;
+    gap: 20px;
+  }
+
+
+  .required-field-container {
+    top: 15px;
+  }
+
+  .required-field {
+    top: 50px;
+    font-size: 12px;
+    --cut-height: 6px;
+  }
+
+  .required-field-after {
+    top: 42px;
+    left: 35%;
+    width: 17px;
+    height: 17px;
+  }
+
+  .input-required {
+    top: -35px;
+    right: -25px;
+    font-size: 30px;
+  }
+
+}
+
 /* PC  */
-@media screen and (width > 845px) {
+@media screen and (min-width: 1200px) {
+  body {
+    /* border: 4px solid blue; */
+  }
   .app-container {
-    max-width: 1280px;
     margin: 0 auto;
   }
 
@@ -263,11 +318,11 @@ a {
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
   }
-  
+
   .required-field-container {
     top: 20px;
   }
-  
+
   .required-field {
     top: 50px;
     width: 40%;
@@ -275,21 +330,18 @@ a {
     font-size: 18px;
     --cut-height: 8px;
   }
-  
+
   .required-field-after {
-    position: absolute;
     top: 42px;
     left: 35%;
     width: 17px;
     height: 17px;
   }
-  
+
   .input-required {
-    position: absolute;
     top: -35px;
     right: -25px;
     font-size: 30px;
-    color: var(--error-color);
   }
 
   .btn {
@@ -298,9 +350,19 @@ a {
     --cut-height: 20px;
     gap: 30px;
     padding: 10px 20px;
-
-
   }
+}
 
-  
+/* huuuge screen  */
+@media screen and (min-width: 1540px) {
+  body {
+    /* border: 5px solid rgb(230, 0, 255); */
+  }
+  .figure-container-card {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .app-container {
+    max-width: 2000px;
+    margin: 0 auto;
+  }
 }

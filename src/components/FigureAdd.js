@@ -38,7 +38,6 @@ function FigureAdd({ onClose }) {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [figureExistInDB, setFigureExistInDB] = useState(false);
-  const svgBg = "svg-fill-primary";
   const cssClassLabel = "add-figure-input-label color-primary";
 
   useEffect(() => {
@@ -154,10 +153,6 @@ function FigureAdd({ onClose }) {
     setFormErrors({ ...formErrors, [e.target.name]: null });
   };
 
-  // check if is mobile view to change font size for icon buttons
-  const w = window.innerWidth;
-  const btnCloseMobileView = w < 814 ? "font-size-1-4" : "font-size-2";
-  const btnAddMobileView = w < 814 ? "font-size-1-6" : "font-size-2";
 
   // filtering all figures to find currently adding
   const allFigures = useSelector(({ figures: { data } }) => {
@@ -179,14 +174,14 @@ function FigureAdd({ onClose }) {
     <div className="add-figure-wrapper">
       <div className="add-figure-container">
         <div className="add-figure-close-btn" onClick={() => onClose()}>
-          <ImCross className={`svg-fill-bg ${btnCloseMobileView}`} />
+          <ImCross className={`svg-fill-bg btn-close-svg `} />
         </div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
           <div className="add-header add-figure-heading">
             Add new minifigure
           </div>
           {/* Number */}
-          <div className="add-figure-div add-number add-grid-cell">
+          <div className="add-figure-div add-number ">
             <InputText
               cssClass={`add-figure-input background-color-primary color-bg`}
               cssClassLabel={cssClassLabel}
@@ -204,10 +199,10 @@ function FigureAdd({ onClose }) {
           </div>
           {/* Image */}
           <div id="add-figure-photo" className="add-photo">
-            <FigurePhoto figNumber={currentFigure.number} svgBg={svgBg} />
+            <FigurePhoto figNumber={currentFigure.number} cssSvgFill="svg-fill-primary" />
           </div>
           {/* Main name */}
-          <div className="add-figure-div add-main-name add-grid-cell">
+          <div className="add-figure-div add-main-name ">
             <InputText
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}
@@ -223,7 +218,7 @@ function FigureAdd({ onClose }) {
             {formErrors.mainName}
           </div>
           {/* Additional name */}
-          <div className="add-figure-div add-additional-name add-grid-cell">
+          <div className="add-figure-div add-additional-name ">
             <InputText
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}
@@ -236,7 +231,7 @@ function FigureAdd({ onClose }) {
             </InputText>
           </div>
           {/* Purchase Price */}
-          <div className="add-figure-div add-purchase-price add-grid-cell">
+          <div className="add-figure-div add-purchase-price ">
             <InputNumber
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}
@@ -253,7 +248,7 @@ function FigureAdd({ onClose }) {
             {formErrors.purchasePrice}
           </div>
           {/* Bricklink Price */}
-          <div className="add-figure-div add-bricklink-price add-grid-cell">
+          <div className="add-figure-div add-bricklink-price ">
             <InputNumber
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}
@@ -268,7 +263,7 @@ function FigureAdd({ onClose }) {
             </InputNumber>
           </div>
           {/* Release Year */}
-          <div className="add-figure-div add-release-year add-grid-cell cursor-pointer">
+          <div className="add-figure-div add-release-year  cursor-pointer">
             <Dropdown
               cssDropdown="add-figure-input background-color-primary color-bg"
               cssPanelClass="add-figure-input background-color-primary color-bg select-height"
@@ -286,7 +281,7 @@ function FigureAdd({ onClose }) {
             {formErrors.releaseYear}
           </div>
           {/* Series */}
-          <div className="add-figure-div add-series  add-grid-cell cursor-pointer">
+          <div className="add-figure-div add-series   cursor-pointer">
             <Dropdown
               cssDropdown="add-figure-input background-color-primary color-bg"
               cssPanelClass="add-figure-input background-color-primary color-bg select-height"
@@ -304,7 +299,7 @@ function FigureAdd({ onClose }) {
             {formErrors.series}
           </div>
           {/* Bricklink */}
-          <div className="add-figure-div add-bricklink add-grid-cell">
+          <div className="add-figure-div add-bricklink ">
             <InputText
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}
@@ -316,7 +311,7 @@ function FigureAdd({ onClose }) {
             </InputText>
           </div>
           {/* Label */}
-          <div className="add-figure-div add-label add-grid-cell">
+          <div className="add-figure-div add-label ">
             <InputCheckbox
               cssClass="add-figure-checkbox-div"
               cssCheckboxClass="cursor-pointer"
@@ -329,7 +324,7 @@ function FigureAdd({ onClose }) {
             </InputCheckbox>
           </div>
           {/* Weapon */}
-          <div className="add-figure-div add-weapon add-grid-cell cursor-pointer">
+          <div className="add-figure-div add-weapon  cursor-pointer">
             <Dropdown
               cssDropdown="add-figure-input background-color-primary color-bg"
               cssPanelClass="add-figure-input background-color-primary color-bg select-height"
@@ -347,7 +342,7 @@ function FigureAdd({ onClose }) {
             {formErrors.weapon}
           </div>
           {/* Purchase date */}
-          <div className="add-figure-div add-purchase-date add-grid-cell">
+          <div className="add-figure-div add-purchase-date ">
             <InputText
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}
@@ -364,7 +359,7 @@ function FigureAdd({ onClose }) {
           </div>
           <div className="add-button">
             <Button cssClass="btn btn-add">
-              <BsPlusLg className={btnAddMobileView} />
+              <BsPlusLg className="btn-add-svg" />
               Add
             </Button>
           </div>

@@ -15,20 +15,21 @@ function FigureShowList({
   // set bricklink logo
   const bricklinkLogo = showFigureImage("");
 
+ 
   const renderedData =
     parse(`<a href="https://www.bricklink.com/v2/catalog/catalogitem.page?M=${figure.number}" target="_blank">
   <img
           src=${bricklinkLogo.url}
           alt="Bricklink catalog"
           title="Bricklink catalog"
-          className="r2d2-logo-img"
+          className="r2d2-bricklink-logo-img"
         />
   </a>`);
 
   return (
     <div className={`r2d2-container ${isFigureEven || "r2d2-even"}`}>
       <div
-        className={`r2d2-img-wrapper cursor-pointer ${isFigureEven || "r2d2-even"}`}
+        className={`r2d2-figure-img-wrapper cursor-pointer ${isFigureEven || "r2d2-even"}`}
         onClick={() => onModal(figure, clickedImage)}
       >
         <img
@@ -55,7 +56,7 @@ function FigureShowList({
         <p>{figure.purchasePrice} zł</p>
       </div>
 
-      <div className={`r2d2-logo-wrapper ${isFigureEven || "r2d2-even"}`}>
+      <div className={`r2d2-bricklink-logo-wrapper ${isFigureEven || "r2d2-even"}`}>
         {renderedData}
       </div>
     </div>

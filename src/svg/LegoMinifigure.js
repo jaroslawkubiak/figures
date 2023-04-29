@@ -1,12 +1,9 @@
 export const LegoMinifigure = ({ cssClass }) => {
-  const w = window.innerWidth;
-  const iconWidth = w < 814 ? 30 : 60;
   return (
     <svg
       className={cssClass}
       viewBox="0 50 800 980"
-      width={iconWidth}
-      height={iconWidth}
+      height="90%"
     >
       <g>
         <path

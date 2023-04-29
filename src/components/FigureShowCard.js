@@ -8,10 +8,10 @@ function FigureCard({ figure, clickedImage, onModal, onEdit }) {
   const [figImage, setFigImage] = useState(showImage.url);
 
   return (
-    <div className="container">
-      <div className="name">
+    <div className="card-container">
+      <div className="card-name">
         <span
-          className="cell-text cursor-pointer color-r2d2-primary text-underline"
+          className="card-cell-text cursor-pointer color-r2d2-primary text-underline"
           figure={figure}
           onClick={() => onEdit(figure)}
         >
@@ -19,18 +19,18 @@ function FigureCard({ figure, clickedImage, onModal, onEdit }) {
         </span>
       </div>
       <div
-        className="wrapper cursor-pointer"
+        className="card-wrapper cursor-pointer"
         onClick={() => onModal(figure, clickedImage)}
       >
         <img
           src={figImage}
           alt={showImage.description}
           title={showImage.description}
-          className="figure-img cursor-pointer"
+          className="card-figure-img cursor-pointer"
         />
       </div>
-      <div className="number">
-        <span className="cell-text">
+      <div className="card-number">
+        <span className="card-cell-text">
           {figure.number} - {figure.releaseYear}
         </span>
       </div>
