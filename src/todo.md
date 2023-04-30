@@ -34,7 +34,7 @@ Filters:
 [ x ] combine searching by name - have to include searching both : mainName and additionalName
 [ x ] searching list by: series, year
 [ ] sorting by: series, number, main name, additional name, price. ASC and DESC
-[ ] reset all filters button
+[ x ] reset all filters button
 
 stats by:
 [ ] show statistics for: release year and series. display nice stats
