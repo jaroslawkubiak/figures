@@ -79,6 +79,20 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
     setExpandFilters(!expandFilters);
   };
 
+  const handleResetAllFilters = () => {
+    dispatch(changeSearchReleaseYear(""));
+    dispatch(changeSearchSeries(""));
+    dispatch(changeSearchMainName(""));
+    dispatch(changeSearchNumber(""));
+  };
+
+  // for reseting all filters by one click. 
+  const openFilters = [];
+  if (searchingNumber) openFilters.push(searchingNumber);
+  if (searchingMainName) openFilters.push(searchingMainName);
+  if (searchingReleaseYear) openFilters.push(searchingReleaseYear);
+  if (searchingSeries) openFilters.push(searchingSeries);
+
   // class list for list view
   let cssFilterBackground =
     "background-color-r2d2-head filter-container-expand";
@@ -119,26 +133,31 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
         } ${!listView || "background-color-r2d2-head"}`}
       >
         <div className="justify-self-start">
-          {!listView && 
-          <BsPlusSquare
-            onClick={onAddFigure}
-            fill="#212529"
-            className="cursor-pointer filter-icon"
-            title="Add figure"
-          />}
+          {!listView && (
+            <BsPlusSquare
+              onClick={onAddFigure}
+              fill="#212529"
+              className="cursor-pointer filter-icon"
+              title="Add figure"
+            />
+          )}
 
-          {listView && 
-          <BsFillPlusCircleFill
-            onClick={onAddFigure}
-            fill="#212529"
-            className="cursor-pointer filter-icon"
-            title="Add figure"
-          />}
+          {listView && (
+            <BsFillPlusCircleFill
+              onClick={onAddFigure}
+              fill="#212529"
+              className="cursor-pointer filter-icon"
+              title="Add figure"
+            />
+          )}
         </div>
         {/* display quantity of minifigures */}
         <div className={cssQuantityWrapper} title="Figures quantity">
           <LegoMinifigure cssClass={cssLegoIconFill} />
-          <FigureQuantity quantity={quantity} fillColor={cssQuantityFillColor} />
+          <FigureQuantity
+            quantity={quantity}
+            fillColor={cssQuantityFillColor}
+          />
         </div>
 
         <div className=" justify-self-center">
@@ -162,7 +181,17 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
           )}
         </div>
 
-        <div className="justify-self-end">
+        <div className="justify-self-end relative">
+          {openFilters.length > 1 && (
+            <div
+              title="Reset all filters"
+              className={`cursor-pointer filter-reset-svg filter-reset-all-icon`}
+              onClick={handleResetAllFilters}
+            >
+              <ImCross />
+            </div>
+          )}
+
           {/* collapse filters */}
           {expandFilters && (
             <BsFilterSquareFill
@@ -187,7 +216,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
       {expandFilters && (
         <div className={cssFilterBackground}>
           <div className="filter-item-wrapper justify-self-center relative">
-            <div>
+            <div title="Filter by number">
               <InputText
                 onChange={handleChangeSearchingNumber}
                 value={searchingNumber}
@@ -201,6 +230,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
             </div>
             {searchingNumber && (
               <div
+                title="Reset filter"
                 className={`filter-reset-icon cursor-pointer filter-reset-svg`}
                 onClick={handleResetSearchNumber}
               >
@@ -209,7 +239,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
             )}
           </div>
           <div className="filter-item-wrapper justify-self-center relative">
-            <div>
+            <div title="Filter by name">
               <InputText
                 onChange={handleChangeSearchingMainName}
                 value={searchingMainName}
@@ -222,6 +252,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
             </div>
             {searchingMainName && (
               <div
+                title="Reset filter"
                 className={`filter-reset-icon cursor-pointer filter-reset-svg`}
                 onClick={handleResetSearchMainName}
               >
@@ -230,7 +261,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
             )}
           </div>
           <div className="filter-item-wrapper justify-self-center cursor-pointer relative">
-            <div>
+            <div title="Filter by release year">
               <Dropdown
                 cssClassLabel={cssClassLabel}
                 cssDropdown={cssDropdown}
@@ -247,6 +278,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
             </div>
             {searchingReleaseYear && (
               <div
+                title="Reset filter"
                 className={`filter-reset-icon cursor-pointer filter-reset-svg`}
                 onClick={handleResetSearchReleaseYear}
               >
@@ -255,7 +287,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
             )}
           </div>
           <div className="filter-item-wrapper justify-self-center cursor-pointer relative">
-            <div>
+            <div title="Filter by series">
               <Dropdown
                 cssClassLabel={cssClassLabel}
                 cssDropdown={cssDropdown}
@@ -272,6 +304,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
             </div>
             {searchingSeries && (
               <div
+                title="Reset filter"
                 className={`filter-reset-icon cursor-pointer filter-reset-svg`}
                 onClick={handleResetSearchSeries}
               >

@@ -175,6 +175,7 @@ a {
   } */
   .app-container {
     margin: 0 auto;
+    max-width: 2000px;
   }
 
   .figure-container-card {
@@ -184,6 +185,4 @@ a {
   .figure-container-list {
     grid-template-columns: repeat(3, 1fr);
   }
-
-
 }

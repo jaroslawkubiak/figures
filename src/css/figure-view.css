@@ -127,7 +127,7 @@
 }
 
 .arrow-up {
-  z-index: 99;
+  z-index: 10;
   position: fixed;
   font-size: 3em;
   fill: rgb(0, 0, 0);

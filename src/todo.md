@@ -21,12 +21,12 @@ figure edit:
 [ x ] all inputs are edited
 [ x ] delete figure
 [ ] if edited figure don't have related photo in BL catalog - get img from local/server disk
-[ ] when editing number - check if it already exists in DB
+[ x ] when editing number - check if it already exists in DB
 
 figure list:
 [ x ] after click on img - show on full screen
 [ x ] after clicking on name - edit figure
-[ ] on PC view show more info, like: additional name, weapon, price, series etc.
+[ x ] on PC view show more info, like: additional name, weapon, price, series etc.
 
 Filters:
 [ x ] searching by: name, number: change with every typed character - useState

@@ -3,7 +3,8 @@
     display: grid;
     width: 100%;
     margin: 0 auto;
-    height: 60px;
+    padding-top: 5px;
+    height: 65px;
     grid-template-columns: 1fr 2fr 1fr 1fr;
     border-bottom: 2px solid var(--bg-color);
     margin-bottom: 3px;
@@ -98,6 +99,14 @@
   .filter-reset-svg {
     font-size: 1em;
   }
+  .filter-reset-all-icon {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    color: var(--error-color);
+    font-size: 1.4em;
+  }
+
 
 /*############################## Medium devices (landscape tablets, 768px and up) ##############################*/
 @media only screen and (min-width: 768px) {
@@ -112,6 +121,11 @@
   .filter-reset-svg {
     font-size: 1.8em;
   }
+  .filter-reset-all-icon {
+    top: -12px;
+    left: -14px;
+  }
+
 }
 
 /*############################## Extra large devices (large laptops and desktops, 1200px and up) ##############################*/

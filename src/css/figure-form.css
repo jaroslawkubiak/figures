@@ -10,8 +10,8 @@
   height: 100%;
   overflow: auto;
   background-color: var(--bg-color-modal);
-  z-index: 3;
-  border: 2px solid #ff0000;
+  z-index: 12;
+  /* border: 2px solid #ff0000; */
 }
 
 .add-figure-container {
@@ -458,7 +458,7 @@
 
   .add-figure-container {
     --margin: 2em;
-    padding: 1em 2em;
+    padding: 0.1em 2em;
     border: 3px solid var(--primary-color);
   }
 
@@ -536,76 +536,14 @@
     border: 2px solid green;
   }
  */
-  .btn {
-    font-size: 0.6em;
-    letter-spacing: 0.1rem;
-    gap: 15px;
-    padding: 10px 15px;
-  }
-
-  .add-figure-input {
-    font-size: 8px;
-  }
-  .add-figure-checkbox-div {
-    height: 16px;
-  }
-  .dropdown-el {
-    font-size: 6px;
-    line-height: 2;
-  }
   .btn-close-svg {
     font-size: 1em;
-  }
-  .add-figure-heading {
-    letter-spacing: 3px;
-    font-size: 0.8em;
-  }
-  .checkbox-container label {
-    font-size: 10px;
-  }
-  .checkbox-container label::before {
-    content: "";
-    width: 10px;
-    height: 10px;
-    border: 1.5px solid var(--bg-color);
-  }
-  .add-figure-input-label {
-    font-size: 6px;
-    letter-spacing: 2px;
   }
   .select-height {
     max-height: 190px;
   }
-  .edit-figure-border {
-    border: 2px solid var(--edit-color);
-  }
-  .required-field-container {
-    top: 30px;
-  }
-  .required-field {
-    top: 0px;
-    font-size: 6px;
-    --cut-height: 6px;
-  }
-  .required-field-after {
-    top: -6px;
-  }
-
-  .input-required {
-    top: -12px;
-    right: -8px;
-    font-size: 10px;
-  }
   #add-figure-form {
-    gap: 10px 15px;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-areas:
-      "header header header photo photo"
-      "number main-name additional-name photo photo"
-      "purchase-price bricklink-price purchase-date photo photo"
-      "release-year series weapon photo photo"
-      "bricklink bricklink label photo photo"
-      ". button delete-button photo photo";
+    gap: 20px 35px;
   }
 }
 
