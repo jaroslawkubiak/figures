@@ -42,7 +42,15 @@ body {
   color: var(--primary-color);
   max-height: 100%;
   overflow-y: auto;
-  /* border: 2px solid #ff0000; */
+}
+.test {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 10px;
+  height: 30px;
+  background-color: rgb(255, 0, 0);
 }
 
 .background-color-primary {
@@ -123,9 +131,10 @@ a {
 
 /*############################## Small devices (portrait tablets and large phones, 600px and up) ##############################*/
 @media only screen and (min-width: 600px) {
-  /* body {
-    border: 2px solid #ff9900;
-  } */
+  .test {
+    background-color: #ff9900;
+  }
+
   .figure-container-card {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -138,10 +147,9 @@ a {
 
 /*############################## Medium devices (landscape tablets, 768px and up) ##############################*/
 @media only screen and (min-width: 768px) {
-  /* body {
-    border: 2px solid #008000;
-  } */
-
+  .test {
+    background-color: #008000;
+  }
   .figure-container-card {
     grid-template-columns: repeat(4, 1fr);
   }
@@ -154,9 +162,9 @@ a {
 
 /*############################## Large devices (laptops/desktops, 992px and up) ##############################*/
 @media only screen and (min-width: 992px) {
-  /* body {
-    border: 2px solid #1100ff;
-  } */
+  .test {
+    background-color: #1100ff;
+  }
 
   .figure-container-card {
     grid-template-columns: repeat(5, 1fr);
@@ -170,9 +178,10 @@ a {
 
 /*############################## Extra large devices (large laptops and desktops, 1200px and up) ##############################*/
 @media only screen and (min-width: 1200px) {
-  /* body {
-    border: 2px solid #f200ff;
-  } */
+  .test {
+    background-color: #f200ff;
+  }
+
   .app-container {
     margin: 0 auto;
     max-width: 2000px;

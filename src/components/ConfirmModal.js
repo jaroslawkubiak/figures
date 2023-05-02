@@ -8,7 +8,7 @@ import {
 function ConfirmModal({ figure, onClose, onClick }) {
   return (
     <div className="confirm-modal-wrapper">
-      <div className="confirm-modal-container-inner">
+      <div className="confirm-modal-container-outer">
         <div className="confirm-modal-container background-color-bg">
           <p className="confirm-modal-grid-line color-error">Delete?</p>
           <p className="confirm-modal-grid-line">{figure}</p>

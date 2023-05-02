@@ -125,6 +125,9 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
       "add-figure-input select-height background-color-bg color-primary";
   }
 
+
+  
+
   return (
     <>
       <div

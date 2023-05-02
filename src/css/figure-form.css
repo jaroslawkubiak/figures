@@ -11,7 +11,6 @@
   overflow: auto;
   background-color: var(--bg-color-modal);
   z-index: 12;
-  /* border: 2px solid #ff0000; */
 }
 
 .add-figure-container {
@@ -43,14 +42,21 @@
   padding-left: 10px;
 }
 
+.input-wrapper {
+  position: relative;
+  height: var(--input-height);
+}
+
 .add-figure-input {
-  all: unset;
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
+  font-family: star_wars;
+  width: 100%;
   letter-spacing: 2px;
   height: auto;
+  border: none;
+
   font-size: 8px;
   padding: 0px 10px;
   --cut-height: 6px;
@@ -185,10 +191,6 @@
   font-size: 2em;
 }
 
-.input-wrapper {
-  position: relative;
-  height: var(--input-height);
-}
 
 .add-figure-checkbox-div {
   position: absolute;
@@ -426,9 +428,7 @@
 
 /*############################## Small devices (portrait tablets and large phones, 600px and up) ##############################*/
 @media only screen and (min-width: 600px) {
-  /* .add-figure-wrapper {
-    border: 2px solid #ff9900;
-  } */
+
   #add-figure-form {
     grid-template-columns: repeat(4, 1fr);
     gap: 10px 10px;
@@ -451,10 +451,6 @@
     --cut-height: 10px;
     gap: 20px;
   }
-
-  /* .add-figure-wrapper {
-    border: 2px solid #008000;
-  } */
 
   .add-figure-container {
     --margin: 2em;
@@ -529,13 +525,6 @@
 
 /*############################## Medium devices (landscape tablets, 768px and up) ##############################*/
 @media only screen and (orientation: landscape) and (min-width: 768px) {
-  /* .add-figure-wrapper {
-    border: 2px solid #370080;
-  } */
-  /* body {
-    border: 2px solid green;
-  }
- */
   .btn-close-svg {
     font-size: 1em;
   }
@@ -567,7 +556,6 @@
     position: fixed;
     margin: 0 auto;
     background-color: var(--bg-color-modal);
-    /* border: 2px solid #f200ff; */
   }
 
   #add-figure-form {
