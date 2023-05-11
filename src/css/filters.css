@@ -104,7 +104,7 @@
 /*############################## Medium devices (landscape tablets, 768px and up) ##############################*/
 @media only screen and (min-width: 768px) {
   .filter-item-wrapper {
-    width: 100%;
+    width: 95%;
     height: 70px;
   }
   .filter-reset-icon {
@@ -150,7 +150,7 @@
   }
 
   .filter-reset-icon {
-    top: 11px;
+    top: 2px;
     right: -22px;
   }
   .filter-reset-svg {

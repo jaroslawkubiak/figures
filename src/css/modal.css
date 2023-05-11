@@ -225,7 +225,7 @@
   }
 }
 /*############################## Medium devices (landscape tablets, 768px and up) ##############################*/
-@media only screen and (orientation: landscape) and (min-width: 768px) {
+@media only screen and (min-width: 768px) {
   :root {
     --width-confirm-modal: 400px;
     --height-confirm-modal: 220px;
