@@ -9,12 +9,14 @@
   top: -10px;
   background-color: var(--bg-color-modal);
   z-index: 100;
+  display: grid;
 }
-
 .modal-container {
   position: relative;
   width: 90%;
-  height: auto;
+  height: 90%;
+  max-width: 800px;
+
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -26,12 +28,11 @@
   place-content: center;
   background-color: rgb(255, 255, 255);
 }
-
 .modal-figure-img {
   width: 95%;
   justify-self: center;
+  object-fit: contain;
 }
-
 .modal-close-btn {
   display: grid;
   place-content: center;
@@ -46,7 +47,6 @@
   cursor: pointer;
   clip-path: polygon(0 22%, 22% 0, 100% 0, 100% 78%, 78% 100%, 0% 100%, 0 0);
 }
-
 .modal-close {
   width: 30px;
   height: 30px;
@@ -54,11 +54,9 @@
   inset: 0;
   z-index: 999;
 }
-
 .modal-close-svg {
   font-size: 1.4em;
 }
-
 .modal-label {
   position: absolute;
   bottom: -20px;
@@ -82,7 +80,6 @@
     0 0
   );
 }
-
 .modal-arrow {
   position: absolute;
   z-index: 99;
@@ -93,15 +90,12 @@
   background-color: var(--primary-color);
   clip-path: polygon(0 22%, 22% 0, 100% 0, 100% 78%, 78% 100%, 0% 100%, 0 0);
 }
-
 .modal-arrow-right {
-  right: -5px;
+  right: -10px;
 }
-
 .modal-arrow-left {
-  left: -5px;
+  left: -10px;
 }
-
 .modal-next-image {
   position: absolute;
   top: 0px;
@@ -116,7 +110,6 @@
   left: -30px;
   right: 50%;
 }
-
 .confirm-modal-wrapper {
   z-index: 99;
   background-color: var(--bg-color-modal);
@@ -129,7 +122,6 @@
   place-content: center;
   padding: 50px;
 }
-
 .confirm-modal-container {
   --cut-height: 10px;
   width: var(--width-confirm-modal);
@@ -148,7 +140,6 @@
     0 0
   );
 }
-
 .confirm-modal-container-outer {
   width: calc(var(--width-confirm-modal) + 4px);
   height: calc(var(--height-confirm-modal) + 4px);
@@ -167,161 +158,23 @@
     0 0
   );
 }
-
 .confirm-modal-grid-line {
   grid-column: 1/3;
   justify-self: center;
 }
 
 /*############################## Small devices (portrait tablets and large phones, 600px and up) ##############################*/
-@media only screen and (min-width: 600px) {
-  .modal-wrapper {
-    display: grid;
-  }
-
-  .modal-container {
-    max-width: 600px;
-    height: 310px;
-    margin-bottom: 80px;
-  }
-
+@media only screen and (min-width: 600px) and (max-height: 400px) {
   .modal-figure-img {
-    height: 300px;
-    max-width: 580px;
-    object-fit: contain;
-  }
-  .modal-arrow-right {
-    right: -20px;
-  }
-
-  .modal-arrow-left {
-    left: -20px;
-  }
-
-
-  .modal-close-svg {
-    font-size: 2.6em;
-  }
-  .modal-arrow {
-    font-size: 4em;
-  }
-
-  .modal-next-image {
-    right: -50px;
-  }
-  .modal-prev-image {
-    left: -50px;
-  }
-  
-  .modal-close-btn {
-    --close-btn-width: 45px;
-    top: -20px;
-    right: -25px;
-  }
-
-  .modal-close {
-    width: 45px;
-    height: 45px;
+    max-height: 220px;
   }
 }
 /*############################## Medium devices (landscape tablets, 768px and up) ##############################*/
 @media only screen and (min-width: 768px) {
   :root {
     --width-confirm-modal: 400px;
-    --height-confirm-modal: 220px;
-  }
-  
-  .modal-figure-img {
-    height: 300px;
-    max-width: 580px;
-    object-fit: contain;
-  }
-  .modal-container {
-    height: auto;
-  }
-
-  .modal-close {
-    width: 45px;
-    height: 45px;
-  }
-  .modal-close-svg {
-    font-size: 2em;
-  }
-  .modal-close-btn {
-    --close-btn-width: 35px;
-    top: -18px;
-    right: -20px;
-  }
-  .modal-arrow {
-    font-size: 4em;
-  }
-
-
-}
-/*############################## Medium devices (landscape tablets, 768px and up) ##############################*/
-@media only screen and (orientation: portrait) and (min-width: 768px) {
-  :root {
-    --width-confirm-modal: 400px;
     --height-confirm-modal: 250px;
   }
-  .modal-wrapper {
-    display: grid;
-  }
-  .modal-label {
-    bottom: -40px;
-    font-size: 24px;
-    --cut-height: 12px;
-  }
-
-  .confirm-modal-container {
-    --cut-height: 20px;
-    gap: 30px;
-  }
-
-  .confirm-modal-container-outer {
-    width: calc(var(--width-confirm-modal) + 10px);
-    height: calc(var(--height-confirm-modal) + 10px);
-    --cut-height: 20px;
-  }
-  .confirm-modal-grid-line {
-    font-size: 1.4em;
-  }
-
-  .modal-close-btn {
-    --close-btn-width: 45px;
-    top: -20px;
-    right: -25px;
-  }
-
-  .modal-close {
-    width: 45px;
-    height: 45px;
-  }
-
-  .modal-close-svg {
-    font-size: 2em;
-  }
-  .modal-arrow {
-    font-size: 5em;
-  }
-  .modal-arrow-right {
-    right: -20px;
-  }
-  .modal-arrow-left {
-    left: -20px;
-  }
-  .modal-next-image {
-    right: -400px;
-  }
-  .modal-prev-image {
-    left: -400px;
-  }
-  .modal-figure-img {
-    height: 600px;
-    max-width: 580px;
-    object-fit: contain;
-  }
-
 }
 /*############################## Extra large devices (large laptops and desktops, 1200px and up) ##############################*/
 @media only screen and (min-width: 1200px) {
@@ -329,56 +182,38 @@
     --width-confirm-modal: 600px;
     --height-confirm-modal: 300px;
   }
-  .modal-wrapper {
-    display: grid;
-  }
-
-  .modal-container {
-    max-width: 800px;
-    height: auto;
-    padding: 10px;
-  }
-
   .modal-figure-img {
     max-width: 780px;
   }
-
+  .modal-label {
+    font-size: 1.8em;
+    --cut-height: 18px;
+  }
+  .modal-arrow {
+    font-size: 4em;
+  }
   .modal-close-btn {
     --close-btn-width: 50px;
     top: -25px;
     right: -20px;
   }
-
   .modal-close {
     width: 50px;
     height: 50px;
   }
   .modal-close-svg {
-    font-size: 2.8em;
-  }
-
-  .modal-label {
-    bottom: -35px;
-    font-size: 2em;
-    --cut-height: 18px;
-  }
-
-  .modal-arrow {
-    font-size: 5em;
+    font-size: 2.4em;
   }
   .modal-arrow-right {
-    right: -80px;
+    right: -30px;
   }
-
   .modal-arrow-left {
-    left: -80px;
+    left: -30px;
   }
-
   .confirm-modal-container {
     --cut-height: 20px;
     gap: 30px;
   }
-
   .confirm-modal-container-outer {
     width: calc(var(--width-confirm-modal) + 10px);
     height: calc(var(--height-confirm-modal) + 10px);
