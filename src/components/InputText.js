@@ -7,6 +7,7 @@ function InputText({
   onFocus,
   required,
   value,
+  placeholder,
   children,
 }) {
   return (
@@ -20,6 +21,7 @@ function InputText({
           maxLength={maxLength || ""}
           value={value}
           name={name}
+          placeholder={placeholder || ""}
           onChange={onChange}
           onFocus={onFocus}
         />

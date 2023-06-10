@@ -92,7 +92,7 @@ function FigureAdd({ onClose }) {
     .replaceAll(".", "-");
 
   //setting initial value for number and date
-  if (!currentFigure.number) currentFigure.number = "sw";
+  // if (!currentFigure.number) currentFigure.number = "sw";
   if (!currentFigure.purchaseDate) currentFigure.purchaseDate = today;
 
   // handle change to inputs fields
@@ -190,6 +190,7 @@ function FigureAdd({ onClose }) {
               onChange={handleChangeInput}
               onFocus={handleOnFocus}
               required={true}
+              placeholder="Enter a number between sw0001 to sw1267"
               value={currentFigure.number}
             >
               number
