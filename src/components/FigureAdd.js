@@ -12,11 +12,7 @@ import { BsPlusLg } from "react-icons/bs";
 import seriesList from "../data/seriesList.json";
 import weaponList from "../data/weaponList.json";
 import saveImageToHdd from "../utils/saveImageToHdd";
-import {
-  onlyNumbersRegex,
-  validate,
-  inputFieldNotValid,
-} from "../utils/validate";
+import { onlyNumbersRegex, validate, inputFieldNotValid } from "../utils/validate";
 import { yearsList } from "../utils/yearList";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -153,7 +149,6 @@ function FigureAdd({ onClose }) {
     setFormErrors({ ...formErrors, [e.target.name]: null });
   };
 
-
   // filtering all figures to find currently adding
   const allFigures = useSelector(({ figures: { data } }) => {
     return data.filter(fig =>
@@ -177,9 +172,7 @@ function FigureAdd({ onClose }) {
           <ImCross className={`svg-fill-bg btn-close-svg `} />
         </div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
-          <div className="add-header add-figure-heading">
-            add new minifigure
-          </div>
+          <div className="add-header add-figure-heading">add new minifigure</div>
           {/* Number */}
           <div className="add-figure-div add-number ">
             <InputText
@@ -203,7 +196,7 @@ function FigureAdd({ onClose }) {
             <FigurePhoto figNumber={currentFigure.number} cssSvgFill="svg-fill-primary" />
           </div>
           {/* Main name */}
-          <div className="add-figure-div add-main-name ">
+          <div className="add-figure-div add-main-name">
             <InputText
               cssClass="add-figure-input background-color-primary color-bg"
               cssClassLabel={cssClassLabel}
