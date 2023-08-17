@@ -13,11 +13,7 @@ import weaponList from "../data/weaponList.json";
 import saveImageToHdd from "../utils/saveImageToHdd";
 
 import { useDispatch, useSelector } from "react-redux";
-import {
-  onlyNumbersRegex,
-  validate,
-  inputFieldNotValid,
-} from "../utils/validate";
+import { onlyNumbersRegex, validate, inputFieldNotValid } from "../utils/validate";
 import { yearsList } from "../utils/yearList";
 
 import {
@@ -75,9 +71,7 @@ function FigureEdit({ onClose }) {
 
   // filtering all figures to find currently adding
   const allFigures = useSelector(({ figures: { data } }) => {
-    return data.filter(fig =>
-      fig.number.toLowerCase().includes(figure.number.toLowerCase())
-    );
+    return data.filter(fig => fig.number.toLowerCase().includes(figure.number.toLowerCase()));
   });
 
   // edit figure form submit
@@ -98,11 +92,7 @@ function FigureEdit({ onClose }) {
   }, [isSubmit]);
 
   useEffect(() => {
-    if (
-      figure.number.length > 5 &&
-      allFigures.length === 1 &&
-      figure.number !== figureNumber
-    ) {
+    if (figure.number.length > 5 && allFigures.length === 1 && figure.number !== figureNumber) {
       setFigureExistInDB(inputFieldNotValid("Have this"));
     } else {
       setFormErrors({ ...formErrors, number: null });
@@ -191,22 +181,13 @@ function FigureEdit({ onClose }) {
     <div className="add-figure-wrapper">
       <div className="add-figure-container edit-figure-border ">
         {showConfirmModal && (
-          <ConfirmModal
-            figure={figure.mainName}
-            onClose={onClose}
-            onClick={onConfirmDelete}
-          />
+          <ConfirmModal figure={figure.mainName} onClose={onClose} onClick={onConfirmDelete} />
         )}
-        <div
-          className="add-figure-close-btn background-color-edit"
-          onClick={() => onClose()}
-        >
+        <div className="add-figure-close-btn background-color-edit" onClick={() => onClose()}>
           <ImCross className={`svg-fill-bg btn-close-svg `} />
         </div>
         <form id="add-figure-form" onSubmit={handleSubmit}>
-          <div className="add-header add-figure-heading color-edit">
-            edit - {figureMainName}
-          </div>
+          <div className="add-header add-figure-heading color-edit">edit - {figureMainName}</div>
           {/* Number */}
           <div className="add-figure-div add-number color-edit">
             <input type="hidden" value={figure.id} name="id" />

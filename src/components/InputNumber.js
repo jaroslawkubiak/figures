@@ -1,7 +1,6 @@
 function InputNumber({
   cssClass,
   cssClassLabel,
-
   maxLength,
   name,
   number,

@@ -55,29 +55,21 @@
     /* left-top corner */ 0 calc(var(--border-width) * var(--border-edge)),
     /* left-top corner */ calc(var(--border-width) * var(--border-edge)) 0,
 
-    /* right-top corner */ calc(100% - var(--border-width) * var(--border-edge))
-      0,
+    /* right-top corner */ calc(100% - var(--border-width) * var(--border-edge)) 0,
     /* right-top corner */ 100% calc(var(--border-width) * var(--border-edge)),
-    /* right indentation */ 100%
-      calc(30% - var(--border-width) * (1 - var(--border-edge) + 1)),
+    /* right indentation */ 100% calc(30% - var(--border-width) * (1 - var(--border-edge) + 1)),
     /* right indentation */ calc(100% - var(--border-width)) calc(30% - 2px),
     /* right indentation */ calc(100% - var(--border-width)) calc(60% + 2px),
-    /* right indentation */ 100%
-      calc(60% + var(--border-width) * (1 - var(--border-edge) + 1)),
-    /* right-bottom corner */ 100%
-      calc(100% - var(--border-width) * var(--border-edge)),
-    /* right-bottom corner */
-      calc(100% - var(--border-width) * var(--border-edge)) 100%,
+    /* right indentation */ 100% calc(60% + var(--border-width) * (1 - var(--border-edge) + 1)),
+    /* right-bottom corner */ 100% calc(100% - var(--border-width) * var(--border-edge)),
+    /* right-bottom corner */ calc(100% - var(--border-width) * var(--border-edge)) 100%,
 
     /* left-bottom corner */ calc(var(--border-width) * var(--border-edge)) 100%,
-    /* left-bottom corner */ 0
-      calc(100% - var(--border-width) * var(--border-edge)),
-    /* left indentation */ 0
-      calc(60% + var(--border-width) * (1 - var(--border-edge) + 1)),
+    /* left-bottom corner */ 0 calc(100% - var(--border-width) * var(--border-edge)),
+    /* left indentation */ 0 calc(60% + var(--border-width) * (1 - var(--border-edge) + 1)),
     /* left indentation */ var(--border-width) calc(60% + 2px),
     /* left indentation */ var(--border-width) calc(30% - 2px),
-    /* left indentation */ 0
-      calc(30% - var(--border-width) * (1 - var(--border-edge) + 1))
+    /* left indentation */ 0 calc(30% - var(--border-width) * (1 - var(--border-edge) + 1))
   );
 }
 .card-cell-text {
@@ -113,12 +105,7 @@
   height: 15px;
   background-color: var(--primary-color);
   --skew: 10px;
-  clip-path: polygon(
-    var(--skew) 0px,
-    calc(100% - var(--skew)) 0px,
-    100% 100%,
-    0px 100%
-  );
+  clip-path: polygon(var(--skew) 0px, calc(100% - var(--skew)) 0px, 100% 100%, 0px 100%);
 }
 .card-figure-img {
   width: 80%;
@@ -211,8 +198,8 @@
 .r2d2-wrapper {
   margin-left: 5px;
   width: calc(
-    var(--width-list) - var(--r2d2-bricklink-logo-width) -
-      var(--r2d2-price-width) - var(--r2d2-figure-image-width)
+    var(--width-list) - var(--r2d2-bricklink-logo-width) - var(--r2d2-price-width) -
+      var(--r2d2-figure-image-width)
   );
 }
 

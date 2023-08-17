@@ -3,12 +3,7 @@ import showFigureImage from "../utils/showFigureImage";
 import { ImArrowRight2, ImArrowLeft2, ImCross } from "react-icons/im";
 import { useEffect } from "react";
 
-const Modal = ({
-  clickedImage,
-  handleSwapRight,
-  handleSwapLeft,
-  setClickedImage,
-}) => {
+const Modal = ({ clickedImage, handleSwapRight, handleSwapLeft, setClickedImage }) => {
   useEffect(() => {
     document.body.classList.add("overflow-hidden");
 
@@ -28,19 +23,13 @@ const Modal = ({
   return (
     <div className="modal-wrapper dismiss" onClick={handleClick}>
       <div className="modal-container">
-        <div
-          className="modal-next-image cursor-pointer"
-          onClick={handleSwapRight}
-        ></div>
+        <div className="modal-next-image cursor-pointer" onClick={handleSwapRight}></div>
         <ImArrowLeft2
           onClick={handleSwapLeft}
           className="modal-arrow-left modal-arrow cursor-pointer"
         />
 
-        <div
-          className="modal-prev-image cursor-pointer"
-          onClick={handleSwapLeft}
-        ></div>
+        <div className="modal-prev-image cursor-pointer" onClick={handleSwapLeft}></div>
         <ImArrowRight2
           onClick={handleSwapRight}
           className="modal-arrow-right modal-arrow cursor-pointer"

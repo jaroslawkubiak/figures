@@ -32,13 +32,12 @@ function FigurePhoto({ figNumber, cssSvgFill }) {
   }
 
   if (figNumber.length >= 6 && imageExists(renderedPhoto)) {
-    if (!figImg.isLoading && figImg.result === "")
-      setFigImg({ ...figImg, isLoading: true });
+    if (!figImg.isLoading && figImg.result === "") setFigImg({ ...figImg, isLoading: true });
     const cssSvgClass = `${cssSvgFill} svg-galactic-empire-rotate`;
     renderedData = (
       <div className="img-wrapper">
         <span className="color-error">&nbsp;</span>
-        <GalacticEmpire cssClass={cssSvgClass}/>
+        <GalacticEmpire cssClass={cssSvgClass} />
       </div>
     );
 

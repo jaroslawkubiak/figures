@@ -372,6 +372,7 @@
   right: -6px;
   font-size: 10px;
   color: var(--error-color);
+  cursor:default;
 }
 
 .btn {

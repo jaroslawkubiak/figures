@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { addFigure } from "./figureSlice";
 
-
 const formSlice = createSlice({
   name: "form",
   initialState: {

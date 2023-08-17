@@ -18,10 +18,7 @@ function FigureCard({ figure, clickedImage, onModal, onEdit }) {
           {figure.mainName}
         </span>
       </div>
-      <div
-        className="card-wrapper cursor-pointer"
-        onClick={() => onModal(figure, clickedImage)}
-      >
+      <div className="card-wrapper cursor-pointer" onClick={() => onModal(figure, clickedImage)}>
         <img
           src={figImage}
           alt={showImage.description}

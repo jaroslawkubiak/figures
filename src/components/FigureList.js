@@ -91,9 +91,7 @@ function FigureList({ listView, figures }) {
   const [positionFromTop, setPositionFromTop] = useState(0);
   const handleCloseEditFigureForm = () => setShowFigureEditForm(false);
 
-  const FigureEditComponent = (
-    <FigureEdit onClose={handleCloseEditFigureForm} />
-  );
+  const FigureEditComponent = <FigureEdit onClose={handleCloseEditFigureForm} />;
 
   const renderedFigures = figures.map((figure, index) => {
     if (listView) {
@@ -145,9 +143,16 @@ function FigureList({ listView, figures }) {
         {showFigureEditForm && FigureEditComponent}
         {renderedFigures}
 
-        {(positionFromTop < -1500) && <ImArrowUp2 onClick={handleGoUp} className={listView
-            ? "arrow-up cursor-pointer background-color-r2d2-secondary"
-            : "arrow-up cursor-pointer background-color-primary"}/>}
+        {positionFromTop < -1500 && (
+          <ImArrowUp2
+            onClick={handleGoUp}
+            className={
+              listView
+                ? "arrow-up cursor-pointer background-color-r2d2-secondary"
+                : "arrow-up cursor-pointer background-color-primary"
+            }
+          />
+        )}
       </div>
       {clickedImage && (
         <Modal

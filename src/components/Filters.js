@@ -34,8 +34,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
     return state.figures.searchNumber;
   });
   const handleChangeSearchingNumber = e => {
-    if (onlyNumbersRegex.test(e.target.value))
-      dispatch(changeSearchNumber(e.target.value));
+    if (onlyNumbersRegex.test(e.target.value)) dispatch(changeSearchNumber(e.target.value));
   };
   const handleResetSearchNumber = () => {
     dispatch(changeSearchNumber(""));
@@ -86,7 +85,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
     dispatch(changeSearchNumber(""));
   };
 
-  // for reseting all filters by one click. 
+  // for reseting all filters by one click.
   const openFilters = [];
   if (searchingNumber) openFilters.push(searchingNumber);
   if (searchingMainName) openFilters.push(searchingMainName);
@@ -94,21 +93,17 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
   if (searchingSeries) openFilters.push(searchingSeries);
 
   // class list for list view
-  let cssFilterBackground =
-    "background-color-r2d2-head filter-container-expand";
+  let cssFilterBackground = "background-color-r2d2-head filter-container-expand";
   let cssSvgFillColor = "#212529";
   let cssQuantityFillColor = "#ae3237";
   let cssLegoIconFill = "svg-fill-bg-light-color";
   let cssQuantityWrapper =
     "filter-quantity-wprapper justify-self-center filter-quantity-wprapper-border-list";
-  let cssInputText =
-    "add-figure-input background-color-r2d2-primary color-r2d2-head";
+  let cssInputText = "add-figure-input background-color-r2d2-primary color-r2d2-head";
   let cssClassLabel = "add-figure-input-label color-r2d2-primary";
 
-  let cssDropdown =
-    "add-figure-input background-color-r2d2-primary color-r2d2-head";
-  let cssPanelClass =
-    "add-figure-input select-height background-color-bg color-r2d2-head ";
+  let cssDropdown = "add-figure-input background-color-r2d2-primary color-r2d2-head";
+  let cssPanelClass = "add-figure-input select-height background-color-bg color-r2d2-head ";
 
   // class list for card view
   if (!listView) {
@@ -121,19 +116,15 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
     cssInputText = "add-figure-input background-color-bg color-primary";
     cssClassLabel = "add-figure-input-label";
     cssDropdown = "add-figure-input background-color-bg color-primary";
-    cssPanelClass =
-      "add-figure-input select-height background-color-bg color-primary";
+    cssPanelClass = "add-figure-input select-height background-color-bg color-primary";
   }
-
-
-  
 
   return (
     <>
       <div
-        className={`filter-container ${
-          listView || "background-color-primary"
-        } ${!listView || "background-color-r2d2-head"}`}
+        className={`filter-container ${listView || "background-color-primary"} ${
+          !listView || "background-color-r2d2-head"
+        }`}
       >
         <div className="justify-self-start">
           {!listView && (
@@ -157,10 +148,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
         {/* display quantity of minifigures */}
         <div className={cssQuantityWrapper} title="Figures quantity">
           <LegoMinifigure cssClass={cssLegoIconFill} />
-          <FigureQuantity
-            quantity={quantity}
-            fillColor={cssQuantityFillColor}
-          />
+          <FigureQuantity quantity={quantity} fillColor={cssQuantityFillColor} />
         </div>
 
         <div className=" justify-self-center">
