@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import Modal from "./Modal";
-import { ImArrowUp2 } from "react-icons/im";
-import FigureShowCard from "./FigureShowCard";
-import FigureShowList from "./FigureShowList";
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import Modal from './Modal';
+import { ImArrowUp2 } from 'react-icons/im';
+import FigureShowCard from './FigureShowCard';
+import FigureShowList from './FigureShowList';
 import {
   editNumber,
   editId,
@@ -17,8 +17,8 @@ import {
   editWeapon,
   editPurchaseDate,
   editBricklinkPrice,
-} from "../store";
-import FigureEdit from "./FigureEdit";
+} from '../store';
+import FigureEdit from './FigureEdit';
 
 function FigureList({ listView, figures }) {
   const dispatch = useDispatch();
@@ -93,7 +93,9 @@ function FigureList({ listView, figures }) {
 
   const FigureEditComponent = <FigureEdit onClose={handleCloseEditFigureForm} />;
 
-  const renderedFigures = figures.map((figure, index) => {
+  console.log('figi==', figures);
+
+  const renderedFigures = figures.data.map((figure, index) => {
     if (listView) {
       let isFigureEven = index % 2;
       return (
@@ -121,23 +123,21 @@ function FigureList({ listView, figures }) {
 
   // after click go to top of page
   const handleGoUp = () => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   };
 
   function update() {
-    let rect = document.getElementById("figContainer").getBoundingClientRect();
+    let rect = document.getElementById('figContainer').getBoundingClientRect();
     setPositionFromTop(rect.y);
   }
-  document.addEventListener("scroll", update);
+  document.addEventListener('scroll', update);
 
   return (
     <>
       <div
         id="figContainer"
         className={
-          listView
-            ? "figure-container-list background-color-bg-light"
-            : "figure-container-card background-color-bg"
+          listView ? 'figure-container-list background-color-bg-light' : 'figure-container-card background-color-bg'
         }
       >
         {showFigureEditForm && FigureEditComponent}
@@ -148,8 +148,8 @@ function FigureList({ listView, figures }) {
             onClick={handleGoUp}
             className={
               listView
-                ? "arrow-up cursor-pointer background-color-r2d2-secondary"
-                : "arrow-up cursor-pointer background-color-primary"
+                ? 'arrow-up cursor-pointer background-color-r2d2-secondary'
+                : 'arrow-up cursor-pointer background-color-primary'
             }
           />
         )}

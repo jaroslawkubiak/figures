@@ -8,6 +8,7 @@ export const inputFieldNotValid = message => {
   );
 };
 
+const REQUIRED_FIELD_MESSAGE = 'Required';
 // regex for validating only float input, only 2 digit after , or .
 export const onlyNumbersRegex = /^-?\d*(?:[.,]\d{0,2})?$/;
 
@@ -15,22 +16,16 @@ export const onlyNumbersRegex = /^-?\d*(?:[.,]\d{0,2})?$/;
 export function validate(values, isSubmit, duplicate) {
   const errors = {};
   if (duplicate) {
-    errors.number = inputFieldNotValid("Have this");
+    errors.number = inputFieldNotValid('You have this');
   }
-  if (isSubmit && values.number.length < 6)
-    errors.number = inputFieldNotValid("Min 6 char");
-  if (isSubmit && values.mainName === "")
-    errors.mainName = inputFieldNotValid("Required");
+  if (isSubmit && values.number.length < 6) errors.number = inputFieldNotValid('Min 6 char');
+  if (isSubmit && values.mainName === '') errors.mainName = inputFieldNotValid(REQUIRED_FIELD_MESSAGE);
 
-  if (isSubmit && (values.purchasePrice < 0 || values.purchasePrice === ""))
-    errors.purchasePrice = inputFieldNotValid("Required");
-  if (isSubmit && values.releaseYear === "")
-    errors.releaseYear = inputFieldNotValid("Required");
-  if (isSubmit && values.purchaseDate === "")
-    errors.purchaseDate = inputFieldNotValid("Required");
-  if (isSubmit && values.series === "")
-    errors.series = inputFieldNotValid("Required");
-  if (isSubmit && values.weapon === "")
-    errors.weapon = inputFieldNotValid("Required");
+  if (isSubmit && (values.purchasePrice < 0 || values.purchasePrice === ''))
+    errors.purchasePrice = inputFieldNotValid(REQUIRED_FIELD_MESSAGE);
+  if (isSubmit && values.releaseYear === '') errors.releaseYear = inputFieldNotValid(REQUIRED_FIELD_MESSAGE);
+  if (isSubmit && values.purchaseDate === '') errors.purchaseDate = inputFieldNotValid(REQUIRED_FIELD_MESSAGE);
+  if (isSubmit && values.series === '') errors.series = inputFieldNotValid(REQUIRED_FIELD_MESSAGE);
+  if (isSubmit && values.weapon === '') errors.weapon = inputFieldNotValid(REQUIRED_FIELD_MESSAGE);
   return errors;
 }

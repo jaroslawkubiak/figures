@@ -158,7 +158,7 @@ function FigureAdd({ onClose }) {
 
   useEffect(() => {
     if (currentFigure.number.length > 5 && allFigures.length === 1) {
-      setFigureExistInDB(inputFieldNotValid("Have this"));
+      setFigureExistInDB(inputFieldNotValid("You have this"));
     } else {
       setFormErrors({ ...formErrors, number: null });
       setFigureExistInDB(false);

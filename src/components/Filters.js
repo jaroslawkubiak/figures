@@ -1,4 +1,4 @@
-import "../css/filters.css";
+import '../css/filters.css';
 import {
   BsFilterSquareFill,
   BsPlusSquare,
@@ -6,25 +6,20 @@ import {
   BsListColumnsReverse,
   BsGrid,
   BsFillPlusCircleFill,
-} from "react-icons/bs";
-import { ImCross } from "react-icons/im";
-import { onlyNumbersRegex } from "../utils/validate";
-import { yearsList } from "../utils/yearList";
+} from 'react-icons/bs';
+import { ImCross } from 'react-icons/im';
+import { onlyNumbersRegex } from '../utils/validate';
+import { yearsList } from '../utils/yearList';
 
-import seriesList from "../data/seriesList.json";
+import seriesList from '../data/seriesList.json';
 
-import FigureQuantity from "./FigureQuantity";
-import React, { useState } from "react";
-import { LegoMinifigure } from "../svg/LegoMinifigure";
-import InputText from "./InputText";
-import Dropdown from "./Dropdown";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  changeSearchNumber,
-  changeSearchMainName,
-  changeSearchReleaseYear,
-  changeSearchSeries,
-} from "../store";
+import FigureQuantity from './FigureQuantity';
+import React, { useState } from 'react';
+import { LegoMinifigure } from '../svg/LegoMinifigure';
+import InputText from './InputText';
+import Dropdown from './Dropdown';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeSearchNumber, changeSearchMainName, changeSearchReleaseYear, changeSearchSeries } from '../store';
 
 function Filters({ onAddFigure, onHandleView, listView, quantity }) {
   const dispatch = useDispatch();
@@ -37,7 +32,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
     if (onlyNumbersRegex.test(e.target.value)) dispatch(changeSearchNumber(e.target.value));
   };
   const handleResetSearchNumber = () => {
-    dispatch(changeSearchNumber(""));
+    dispatch(changeSearchNumber(''));
   };
 
   // searching by figure main name
@@ -48,7 +43,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
     dispatch(changeSearchMainName(e.target.value));
   };
   const handleResetSearchMainName = () => {
-    dispatch(changeSearchMainName(""));
+    dispatch(changeSearchMainName(''));
   };
 
   // searching by figure releaseYear
@@ -59,7 +54,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
     dispatch(changeSearchReleaseYear(option));
   };
   const handleResetSearchReleaseYear = () => {
-    dispatch(changeSearchReleaseYear(""));
+    dispatch(changeSearchReleaseYear(''));
   };
 
   // searching by figure series
@@ -70,7 +65,7 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
     dispatch(changeSearchSeries(option));
   };
   const handleResetSearchSeries = () => {
-    dispatch(changeSearchSeries(""));
+    dispatch(changeSearchSeries(''));
   };
 
   const [expandFilters, setExpandFilters] = useState(false);
@@ -79,10 +74,10 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
   };
 
   const handleResetAllFilters = () => {
-    dispatch(changeSearchReleaseYear(""));
-    dispatch(changeSearchSeries(""));
-    dispatch(changeSearchMainName(""));
-    dispatch(changeSearchNumber(""));
+    dispatch(changeSearchReleaseYear(''));
+    dispatch(changeSearchSeries(''));
+    dispatch(changeSearchMainName(''));
+    dispatch(changeSearchNumber(''));
   };
 
   // for reseting all filters by one click.
@@ -93,37 +88,35 @@ function Filters({ onAddFigure, onHandleView, listView, quantity }) {
   if (searchingSeries) openFilters.push(searchingSeries);
 
   // class list for list view
-  let cssFilterBackground = "background-color-r2d2-head filter-container-expand";
-  let cssSvgFillColor = "#212529";
-  let cssQuantityFillColor = "#ae3237";
-  let cssLegoIconFill = "svg-fill-bg-light-color";
-  let cssQuantityWrapper =
-    "filter-quantity-wprapper justify-self-center filter-quantity-wprapper-border-list";
-  let cssInputText = "add-figure-input background-color-r2d2-primary color-r2d2-head";
-  let cssClassLabel = "add-figure-input-label color-r2d2-primary";
+  let cssFilterBackground = 'background-color-r2d2-head filter-container-expand';
+  let cssSvgFillColor = '#212529';
+  let cssQuantityFillColor = '#ae3237';
+  let cssLegoIconFill = 'svg-fill-bg-light-color';
+  let cssQuantityWrapper = 'filter-quantity-wprapper justify-self-center filter-quantity-wprapper-border-list';
+  let cssInputText = 'add-figure-input background-color-r2d2-primary color-r2d2-head';
+  let cssClassLabel = 'add-figure-input-label color-r2d2-primary';
 
-  let cssDropdown = "add-figure-input background-color-r2d2-primary color-r2d2-head";
-  let cssPanelClass = "add-figure-input select-height background-color-bg color-r2d2-head ";
+  let cssDropdown = 'add-figure-input background-color-r2d2-primary color-r2d2-head';
+  let cssPanelClass = 'add-figure-input select-height background-color-bg color-r2d2-head ';
 
   // class list for card view
   if (!listView) {
-    cssFilterBackground = "background-color-primary filter-container-expand";
-    cssSvgFillColor = "#212529";
-    cssQuantityFillColor = "#212529";
-    cssLegoIconFill = "svg-fill-lego-quantity";
-    cssQuantityWrapper =
-      "filter-quantity-wprapper justify-self-center filter-quantity-wprapper-border-card";
-    cssInputText = "add-figure-input background-color-bg color-primary";
-    cssClassLabel = "add-figure-input-label";
-    cssDropdown = "add-figure-input background-color-bg color-primary";
-    cssPanelClass = "add-figure-input select-height background-color-bg color-primary";
+    cssFilterBackground = 'background-color-primary filter-container-expand';
+    cssSvgFillColor = '#212529';
+    cssQuantityFillColor = '#212529';
+    cssLegoIconFill = 'svg-fill-lego-quantity';
+    cssQuantityWrapper = 'filter-quantity-wprapper justify-self-center filter-quantity-wprapper-border-card';
+    cssInputText = 'add-figure-input background-color-bg color-primary';
+    cssClassLabel = 'add-figure-input-label';
+    cssDropdown = 'add-figure-input background-color-bg color-primary';
+    cssPanelClass = 'add-figure-input select-height background-color-bg color-primary';
   }
 
   return (
     <>
       <div
-        className={`filter-container ${listView || "background-color-primary"} ${
-          !listView || "background-color-r2d2-head"
+        className={`filter-container ${listView || 'background-color-primary'} ${
+          !listView || 'background-color-r2d2-head'
         }`}
       >
         <div className="justify-self-start">

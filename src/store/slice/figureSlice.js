@@ -1,15 +1,30 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
-import figuresData from "../../data/figureList.json";
+import { createSlice, nanoid } from '@reduxjs/toolkit';
+import { fetchFigures } from '../thunks/fetchFigures';
 
 const figuresSlice = createSlice({
-  name: "figures",
+  name: 'figures',
   initialState: {
-    searchNumber: "",
-    searchMainName: "",
-    searchReleaseYear: "",
-    searchSeries: "",
-    figureExist: "",
-    data: figuresData,
+    searchNumber: '',
+    searchMainName: '',
+    searchReleaseYear: '',
+    searchSeries: '',
+    figureExist: '',
+    data: [],
+    isLoading: false,
+    error: null,
+  },
+  extraReducers(builder) {
+    builder.addCase(fetchFigures.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchFigures.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.data = action.payload;
+    });
+    builder.addCase(fetchFigures.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error;
+    });
   },
   reducers: {
     // action creators
@@ -60,7 +75,6 @@ const figuresSlice = createSlice({
       });
       state.data = updated;
     },
-
     removeFigure(state, action) {
       const updated = state.data.filter(fig => {
         return fig.id !== action.payload;

@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 import {
   figuresReducers,
   changeSearchNumber,
@@ -8,7 +8,7 @@ import {
   addFigure,
   editFigure,
   removeFigure,
-} from "./slice/figureSlice";
+} from './slice/figureSlice';
 
 import {
   formReducer,
@@ -23,7 +23,7 @@ import {
   changeWeapon,
   changePurchaseDate,
   changeBricklinkPrice,
-} from "./slice/formSlice";
+} from './slice/formSlice';
 
 import {
   editReducer,
@@ -39,7 +39,8 @@ import {
   editWeapon,
   editPurchaseDate,
   editBricklinkPrice,
-} from "./slice/editSlice";
+} from './slice/editSlice';
+
 
 const store = configureStore({
   reducer: {
@@ -48,7 +49,7 @@ const store = configureStore({
     edit: editReducer,
   },
 });
-
+export * from './thunks/fetchFigures';
 export {
   store,
   addFigure,
