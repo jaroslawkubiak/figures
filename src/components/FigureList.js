@@ -19,6 +19,7 @@ import {
   editBricklinkPrice,
 } from '../store';
 import FigureEdit from './FigureEdit';
+import { GalacticEmpire } from '../svg/GalacticEmpire';
 
 function FigureList({ listView, figures }) {
   const dispatch = useDispatch();
@@ -90,10 +91,35 @@ function FigureList({ listView, figures }) {
   const [showFigureEditForm, setShowFigureEditForm] = useState(false);
   const [positionFromTop, setPositionFromTop] = useState(0);
   const handleCloseEditFigureForm = () => setShowFigureEditForm(false);
-
   const FigureEditComponent = <FigureEdit onClose={handleCloseEditFigureForm} />;
 
   console.log('figi==', figures);
+
+  // loading figure list from API
+  const renderedIsLoading = figures.isLoading ? (
+    <div className="isLoading-wrapper">
+      <div className="isLoading-content">
+        <GalacticEmpire cssClass="svg-fill-primary svg-galactic-empire-rotate" />
+      </div>
+      <span className="font-size-3-4 letter-spacing-4">Loading...</span>
+    </div>
+  ) : (
+    ''
+  );
+
+  // error during loading figures from API
+  const renderedError = figures.error ? (
+    <div className="isLoading-wrapper">
+      <div className="isLoading-content">
+        <GalacticEmpire cssClass="svg-fill-error" />
+      </div>
+      <span className="color-error font-size-2-4 letter-spacing-2">Error during loading!</span>
+      <span className="color-error font-size-2-4 letter-spacing-2">{figures.error.message}</span>
+      <span className="color-primary font-size-2-4 letter-spacing-2">Please try again later.</span>
+    </div>
+  ) : (
+    ''
+  );
 
   const renderedFigures = figures.data.map((figure, index) => {
     if (listView) {
@@ -134,6 +160,8 @@ function FigureList({ listView, figures }) {
 
   return (
     <>
+      {renderedIsLoading}
+      {renderedError}
       <div
         id="figContainer"
         className={

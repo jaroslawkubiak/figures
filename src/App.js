@@ -9,7 +9,6 @@ import Filters from './components/Filters';
 import FigureAdd from './components/FigureAdd';
 import { fetchFigures } from './store';
 
-import { GalacticEmpire } from './svg/GalacticEmpire';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,15 +26,7 @@ function App() {
 
   // getting info about all figures or filtered figures
   const figures = useSelector(
-    // ({ figures: { data, searchNumber, searchMainName, searchReleaseYear, searchSeries, isLoading, error } }) => {
     ({ figures }) => {
-      // console.log('isLoading=', figures.isLoading, 'error=', figures.error);
-
-      // if (isLoading) return data;
-      // filtering logic
-
-      // return figures;
-
       const filteredFigures = figures.data.filter(fig => {
         const searchReleaseYearConditions = figures.searchReleaseYear
           ? fig.releaseYear === figures.searchReleaseYear
@@ -51,23 +42,9 @@ function App() {
       });
 
       return { data: filteredFigures, isLoading: figures.isLoading, error: figures.error };
-
-      // return figures.data.filter(fig => {
-      //   const searchReleaseYearConditions = figures.searchReleaseYear ? fig.releaseYear === figures.searchReleaseYear : fig;
-      //   const searchSeriesConditions = figures.searchSeries ? fig.series === figures.searchSeries : fig;
-      //   return (
-      //     fig.number.toLowerCase().includes(figures.searchNumber.toLowerCase()) &&
-      //     (fig.mainName.toLowerCase().includes(figures.searchMainName.toLowerCase()) ||
-      //       fig.additionalName.toLowerCase().includes(figures.searchMainName.toLowerCase())) &&
-      //     searchReleaseYearConditions &&
-      //     searchSeriesConditions
-      //   );
-      // });
     }
   );
-
   const quantity = figures.data.length;
-  console.log('figs=', figures);
 
   return (
     <div className="app-container">

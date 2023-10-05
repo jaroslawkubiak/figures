@@ -27,7 +27,7 @@
 
 @font-face {
   font-family: star_wars;
-  src: local("star_wars"), url("../fonts/star_wars.ttf") format("truetype");
+  src: local('star_wars'), url('../fonts/star_wars.ttf') format('truetype');
 }
 * {
   padding: 0;
@@ -127,6 +127,18 @@ a {
   width: 30px;
   height: 30px;
   background-color: rgb(255, 0, 0);
+}
+
+.isLoading-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.isLoading-content {
+  width: 200px;
+  height: 200px;
 }
 
 /*############################## Medium devices (landscape tablets, 768px and up) ##############################*/
