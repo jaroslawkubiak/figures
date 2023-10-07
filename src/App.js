@@ -1,4 +1,3 @@
-// import figuresData from "./data/figureList.json";
 import './fonts/star_wars.ttf';
 import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
@@ -8,7 +7,6 @@ import FigureList from './components/FigureList';
 import Filters from './components/Filters';
 import FigureAdd from './components/FigureAdd';
 import { fetchFigures } from './store';
-
 
 function App() {
   const dispatch = useDispatch();
@@ -25,25 +23,23 @@ function App() {
   }, [dispatch]);
 
   // getting info about all figures or filtered figures
-  const figures = useSelector(
-    ({ figures }) => {
-      const filteredFigures = figures.data.filter(fig => {
-        const searchReleaseYearConditions = figures.searchReleaseYear
-          ? fig.releaseYear === figures.searchReleaseYear
-          : fig;
-        const searchSeriesConditions = figures.searchSeries ? fig.series === figures.searchSeries : fig;
-        return (
-          fig.number.toLowerCase().includes(figures.searchNumber.toLowerCase()) &&
-          (fig.mainName.toLowerCase().includes(figures.searchMainName.toLowerCase()) ||
-            fig.additionalName.toLowerCase().includes(figures.searchMainName.toLowerCase())) &&
-          searchReleaseYearConditions &&
-          searchSeriesConditions
-        );
-      });
+  const figures = useSelector(({ figures }) => {
+    const filteredFigures = figures.data.filter(fig => {
+      const searchReleaseYearConditions = figures.searchReleaseYear
+        ? fig.releaseYear === figures.searchReleaseYear
+        : fig;
+      const searchSeriesConditions = figures.searchSeries ? fig.series === figures.searchSeries : fig;
+      return (
+        fig.number.toLowerCase().includes(figures.searchNumber.toLowerCase()) &&
+        (fig.mainName.toLowerCase().includes(figures.searchMainName.toLowerCase()) ||
+          fig.additionalName.toLowerCase().includes(figures.searchMainName.toLowerCase())) &&
+        searchReleaseYearConditions &&
+        searchSeriesConditions
+      );
+    });
 
-      return { data: filteredFigures, isLoading: figures.isLoading, error: figures.error };
-    }
-  );
+    return { data: filteredFigures, isLoading: figures.isLoading, error: figures.error };
+  });
   const quantity = figures.data.length;
 
   return (

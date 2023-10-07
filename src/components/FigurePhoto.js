@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import parse from "html-react-parser";
-import { GalacticEmpire } from "../svg/GalacticEmpire";
+import React, { useState } from 'react';
+import parse from 'html-react-parser';
+import { GalacticEmpire } from '../svg/GalacticEmpire';
 // import fetchFigureInfo from "../fetch/bricklink";
 
 function FigurePhoto({ figNumber, cssSvgFill }) {
@@ -8,13 +8,13 @@ function FigurePhoto({ figNumber, cssSvgFill }) {
   const [figImg, setFigImg] = useState({
     isLoading: false,
     error: null,
-    result: "",
+    result: '',
   });
 
   // check if image exists on server
   function imageExists(image_url) {
     const http = new XMLHttpRequest();
-    http.open("HEAD", image_url, false);
+    http.open('HEAD', image_url, false);
     http.send();
     return http.status !== 404;
   }
@@ -27,12 +27,12 @@ function FigurePhoto({ figNumber, cssSvgFill }) {
   );
   let renderedPhoto = `https://img.bricklink.com/ItemImage/MN/0/${figNumber}.png`;
 
-  if (figNumber.length < 6 && figImg.result !== "") {
-    setFigImg({ ...figImg, result: "" });
+  if (figNumber.length < 6 && figImg.result !== '') {
+    setFigImg({ ...figImg, result: '' });
   }
 
   if (figNumber.length >= 6 && imageExists(renderedPhoto)) {
-    if (!figImg.isLoading && figImg.result === "") setFigImg({ ...figImg, isLoading: true });
+    if (!figImg.isLoading && figImg.result === '') setFigImg({ ...figImg, isLoading: true });
     const cssSvgClass = `${cssSvgFill} svg-galactic-empire-rotate`;
     renderedData = (
       <div className="img-wrapper">
@@ -51,7 +51,7 @@ function FigurePhoto({ figNumber, cssSvgFill }) {
     };
 
     img.src = renderedPhoto;
-    if (!figImg.isLoading && figImg.result !== "")
+    if (!figImg.isLoading && figImg.result !== '')
       renderedData =
         parse(`<a href="https://www.bricklink.com/v2/catalog/catalogitem.page?M=${figNumber}" target="_blank">
         <img id="add-img" class="cursor-pointer" src=${renderedPhoto} alt="${figNumber} image" />
@@ -60,7 +60,7 @@ function FigurePhoto({ figNumber, cssSvgFill }) {
 
   // image dont exists on server
   if (figNumber.length >= 6 && !imageExists(renderedPhoto)) {
-    if (!figImg.error) setFigImg({ ...figImg, error: "Not found" });
+    if (!figImg.error) setFigImg({ ...figImg, error: 'Not found' });
     renderedData = (
       <div className="img-wrapper">
         <span className="color-error">img not found</span>
@@ -71,6 +71,5 @@ function FigurePhoto({ figNumber, cssSvgFill }) {
 
   return <>{renderedData}</>;
 }
-// https://www.bricklink.com/v2/catalog/catalogitem.page?M=sw1078
 
 export default FigurePhoto;

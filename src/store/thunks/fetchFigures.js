@@ -2,17 +2,15 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const fetchFigures = createAsyncThunk('figures/fetch', async () => {
-  const res = await axios.get('http://127.0.0.1:3001/api/v1/figures');
-
-  //FIXME
-  await pause(1000);
+  const URL = `${process.env.REACT_APP_DEVELOPMENT_URL}:${process.env.REACT_APP_DEVELOPMENT_PORT}`;
+  const res = await axios.get(`${URL}/api/v1/figures`);
   return res.data;
 });
 
-const pause = duration => {
-  return new Promise(resolve => {
-    setTimeout(resolve, duration);
-  });
-};
+// const pause = duration => {
+//   return new Promise(resolve => {
+//     setTimeout(resolve, duration);
+//   });
+// };
 
 export { fetchFigures };

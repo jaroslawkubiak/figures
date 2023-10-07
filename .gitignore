@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 helpers.txt
+*.env
 
 
 # testing

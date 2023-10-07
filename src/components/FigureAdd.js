@@ -1,20 +1,21 @@
-import "../css/figure-form.css";
-import Button from "./Button";
-import InputText from "./InputText";
-import InputNumber from "./InputNumber";
-import Dropdown from "./Dropdown";
-import InputCheckbox from "./InputCheckbox";
-import FigurePhoto from "./FigurePhoto";
-import { useState, useEffect } from "react";
+import '../css/figure-form.css';
+import Button from './Button';
+import InputText from './InputText';
+import InputNumber from './InputNumber';
+import Dropdown from './Dropdown';
+import InputCheckbox from './InputCheckbox';
+import FigurePhoto from './FigurePhoto';
+import { useState, useEffect } from 'react';
 
-import { ImCross } from "react-icons/im";
-import { BsPlusLg } from "react-icons/bs";
-import seriesList from "../data/seriesList.json";
-import weaponList from "../data/weaponList.json";
-import saveImageToHdd from "../utils/saveImageToHdd";
-import { onlyNumbersRegex, validate, inputFieldNotValid } from "../utils/validate";
-import { yearsList } from "../utils/yearList";
-import { useDispatch, useSelector } from "react-redux";
+import { ImCross } from 'react-icons/im';
+import { BsPlusLg } from 'react-icons/bs';
+import seriesList from '../data/seriesList.json';
+import weaponList from '../data/weaponList.json';
+import saveImageToHdd from '../utils/saveImageToHdd';
+import splitName from '../utils/splitName';
+import { onlyNumbersRegex, validate, inputFieldNotValid } from '../utils/validate';
+import { yearsList } from '../utils/yearList';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   changeNumber,
   changeMainName,
@@ -28,19 +29,20 @@ import {
   changeWeapon,
   changePurchaseDate,
   changeBricklinkPrice,
-} from "../store";
+  getFigureInfo,
+} from '../store';
 
 function FigureAdd({ onClose }) {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [figureExistInDB, setFigureExistInDB] = useState(false);
-  const cssClassLabel = "add-figure-input-label color-primary";
+  const cssClassLabel = 'add-figure-input-label color-primary';
 
   useEffect(() => {
-    document.body.classList.add("overflow-hidden");
+    document.body.classList.add('overflow-hidden');
 
     return () => {
-      document.body.classList.remove("overflow-hidden");
+      document.body.classList.remove('overflow-hidden');
     };
   }, []);
 
@@ -80,45 +82,45 @@ function FigureAdd({ onClose }) {
 
   // getting today date
   const today = new Date()
-    .toLocaleDateString("pl-PL", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
+    .toLocaleDateString('pl-PL', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
     })
-    .replaceAll(".", "-");
+    .replaceAll('.', '-');
 
   //setting initial value for number and date
-  // if (!currentFigure.number) currentFigure.number = "sw";
+  if (!currentFigure.number) currentFigure.number = 'sw111';
   if (!currentFigure.purchaseDate) currentFigure.purchaseDate = today;
 
   // handle change to inputs fields
   const handleChangeInput = e => {
     const { name, value } = e.target;
     switch (name) {
-      case "number":
+      case 'number':
         dispatch(changeNumber(value));
         break;
-      case "mainName":
+      case 'mainName':
         dispatch(changeMainName(value));
         break;
-      case "additionalName":
+      case 'additionalName':
         dispatch(changeAdditionalName(value));
         break;
-      case "bricklink":
+      case 'bricklink':
         dispatch(changeBricklink(value));
         break;
-      case "label":
+      case 'label':
         dispatch(changeLabel(e.target.checked));
         break;
-      case "purchaseDate":
+      case 'purchaseDate':
         dispatch(changePurchaseDate(value));
         break;
 
       // if input field is number - check if provided value is a number
-      case "bricklinkPrice":
+      case 'bricklinkPrice':
         if (onlyNumbersRegex.test(value)) dispatch(changeBricklinkPrice(value));
         break;
-      case "purchasePrice":
+      case 'purchasePrice':
         if (onlyNumbersRegex.test(value)) dispatch(changePurchasePrice(value));
         break;
       default:
@@ -130,13 +132,13 @@ function FigureAdd({ onClose }) {
   const handleChangeSelect = (value, name) => {
     setFormErrors({ ...formErrors, [name]: null });
     switch (name) {
-      case "weapon":
+      case 'weapon':
         dispatch(changeWeapon(value));
         break;
-      case "series":
+      case 'series':
         dispatch(changeSeries(value));
         break;
-      case "releaseYear":
+      case 'releaseYear':
         dispatch(changeReleaseYear(value));
         break;
       default:
@@ -151,19 +153,35 @@ function FigureAdd({ onClose }) {
 
   // filtering all figures to find currently adding
   const allFigures = useSelector(({ figures: { data } }) => {
-    return data.filter(fig =>
-      fig.number.toLowerCase().includes(currentFigure.number.toLowerCase())
-    );
+    return data.filter(fig => fig.number.toLowerCase().includes(currentFigure.number.toLowerCase()));
   });
 
   useEffect(() => {
     if (currentFigure.number.length > 5 && allFigures.length === 1) {
-      setFigureExistInDB(inputFieldNotValid("You have this"));
+      setFigureExistInDB(inputFieldNotValid('You have this'));
     } else {
       setFormErrors({ ...formErrors, number: null });
       setFigureExistInDB(false);
     }
   }, [currentFigure.number]);
+
+  if (currentFigure.number.length > 5) {
+    dispatch(changeMainName(''));
+    dispatch(changeAdditionalName(''));
+    dispatch(changeReleaseYear(''));
+
+    //fetch for figure data from Bricklink
+    getFigureInfo(currentFigure.number).then(value => {
+      const { year_released, name } = value;
+      const { main, additional } = splitName(name);
+      console.log('FINAL main=', main);
+      console.log('FINAL additional=', additional);
+
+      if (year_released) dispatch(changeReleaseYear(year_released));
+      if (main) dispatch(changeMainName(main));
+      if (additional) dispatch(changeAdditionalName(additional));
+    });
+  }
 
   return (
     <div className="add-figure-wrapper">
@@ -183,7 +201,8 @@ function FigureAdd({ onClose }) {
               onChange={handleChangeInput}
               onFocus={handleOnFocus}
               required={true}
-              placeholder="Enter a number between sw0001 to sw1267"
+              // placeholder="Enter a number between sw0001 to sw1267"
+              // placeholder="Enter a number between sw0001 to sw1267"
               value={currentFigure.number}
             >
               number

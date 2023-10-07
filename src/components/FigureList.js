@@ -26,6 +26,7 @@ function FigureList({ listView, figures }) {
 
   const [clickedImage, setClickedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
+
   const handleChange = (figure, figIndex) => {
     setCurrentIndex(figIndex);
     setClickedImage(figure);
@@ -90,10 +91,7 @@ function FigureList({ listView, figures }) {
 
   const [showFigureEditForm, setShowFigureEditForm] = useState(false);
   const [positionFromTop, setPositionFromTop] = useState(0);
-  const handleCloseEditFigureForm = () => setShowFigureEditForm(false);
-  const FigureEditComponent = <FigureEdit onClose={handleCloseEditFigureForm} />;
-
-  console.log('figi==', figures);
+  const FigureEditComponent = <FigureEdit onClose={() => setShowFigureEditForm(false)} />;
 
   // loading figure list from API
   const renderedIsLoading = figures.isLoading ? (

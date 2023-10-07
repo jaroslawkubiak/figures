@@ -41,7 +41,6 @@ import {
   editBricklinkPrice,
 } from './slice/editSlice';
 
-
 const store = configureStore({
   reducer: {
     figures: figuresReducers,
@@ -50,6 +49,9 @@ const store = configureStore({
   },
 });
 export * from './thunks/fetchFigures';
+export * from './thunks/getFigureById';
+export * from './thunks/addFigure';
+export * from './thunks/getFigureInfo';
 export {
   store,
   addFigure,
