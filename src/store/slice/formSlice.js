@@ -1,20 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { addFigure } from "./figureSlice";
+import { createSlice } from '@reduxjs/toolkit';
+import { addFigure } from './figureSlice';
 
 const formSlice = createSlice({
-  name: "form",
+  name: 'form',
   initialState: {
-    number: "",
-    mainName: "",
-    additionalName: "",
-    releaseYear: "",
-    label: "",
-    bricklink: "",
-    series: "",
-    purchasePrice: "",
-    weapon: "",
-    purchaseDate: "",
-    bricklinkPrice: "",
+    number: '',
+    mainName: '',
+    additionalName: '',
+    releaseYear: '',
+    label: '',
+    bricklink: '',
+    series: '',
+    purchasePrice: '',
+    weapon: '',
+    purchaseDate: '',
+    bricklinkPrice: '',
   },
   reducers: {
     changeNumber(state, action) {
@@ -30,7 +30,7 @@ const formSlice = createSlice({
       state.bricklink = action.payload;
     },
     changeLabel(state, action) {
-      state.label = action.payload ? "on" : "";
+      state.label = action.payload ? 'on' : '';
     },
     changeReleaseYear(state, action) {
       state.releaseYear = action.payload;
@@ -53,17 +53,17 @@ const formSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(addFigure, (state, action) => {
-      state.number = "";
-      state.mainName = "";
-      state.additionalName = "";
-      state.releaseYear = "";
-      state.bricklink = "";
-      state.label = "";
-      state.series = "";
-      state.purchasePrice = "";
-      state.bricklinkPrice = "";
-      state.purchaseDate = "";
-      state.weapon = "";
+      state.number = '';
+      state.mainName = '';
+      state.additionalName = '';
+      state.releaseYear = '';
+      state.bricklink = '';
+      state.label = '';
+      state.series = '';
+      state.purchasePrice = '';
+      state.bricklinkPrice = '';
+      state.purchaseDate = '';
+      state.weapon = '';
     });
   },
 });

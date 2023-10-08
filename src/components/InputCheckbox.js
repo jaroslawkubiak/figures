@@ -1,13 +1,5 @@
-function InputCheckbox({
-  cssCheckboxClass,
-  cssClassLabel,
-  cssClass,
-  checked,
-  name,
-  onChange,
-  children,
-}) {
-  const isChecked = checked ? "checked" : "";
+function InputCheckbox({ cssCheckboxClass, cssClassLabel, cssClass, checked, name, onChange, children }) {
+  const isChecked = checked ? 'checked' : '';
   return (
     <>
       <label className={cssClassLabel}>{children}</label>

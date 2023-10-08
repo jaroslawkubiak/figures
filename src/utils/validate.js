@@ -29,3 +29,5 @@ export function validate(values, isSubmit, duplicate) {
   if (isSubmit && values.weapon === '') errors.weapon = inputFieldNotValid(REQUIRED_FIELD_MESSAGE);
   return errors;
 }
+// to be able save price in db i have to change , to .
+export const changePeriodToComma = val => val.replace(',', '.');

@@ -1,20 +1,22 @@
 import '../css/figure-form.css';
+import { useState, useEffect } from 'react';
 import Button from './Button';
 import InputText from './InputText';
 import InputNumber from './InputNumber';
 import Dropdown from './Dropdown';
 import InputCheckbox from './InputCheckbox';
 import FigurePhoto from './FigurePhoto';
-import { useState, useEffect } from 'react';
 
 import { ImCross } from 'react-icons/im';
 import { BsPlusLg } from 'react-icons/bs';
 import seriesList from '../data/seriesList.json';
 import weaponList from '../data/weaponList.json';
 import saveImageToHdd from '../utils/saveImageToHdd';
+import addFigureToDB from '../utils/addFigureToDB';
 import splitName from '../utils/splitName';
-import { onlyNumbersRegex, validate, inputFieldNotValid } from '../utils/validate';
+import { onlyNumbersRegex, validate, inputFieldNotValid, changePeriodToComma } from '../utils/validate';
 import { yearsList } from '../utils/yearList';
+
 import { useDispatch, useSelector } from 'react-redux';
 import {
   changeNumber,
@@ -53,10 +55,29 @@ function FigureAdd({ onClose }) {
     setFormErrors(validate(currentFigure, true, figureExistInDB));
   };
 
+  //fetch for figure data from Bricklink
+  function fetchForFigureInfo(number) {
+    getFigureInfo(number).then(value => {
+      const { year_released, name } = value.info;
+      let bricklinkAvPrice = value.price.avg_price;
+      bricklinkAvPrice = parseFloat(bricklinkAvPrice).toFixed(2);
+      const { main, additional } = splitName(name);
+
+      dispatch(changeReleaseYear(year_released));
+      dispatch(changeMainName(main));
+      dispatch(changeAdditionalName(additional));
+      dispatch(changeBricklinkPrice(bricklinkAvPrice));
+    });
+  }
+  //adding figure after submit
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       // saveImageToHdd(currentFigure.number);
       dispatch(addFigure(currentFigure));
+      // adding figure to DB
+      addFigureToDB(currentFigure);
+      //FIXME resetting all form inputs
+      // dispatch(addFigure({}));
       onClose();
     } else {
       setIsSubmit(false);
@@ -98,6 +119,7 @@ function FigureAdd({ onClose }) {
     const { name, value } = e.target;
     switch (name) {
       case 'number':
+        if (value.length > 5) fetchForFigureInfo(value);
         dispatch(changeNumber(value));
         break;
       case 'mainName':
@@ -118,10 +140,11 @@ function FigureAdd({ onClose }) {
 
       // if input field is number - check if provided value is a number
       case 'bricklinkPrice':
-        if (onlyNumbersRegex.test(value)) dispatch(changeBricklinkPrice(value));
+        if (onlyNumbersRegex.test(value)) dispatch(changeBricklinkPrice(changePeriodToComma(value)));
         break;
       case 'purchasePrice':
-        if (onlyNumbersRegex.test(value)) dispatch(changePurchasePrice(value));
+        if (onlyNumbersRegex.test(value)) dispatch(changePurchasePrice(changePeriodToComma(value)));
+
         break;
       default:
         break;
@@ -164,21 +187,6 @@ function FigureAdd({ onClose }) {
       setFigureExistInDB(false);
     }
   }, [currentFigure.number]);
-
-  if (currentFigure.number.length > 5) {
-    //fetch for figure data from Bricklink
-    getFigureInfo(currentFigure.number).then(value => {
-      const { year_released, name } = value.info;
-      let bricklinkAvPrice = value.price.avg_price;
-      bricklinkAvPrice = parseFloat(bricklinkAvPrice).toFixed(2);
-      const { main, additional } = splitName(name);
-
-      dispatch(changeReleaseYear(year_released));
-      dispatch(changeMainName(main));
-      dispatch(changeAdditionalName(additional));
-      dispatch(changeBricklinkPrice(bricklinkAvPrice));
-    });
-  }
 
   return (
     <div className="add-figure-wrapper">

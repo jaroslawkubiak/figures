@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const editSlice = createSlice({
-  name: "edit",
+  name: 'edit',
   initialState: {},
   reducers: {
     editId(state, action) {
@@ -20,7 +20,7 @@ const editSlice = createSlice({
       state.bricklink = action.payload;
     },
     editLabel(state, action) {
-      state.label = action.payload ? "on" : "";
+      state.label = action.payload ? 'on' : '';
     },
     editReleaseYear(state, action) {
       state.releaseYear = action.payload;

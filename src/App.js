@@ -12,7 +12,7 @@ function App() {
   const dispatch = useDispatch();
 
   const [listView, setListView] = useState(false);
-  const [showFigureAddForm, setShowFigureAddForm] = useState(true);
+  const [showFigureAddForm, setShowFigureAddForm] = useState(false);
   const handleListView = () => {
     setListView(!listView);
   };
