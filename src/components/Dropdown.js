@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
-import { BsCaretDownFill } from "react-icons/bs";
-import Panel from "./Panel.js";
+import { useState, useEffect, useRef } from 'react';
+import { BsCaretDownFill } from 'react-icons/bs';
+import Panel from './Panel.js';
 
 function Dropdown({
   cssClassLabel,
@@ -30,10 +30,10 @@ function Dropdown({
       }
     };
 
-    document.addEventListener("click", handler, true);
+    document.addEventListener('click', handler, true);
 
     const cleanUp = () => {
-      document.removeEventListener("click", handler);
+      document.removeEventListener('click', handler);
     };
     return cleanUp;
   }, []);
@@ -52,12 +52,7 @@ function Dropdown({
 
   const renderedOptions = options.map(option => {
     return (
-      <div
-        className={cssDropdownElement}
-        onClick={() => handleOptionClick(option, name)}
-        key={option}
-        name={name}
-      >
+      <div className={cssDropdownElement} onClick={() => handleOptionClick(option, name)} key={option} name={name}>
         {option}
       </div>
     );

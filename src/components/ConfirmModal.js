@@ -1,6 +1,6 @@
-import "../css/modal.css";
-import Button from "./Button";
-import { BsFillHandThumbsDownFill, BsFillHandThumbsUpFill } from "react-icons/bs";
+import '../css/modal.css';
+import Button from './Button';
+import { BsFillHandThumbsDownFill, BsFillHandThumbsUpFill } from 'react-icons/bs';
 
 function ConfirmModal({ figure, onClose, onClick }) {
   return (

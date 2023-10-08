@@ -18,10 +18,10 @@ function InputText({
           type="text"
           className={cssClass}
           autoComplete="off"
-          maxLength={maxLength || ""}
+          maxLength={maxLength || ''}
           value={value}
           name={name}
-          placeholder={placeholder || ""}
+          placeholder={placeholder || ''}
           onChange={onChange}
           onFocus={onFocus}
         />

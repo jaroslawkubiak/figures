@@ -18,7 +18,7 @@ function InputNumber({
           type="text"
           className={cssClass}
           autoComplete="off"
-          maxLength={maxLength || ""}
+          maxLength={maxLength || ''}
           value={value}
           name={name}
           onChange={onChange}

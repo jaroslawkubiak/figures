@@ -1,20 +1,20 @@
-import Button from "./Button";
-import InputText from "./InputText";
-import InputNumber from "./InputNumber";
-import ConfirmModal from "./ConfirmModal";
-import Dropdown from "./Dropdown";
-import InputCheckbox from "./InputCheckbox";
-import FigurePhoto from "./FigurePhoto";
-import { useState, useEffect } from "react";
-import { ImCross } from "react-icons/im";
-import { BsTrash3, BsSave } from "react-icons/bs";
-import seriesList from "../data/seriesList.json";
-import weaponList from "../data/weaponList.json";
-import saveImageToHdd from "../utils/saveImageToHdd";
+import Button from './Button';
+import InputText from './InputText';
+import InputNumber from './InputNumber';
+import ConfirmModal from './ConfirmModal';
+import Dropdown from './Dropdown';
+import InputCheckbox from './InputCheckbox';
+import FigurePhoto from './FigurePhoto';
+import { useState, useEffect } from 'react';
+import { ImCross } from 'react-icons/im';
+import { BsTrash3, BsSave } from 'react-icons/bs';
+import seriesList from '../data/seriesList.json';
+import weaponList from '../data/weaponList.json';
+import saveImageToHdd from '../utils/saveImageToHdd';
 
-import { useDispatch, useSelector } from "react-redux";
-import { onlyNumbersRegex, validate, inputFieldNotValid } from "../utils/validate";
-import { yearsList } from "../utils/yearList";
+import { useDispatch, useSelector } from 'react-redux';
+import { onlyNumbersRegex, validate, inputFieldNotValid } from '../utils/validate';
+import { yearsList } from '../utils/yearList';
 
 import {
   editNumber,
@@ -30,20 +30,20 @@ import {
   editWeapon,
   editPurchaseDate,
   editBricklinkPrice,
-} from "../store";
+} from '../store';
 
 function FigureEdit({ onClose }) {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [deleteFigure, setDeleteFigure] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const cssClassLabel = "add-figure-input-label color-edit";
+  const cssClassLabel = 'add-figure-input-label color-edit';
 
   useEffect(() => {
-    document.body.classList.add("overflow-hidden");
+    document.body.classList.add('overflow-hidden');
 
     return () => {
-      document.body.classList.remove("overflow-hidden");
+      document.body.classList.remove('overflow-hidden');
     };
   }, []);
 
@@ -93,7 +93,7 @@ function FigureEdit({ onClose }) {
 
   useEffect(() => {
     if (figure.number.length > 5 && allFigures.length === 1 && figure.number !== figureNumber) {
-      setFigureExistInDB(inputFieldNotValid("Have this"));
+      setFigureExistInDB(inputFieldNotValid('Have this'));
     } else {
       setFormErrors({ ...formErrors, number: null });
       setFigureExistInDB(false);
@@ -104,30 +104,30 @@ function FigureEdit({ onClose }) {
   const handleChangeInput = e => {
     const { name, value } = e.target;
     switch (name) {
-      case "number":
+      case 'number':
         dispatch(editNumber(value));
         break;
-      case "mainName":
+      case 'mainName':
         dispatch(editMainName(value));
         break;
-      case "additionalName":
+      case 'additionalName':
         dispatch(editAdditionalName(value));
         break;
-      case "bricklink":
+      case 'bricklink':
         dispatch(editBricklink(value));
         break;
-      case "label":
+      case 'label':
         dispatch(editLabel(e.target.checked));
         break;
-      case "purchaseDate":
+      case 'purchaseDate':
         dispatch(editPurchaseDate(value));
         break;
 
       // if input field is number - check if provided value is a number
-      case "bricklinkPrice":
+      case 'bricklinkPrice':
         if (onlyNumbersRegex.test(value)) dispatch(editBricklinkPrice(value));
         break;
-      case "purchasePrice":
+      case 'purchasePrice':
         if (onlyNumbersRegex.test(value)) dispatch(editPurchasePrice(value));
         break;
       default:
@@ -140,13 +140,13 @@ function FigureEdit({ onClose }) {
     if (isSubmit) setFormErrors({ ...formErrors, [name]: null });
 
     switch (name) {
-      case "weapon":
+      case 'weapon':
         dispatch(editWeapon(value));
         break;
-      case "series":
+      case 'series':
         dispatch(editSeries(value));
         break;
-      case "releaseYear":
+      case 'releaseYear':
         dispatch(editReleaseYear(value));
         break;
       default:
@@ -180,9 +180,7 @@ function FigureEdit({ onClose }) {
   return (
     <div className="add-figure-wrapper">
       <div className="add-figure-container edit-figure-border ">
-        {showConfirmModal && (
-          <ConfirmModal figure={figure.mainName} onClose={onClose} onClick={onConfirmDelete} />
-        )}
+        {showConfirmModal && <ConfirmModal figure={figure.mainName} onClose={onClose} onClick={onConfirmDelete} />}
         <div className="add-figure-close-btn background-color-edit" onClick={() => onClose()}>
           <ImCross className={`svg-fill-bg btn-close-svg `} />
         </div>

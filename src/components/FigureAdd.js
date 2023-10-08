@@ -72,12 +72,11 @@ function FigureAdd({ onClose }) {
   //adding figure after submit
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      // saveImageToHdd(currentFigure.number);
+      //saving image to local disk
+      saveImageToHdd(currentFigure.number);
       dispatch(addFigure(currentFigure));
       // adding figure to DB
       addFigureToDB(currentFigure);
-      //FIXME resetting all form inputs
-      // dispatch(addFigure({}));
       onClose();
     } else {
       setIsSubmit(false);
