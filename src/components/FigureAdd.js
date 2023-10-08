@@ -166,20 +166,17 @@ function FigureAdd({ onClose }) {
   }, [currentFigure.number]);
 
   if (currentFigure.number.length > 5) {
-    dispatch(changeMainName(''));
-    dispatch(changeAdditionalName(''));
-    dispatch(changeReleaseYear(''));
-
     //fetch for figure data from Bricklink
     getFigureInfo(currentFigure.number).then(value => {
-      const { year_released, name } = value;
+      const { year_released, name } = value.info;
+      let bricklinkAvPrice = value.price.avg_price;
+      bricklinkAvPrice = parseFloat(bricklinkAvPrice).toFixed(2);
       const { main, additional } = splitName(name);
-      console.log('FINAL main=', main);
-      console.log('FINAL additional=', additional);
 
-      if (year_released) dispatch(changeReleaseYear(year_released));
-      if (main) dispatch(changeMainName(main));
-      if (additional) dispatch(changeAdditionalName(additional));
+      dispatch(changeReleaseYear(year_released));
+      dispatch(changeMainName(main));
+      dispatch(changeAdditionalName(additional));
+      dispatch(changeBricklinkPrice(bricklinkAvPrice));
     });
   }
 
