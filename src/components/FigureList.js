@@ -99,7 +99,7 @@ function FigureList({ listView, figures }) {
       <div className="isLoading-content">
         <GalacticEmpire cssClass="svg-fill-primary svg-galactic-empire-rotate" />
       </div>
-      <span className="font-size-3-4 letter-spacing-4">Loading...</span>
+      <span className="font-size-3 letter-spacing-4">Loading...</span>
     </div>
   ) : (
     ''
@@ -111,9 +111,9 @@ function FigureList({ listView, figures }) {
       <div className="isLoading-content">
         <GalacticEmpire cssClass="svg-fill-error" />
       </div>
-      <span className="color-error font-size-2-4 letter-spacing-2">Error during loading!</span>
-      <span className="color-error font-size-2-4 letter-spacing-2">{figures.error.message}</span>
-      <span className="color-primary font-size-2-4 letter-spacing-2">Please try again later.</span>
+      <span className="color-error font-size-2-2 letter-spacing-2">Error during loading!</span>
+      <span className="color-error font-size-2-2 letter-spacing-2">{figures.error.message}</span>
+      <span className="color-primary font-size-2-2 letter-spacing-2">Please try again later.</span>
     </div>
   ) : (
     ''

@@ -24,21 +24,23 @@ function App() {
 
   // getting info about all figures or filtered figures
   const figures = useSelector(({ figures }) => {
-    const filteredFigures = figures.data.filter(fig => {
-      const searchReleaseYearConditions = figures.searchReleaseYear
-        ? fig.releaseYear === figures.searchReleaseYear
-        : fig;
-      const searchSeriesConditions = figures.searchSeries ? fig.series === figures.searchSeries : fig;
-      return (
-        fig.number.toLowerCase().includes(figures.searchNumber.toLowerCase()) &&
-        (fig.mainName.toLowerCase().includes(figures.searchMainName.toLowerCase()) ||
-          fig.additionalName.toLowerCase().includes(figures.searchMainName.toLowerCase())) &&
-        searchReleaseYearConditions &&
-        searchSeriesConditions
-      );
-    });
+    if (figures.data) {
+      const filteredFigures = figures.data.filter(fig => {
+        const searchReleaseYearConditions = figures.searchReleaseYear
+          ? fig.releaseYear === figures.searchReleaseYear
+          : fig;
+        const searchSeriesConditions = figures.searchSeries ? fig.series === figures.searchSeries : fig;
+        return (
+          fig.number.toLowerCase().includes(figures.searchNumber.toLowerCase()) &&
+          (fig.mainName.toLowerCase().includes(figures.searchMainName.toLowerCase()) ||
+            fig.additionalName.toLowerCase().includes(figures.searchMainName.toLowerCase())) &&
+          searchReleaseYearConditions &&
+          searchSeriesConditions
+        );
+      });
 
-    return { data: filteredFigures, isLoading: figures.isLoading, error: figures.error };
+      return { data: filteredFigures, isLoading: figures.isLoading, error: figures.error };
+    }
   });
   const quantity = figures.data.length;
 

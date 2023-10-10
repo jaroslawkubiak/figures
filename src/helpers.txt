@@ -1,0 +1,26 @@
+    scieżka wycinająca - lewy górny i prawy dolny
+  
+  --cut-height: 10px;
+  clip-path: polygon(
+    var(--cut-height) 0%,
+    100% 0,
+    100% calc(100% - var(--cut-height)),
+    calc(100% - var(--cut-height)) 100%,
+    0 100%,
+    0% var(--cut-height)
+  );
+
+
+  scieżka wycinająca - prawy górny i lewy dolny
+
+    --cut-height: 10px;
+  clip-path: polygon(
+    calc(100% - var(--cut-height)) 0%,
+    100% var(--cut-height),
+    100% 100%,
+    var(--cut-height) 100%,
+    0% calc(100% - var(--cut-height)),
+    0 0
+  );
+
+funkcja usuwająca obiekt z bazy - filmik 331 listing the records
