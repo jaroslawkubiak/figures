@@ -7,11 +7,13 @@ import FigureList from './components/FigureList';
 import Filters from './components/Filters';
 import FigureAdd from './components/FigureAdd';
 import { fetchFigures } from './store';
+import seriesListDB from './utils/getSeriesList';
 
 function App() {
   const dispatch = useDispatch();
 
   const [listView, setListView] = useState(false);
+  const [seriesList, setSeriesList] = useState();
   const [showFigureAddForm, setShowFigureAddForm] = useState(false);
   const handleListView = () => {
     setListView(!listView);
@@ -19,12 +21,17 @@ function App() {
   const handleAddFigureForm = () => setShowFigureAddForm(!showFigureAddForm);
 
   useEffect(() => {
+    seriesListDB().then(value => setSeriesList(value));
+  }, []);
+
+  useEffect(() => {
     dispatch(fetchFigures());
   }, [dispatch]);
 
   // getting info about all figures or filtered figures
+
   const figures = useSelector(({ figures }) => {
-    if (figures.data) {
+    if (figures) {
       const filteredFigures = figures.data.filter(fig => {
         const searchReleaseYearConditions = figures.searchReleaseYear
           ? fig.releaseYear === figures.searchReleaseYear
@@ -52,9 +59,10 @@ function App() {
         listView={listView}
         onAddFigure={handleAddFigureForm}
         quantity={quantity}
+        seriesList={seriesList}
       />
-      {showFigureAddForm && <FigureAdd onClose={handleAddFigureForm} />}
-      <FigureList listView={listView} figures={figures} />
+      {showFigureAddForm && <FigureAdd onClose={handleAddFigureForm} seriesList={seriesList}/>}
+      <FigureList listView={listView} figures={figures.data} />
     </div>
   );
 }

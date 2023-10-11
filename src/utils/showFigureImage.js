@@ -1,4 +1,4 @@
-import bricklinkLogo from "../bricklink.png";
+import bricklinkLogo from '../bricklink.png';
 
 function showFigureImage(figure) {
   let fileName = {
@@ -9,8 +9,9 @@ function showFigureImage(figure) {
     fileName.url = require(`../imagesMinifigure/${figure.number}.png`);
     fileName.description = figure.mainName;
   } catch (error) {
-    fileName.url = bricklinkLogo;
-    fileName.description = "No image";
+    // if no image, get img from bricklink
+    fileName.url = `https://img.bricklink.com/ItemImage/MN/0/${figure.number}.png`;
+    fileName.description = figure.mainName;
   }
 
   return fileName;

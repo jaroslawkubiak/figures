@@ -119,7 +119,7 @@ function FigureList({ listView, figures }) {
     ''
   );
 
-  const renderedFigures = figures.data.map((figure, index) => {
+  const renderedFigures = figures.map((figure, index) => {
     if (listView) {
       let isFigureEven = index % 2;
       return (

@@ -6,10 +6,8 @@ import InputNumber from './InputNumber';
 import Dropdown from './Dropdown';
 import InputCheckbox from './InputCheckbox';
 import FigurePhoto from './FigurePhoto';
-
 import { ImCross } from 'react-icons/im';
 import { BsPlusLg } from 'react-icons/bs';
-import seriesList from '../data/seriesList.json';
 import weaponList from '../data/weaponList.json';
 import saveImageToHdd from '../utils/saveImageToHdd';
 import addFigureToDB from '../utils/addFigureToDB';
@@ -34,7 +32,7 @@ import {
   getFigureInfo,
 } from '../store';
 
-function FigureAdd({ onClose }) {
+function FigureAdd({ onClose, seriesList }) {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [figureExistInDB, setFigureExistInDB] = useState(false);

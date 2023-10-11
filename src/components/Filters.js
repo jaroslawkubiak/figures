@@ -11,7 +11,7 @@ import { ImCross } from 'react-icons/im';
 import { onlyNumbersRegex } from '../utils/validate';
 import { yearsList } from '../utils/yearList';
 
-import seriesList from '../data/seriesList.json';
+// import seriesList from '../data/seriesList.json';
 
 import FigureQuantity from './FigureQuantity';
 import React, { useState } from 'react';
@@ -21,7 +21,7 @@ import Dropdown from './Dropdown';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeSearchNumber, changeSearchMainName, changeSearchReleaseYear, changeSearchSeries } from '../store';
 
-function Filters({ onAddFigure, onHandleView, listView, quantity }) {
+function Filters({ onAddFigure, onHandleView, listView, quantity, seriesList }) {
   const dispatch = useDispatch();
 
   // searching by figure number
