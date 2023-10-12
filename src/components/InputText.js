@@ -6,6 +6,7 @@ function InputText({
   onChange,
   onFocus,
   required,
+  disabled,
   value,
   placeholder,
   children,
@@ -24,6 +25,7 @@ function InputText({
           placeholder={placeholder || ''}
           onChange={onChange}
           onFocus={onFocus}
+          disabled={disabled}
         />
         {required && <span className="input-required">#</span>}
       </div>

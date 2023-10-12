@@ -21,7 +21,11 @@ function App() {
   const handleAddFigureForm = () => setShowFigureAddForm(!showFigureAddForm);
 
   useEffect(() => {
-    seriesListDB().then(value => setSeriesList(value));
+    seriesListDB()
+      .then(value => {
+        setSeriesList(value);
+      })
+      .catch(err => console.log(err));
   }, []);
 
   useEffect(() => {
@@ -61,7 +65,7 @@ function App() {
         quantity={quantity}
         seriesList={seriesList}
       />
-      {showFigureAddForm && <FigureAdd onClose={handleAddFigureForm} seriesList={seriesList}/>}
+      {showFigureAddForm && <FigureAdd onClose={handleAddFigureForm} seriesList={seriesList} />}
       <FigureList listView={listView} figures={figures.data} />
     </div>
   );

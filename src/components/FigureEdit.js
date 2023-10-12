@@ -11,6 +11,7 @@ import { BsTrash3, BsSave } from 'react-icons/bs';
 import seriesList from '../data/seriesList.json';
 import weaponList from '../data/weaponList.json';
 import saveImageToHdd from '../utils/saveImageToHdd';
+import editFigureInDB from '../utils/editFigureInDB';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { onlyNumbersRegex, validate, inputFieldNotValid } from '../utils/validate';
@@ -78,6 +79,7 @@ function FigureEdit({ onClose }) {
   const handleSubmit = e => {
     e.preventDefault();
     setIsSubmit(true);
+    editFigureInDB(figure);
     setFormErrors(validate(figure, true, figureExistInDB));
   };
 
@@ -190,13 +192,14 @@ function FigureEdit({ onClose }) {
           <div className="add-figure-div add-number color-edit">
             <input type="hidden" value={figure.id} name="id" />
             <InputText
-              cssClass="add-figure-input background-color-edit color-bg"
+              cssClass="add-figure-input background-color-gray color-bg"
               cssClassLabel={cssClassLabel}
               maxLength="8"
               name="number"
               onChange={handleChangeInput}
               onFocus={handleOnFocus}
-              required={true}
+              required={false}
+              disabled="disabled"
               value={figure.number}
             >
               number

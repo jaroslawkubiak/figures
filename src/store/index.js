@@ -49,7 +49,6 @@ const store = configureStore({
   },
 });
 export * from './thunks/fetchFigures';
-export * from './thunks/getFigureById';
 export * from './thunks/getFigureInfo';
 export {
   store,

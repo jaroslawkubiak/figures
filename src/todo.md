@@ -13,8 +13,8 @@ figure add:
 [ x ] hide error message when input field is in focus or dropdown menu is clicked.
 [ x ] download photo from server to local disk
 [ ] upload photo from local disk to server
-[ ] when adding figure to DB - add purchase day, month and year add separately.
-[ ] stop generating id from JS - id have to be from DB
+[ x ] when adding figure to DB - add purchase day, month and year add separately.
+[ x ] stop generating id from JS - id have to be from DB
 [ x ] input field for bricklink price
 
 figure edit:
@@ -48,6 +48,6 @@ stats by:
 
 [ ] show only images of figures, like 3 img in row in random order
 
-[ ] list of figure series, weapons, years list, later fetch from DB
+[ x ] list of figure series fetch from DB
 
 

@@ -50,13 +50,15 @@ function Dropdown({
     onChange(option, name);
   };
 
-  const renderedOptions = options.map(option => {
-    return (
-      <div className={cssDropdownElement} onClick={() => handleOptionClick(option, name)} key={option} name={name}>
-        {option}
-      </div>
-    );
-  });
+  const renderedOptions = options
+    ? options.map(option => {
+        return (
+          <div className={cssDropdownElement} onClick={() => handleOptionClick(option, name)} key={option} name={name}>
+            {option}
+          </div>
+        );
+      })
+    : '';
 
   return (
     <>
