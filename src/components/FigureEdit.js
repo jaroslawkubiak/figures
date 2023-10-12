@@ -12,6 +12,7 @@ import seriesList from '../data/seriesList.json';
 import weaponList from '../data/weaponList.json';
 import saveImageToHdd from '../utils/saveImageToHdd';
 import editFigureInDB from '../utils/editFigureInDB';
+import deleteFigureFromDB from '../utils/deleteFigureFromDB';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { onlyNumbersRegex, validate, inputFieldNotValid } from '../utils/validate';
@@ -164,6 +165,7 @@ function FigureEdit({ onClose }) {
   useEffect(() => {
     if (deleteFigure) {
       dispatch(removeFigure(figureToDelete.id));
+      deleteFigureFromDB(figureToDelete.id);
       onClose();
     }
   }, [deleteFigure]);
