@@ -8,11 +8,11 @@ import FigurePhoto from './FigurePhoto';
 import { useState, useEffect } from 'react';
 import { ImCross } from 'react-icons/im';
 import { BsTrash3, BsSave } from 'react-icons/bs';
-import seriesList from '../data/seriesList.json';
 import weaponList from '../data/weaponList.json';
 import saveImageToHdd from '../utils/saveImageToHdd';
 import editFigureInDB from '../utils/editFigureInDB';
 import deleteFigureFromDB from '../utils/deleteFigureFromDB';
+import seriesListDB from '../utils/getSeriesList';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { onlyNumbersRegex, validate, inputFieldNotValid } from '../utils/validate';
@@ -35,6 +35,8 @@ import {
 } from '../store';
 
 function FigureEdit({ onClose }) {
+  const [seriesList, setSeriesList] = useState();
+
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [deleteFigure, setDeleteFigure] = useState(false);
@@ -48,6 +50,15 @@ function FigureEdit({ onClose }) {
       document.body.classList.remove('overflow-hidden');
     };
   }, []);
+
+  useEffect(() => {
+    seriesListDB()
+      .then(value => {
+        setSeriesList(value);
+      })
+      .catch(err => console.log(err));
+  }, []);
+
 
   const dispatch = useDispatch();
   const figure = useSelector(state => {

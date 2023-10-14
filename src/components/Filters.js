@@ -11,11 +11,11 @@ import { ImCross } from 'react-icons/im';
 import { onlyNumbersRegex } from '../utils/validate';
 import { yearsList } from '../utils/yearList';
 
-// import seriesList from '../data/seriesList.json';
-
 import FigureQuantity from './FigureQuantity';
 import React, { useState } from 'react';
 import { LegoMinifigure } from '../svg/LegoMinifigure';
+// import { GalacticRepublic } from '../svg/GalacticRepublic';
+
 import InputText from './InputText';
 import Dropdown from './Dropdown';
 import { useDispatch, useSelector } from 'react-redux';
@@ -164,6 +164,18 @@ function Filters({ onAddFigure, onHandleView, listView, quantity, seriesList }) 
             />
           )}
         </div>
+
+        {/* <div className=" justify-self-center"> */}
+          {/* show list view */}
+          {/* {!listView && (
+            <GalacticRepublic
+              fill={cssSvgFillColor}
+              // onClick={onHandleView}
+              className="svg-fill-primary"
+              title="Settings"
+            />
+          )} */}
+        {/* </div> */}
 
         <div className="justify-self-end relative">
           {openFilters.length > 1 && (

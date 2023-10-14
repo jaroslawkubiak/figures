@@ -23,6 +23,12 @@
   padding: 0px;
   margin: 5px;
 }
+.svg-setting {
+  height: 50px;
+  width: 50px;
+  background-color: crimson;
+}
+
 .filter-quantity-wprapper {
   display: flex;
   align-items: center;
@@ -61,7 +67,7 @@
 
 .filter-container-expand::after,
 .filter-container-expand::before {
-  content: "";
+  content: '';
   position: absolute;
   width: 13px;
   height: 13px;
