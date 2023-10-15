@@ -39,11 +39,3 @@ function splitName(name) {
 }
 
 export default splitName;
-
-// Gonk Droid (GNK Power Droid), Sand Green
-
-// Darth Vader - Printed Arms, Traditional Starched Fabric Cape
-
-// 0247 Admiral Ackbar
-
-// 0147 Astromech Droid, R1-G4

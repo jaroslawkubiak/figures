@@ -1,8 +1,9 @@
 import axios from 'axios';
+import createBaseUrl from './createBaseUrl';
 
 const addFigureToDB = async figure => {
-  const URL = `${process.env.REACT_APP_DEVELOPMENT_URL}:${process.env.REACT_APP_DEVELOPMENT_PORT}`;
-  const res = await axios.post(`${URL}/api/v1/figures/add`, figure);
+  const BASE_URL = createBaseUrl();
+  const res = await axios.post(`${BASE_URL}api/v1/figures/add`, figure);
 
   return res.data;
 };

@@ -1,8 +1,10 @@
 import axios from 'axios';
-const getFigureInfo = async reqFigure => {
-  const URL = `${process.env.REACT_APP_DEVELOPMENT_URL}:${process.env.REACT_APP_DEVELOPMENT_PORT}`;
+import createBaseUrl from '../../utils/createBaseUrl';
 
-  const res = await axios.get(`${URL}/api/v1/figures/getFigureInfo/${reqFigure}`);
+const getFigureInfo = async reqFigure => {
+  const BASE_URL = createBaseUrl();
+
+  const res = await axios.get(`${BASE_URL}api/v1/figures/getFigureInfo/${reqFigure}`);
   return res.data;
 };
 

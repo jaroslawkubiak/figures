@@ -1,8 +1,9 @@
 import axios from 'axios';
+import createBaseUrl from './createBaseUrl';
 
 const getSeriesList = async () => {
-  const URL = `${process.env.REACT_APP_DEVELOPMENT_URL}:${process.env.REACT_APP_DEVELOPMENT_PORT}`;
-  const res = await axios.get(`${URL}/api/v1/series`);
+  const BASE_URL = createBaseUrl();
+  const res = await axios.get(`${BASE_URL}api/v1/series`);
   const data = res.data.map(el => el.name);
   return data;
 };

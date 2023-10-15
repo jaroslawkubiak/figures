@@ -1,8 +1,9 @@
 import axios from 'axios';
+import createBaseUrl from './createBaseUrl';
 
 const editFigureInDB = async figure => {
-  const URL = `${process.env.REACT_APP_DEVELOPMENT_URL}:${process.env.REACT_APP_DEVELOPMENT_PORT}`;
-  const res = await axios.patch(`${URL}/api/v1/figures/edit/${figure.id}`, figure);
+  const BASE_URL = createBaseUrl();
+  const res = await axios.patch(`${BASE_URL}api/v1/figures/edit/${figure.id}`, figure);
   return res.data;
 };
 
