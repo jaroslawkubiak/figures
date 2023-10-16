@@ -1,18 +1,18 @@
 TODO list
 
 figure add:
-[ x ] check if adding number don’t exist in DB
-[ ] if figure img don't exists - upload img from hdd
+[ x ] check if adding number don't exist in DB
+[ x ] if figure img does not exists - upload image from hdd
 [ x ] layout form
 [ x ] when typing a figure number, after length of 6 get request for figure photo from bricklink.
-[ x ] check if figure number is correct: display img or display error
+[ x ] check if figure number is correct: display image or display error
 [ x ] swap default select html element to dropdown menu as component
 [ x ] limit inputs main name and additional name to character length that fit into label.
 [ x ] validate form inputs - figure number, main name, price, series, release Year, weapon and purchase date.
 [ x ] display error message - that field is required.
 [ x ] hide error message when input field is in focus or dropdown menu is clicked.
 [ x ] download photo from server to local disk
-[ ] upload photo from local disk to server
+[ x ] upload photo from local disk to server
 [ x ] when adding figure to DB - add purchase day, month and year add separately.
 [ x ] stop generating id from JS - id have to be from DB
 [ x ] input field for bricklink price
@@ -20,13 +20,16 @@ figure add:
 figure edit:
 [ x ] all inputs are edited
 [ x ] delete figure
-[ ] if edited figure don't have related photo in BL catalog - get img from local/server disk
+[ ] when delete figure - delete img from ftp as well
 [ x ] when editing number - check if it already exists in DB
 
 figure list:
 [ x ] after click on img - show on full screen
 [ x ] after clicking on name - edit figure
 [ x ] on PC view show more info, like: additional name, weapon, price, series etc.
+
+figure R2-D2 list:
+[ ] change layout to show more data
 
 Filters:
 [ x ] searching by: name, number: change with every typed character - useState
@@ -50,4 +53,13 @@ stats by:
 
 [ x ] list of figure series fetch from DB
 
+others:
+[ ] form to send many img from hdd to ftp
+[ ] setting to switch off/on functions like: download img to local hdd,
+[ ] popup notification when add/edit delete figure
 
+Account:
+[ ] creating accounts
+[ ] login/logout
+[ ] forget password
+[ ]

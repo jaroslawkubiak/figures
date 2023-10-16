@@ -4,7 +4,7 @@ import createBaseUrl from './createBaseUrl';
 const editFigureInDB = async figure => {
   try {
     const BASE_URL = createBaseUrl();
-    const res = await axios.patch(`${BASE_URL}api/v1/figures/edit/${figure.id}`, figure);
+    const res = await axios.put(`${BASE_URL}api/v1/figures/${figure.id}`, figure);
     return res.data;
   } catch (err) {
     console.log(`Error editing figure: ${err}`);
