@@ -1,17 +1,14 @@
 :root {
-  /* 
-  --primary-color: #ffe81f; original color from star wars logo 
-  --r2d2-primary-color: #274294; original color from r2d2 body
-  --r2d2-secondary-color: #ae3237; original color from r2d2 body
-  */
-
   --primary-color: #ffd43b;
   --secondary-color: #ffffff;
   --bg-light-color: #f3f3f3;
   --bg-color: #212529;
+
   --gray-color: #8a8b8d;
   --error-color: #d31013;
   --edit-color: #ffa94d;
+  --notification-color: #22c55e;
+
   --r2d2-primary-color: #274294;
   --r2d2-secondary-color: #ae3237;
   --r2d2-head-color: #bbbfbf;
@@ -23,6 +20,12 @@
   --edit-color-hover: #ffc078;
   /* less opacity for bg modals*/
   --bg-color-modal: #0f1010f1;
+
+  /* darker version */
+  --primary-color-darker: #d2ab33;
+  --error-color-darker: #7b0000;
+  --edit-color-darker: #bd6704;
+  --notification-color-darker: #1f9f4e;
 }
 
 @font-face {

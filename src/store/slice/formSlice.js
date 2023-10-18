@@ -4,6 +4,7 @@ import { addFigure } from './figureSlice';
 const formSlice = createSlice({
   name: 'form',
   initialState: {
+    id: '',
     number: '',
     mainName: '',
     additionalName: '',
@@ -11,6 +12,7 @@ const formSlice = createSlice({
     label: '',
     bricklink: '',
     series: '',
+    seriesID: '',
     purchasePrice: '',
     weapon: '',
     purchaseDate: '',
@@ -53,6 +55,7 @@ const formSlice = createSlice({
   },
   extraReducers(builder) {
     builder.addCase(addFigure, (state, action) => {
+      state.id = '';
       state.number = '';
       state.mainName = '';
       state.additionalName = '';
@@ -60,6 +63,7 @@ const formSlice = createSlice({
       state.bricklink = '';
       state.label = '';
       state.series = '';
+      state.seriesID = '';
       state.purchasePrice = '';
       state.bricklinkPrice = '';
       state.purchaseDate = '';

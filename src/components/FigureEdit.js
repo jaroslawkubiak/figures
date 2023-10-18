@@ -32,6 +32,8 @@ import {
   editWeapon,
   editPurchaseDate,
   editBricklinkPrice,
+  addNotification,
+  removeNotification,
 } from '../store';
 
 function FigureEdit({ onClose }) {
@@ -58,7 +60,6 @@ function FigureEdit({ onClose }) {
       })
       .catch(err => console.log(err));
   }, []);
-
 
   const dispatch = useDispatch();
   const figure = useSelector(state => {
@@ -91,7 +92,19 @@ function FigureEdit({ onClose }) {
   const handleSubmit = e => {
     e.preventDefault();
     setIsSubmit(true);
-    editFigureInDB(figure);
+    editFigureInDB(figure).then(res => {
+      //setting notification
+      dispatch(addNotification(res));
+      setTimeout(() => {
+        res.hide = 'notification-fade-out';
+        dispatch(addNotification(res));
+      }, 2000);
+
+      // removing notification
+      setTimeout(() => {
+        dispatch(removeNotification());
+      }, 5000);
+    });
     setFormErrors(validate(figure, true, figureExistInDB));
   };
 
@@ -173,15 +186,28 @@ function FigureEdit({ onClose }) {
     setDeleteFigure(true);
   };
 
+  // deleting figure
   useEffect(() => {
     if (deleteFigure) {
       dispatch(removeFigure(figureToDelete.id));
-      deleteFigureFromDB(figureToDelete.id);
+      deleteFigureFromDB(figureToDelete.id).then(res => {
+        //setting notification
+        dispatch(addNotification(res.data));
+        setTimeout(() => {
+          res.data.hide = 'notification-fade-out';
+          dispatch(addNotification(res.data));
+        }, 2000);
+
+        // removing notification
+        setTimeout(() => {
+          dispatch(removeNotification());
+        }, 5000);
+      });
       onClose();
     }
   }, [deleteFigure]);
 
-  //deleting figure
+  // show moal window to confirm figure deletion
   const handleDelete = e => {
     e.preventDefault();
     setShowConfirmModal(true);

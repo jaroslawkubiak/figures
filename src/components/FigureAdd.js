@@ -30,6 +30,8 @@ import {
   changePurchaseDate,
   changeBricklinkPrice,
   getFigureInfo,
+  addNotification,
+  removeNotification,
 } from '../store';
 
 function FigureAdd({ onClose, seriesList }) {
@@ -70,11 +72,26 @@ function FigureAdd({ onClose, seriesList }) {
   //adding figure after submit
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
-      //saving image to local disk
+      // saving image to local disk
       saveImageToHdd(currentFigure.number);
-      dispatch(addFigure(currentFigure));
       // adding figure to DB
-      addFigureToDB(currentFigure);
+      addFigureToDB(currentFigure).then(res => {
+        // save figure ID when adding to DB and series ID, add this to state
+        currentFigure.id = res.lastFigureId;
+        currentFigure.seriesID = res.seriesID;
+        dispatch(addFigure(currentFigure));
+        // setting notification
+        dispatch(addNotification(res));
+        setTimeout(() => {
+          res.hide = 'notification-fade-out';
+          dispatch(addNotification(res));
+        }, 2000);
+
+        // removing notification
+        setTimeout(() => {
+          dispatch(removeNotification());
+        }, 5000);
+      });
       onClose();
     } else {
       setIsSubmit(false);
@@ -84,6 +101,7 @@ function FigureAdd({ onClose, seriesList }) {
   const dispatch = useDispatch();
   const currentFigure = useSelector(state => {
     return {
+      id: state.form.id,
       number: state.form.number,
       mainName: state.form.mainName,
       additionalName: state.form.additionalName,
@@ -91,6 +109,7 @@ function FigureAdd({ onClose, seriesList }) {
       label: state.form.label,
       bricklink: state.form.bricklink,
       series: state.form.series,
+      seriesID: state.form.seriesID,
       purchasePrice: state.form.purchasePrice,
       weapon: state.form.weapon,
       purchaseDate: state.form.purchaseDate,

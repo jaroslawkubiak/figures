@@ -1,4 +1,4 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { fetchFigures } from '../thunks/fetchFigures';
 
 const figuresSlice = createSlice({
@@ -42,12 +42,13 @@ const figuresSlice = createSlice({
     },
     addFigure(state, action) {
       state.data.unshift({
-        id: nanoid(),
+        id: action.payload.id,
         number: action.payload.number,
         mainName: action.payload.mainName,
         additionalName: action.payload.additionalName,
         releaseYear: action.payload.releaseYear,
         series: action.payload.series,
+        seriesID: action.payload.seriesID,
         purchasePrice: action.payload.purchasePrice,
         bricklink: action.payload.bricklink,
         label: action.payload.label,

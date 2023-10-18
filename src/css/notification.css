@@ -1,0 +1,70 @@
+:root {
+  --distance-from-top: 0px;
+  --notification-height: 65px;
+}
+
+.notification-wrapper {
+  position: absolute;
+  top: var(--distance-from-top);
+  right: 0px;
+  left: 0px;
+  height: var(--notification-height);
+  z-index: 99;
+  opacity: 1;
+}
+.notification-fade-out {
+  animation-name: notification;
+  animation-duration: 3s;
+  animation-timing-function: ease;
+}
+
+.notification-content {
+  display: grid;
+  place-items: center;
+}
+
+.notification-type-add {
+  color: var(--secondary-color);
+  background-color: var(--notification-color);
+  border: 4px solid var(--notification-color-darker);
+}
+
+.notification-type-edit {
+  color: var(--secondary-color);
+  background-color: var(--notification-color);
+  border: 4px solid var(--notification-color-darker);
+}
+
+.notification-type-delete {
+  color: var(--bg-color);
+  background-color: var(--edit-color);
+  border: 4px solid var(--edit-color-darker);
+}
+
+.notification-type-error {
+  color: var(--secondary-color);
+  background-color: var(--error-color);
+  border: 4px solid var(--error-color-darker);
+}
+
+@keyframes notification {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/* 
+.not-top-add {
+  top: 0px;
+}
+.not-top-edit {
+  top: 65px;
+}
+.not-top-delete {
+  top: 130px;
+}
+.not-top-error {
+  top: 195px;
+} */

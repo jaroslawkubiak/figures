@@ -16,11 +16,12 @@ figure add:
 [ x ] when adding figure to DB - add purchase day, month and year add separately.
 [ x ] stop generating id from JS - id have to be from DB
 [ x ] input field for bricklink price
+[ ] limit to 22 char in figure main name
 
 figure edit:
 [ x ] all inputs are edited
 [ x ] delete figure
-[ ] when delete figure - delete img from ftp as well
+[ x ] when delete figure - delete img from ftp as well
 [ x ] when editing number - check if it already exists in DB
 
 figure list:

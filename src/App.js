@@ -6,12 +6,13 @@ import { useSelector } from 'react-redux';
 import FigureList from './components/FigureList';
 import Filters from './components/Filters';
 import FigureAdd from './components/FigureAdd';
+import Notification from './components/Notification';
+
 import { fetchFigures } from './store';
 import seriesListDB from './utils/getSeriesList';
 
 function App() {
   const dispatch = useDispatch();
-
   const [listView, setListView] = useState(false);
   const [seriesList, setSeriesList] = useState();
   const [showFigureAddForm, setShowFigureAddForm] = useState(false);
@@ -33,7 +34,6 @@ function App() {
   }, [dispatch]);
 
   // getting info about all figures or filtered figures
-
   const figures = useSelector(({ figures }) => {
     if (figures) {
       const filteredFigures = figures.data.filter(fig => {
@@ -55,8 +55,36 @@ function App() {
   });
   const quantity = figures.data.length;
 
+  // creating notification state
+  const notification = useSelector(({ notification }) => {
+    return notification;
+  });
+
+  // const notAdd = {
+  //   message: 'figure added',
+  //   type: 'add',
+  // };
+  // const notEdit = {
+  //   message: 'figure updated',
+  //   type: 'edit',
+  // };
+  // const notDelete = {
+  //   message: 'figure removed',
+  //   type: 'delete',
+  // };
+  // const notError = {
+  //   message: 'faild to delete',
+  //   type: 'error',
+  // };
+
   return (
     <div className="app-container">
+      {/* {notAdd && <Notification>{notAdd}</Notification>}
+      {notEdit && <Notification>{notEdit}</Notification>}
+      {notDelete && <Notification>{notDelete}</Notification>}
+      {notError && <Notification>{notError}</Notification>} */}
+
+      {notification && <Notification>{notification}</Notification>}
       {/* <div className="test"></div> */}
       <Filters
         onHandleView={handleListView}

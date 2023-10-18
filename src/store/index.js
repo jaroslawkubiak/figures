@@ -41,13 +41,17 @@ import {
   editBricklinkPrice,
 } from './slice/editSlice';
 
+import { notificationReducers, addNotification, removeNotification } from './slice/notificationSlice';
+
 const store = configureStore({
   reducer: {
     figures: figuresReducers,
     form: formReducer,
     edit: editReducer,
+    notification: notificationReducers,
   },
 });
+
 export * from './thunks/fetchFigures';
 export * from './thunks/getFigureInfo';
 export {
@@ -82,4 +86,6 @@ export {
   editWeapon,
   editPurchaseDate,
   editBricklinkPrice,
+  addNotification,
+  removeNotification,
 };

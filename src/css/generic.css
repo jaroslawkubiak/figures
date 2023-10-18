@@ -2,6 +2,9 @@
 .display-grid {
   display: grid;
 }
+.display-none {
+  display: none;
+}
 .justify-self-start {
   justify-self: start;
 }
