@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import parse from 'html-react-parser';
-import { GalacticEmpire } from '../svg/GalacticEmpire';
+import { GalacticEmpire } from '../../svg/GalacticEmpire';
 // import fetchFigureInfo from "../fetch/bricklink";
 
 function FigurePhoto({ figNumber, cssSvgFill }) {

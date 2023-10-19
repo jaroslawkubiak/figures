@@ -3,9 +3,8 @@
 }
 
 .add-figure-wrapper {
-  position: fixed;
+  position: absolute;
   top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
@@ -530,6 +529,15 @@
   .select-height {
     max-height: 190px;
   }
+}
+/*############################## Large devices (laptops/desktops, 992px and up) ##############################*/
+@media only screen and (min-width: 992px) {
+  .add-figure-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    border: 6px solid var(--primary-color);
+  }
+
 }
 
 /*############################## Extra large devices (large laptops and desktops, 1200px and up) ##############################*/

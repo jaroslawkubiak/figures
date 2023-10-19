@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import Modal from './Modal';
+import Modal from '../assets/Modal';
 import { ImArrowUp2 } from 'react-icons/im';
 import FigureShowCard from './FigureShowCard';
 import FigureShowList from './FigureShowList';
@@ -17,9 +17,9 @@ import {
   editWeapon,
   editPurchaseDate,
   editBricklinkPrice,
-} from '../store';
+} from '../../store';
 import FigureEdit from './FigureEdit';
-import { GalacticEmpire } from '../svg/GalacticEmpire';
+import { GalacticEmpire } from '../../svg/GalacticEmpire';
 
 function FigureList({ listView, figures }) {
   const dispatch = useDispatch();

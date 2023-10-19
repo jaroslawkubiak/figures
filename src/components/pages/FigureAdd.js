@@ -1,19 +1,19 @@
-import '../css/figure-form.css';
+import '../../css/figure-form.css';
 import { useState, useEffect } from 'react';
-import Button from './Button';
-import InputText from './InputText';
-import InputNumber from './InputNumber';
-import Dropdown from './Dropdown';
-import InputCheckbox from './InputCheckbox';
+import Button from '../assets/Button';
+import InputText from '../assets/InputText';
+import InputNumber from '../assets/InputNumber';
+import Dropdown from '../assets/Dropdown';
+import InputCheckbox from '../assets/InputCheckbox';
 import FigurePhoto from './FigurePhoto';
 import { ImCross } from 'react-icons/im';
 import { BsPlusLg } from 'react-icons/bs';
-import weaponList from '../data/weaponList.json';
-import saveImageToHdd from '../utils/saveImageToHdd';
-import addFigureToDB from '../utils/addFigureToDB';
-import splitName from '../utils/splitName';
-import { onlyNumbersRegex, validate, inputFieldNotValid, changePeriodToComma } from '../utils/validate';
-import { yearsList } from '../utils/yearList';
+import weaponList from '../../data/weaponList.json';
+import saveImageToHdd from '../../utils/saveImageToHdd';
+import addFigureToDB from '../../utils/addFigureToDB';
+import splitName from '../../utils/splitName';
+import { onlyNumbersRegex, validate, inputFieldNotValid, changePeriodToComma } from '../../utils/validate';
+import { yearsList } from '../../utils/yearList';
 
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -32,9 +32,12 @@ import {
   getFigureInfo,
   addNotification,
   removeNotification,
-} from '../store';
+} from '../../store';
 
 function FigureAdd({ onClose, seriesList }) {
+  const FADE_OUT_NOTIFICATION_TIME = 2000;
+  const HIDE_NOTIFICATION_TIME = 4000;
+
   const [formErrors, setFormErrors] = useState({});
   const [isSubmit, setIsSubmit] = useState(false);
   const [figureExistInDB, setFigureExistInDB] = useState(false);
@@ -85,12 +88,12 @@ function FigureAdd({ onClose, seriesList }) {
         setTimeout(() => {
           res.hide = 'notification-fade-out';
           dispatch(addNotification(res));
-        }, 2000);
+        }, FADE_OUT_NOTIFICATION_TIME);
 
         // removing notification
         setTimeout(() => {
           dispatch(removeNotification());
-        }, 5000);
+        }, HIDE_NOTIFICATION_TIME);
       });
       onClose();
     } else {
@@ -222,7 +225,6 @@ function FigureAdd({ onClose, seriesList }) {
               onChange={handleChangeInput}
               onFocus={handleOnFocus}
               required={true}
-              // placeholder="Enter a number between sw0001 to sw1267"
               // placeholder="Enter a number between sw0001 to sw1267"
               value={currentFigure.number}
             >

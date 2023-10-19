@@ -3,10 +3,10 @@ import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import FigureList from './components/FigureList';
-import Filters from './components/Filters';
-import FigureAdd from './components/FigureAdd';
-import Notification from './components/Notification';
+import FigureList from './components/pages/FigureList';
+import Filters from './components/pages/Filters';
+import FigureAdd from './components/pages/FigureAdd';
+import Notification from './components/assets/Notification';
 
 import { fetchFigures } from './store';
 import seriesListDB from './utils/getSeriesList';
@@ -60,32 +60,10 @@ function App() {
     return notification;
   });
 
-  // const notAdd = {
-  //   message: 'figure added',
-  //   type: 'add',
-  // };
-  // const notEdit = {
-  //   message: 'figure updated',
-  //   type: 'edit',
-  // };
-  // const notDelete = {
-  //   message: 'figure removed',
-  //   type: 'delete',
-  // };
-  // const notError = {
-  //   message: 'faild to delete',
-  //   type: 'error',
-  // };
-
   return (
     <div className="app-container">
-      {/* {notAdd && <Notification>{notAdd}</Notification>}
-      {notEdit && <Notification>{notEdit}</Notification>}
-      {notDelete && <Notification>{notDelete}</Notification>}
-      {notError && <Notification>{notError}</Notification>} */}
-
       {notification && <Notification>{notification}</Notification>}
-      {/* <div className="test"></div> */}
+      {/*<div className="test"></div> */}
       <Filters
         onHandleView={handleListView}
         listView={listView}

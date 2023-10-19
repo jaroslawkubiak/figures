@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import '../css/figure-view.css';
+import '../../css/figure-view.css';
 
-import showFigureImage from '../utils/showFigureImage';
+import showFigureImage from '../../utils/showFigureImage';
 
 function FigureCard({ figure, clickedImage, onModal, onEdit }) {
   const showImage = showFigureImage(figure);

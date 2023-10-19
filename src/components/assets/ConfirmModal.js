@@ -1,4 +1,4 @@
-import '../css/modal.css';
+import '../../css/modal.css';
 import Button from './Button';
 import { BsFillHandThumbsDownFill, BsFillHandThumbsUpFill } from 'react-icons/bs';
 

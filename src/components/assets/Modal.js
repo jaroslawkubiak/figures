@@ -1,5 +1,5 @@
-import '../css/modal.css';
-import showFigureImage from '../utils/showFigureImage';
+import '../../css/modal.css';
+import showFigureImage from '../../utils/showFigureImage';
 import { ImArrowRight2, ImArrowLeft2, ImCross } from 'react-icons/im';
 import { useEffect } from 'react';
 

@@ -1,4 +1,4 @@
-import '../css/filters.css';
+import '../../css/filters.css';
 import {
   BsFilterSquareFill,
   BsPlusSquare,
@@ -8,18 +8,18 @@ import {
   BsFillPlusCircleFill,
 } from 'react-icons/bs';
 import { ImCross } from 'react-icons/im';
-import { onlyNumbersRegex } from '../utils/validate';
-import { yearsList } from '../utils/yearList';
+import { onlyNumbersRegex } from '../../utils/validate';
+import { yearsList } from '../../utils/yearList';
 
 import FigureQuantity from './FigureQuantity';
 import React, { useState } from 'react';
-import { LegoMinifigure } from '../svg/LegoMinifigure';
+import { LegoMinifigure } from '../../svg/LegoMinifigure';
 // import { GalacticRepublic } from '../svg/GalacticRepublic';
 
-import InputText from './InputText';
-import Dropdown from './Dropdown';
+import InputText from '../assets/InputText';
+import Dropdown from '../assets/Dropdown';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeSearchNumber, changeSearchMainName, changeSearchReleaseYear, changeSearchSeries } from '../store';
+import { changeSearchNumber, changeSearchMainName, changeSearchReleaseYear, changeSearchSeries } from '../../store';
 
 function Filters({ onAddFigure, onHandleView, listView, quantity, seriesList }) {
   const dispatch = useDispatch();
@@ -166,8 +166,8 @@ function Filters({ onAddFigure, onHandleView, listView, quantity, seriesList }) 
         </div>
 
         {/* <div className=" justify-self-center"> */}
-          {/* show list view */}
-          {/* {!listView && (
+        {/* show list view */}
+        {/* {!listView && (
             <GalacticRepublic
               fill={cssSvgFillColor}
               // onClick={onHandleView}
