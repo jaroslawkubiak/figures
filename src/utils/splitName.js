@@ -18,8 +18,10 @@ function splitName(name) {
     if (dash > 1) {
       newNames.main = name.slice(0, dash);
       const tempAdditionalName = name.slice(dash + 3);
+
       const comma = tempAdditionalName.indexOf(',');
-      newNames.additional = tempAdditionalName.slice(0, comma);
+      if (comma > 0) newNames.additional = tempAdditionalName.slice(0, comma);
+      else newNames.additional = tempAdditionalName;
     }
   }
 
@@ -32,8 +34,28 @@ function splitName(name) {
     }
   }
 
+  // split by /
+  if (!newNames.main) {
+    const slash = name.indexOf('/');
+    if (slash > 1) {
+      newNames.main = name.slice(0, slash);
+      newNames.additional = name.slice(slash + 2);
+    }
+  }
+
   // nothing to split
   if (!newNames.main) newNames.main = name;
+
+  // additional cleaning
+  newNames.main = newNames.main.replaceAll('/', '');
+  newNames.additional = newNames.additional.replaceAll('/', '');
+
+  newNames.main = newNames.main.replaceAll('  ', '');
+  newNames.additional = newNames.additional.replaceAll('  ', ' ');
+
+  // check if main or additional name is longer than 22 characters, if so - split it
+  newNames.main = newNames.main.slice(0, 21);
+  newNames.additional = newNames.additional.slice(0, 21);
 
   return newNames;
 }
