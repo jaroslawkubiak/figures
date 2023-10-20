@@ -3,14 +3,12 @@
   --notification-height: 65px;
   --notification-border: 4px;
   --cut-height: 10px;
-
 }
 
 .notification-wrapper {
   position: absolute;
+  inset: 0;
   top: var(--distance-from-top);
-  right: 0px;
-  left: 0px;
   height: var(--notification-height);
   z-index: 99;
   opacity: 1;
@@ -22,8 +20,8 @@
     0 100%,
     0% var(--cut-height)
   );
-
 }
+
 .notification-fade-out {
   animation-name: notification;
   animation-duration: 3s;
@@ -70,32 +68,26 @@
 
 /*############################## Medium devices (landscape tablets, 768px and up) ##############################*/
 @media only screen and (min-width: 768px) {
-  :root{
+  :root {
     --notification-border: 6px;
-    --cut-height: 14px;
     --notification-height: 64px;
-
   }
-  .notification-wrapper {
-    margin: 0 auto;
-    width: 50%;
-    height: var(--notification-height);
 
-  }
   .notification-content {
-  font-size: 1.6em;
+    margin: 0 auto;
+    font-size: 1.6em;
+    padding: 0 2em;
   }
-
 }
-
 /*############################## Extra large devices (large laptops and desktops, 1200px and up) ##############################*/
 @media only screen and (min-width: 1200px) {
   :root {
     --notification-height: 98px;
     --notification-border: 8px;
   }
-  
+
   .notification-content {
     font-size: 3em;
-    }
+    padding: 0 4em;
+  }
 }
