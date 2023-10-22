@@ -8,7 +8,6 @@ const figuresSlice = createSlice({
     searchMainName: '',
     searchReleaseYear: '',
     searchSeries: '',
-    figureExist: '',
     data: [],
     isLoading: false,
     error: null,
@@ -39,6 +38,9 @@ const figuresSlice = createSlice({
     },
     changeSearchSeries(state, action) {
       state.searchSeries = action.payload;
+    },
+    setError(state, action) {
+      state.error = action.payload;
     },
     addFigure(state, action) {
       state.data.unshift({
@@ -93,5 +95,6 @@ export const {
   addFigure,
   removeFigure,
   editFigure,
+  setError,
 } = figuresSlice.actions;
 export const figuresReducers = figuresSlice.reducer;

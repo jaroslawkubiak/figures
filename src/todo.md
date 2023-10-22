@@ -16,7 +16,8 @@ figure add:
 [ x ] when adding figure to DB - add purchase day, month and year add separately.
 [ x ] stop generating id from JS - id have to be from DB
 [ x ] input field for bricklink price
-[ ] limit to 22 char in figure main name
+[ x ] limit to 22 char in figure main name
+[ ] loader when newly added figure images is sending to ftp
 
 figure edit:
 [ x ] all inputs are edited
@@ -57,7 +58,7 @@ stats by:
 others:
 [ ] form to send many img from hdd to ftp
 [ ] setting to switch off/on functions like: download img to local hdd,
-[ ] popup notification when add/edit delete figure
+[ x ] popup notification when add/edit delete figure
 
 Account:
 [ ] creating accounts

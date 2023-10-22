@@ -8,6 +8,7 @@ const getFigureInfo = async reqFigure => {
     return res.data;
   } catch (err) {
     console.log(`Error getting figure info: ${err}`);
+    throw new Error(err);
   }
 };
 

@@ -72,7 +72,7 @@ function FigureList({ listView, figures }) {
     setCurrentIndex(newIndex);
   };
 
-  //edit figure
+  // edit figure
   const handleEdit = fig => {
     setShowFigureEditForm(true);
     dispatch(editId(fig.id));
@@ -97,7 +97,7 @@ function FigureList({ listView, figures }) {
   const renderedIsLoading = figures.isLoading ? (
     <div className="isLoading-wrapper">
       <div className="isLoading-content">
-        <GalacticEmpire cssClass="svg-fill-primary svg-galactic-empire-rotate" />
+        <GalacticEmpire cssClass="svg-fill-primary svg-rotate" />
       </div>
       <span className="font-size-3 letter-spacing-4">Loading...</span>
     </div>
@@ -119,7 +119,7 @@ function FigureList({ listView, figures }) {
     ''
   );
 
-  const renderedFigures = figures.map((figure, index) => {
+  const renderedFigures = figures.data.map((figure, index) => {
     if (listView) {
       let isFigureEven = index % 2;
       return (

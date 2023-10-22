@@ -1,4 +1,4 @@
-/* rotataion for fetching image from bricklink page */
+/* rotation for fetching image from bricklink page or loading images*/
 @keyframes img-fetch-rotation {
   from {
     transform: rotate(0deg);
@@ -7,7 +7,7 @@
     transform: rotate(359deg);
   }
 }
-.svg-galactic-empire-rotate {
+.svg-rotate {
   animation: img-fetch-rotation 4s infinite linear;
 }
 
@@ -28,6 +28,9 @@
 }
 .svg-fill-gray {
   fill: var(--gray-color);
+}
+.svg-fill-loading {
+  fill: var(--loading-color);
 }
 .svg-fill-r2d2-primary {
   fill: var(--r2d2-primary-color);

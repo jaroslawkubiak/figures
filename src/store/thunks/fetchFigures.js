@@ -8,7 +8,7 @@ const fetchFigures = createAsyncThunk('figures/fetch', async () => {
     const res = await axios.get(`${BASE_URL}api/v1/figures`);
     return res.data;
   } catch (err) {
-    console.log(`Error fetching figures list: ${err}`);
+    throw new Error(err);
   }
 });
 

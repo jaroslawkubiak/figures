@@ -76,7 +76,7 @@ function FigureAdd({ onClose, seriesList }) {
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       // saving image to local disk
-      saveImageToHdd(currentFigure.number);
+      // saveImageToHdd(currentFigure.number);
       // adding figure to DB
       addFigureToDB(currentFigure).then(res => {
         // save figure ID when adding to DB and series ID, add this to state
@@ -130,7 +130,7 @@ function FigureAdd({ onClose, seriesList }) {
     .replaceAll('.', '-');
 
   //setting initial value for number and date
-  if (!currentFigure.number) currentFigure.number = 'sw111';
+  if (!currentFigure.number) currentFigure.number = 'sw007';
   if (!currentFigure.purchaseDate) currentFigure.purchaseDate = today;
 
   // handle change to inputs fields

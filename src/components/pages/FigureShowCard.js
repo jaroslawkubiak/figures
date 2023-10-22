@@ -1,11 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../../css/figure-view.css';
-
 import showFigureImage from '../../utils/showFigureImage';
+import { GalacticRepublic } from '../../svg/GalacticRepublic';
 
 function FigureCard({ figure, clickedImage, onModal, onEdit }) {
-  const showImage = showFigureImage(figure);
-  const [figImage, setFigImage] = useState(showImage.url);
+  const defaultImage = {
+    defaultUrl: 'https://jaroslawkubiak.pl/portfolio/figures/static/media/bricklink.png',
+    url: `https://jaroslawkubiak.pl/portfolio/figures/static/media/${figure.number}.png`,
+    description: figure.mainName,
+  };
+
+  const [figureImage, setFigureImage] = useState(defaultImage);
+  const [state, setState] = useState('succes');
+
+  useEffect(() => {
+    setState('loading');
+    showFigureImage(figure)
+      .then(value => {
+        setState('succes');
+        setFigureImage(value);
+      })
+      .catch(err => {
+        setState('error');
+        console.log(err);
+      });
+  }, [figure]);
 
   return (
     <div className="card-container">
@@ -19,12 +38,18 @@ function FigureCard({ figure, clickedImage, onModal, onEdit }) {
         </span>
       </div>
       <div className="card-wrapper cursor-pointer" onClick={() => onModal(figure, clickedImage)}>
-        <img
-          src={figImage}
-          alt={showImage.description}
-          title={showImage.description}
-          className="card-figure-img cursor-pointer"
-        />
+        {state === 'loading' ? (
+          <GalacticRepublic cssClass="svg-fill-loading svg-rotate" />
+        ) : state === 'error' ? (
+          <GalacticRepublic cssClass="svg-fill-error" />
+        ) : (
+          <img
+            src={figureImage.url ? figureImage.url : figureImage.defaultUrl}
+            alt={figureImage.description}
+            title={figureImage.description}
+            className="card-figure-img cursor-pointer"
+          />
+        )}
       </div>
       <div className="card-number">
         <span className="card-cell-text">

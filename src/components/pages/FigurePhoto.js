@@ -33,7 +33,7 @@ function FigurePhoto({ figNumber, cssSvgFill }) {
 
   if (figNumber.length >= 6 && imageExists(renderedPhoto)) {
     if (!figImg.isLoading && figImg.result === '') setFigImg({ ...figImg, isLoading: true });
-    const cssSvgClass = `${cssSvgFill} svg-galactic-empire-rotate`;
+    const cssSvgClass = `${cssSvgFill} svg-rotate`;
     renderedData = (
       <div className="img-wrapper">
         <span className="color-error">&nbsp;</span>
@@ -45,8 +45,6 @@ function FigurePhoto({ figNumber, cssSvgFill }) {
     img.onload = () => {
       if (figImg.isLoading) {
         setFigImg({ ...figImg, isLoading: false, result: renderedPhoto });
-        // fetching figure info from bricklink
-        // fetchFigureInfo(figNumber);
       }
     };
 

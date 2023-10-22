@@ -3,13 +3,13 @@ import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
+import FigureAdd from './components/pages/FigureAdd';
 import FigureList from './components/pages/FigureList';
 import Filters from './components/pages/Filters';
-import FigureAdd from './components/pages/FigureAdd';
 import Notification from './components/assets/Notification';
 
-import { fetchFigures } from './store';
-import seriesListDB from './utils/getSeriesList';
+import { fetchFigures, setError } from './store';
+import getSeriesList from './utils/getSeriesList';
 
 function App() {
   const dispatch = useDispatch();
@@ -21,12 +21,15 @@ function App() {
   };
   const handleAddFigureForm = () => setShowFigureAddForm(!showFigureAddForm);
 
+  // fetching for series list from DB
   useEffect(() => {
-    seriesListDB()
+    getSeriesList()
       .then(value => {
         setSeriesList(value);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        dispatch(setError(err));
+      });
   }, []);
 
   useEffect(() => {
@@ -35,7 +38,7 @@ function App() {
 
   // getting info about all figures or filtered figures
   const figures = useSelector(({ figures }) => {
-    if (figures) {
+    if (figures.data) {
       const filteredFigures = figures.data.filter(fig => {
         const searchReleaseYearConditions = figures.searchReleaseYear
           ? fig.releaseYear === figures.searchReleaseYear
@@ -72,7 +75,7 @@ function App() {
         seriesList={seriesList}
       />
       {showFigureAddForm && <FigureAdd onClose={handleAddFigureForm} seriesList={seriesList} />}
-      <FigureList listView={listView} figures={figures.data} />
+      <FigureList listView={listView} figures={figures} />
     </div>
   );
 }

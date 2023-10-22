@@ -8,6 +8,7 @@ import {
   addFigure,
   editFigure,
   removeFigure,
+  setError,
 } from './slice/figureSlice';
 
 import {
@@ -88,4 +89,5 @@ export {
   editBricklinkPrice,
   addNotification,
   removeNotification,
+  setError,
 };
