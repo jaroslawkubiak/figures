@@ -1,5 +1,4 @@
 import '../../css/modal.css';
-import createImageLink from '../../utils/createImageLink';
 import { ImArrowRight2, ImArrowLeft2, ImCross } from 'react-icons/im';
 import { useEffect } from 'react';
 
@@ -11,8 +10,6 @@ const Modal = ({ clickedImage, handleSwapRight, handleSwapLeft, setClickedImage 
       document.body.classList.remove('overflow-hidden');
     };
   }, []);
-
-  const showImage = createImageLink(clickedImage);
 
   // close modal function
   const handleClick = e => {
@@ -34,11 +31,11 @@ const Modal = ({ clickedImage, handleSwapRight, handleSwapLeft, setClickedImage 
           <ImCross className={`svg-fill-bg modal-close-svg`} />
           <div className="modal-close dismiss"></div>
         </div>
-        <div className="modal-label">{showImage.description}</div>
+        <div className="modal-label">{clickedImage.mainName}</div>
         <img
-          src={showImage.url}
-          alt={showImage.description}
-          title={showImage.description}
+          src={clickedImage.imageLink}
+          alt={clickedImage.mainName}
+          title={clickedImage.mainName}
           className="modal-figure-img"
         />
       </div>

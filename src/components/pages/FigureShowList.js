@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import '../../css/figure-view.css';
-import showFigureImage from '../../utils/showFigureImage';
+import checkIfImageExist from '../../utils/checkIfImageExist';
 import parse from 'html-react-parser';
 
 function FigureShowList({ figure, clickedImage, onModal, onEdit, isFigureEven }) {
-  const showImage = showFigureImage(figure);
-  const [figImage, setFigImage] = useState(showImage.url);
+  const showImage = figure.imageLink;
+  // const showImage = checkIfImageExist(figure);
+  const [figImage, setFigImage] = useState(showImage.imageLink);
   // set bricklink logo
   // const bricklinkLogo = 'public/bricklink.png';
- const  bricklinkLogo = require(`../../bricklink.png`);
- 
+  const bricklinkLogo = require(`../../bricklink.png`);
+
   const renderedData =
     parse(`<a href="https://www.bricklink.com/v2/catalog/catalogitem.page?M=${figure.number}" target="_blank">
   <img

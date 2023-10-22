@@ -53,6 +53,7 @@ const figuresSlice = createSlice({
         seriesID: action.payload.seriesID,
         purchasePrice: action.payload.purchasePrice,
         bricklink: action.payload.bricklink,
+        imageLink: `https://img.bricklink.com/ItemImage/MN/0/${action.payload.number}.png`,
         label: action.payload.label,
         bricklinkPrice: action.payload.bricklinkPrice,
         purchaseDate: action.payload.purchaseDate,

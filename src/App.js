@@ -19,8 +19,11 @@ function App() {
   const handleListView = () => {
     setListView(!listView);
   };
-  const handleAddFigureForm = () => setShowFigureAddForm(!showFigureAddForm);
 
+
+  const handleAddFigureForm = () => {
+    setShowFigureAddForm(!showFigureAddForm);
+  };
   // fetching for series list from DB
   useEffect(() => {
     getSeriesList()
@@ -74,7 +77,9 @@ function App() {
         quantity={quantity}
         seriesList={seriesList}
       />
-      {showFigureAddForm && <FigureAdd onClose={handleAddFigureForm} seriesList={seriesList} />}
+      {showFigureAddForm && (
+        <FigureAdd onClose={handleAddFigureForm} seriesList={seriesList} />
+      )}
       <FigureList listView={listView} figures={figures} />
     </div>
   );

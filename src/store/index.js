@@ -24,6 +24,7 @@ import {
   changeWeapon,
   changePurchaseDate,
   changeBricklinkPrice,
+  changeImageLink,
 } from './slice/formSlice';
 
 import {
@@ -90,4 +91,5 @@ export {
   addNotification,
   removeNotification,
   setError,
+  changeImageLink,
 };

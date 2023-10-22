@@ -11,6 +11,7 @@ const formSlice = createSlice({
     releaseYear: '',
     label: '',
     bricklink: '',
+    imageLink: 'https://jaroslawkubiak.pl/portfolio/figures/static/media/bricklink.png',
     series: '',
     seriesID: '',
     purchasePrice: '',
@@ -30,6 +31,9 @@ const formSlice = createSlice({
     },
     changeBricklink(state, action) {
       state.bricklink = action.payload;
+    },
+    changeImageLink(state, action) {
+      state.imageLink = action.payload;
     },
     changeLabel(state, action) {
       state.label = action.payload ? 'on' : '';
@@ -61,6 +65,7 @@ const formSlice = createSlice({
       state.additionalName = '';
       state.releaseYear = '';
       state.bricklink = '';
+      state.imageLink = '';
       state.label = '';
       state.series = '';
       state.seriesID = '';
@@ -84,5 +89,6 @@ export const {
   changeWeapon,
   changePurchaseDate,
   changeBricklinkPrice,
+  changeImageLink,
 } = formSlice.actions;
 export const formReducer = formSlice.reducer;

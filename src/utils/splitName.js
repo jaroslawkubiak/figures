@@ -47,11 +47,17 @@ function splitName(name) {
   if (!newNames.main) newNames.main = name;
 
   // additional cleaning
+  // remove /
   newNames.main = newNames.main.replaceAll('/', '');
   newNames.additional = newNames.additional.replaceAll('/', '');
 
-  newNames.main = newNames.main.replaceAll('  ', '');
+  //remove double spaces
+  newNames.main = newNames.main.replaceAll('  ', ' ');
   newNames.additional = newNames.additional.replaceAll('  ', ' ');
+
+  //remove ’
+  newNames.main = newNames.main.replaceAll('’', '');
+  newNames.additional = newNames.additional.replaceAll('’', '');
 
   // check if main or additional name is longer than 22 characters, if so - split it
   newNames.main = newNames.main.slice(0, 21);

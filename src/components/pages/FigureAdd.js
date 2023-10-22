@@ -9,6 +9,7 @@ import FigurePhoto from './FigurePhoto';
 import { ImCross } from 'react-icons/im';
 import { BsPlusLg } from 'react-icons/bs';
 import weaponList from '../../data/weaponList.json';
+
 import saveImageToHdd from '../../utils/saveImageToHdd';
 import addFigureToDB from '../../utils/addFigureToDB';
 import splitName from '../../utils/splitName';
@@ -58,7 +59,7 @@ function FigureAdd({ onClose, seriesList }) {
     setFormErrors(validate(currentFigure, true, figureExistInDB));
   };
 
-  //fetch for figure data from Bricklink
+  // fetch for figure data from Bricklink
   function fetchForFigureInfo(number) {
     getFigureInfo(number).then(value => {
       const { year_released, name } = value.info;
@@ -72,17 +73,20 @@ function FigureAdd({ onClose, seriesList }) {
       dispatch(changeBricklinkPrice(bricklinkAvPrice));
     });
   }
-  //adding figure after submit
+  // adding figure after submit
   useEffect(() => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       // saving image to local disk
-      // saveImageToHdd(currentFigure.number);
+      if (process.env.REACT_APP_DOWNLOAD_IMAGE_ON_HDD === 'true') saveImageToHdd(currentFigure.number);
+
       // adding figure to DB
       addFigureToDB(currentFigure).then(res => {
         // save figure ID when adding to DB and series ID, add this to state
         currentFigure.id = res.lastFigureId;
         currentFigure.seriesID = res.seriesID;
+        // update store
         dispatch(addFigure(currentFigure));
+
         // setting notification
         dispatch(addNotification(res));
         setTimeout(() => {
@@ -94,8 +98,8 @@ function FigureAdd({ onClose, seriesList }) {
         setTimeout(() => {
           dispatch(removeNotification());
         }, HIDE_NOTIFICATION_TIME);
+        onClose(currentFigure.id);
       });
-      onClose();
     } else {
       setIsSubmit(false);
     }
@@ -129,8 +133,8 @@ function FigureAdd({ onClose, seriesList }) {
     })
     .replaceAll('.', '-');
 
-  //setting initial value for number and date
-  if (!currentFigure.number) currentFigure.number = 'sw007';
+  // setting initial value for number and date
+  if (!currentFigure.number) currentFigure.number = 'sw018';
   if (!currentFigure.purchaseDate) currentFigure.purchaseDate = today;
 
   // handle change to inputs fields
@@ -198,6 +202,7 @@ function FigureAdd({ onClose, seriesList }) {
     return data.filter(fig => fig.number.toLowerCase().includes(currentFigure.number.toLowerCase()));
   });
 
+  // check if figure already exist in DB
   useEffect(() => {
     if (currentFigure.number.length > 5 && allFigures.length === 1) {
       setFigureExistInDB(inputFieldNotValid('You have this'));
@@ -207,6 +212,7 @@ function FigureAdd({ onClose, seriesList }) {
     }
   }, [currentFigure.number]);
 
+  // create add form
   return (
     <div className="add-figure-wrapper">
       <div className="add-figure-container">

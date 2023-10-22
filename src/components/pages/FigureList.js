@@ -31,7 +31,7 @@ function FigureList({ listView, figures }) {
     setClickedImage(figure);
   };
 
-  // go to next image
+  // go to next image handler function
   const handleSwapRight = () => {
     const totalLength = figures.data.length;
     // if clicked - show the first element
@@ -40,15 +40,17 @@ function FigureList({ listView, figures }) {
       setClickedImage(figures.data[0]);
       return;
     }
+
     const newIndex = currentIndex + 1;
     const newUrl = figures.data.filter(item => {
       return figures.data.indexOf(item) === newIndex;
     });
+
     setClickedImage(newUrl[0]);
     setCurrentIndex(newIndex);
   };
 
-  // go to previous image
+  // go to previous image handler function
   const handleSwapLeft = () => {
     const totalLength = figures.data.length;
 

@@ -1,32 +1,32 @@
 import { useEffect, useState } from 'react';
 import '../../css/figure-view.css';
-import showFigureImage from '../../utils/showFigureImage';
+import checkIfImageExist from '../../utils/checkIfImageExist';
 import { GalacticRepublic } from '../../svg/GalacticRepublic';
 
 function FigureCard({ figure, clickedImage, onModal, onEdit }) {
-  const defaultImage = {
-    defaultUrl: 'https://jaroslawkubiak.pl/portfolio/figures/static/media/bricklink.png',
-    url: `https://jaroslawkubiak.pl/portfolio/figures/static/media/${figure.number}.png`,
-    description: figure.mainName,
-  };
-
-  
-  const [figureImage, setFigureImage] = useState(defaultImage);
-  const [state, setState] = useState('succes');
+  const [state, setState] = useState('loading');
+  const [figureImage, setFigureImage] = useState(
+    `https://jaroslawkubiak.pl/portfolio/figures/static/media/bricklink.png`
+  );
 
   useEffect(() => {
-    setState('loading');
-    showFigureImage(figure)
-      .then(value => {
-        setState('succes');
-        setFigureImage(value);
-      })
-      .catch(err => {
-        setState('error');
-        console.log(err);
-      });
-  }, [figure]);
+    // check if image link in DB is for bricklink or local
+    if (figure.imageLink?.includes('https://jaroslawkubiak.pl')) {
+      // set link from my server
+      console.log('link jest z mojego serwera');
+      setFigureImage(figure.imageLink);
+      setState('succes');
+    } else if (!figure.imageLink || figure.imageLink?.includes('https://img.bricklink.com')) {
+      // set new default link
+      console.log('link jest z pusty albo jest z bricklinka');
+      setFigureImage(`https://img.bricklink.com/ItemImage/MN/0/${figure.number}.png`);
 
+      //get api call - check if file exists on FTP
+      checkIfImageExist(figure);
+      setFigureImage(figure.imageLink);
+      setState('succes');
+    }
+  }, []);
 
   return (
     <div className="card-container">
@@ -46,9 +46,9 @@ function FigureCard({ figure, clickedImage, onModal, onEdit }) {
           <GalacticRepublic cssClass="svg-fill-error" />
         ) : (
           <img
-            src={figureImage.url ? figureImage.url : figureImage.defaultUrl}
-            alt={figureImage.description}
-            title={figureImage.description}
+            src={figureImage}
+            alt={figure.mainName}
+            title={figure.mainName}
             className="card-figure-img cursor-pointer"
           />
         )}
