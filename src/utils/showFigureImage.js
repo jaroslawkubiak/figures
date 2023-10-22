@@ -1,13 +1,11 @@
 import axios from 'axios';
 import createBaseUrl from './createBaseUrl';
+import createImageLink from './createImageLink';
 
 async function showFigureImage(figure) {
-  const bricklinkLogo = `https://jaroslawkubiak.pl/portfolio/figures/static/media/bricklink.png`;
-  let fileName = {
-    defaultUrl: bricklinkLogo,
-    url: null,
-    description: figure.mainName,
-  };
+
+  let fileName = createImageLink(figure);
+  fileName = { ...fileName, url: null };
 
   try {
     const BASE_URL = createBaseUrl();

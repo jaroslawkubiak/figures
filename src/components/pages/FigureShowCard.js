@@ -10,6 +10,7 @@ function FigureCard({ figure, clickedImage, onModal, onEdit }) {
     description: figure.mainName,
   };
 
+  
   const [figureImage, setFigureImage] = useState(defaultImage);
   const [state, setState] = useState('succes');
 
@@ -25,6 +26,7 @@ function FigureCard({ figure, clickedImage, onModal, onEdit }) {
         console.log(err);
       });
   }, [figure]);
+
 
   return (
     <div className="card-container">

@@ -1,5 +1,5 @@
 import '../../css/modal.css';
-import showFigureImage from '../../utils/showFigureImage';
+import createImageLink from '../../utils/createImageLink';
 import { ImArrowRight2, ImArrowLeft2, ImCross } from 'react-icons/im';
 import { useEffect } from 'react';
 
@@ -12,8 +12,9 @@ const Modal = ({ clickedImage, handleSwapRight, handleSwapLeft, setClickedImage 
     };
   }, []);
 
-  const showImage = showFigureImage(clickedImage);
+  const showImage = createImageLink(clickedImage);
 
+  // close modal function
   const handleClick = e => {
     if (e.target.classList.contains('dismiss')) {
       setClickedImage(null);

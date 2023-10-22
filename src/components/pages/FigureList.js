@@ -23,7 +23,6 @@ import { GalacticEmpire } from '../../svg/GalacticEmpire';
 
 function FigureList({ listView, figures }) {
   const dispatch = useDispatch();
-
   const [clickedImage, setClickedImage] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
 
@@ -34,38 +33,35 @@ function FigureList({ listView, figures }) {
 
   // go to next image
   const handleSwapRight = () => {
-    const totalLength = figures.length;
-
+    const totalLength = figures.data.length;
     // if clicked - show the first element
     if (currentIndex + 1 >= totalLength) {
       setCurrentIndex(0);
-      setClickedImage(figures[0]);
+      setClickedImage(figures.data[0]);
       return;
     }
-
     const newIndex = currentIndex + 1;
-    const newUrl = figures.filter(item => {
-      return figures.indexOf(item) === newIndex;
+    const newUrl = figures.data.filter(item => {
+      return figures.data.indexOf(item) === newIndex;
     });
-
     setClickedImage(newUrl[0]);
     setCurrentIndex(newIndex);
   };
 
   // go to previous image
   const handleSwapLeft = () => {
-    const totalLength = figures.length;
+    const totalLength = figures.data.length;
 
     // if clicked - show the first element
     if (currentIndex === 0) {
       setCurrentIndex(totalLength - 1);
-      setClickedImage(figures[totalLength - 1]);
+      setClickedImage(figures.data[totalLength - 1]);
       return;
     }
 
     const newIndex = currentIndex - 1;
-    const newUrl = figures.filter(item => {
-      return figures.indexOf(item) === newIndex;
+    const newUrl = figures.data.filter(item => {
+      return figures.data.indexOf(item) === newIndex;
     });
 
     setClickedImage(newUrl[0]);
