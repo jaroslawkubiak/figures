@@ -7,7 +7,7 @@ const addFigureToDB = async figure => {
     const res = await axios.post(`${BASE_URL}api/v1/figures`, figure);
     return res.data;
   } catch (err) {
-    console.log(`Error adding figure: ${err}`);
+    console.log(`🔥 ERROR adding figure: ${err}`);
   }
 };
 

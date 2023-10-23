@@ -1,12 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../../css/figure-view.css';
 import checkIfImageExist from '../../utils/checkIfImageExist';
 import parse from 'html-react-parser';
 
 function FigureShowList({ figure, clickedImage, onModal, onEdit, isFigureEven }) {
-  const showImage = figure.imageLink;
-  // const showImage = checkIfImageExist(figure);
-  const [figImage, setFigImage] = useState(showImage.imageLink);
+  const [state, setState] = useState('loading');
+  const [figureImage, setFigureImage] = useState(
+    `https://jaroslawkubiak.pl/portfolio/figures/static/media/bricklink.png`
+  );
+
+  useEffect(() => {
+    // check if image link in DB is for bricklink or local
+    if (figure.imageLink?.includes('https://jaroslawkubiak.pl')) {
+      // set link from my server
+      setFigureImage(figure.imageLink);
+      setState('succes');
+    } else if (!figure.imageLink || figure.imageLink?.includes('https://img.bricklink.com')) {
+      // set new default link
+      setFigureImage(`https://img.bricklink.com/ItemImage/MN/0/${figure.number}.png`);
+
+      //get api call - check if file exists on FTP
+      checkIfImageExist(figure);
+      setFigureImage(figure.imageLink);
+      setState('succes');
+    }
+  }, []);
   // set bricklink logo
   // const bricklinkLogo = 'public/bricklink.png';
   const bricklinkLogo = require(`../../bricklink.png`);
@@ -27,7 +45,7 @@ function FigureShowList({ figure, clickedImage, onModal, onEdit, isFigureEven })
         className={`r2d2-figure-img-wrapper cursor-pointer ${isFigureEven || 'r2d2-even'}`}
         onClick={() => onModal(figure, clickedImage)}
       >
-        <img src={figImage} alt={showImage.description} title={showImage.description} className="r2d2-figure-img" />
+        <img src={figureImage} alt={figure.description} title={figure.description} className="r2d2-figure-img" />
       </div>
 
       <div

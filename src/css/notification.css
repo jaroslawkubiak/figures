@@ -6,20 +6,13 @@
 }
 
 .notification-wrapper {
-  position: absolute;
-  inset: 0;
-  top: var(--distance-from-top);
+  position: fixed;
+  left: 0%;
+  right: 0%;
   height: var(--notification-height);
+  top: var(--distance-from-top);
   z-index: 99;
   opacity: 1;
-  clip-path: polygon(
-    var(--cut-height) 0%,
-    100% 0,
-    100% calc(100% - var(--cut-height)),
-    calc(100% - var(--cut-height)) 100%,
-    0 100%,
-    0% var(--cut-height)
-  );
 }
 
 .notification-fade-out {
@@ -31,6 +24,14 @@
 .notification-content {
   display: grid;
   place-items: center;
+  clip-path: polygon(
+    var(--cut-height) 0%,
+    100% 0,
+    100% calc(100% - var(--cut-height)),
+    calc(100% - var(--cut-height)) 100%,
+    0 100%,
+    0% var(--cut-height)
+  );
 }
 
 .notification-type-add {
@@ -71,6 +72,10 @@
   :root {
     --notification-border: 6px;
     --notification-height: 64px;
+  }
+  .notification-wrapper {
+    left: 10%;
+    right: 10%;
   }
 
   .notification-content {

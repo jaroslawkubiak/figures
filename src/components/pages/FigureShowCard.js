@@ -13,12 +13,10 @@ function FigureCard({ figure, clickedImage, onModal, onEdit }) {
     // check if image link in DB is for bricklink or local
     if (figure.imageLink?.includes('https://jaroslawkubiak.pl')) {
       // set link from my server
-      console.log('link jest z mojego serwera');
       setFigureImage(figure.imageLink);
       setState('succes');
     } else if (!figure.imageLink || figure.imageLink?.includes('https://img.bricklink.com')) {
       // set new default link
-      console.log('link jest z pusty albo jest z bricklinka');
       setFigureImage(`https://img.bricklink.com/ItemImage/MN/0/${figure.number}.png`);
 
       //get api call - check if file exists on FTP
@@ -42,8 +40,6 @@ function FigureCard({ figure, clickedImage, onModal, onEdit }) {
       <div className="card-wrapper cursor-pointer" onClick={() => onModal(figure, clickedImage)}>
         {state === 'loading' ? (
           <GalacticRepublic cssClass="svg-fill-loading svg-rotate" />
-        ) : state === 'error' ? (
-          <GalacticRepublic cssClass="svg-fill-error" />
         ) : (
           <img
             src={figureImage}

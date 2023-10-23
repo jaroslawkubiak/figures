@@ -20,7 +20,6 @@ function App() {
     setListView(!listView);
   };
 
-
   const handleAddFigureForm = () => {
     setShowFigureAddForm(!showFigureAddForm);
   };
@@ -77,9 +76,7 @@ function App() {
         quantity={quantity}
         seriesList={seriesList}
       />
-      {showFigureAddForm && (
-        <FigureAdd onClose={handleAddFigureForm} seriesList={seriesList} />
-      )}
+      {showFigureAddForm && <FigureAdd onClose={handleAddFigureForm} seriesList={seriesList} />}
       <FigureList listView={listView} figures={figures} />
     </div>
   );

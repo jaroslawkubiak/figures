@@ -21,12 +21,12 @@ export function validate(values, isSubmit, duplicate) {
   if (isSubmit && values.number.length < 6) errors.number = inputFieldNotValid('Min 6 char');
   if (isSubmit && values.mainName === '') errors.mainName = inputFieldNotValid(REQUIRED_FIELD_MESSAGE);
 
-  // if (isSubmit && (values.purchasePrice < 0 || values.purchasePrice === ''))
-  //   errors.purchasePrice = inputFieldNotValid(REQUIRED_FIELD_MESSAGE);
+  if (isSubmit && (values.purchasePrice < 0 || values.purchasePrice === ''))
+    errors.purchasePrice = inputFieldNotValid(REQUIRED_FIELD_MESSAGE);
   if (isSubmit && values.releaseYear === '') errors.releaseYear = inputFieldNotValid(REQUIRED_FIELD_MESSAGE);
   if (isSubmit && values.purchaseDate === '') errors.purchaseDate = inputFieldNotValid(REQUIRED_FIELD_MESSAGE);
   if (isSubmit && values.series === '') errors.series = inputFieldNotValid(REQUIRED_FIELD_MESSAGE);
-  // if (isSubmit && values.weapon === '') errors.weapon = inputFieldNotValid(REQUIRED_FIELD_MESSAGE);
+  if (isSubmit && values.weapon === '') errors.weapon = inputFieldNotValid(REQUIRED_FIELD_MESSAGE);
   return errors;
 }
 // to be able save price in db i have to change , to .

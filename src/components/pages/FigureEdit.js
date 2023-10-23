@@ -61,7 +61,7 @@ function FigureEdit({ onClose }) {
       .then(value => {
         setSeriesList(value);
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(`🔥 ERROR getting series list ${err}`));
   }, []);
 
   const dispatch = useDispatch();

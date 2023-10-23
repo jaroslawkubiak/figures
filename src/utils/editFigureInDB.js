@@ -7,7 +7,7 @@ const editFigureInDB = async figure => {
     const res = await axios.put(`${BASE_URL}api/v1/figures/${figure.id}`, figure);
     return res.data;
   } catch (err) {
-    console.log(`Error editing figure: ${err}`);
+    console.log(`🔥 ERROR editing figure: ${err}`);
   }
 };
 

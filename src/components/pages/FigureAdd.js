@@ -134,7 +134,7 @@ function FigureAdd({ onClose, seriesList }) {
     .replaceAll('.', '-');
 
   // setting initial value for number and date
-  if (!currentFigure.number) currentFigure.number = 'sw018';
+  // if (!currentFigure.number) currentFigure.number = 'sw018';
   if (!currentFigure.purchaseDate) currentFigure.purchaseDate = today;
 
   // handle change to inputs fields
@@ -231,7 +231,7 @@ function FigureAdd({ onClose, seriesList }) {
               onChange={handleChangeInput}
               onFocus={handleOnFocus}
               required={true}
-              // placeholder="Enter a number between sw0001 to sw1267"
+              placeholder="Enter a number from sw0001 to sw1318"
               value={currentFigure.number}
             >
               number
