@@ -231,7 +231,7 @@ function FigureAdd({ onClose, seriesList }) {
               onChange={handleChangeInput}
               onFocus={handleOnFocus}
               required={true}
-              placeholder="Enter a number from sw0001 to sw1318"
+              placeholder="max nr sw1318"
               value={currentFigure.number}
             >
               number
