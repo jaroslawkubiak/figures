@@ -97,21 +97,27 @@ function FigureList({ listView, figures }) {
       <div className="isLoading-content">
         <GalacticEmpire cssClass="svg-fill-primary svg-rotate" />
       </div>
-      <span className="font-size-3 letter-spacing-4">Loading...</span>
+      <span className="color-primary isLoading-error">Loading...</span>
     </div>
   ) : (
     ''
   );
 
   // error during loading figures from API
+  let errorDescription;
+  if (figures.error) {
+    if (figures.error.message === 'AxiosError: Network Error') errorDescription = 'Try add site to trusted site';
+    else errorDescription = figures.error.message;
+  }
+
   const renderedError = figures.error ? (
     <div className="isLoading-wrapper">
       <div className="isLoading-content">
         <GalacticEmpire cssClass="svg-fill-error" />
       </div>
-      <span className="color-error font-size-2-2 letter-spacing-2">Error during loading!</span>
-      <span className="color-error font-size-2-2 letter-spacing-2">{figures.error.message}</span>
-      <span className="color-primary font-size-2-2 letter-spacing-2">Please try again later.</span>
+      <span className="color-primary isLoading-error">Error during loading!</span>
+      <span className="color-error isLoading-error">{errorDescription}</span>
+      <span className="color-primary isLoading-error">Please try again later.</span>
     </div>
   ) : (
     ''

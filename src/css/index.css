@@ -140,9 +140,18 @@ a {
   align-items: center;
   width: 100%;
 }
+
 .isLoading-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 200px;
   height: 200px;
+}
+
+.isLoading-error {
+  font-size: 1.2em;
+  letter-spacing: 2px;
 }
 
 /*############################## Medium devices (landscape tablets, 768px and up) ##############################*/
@@ -157,6 +166,9 @@ a {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
+  }
+  .isLoading-error {
+    font-size: 1.8em;
   }
 }
 
@@ -173,6 +185,10 @@ a {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
+  }
+  .isLoading-error {
+    font-size: 2em;
+    letter-spacing: 3px;
   }
 }
 
@@ -193,5 +209,8 @@ a {
 
   .figure-container-list {
     grid-template-columns: repeat(3, 1fr);
+  }
+  .isLoading-error {
+    font-size: 2.2em;
   }
 }

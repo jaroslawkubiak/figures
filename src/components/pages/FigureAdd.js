@@ -231,10 +231,10 @@ function FigureAdd({ onClose, seriesList }) {
               onChange={handleChangeInput}
               onFocus={handleOnFocus}
               required={true}
-              placeholder="max nr sw1318"
+              placeholder=""
               value={currentFigure.number}
             >
-              number
+              number <br />(from sw0001 to sw1318)
             </InputText>
             {formErrors.number}
             {figureExistInDB}
