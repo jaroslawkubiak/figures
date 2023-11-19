@@ -106,7 +106,8 @@ function FigureList({ listView, figures }) {
   // error during loading figures from API
   let errorDescription;
   if (figures.error) {
-    if (figures.error.message === 'AxiosError: Network Error') errorDescription = 'Try add site to trusted site';
+    if (figures.error.message === 'AxiosError: Network Error')
+      errorDescription = 'Try add \n starwars.jaroslawkubiak.pl \nto trusted site';
     else errorDescription = figures.error.message;
   }
 
