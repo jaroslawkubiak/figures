@@ -1,28 +1,35 @@
-import { useEffect, useState } from 'react';
-import '../../css/figure-view.css';
-import checkIfImageExist from '../../utils/checkIfImageExist';
-import { GalacticRepublic } from '../../svg/GalacticRepublic';
+import { useEffect, useState } from "react";
+import "../../css/figure-view.css";
+import checkIfImageExist from "../../utils/checkIfImageExist";
+import { GalacticRepublic } from "../../svg/GalacticRepublic";
 
 function FigureCard({ figure, clickedImage, onModal, onEdit }) {
-  const [state, setState] = useState('loading');
-  const [figureImage, setFigureImage] = useState(
-    `https://jaroslawkubiak.pl/portfolio/figures/static/media/bricklink.png`
-  );
+  const photoLink = `https://jaroslawkubiak.pl/portfolio/figures/static/media/bricklink.png`;
+  const [state, setState] = useState("loading");
+  const [figureImage, setFigureImage] = useState(photoLink);
 
   useEffect(() => {
     // check if image link in DB is for bricklink or local
-    if (figure.imageLink?.includes('https://jaroslawkubiak.pl')) {
+    if (figure.imageLink?.includes("https://jaroslawkubiak.pl")) {
+      console.log(`##### 1 #####`);
       // set link from my server
       setFigureImage(figure.imageLink);
-      setState('succes');
-    } else if (!figure.imageLink || figure.imageLink?.includes('https://img.bricklink.com')) {
+      setState("succes");
+    } else if (
+      !figure.imageLink ||
+      figure.imageLink?.includes("https://img.bricklink.com")
+    ) {
       // set new default link
-      setFigureImage(`https://img.bricklink.com/ItemImage/MN/0/${figure.number}.png`);
-
+      console.log(`##### 2 #####`);
+      setFigureImage(
+        `https://img.bricklink.com/ItemImage/MN/0/${figure.number}.png`
+      );
+      
+      // console.log(`##### 3 #####`);
       //get api call - check if file exists on FTP
-      checkIfImageExist(figure);
-      setFigureImage(figure.imageLink);
-      setState('succes');
+      // checkIfImageExist(figure);
+      // setFigureImage(figure.imageLink);
+      setState("succes");
     }
   }, []);
 
@@ -37,8 +44,11 @@ function FigureCard({ figure, clickedImage, onModal, onEdit }) {
           {figure.mainName}
         </span>
       </div>
-      <div className="card-wrapper cursor-pointer" onClick={() => onModal(figure, clickedImage)}>
-        {state === 'loading' ? (
+      <div
+        className="card-wrapper cursor-pointer"
+        onClick={() => onModal(figure, clickedImage)}
+      >
+        {state === "loading" ? (
           <GalacticRepublic cssClass="svg-fill-loading svg-rotate" />
         ) : (
           <img

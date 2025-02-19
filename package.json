@@ -1,6 +1,5 @@
 {
   "name": "figures",
-  "homepage": "https://jaroslawkubiak.pl/portfolio/figures",
   "version": "1.0.1",
   "private": true,
   "dependencies": {

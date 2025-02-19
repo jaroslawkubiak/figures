@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/portfolio/figures/static/css/main.dedd24e2.css",
-    "main.js": "/portfolio/figures/static/js/main.4131abf7.js",
-    "static/media/star_wars.ttf": "/portfolio/figures/static/media/star_wars.a313c86b2cbd76ef0de7.ttf",
-    "static/media/bricklink.png": "/portfolio/figures/static/media/bricklink.c3b80e970420ee09e0b4.png",
-    "index.html": "/portfolio/figures/index.html",
-    "main.dedd24e2.css.map": "/portfolio/figures/static/css/main.dedd24e2.css.map",
-    "main.4131abf7.js.map": "/portfolio/figures/static/js/main.4131abf7.js.map"
+    "main.css": "/static/css/main.669b96f8.css",
+    "main.js": "/static/js/main.d852bcd1.js",
+    "static/media/star_wars.ttf": "/static/media/star_wars.a313c86b2cbd76ef0de7.ttf",
+    "static/media/bricklink.png": "/static/media/bricklink.c3b80e970420ee09e0b4.png",
+    "index.html": "/index.html",
+    "main.669b96f8.css.map": "/static/css/main.669b96f8.css.map",
+    "main.d852bcd1.js.map": "/static/js/main.d852bcd1.js.map"
   },
   "entrypoints": [
-    "static/css/main.dedd24e2.css",
-    "static/js/main.4131abf7.js"
+    "static/css/main.669b96f8.css",
+    "static/js/main.d852bcd1.js"
   ]
 }

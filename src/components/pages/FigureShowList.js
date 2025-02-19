@@ -20,7 +20,7 @@ function FigureShowList({ figure, clickedImage, onModal, onEdit, isFigureEven })
       setFigureImage(`https://img.bricklink.com/ItemImage/MN/0/${figure.number}.png`);
 
       //get api call - check if file exists on FTP
-      checkIfImageExist(figure);
+      // checkIfImageExist(figure);
       setFigureImage(figure.imageLink);
       setState('succes');
     }
